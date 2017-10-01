@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Favourites</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css" media="screen">
+    <link rel="stylesheet" href="assets/css/utils.css" media="screen">
+    <link rel="stylesheet" href="assets/css/style.css" media="screen">
+</head>
+<body>
+
+
+<div class="container-fluid submenu">
+    <nav class="navbar navbar-expand-lg navbar-light bg-navbar fixed-top justify-content-end">
+        <a class="navbar-brand" href="index.html">MoreRecipe</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-nav ml-auto btn-group">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-outline-secondary" data-toggle="modal"
+                        data-target="#exampleModalLong">
+                    <i class="fa fa-user-circle"></i> My Account
+                </button>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<!--///////////////////////////////Auth Modal/////////////////////////////////////////-->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content simplebox blade">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                           aria-controls="home" aria-expanded="true">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                           aria-controls="profile">Create Account</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <form class="mt-15">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1"
+                                       aria-describedby="emailHelp" placeholder="Enter email">
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                                    anyone else.
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1"
+                                       placeholder="Password">
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input">
+                                    Check me out
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-outline-warning">Submit</button>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <form class="mt-15">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                       aria-describedby="emailHelp" placeholder="Full name">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                       aria-describedby="emailHelp" placeholder="Username">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="exampleInputEmail1"
+                                       aria-describedby="emailHelp" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                       aria-describedby="emailHelp" placeholder="Mobile Number">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="exampleInputPassword1"
+                                       placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="exampleInputPassword1"
+                                       placeholder="Confirm Password">
+                            </div>
+                            <button type="submit" class="btn btn-outline-warning">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper">
+    <ol class="breadcrumb container-fluid mt-50 mb-10 col-md-9 mx-auto bg-white shadow-lite">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">User</a></li>
+        <li class="breadcrumb-item active">My Favourites</li>
+    </ol>
+    <div class="container-fluid mb-20 col-md-9 mx-auto recipe-details-container">
+        <div class="row">
+            <div class="col-12 col-sm-4 col-md-4 col-lg-4 user-profile-outer">
+                <div class="col-12 col-sm-12 col-md-12 pt-20 shadow-lite bg-white full-height">
+                    <div class="avatar-area">
+                        <div class="center-content">
+                            <img src="assets/images/no-avatar.png" class="avatar text-center circulate circulate-xlg" alt="avatar">
+                        </div>
+
+                        <form class="text-center" >
+                            <label class="btn btn-secondary btn-sm mt-2">
+                                <i class="fa fa-camera"></i> Choose photo
+                                <input type="file" name="file" class="hidden avatar-input" accept="image/*">
+                            </label>
+                            <button type="submit"  class="btn btn-outline-success btn-sm">
+                                Upload
+                            </button>
+                        </form>
+                    </div>
+                    <div class="stat-area light-well row pt-2 shadow-lite">
+                        <div class="col-4 col-md-4 col-sm-4 col-lg-4 text-center">
+                            <h6 class="text-muted">Recipes</h6>
+                            <h6><small>234</small></h6>
+                        </div>
+                        <div class="col-4 col-md-4 col-sm-4 col-lg-4 text-center">
+                            <h6 class="text-muted">Favourites</h6>
+                            <h6><small>23</small></h6>
+                        </div>
+                        <div class="col-4 col-md-4 col-sm-4 col-lg-4 text-center">
+                            <h6 class="text-muted">Reviews</h6>
+                            <h6><small>120</small></h6>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="mt-5">
+                        <ul class="user-profile">
+                            <li><a href="profile.html"><i class="fa fa-user"></i> My Profile</a></li>
+                            <li><a href="my-recipes.html"><i class="fa fa-list"></i> My Recipes</a></li>
+                            <li><a href="favourites.html"><i class="fa fa-star text-warning"></i> My Favourites</a></li>
+                            <li><a href="add-recipe.html"><i class="fa fa-plus"></i> Add Recipe</a></li>
+                            <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="simplebox blade col-12 col-sm-8 col-md-8 col-lg-8 p-10 row" style="box-shadow: none;">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                    <div class="col-md-12 recipe">
+                        <div class="recipe-img" style="background-image: url('assets/images/dish.jpg')">
+
+                        </div>
+                        <div class="recipe-meta pt-5">
+                            <h6 class="recipe-name">Rice/Chicken Nuggets</h6>
+                            <h6><small><i class="fa fa-tags"></i> African Dishes</small></h6>
+                            <h6 class="text-muted"><small><i class="fa fa-user"></i> By Mohammed Isioye</small></h6>
+                        </div>
+                        <div class="recipe-met2">
+                            <hr class="m-1">
+                            <p class="text-left"><small>
+                                <span><i class="fa fa-eye text-muted"></i> 2334</span> &nbsp;
+                                <span><i class="fa fa-thumbs-o-up text-muted"></i> 211</span>
+                            </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                    <div class="col-md-12 recipe">
+
+                        <div class="recipe-img" style="background-image: url('assets/images/dish2.jpg')">
+
+                        </div>
+                        <div class="recipe-meta pt-5">
+                            <h6 class="recipe-name">Rice and Tilapia</h6>
+                            <h6><small><i class="fa fa-tags"></i> African Dishes</small></h6>
+                            <h6 class="text-muted"><small><i class="fa fa-user"></i> By Mohammed Isioye</small></h6>
+                        </div>
+                        <div class="recipe-met2">
+                            <hr class="m-1">
+                            <p class="text-left"><small>
+                                <span><i class="fa fa-eye text-muted"></i> 23</span> &nbsp;
+                                <span><i class="fa fa-thumbs-o-up text-muted"></i> 4011</span>
+                            </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                    <div class="col-md-12 recipe">
+
+                        <div class="recipe-img" style="background-image: url('assets/images/dish.jpg')">
+
+                        </div>
+                        <div class="recipe-meta pt-5">
+                            <h6 class="recipe-name">Rice/Chicken Nuggets</h6>
+                            <h6><small><i class="fa fa-tags"></i> African Dishes</small></h6>
+                            <h6 class="text-muted"><small><i class="fa fa-user"></i> By Mohammed Isioye</small></h6>
+                        </div>
+                        <div class="recipe-met2">
+                            <hr class="m-1">
+                            <p class="text-left"><small>
+                                <span><i class="fa fa-eye text-muted"></i> 2334</span> &nbsp;
+                                <span><i class="fa fa-thumbs-o-up text-muted"></i> 211</span>
+                            </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                    <div class="col-md-12 recipe">
+                        <div class="recipe-img" style="background-image: url('assets/images/dish.jpg')">
+
+                        </div>
+                        <div class="recipe-meta pt-5">
+                            <h6 class="recipe-name">Rice/Chicken Nuggets</h6>
+                            <h6><small><i class="fa fa-tags"></i> African Dishes</small></h6>
+                            <h6 class="text-muted"><small><i class="fa fa-user"></i> By Mohammed Isioye</small></h6>
+                        </div>
+                        <div class="recipe-met2">
+                            <hr class="m-1">
+                            <p class="text-left"><small>
+                                <span><i class="fa fa-eye text-muted"></i> 2334</span> &nbsp;
+                                <span><i class="fa fa-thumbs-o-up text-muted"></i> 211</span>
+                            </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                    <div class="col-md-12 recipe">
+
+                        <div class="recipe-img" style="background-image: url('assets/images/dish2.jpg')">
+
+                        </div>
+                        <div class="recipe-meta pt-5">
+                            <h6 class="recipe-name">Rice and Tilapia</h6>
+                            <h6><small><i class="fa fa-tags"></i> African Dishes</small></h6>
+                            <h6 class="text-muted"><small><i class="fa fa-user"></i> By Mohammed Isioye</small></h6>
+                        </div>
+                        <div class="recipe-met2">
+                            <hr class="m-1">
+                            <p class="text-left"><small>
+                                <span><i class="fa fa-eye text-muted"></i> 23</span> &nbsp;
+                                <span><i class="fa fa-thumbs-o-up text-muted"></i> 4011</span>
+                            </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                    <div class="col-md-12 recipe">
+
+                        <div class="recipe-img" style="background-image: url('assets/images/dish.jpg')">
+
+                        </div>
+                        <div class="recipe-meta pt-5">
+                            <h6 class="recipe-name">Rice/Chicken Nuggets</h6>
+                            <h6><small><i class="fa fa-tags"></i> African Dishes</small></h6>
+                            <h6 class="text-muted"><small><i class="fa fa-user"></i> By Mohammed Isioye</small></h6>
+                        </div>
+                        <div class="recipe-met2">
+                            <hr class="m-1">
+                            <p class="text-left"><small>
+                                <span><i class="fa fa-eye text-muted"></i> 2334</span> &nbsp;
+                                <span><i class="fa fa-thumbs-o-up text-muted"></i> 211</span>
+                            </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <nav aria-label="Page navigation example" class="ml-auto">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+
+
+</div>
+<footer class="p-10 well well-sm m-0 shadow-lite">
+    <div class="text-center text-muted">
+        <p class="bold">&copy; 2017 More Recipes</p>
+    </div>
+</footer>
+
+<script src="assets/js/jquery-3.2.1.js"></script>
+<script src="assets/js/popper.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/script.js"></script>
+
+</body>
+</html>
