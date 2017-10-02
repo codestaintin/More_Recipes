@@ -25,4 +25,3 @@ More recipes is an application where a anyone can see recipes and method of prep
 
  
  #### Update coming soon
-# More_Recipes
