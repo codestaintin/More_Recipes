@@ -5,6 +5,11 @@ const Review = db.Review;
 const Recipe = db.Recipe;
 
 const reviewController = {
+  /**
+   * Create recipe review
+   * @param {*} req 
+   * @param {*} res 
+   */
   create(req, res) {
     const body = req.body;
     const validator = new Validator(body, Review.createRules());
@@ -27,6 +32,11 @@ const reviewController = {
         .catch(error => res.status(400).json(error));
     }
   },
+  /**
+   * Delete a recipe review
+   * @param {*} req 
+   * @param {*} res 
+   */
   destroy(req, res) {
     return Review
       .find({
@@ -45,6 +55,11 @@ const reviewController = {
       })
       .catch(error => res.status(400).json(error));
   },
+  /**
+   * List all recipe reviews
+   * @param {*} req 
+   * @param {*} res 
+   */
   list(req, res) {
     return Review
       .all()

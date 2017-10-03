@@ -6,7 +6,10 @@ const User = db.User;
 const Review = db.Review;
 
 const recipeController = {
-  /** Create new Recipe */
+  /** Create new Recipe
+   * @param {*req} req
+   * @param {*res} res
+   */
   create(req, res) {
     const body = req.body;
     const validator = new Validator(body, Recipe.createRules());
@@ -29,7 +32,10 @@ const recipeController = {
         .catch(error => res.status(404).send(error));
     }
   },
-
+  /**
+   * Retrieves a recipe
+   * @param {*id}
+   */
   retrieve(req, res) {
     return Recipe
       .findById(req.params.recipeId, {
@@ -84,7 +90,11 @@ const recipeController = {
       })
       .catch(error => res.status(400).json(error));
   },
-
+  /**
+   * List all recipes
+   * @param {*} req 
+   * @param {*} res 
+   */
   list(req, res) {
     return Recipe
       .findAll({
