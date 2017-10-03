@@ -6,6 +6,7 @@ const User = db.User;
 const Review = db.Review;
 
 const recipeController = {
+  /** Create new Recipe */
   create(req, res) {
     const body = req.body;
     const validator = new Validator(body, Recipe.createRules());
@@ -29,23 +30,26 @@ const recipeController = {
     }
   },
 
-  //   retrieve(req, res) {
-  //     return Recipe
-  //       .findById(req.params.recipeId, {
-  //         include: [{
-  //           model: Review,
-  //           as: 'reviews'
-  //         }]
-  //       })
-  //       .then((recipe) => {
-  //         if (!recipe) {
-  //           res.status(404).json({ message: 'Recipe not found' });
-  //         }
-  //         res.status(200).json({ recipe });
-  //       })
-  //       .catch(error => res.status(400).json({ error }));
-  //   },
+  retrieve(req, res) {
+    return Recipe
+      .findById(req.params.recipeId, {
+        include: [{
+          model: Review,
+          as: 'reviews'
+        }]
+      })
+      .then((recipe) => {
+        if (!recipe) {
+          res.status(404).json({ message: 'Recipe not found' });
+        }
+        res.status(200).json({ recipe });
+      })
+      .catch(error => res.status(400).json({ error }));
+  },
 
+  /** Update Recipe
+   * @param{id}
+   */
   update(req, res) {
     const body = req.body;
     const validator = new Validator(body, Recipe.updateRules());
@@ -63,6 +67,9 @@ const recipeController = {
         .catch(error => res.status(400).json({ error }));
     }
   },
+  /** Delete Recipe
+   * @param{id}
+   */
   destroy(req, res) {
     return Recipe
       .findById(req.params.recipeId)

@@ -17,7 +17,7 @@ const reviewController = {
           return Review.create({
             content: req.body.content,
             recipeId: req.params.recipeId,
-            user_id: req.decoded.id
+            userId: req.decoded.id
           })
             .then((newrecipe) => {
               return res.status(201).json({ code: 200, message: 'Review Posted ', data: newrecipe });
