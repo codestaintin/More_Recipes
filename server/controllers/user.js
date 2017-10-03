@@ -8,10 +8,15 @@ import db from '../models';
 dotenv.config();
 
 const User = db.User;
-// const Recipe = db.Recipe;
 const secret = process.env.SECRET_TOKEN;
 
 const userController = {
+  /**
+   * Create a new user
+   * @param {*req} req 
+   * @param {*res} res
+   * @returns {*obj} obj 
+   */
   create(req, res) {
     const body = req.body;
     const validator = new Validator(body, User.createRules());
@@ -43,7 +48,11 @@ const userController = {
       return res.status(401).json({ message: validator.errors.all() });
     }
   },
-  // Log in User and validate user log in requests
+  /**
+   * Log in User and validate user log in requests
+   * @param {*req} req 
+   * @param {*res} res 
+   */
   login(req, res) {
     const body = req.body;
     const validator = new Validator(body, User.loginRules());

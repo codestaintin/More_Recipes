@@ -61,7 +61,7 @@ const userModel = (sequelize, DataTypes) => {
    */
   User.createRules = () => {
     return {
-      fullname: 'required|min:6',
+      fullname: 'required|min:6|alpha',
       username: 'required|min:6',
       email: 'required|email',
       password: 'required|min:6'

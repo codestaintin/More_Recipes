@@ -29,6 +29,17 @@ const auth = {
         message: 'Token not provided'
       });
     }
+  },
+  verifyUser(req, res, next) {
+    User.findById(req.params.id)
+      .then((user) => {
+        if (!user) {
+          req.user = user;
+          return next();
+        }
+        return res.status(404).json({ message: 'User not found' });
+      })
+      .catch(error => res.status(500).json({ error: error.message }));
   }
 };
 export default auth;
