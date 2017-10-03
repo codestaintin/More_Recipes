@@ -4,6 +4,11 @@ const Favorite = db.Favorite;
 const Recipe = db.Recipe;
 
 const favoriteController = {
+  /**
+   * Create user favorite
+   * @param {*} req 
+   * @param {*} res 
+   */
   create(req, res) {
     Favorite.findOne({
       where: {
@@ -35,6 +40,11 @@ const favoriteController = {
         error: error.errors
       }));
   },
+  /**
+   * List all users favorite
+   * @param {*} req 
+   * @param {*} res 
+   */
   list(req, res) {
     Favorite.findAll({
       where: { userId: req.params.userId },
