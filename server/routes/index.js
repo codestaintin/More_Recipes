@@ -47,7 +47,7 @@ const routes = (router) => {
 
   router.route('/recipes/:recipeId/reviews')
   /**
-   * POST api/v1/:recipe_id/reviews - Create a review for a recipe
+   * POST api/v1/:recipeId/reviews - Create a review for a recipe
    */
     .post(authMiddleware.verifyToken, reviewCtrl.create);
   /**
