@@ -1,6 +1,8 @@
 import Validator from 'validatorjs';
 import db from '../models';
 
+const sequelize = db.sequelize;
+
 const Recipe = db.Recipe;
 const User = db.User;
 const Review = db.Review;
@@ -103,16 +105,34 @@ const recipeController = {
    * @param {*} req 
    * @param {*} res 
    */
+  // list(req, res) {
+  //   return Recipe
+  //     .findAll({
+  //       include: [{
+  //         model: Review,
+  //         as: 'reviews'
+  //       }]
+  //     })
+  //     .then(recipe => res.status(200).json({ message: 'List of recipes', recipe }))
+  //     .catch(error => res.status(400).json(error));
+  // },
   list(req, res) {
+    const sortType = req.query.sort || null;
+    const orderType = req.query.order || null;
+    if ((sortType != null) || (orderType !== null)) {
+      return sequelize.query(`
+                          SELECT DISTINCT
+                          (SELECT COUNT(id) FROM "Votings" WHERE "recipeId"=a.id AND vote=1) AS upvotes,
+                          (SELECT COUNT(id) FROM "Votings" WHERE "recipeId"=a.id AND vote=0) AS downvotes,
+                          a.* FROM "Recipes" a
+                          LEFT JOIN "Votings" b ON a.id = b."recipeId" ORDER BY upvotes DESC`, { type: sequelize.QueryTypes.SELECT })
+        .then(recipes => res.status(200).json({ message: 'All Recipes displayed', recipes }))
+        .catch(() => res.status(400));
+    }
     return Recipe
-      .findAll({
-        include: [{
-          model: Review,
-          as: 'reviews'
-        }]
-      })
-      .then(recipe => res.status(200).json({ message: 'List of recipes', recipe }))
-      .catch(error => res.status(400).json(error));
+      .findAll()
+      .then(recipes => res.status(200).send(recipes))
+      .catch(error => res.status(400).send(error));
   },
 };
 
