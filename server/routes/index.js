@@ -58,7 +58,7 @@ const routes = (router) => {
   /**
  * POST api/vi/votes/:userId/downvote
  */
-  router.route('/votes/:userId/downVote')
+  router.route('/votes/:userId/downVotes')
     .post(authMiddleware.verifyToken, authMiddleware.verifyUser, votingCtrl.downVote);
 };
 

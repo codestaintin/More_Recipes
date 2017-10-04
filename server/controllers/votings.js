@@ -32,7 +32,7 @@ let vote = (req, res, status) => {
   Promise.all(voteData)
     .then((results) => {
       const user = results[0];
-      if (!user) {
+      if (user) {
         return res.status(404).json({
           code: 404,
           message: 'This user does not exist'
