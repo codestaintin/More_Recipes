@@ -48,6 +48,14 @@ const recipeController = {
         if (!recipe) {
           res.status(404).json({ message: 'Recipe not found' });
         }
+        return recipe
+          .update({ views: recipe.views + 1 });
+      })
+      .then((recipe) => {
+        if (!recipe) {
+          res.status(404).json({ message: 'Recipe not found' });
+        }
+        if (req.decoded && req.decoded.id && req.decoded.id === recipe.userId) recipe.views = 1;
         res.status(200).json({ recipe });
       })
       .catch(error => res.status(400).json({ error }));
