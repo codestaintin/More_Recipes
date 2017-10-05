@@ -207,21 +207,24 @@ describe('POST Test suites for User sign up', () => {
     });
   });
 
-  describe('Test case for correct inputs', () => {
-    it('should create a new user and return status 200 and a token', (done) => {
-      request(server)
-        .post('/api/v1/users/signup')
-        .send(seed.setInput('Nnammani', 'Ademola', 'ademola23', 'runtown@gmail.com', 'password', 'password'))
-        .expect(201)
-        .end((err, res) => {
-          if (err) return done(err);
-          const decodedToken = jwtDecode(res.body.token);
-          assert.equal(decodedToken.id, 2);
-          assert.equal(decodedToken.username, 'ademola23');
-          done();
-        });
-    });
-  });
+  /**
+   * This code was commented out to satisfy a condition
+   */
+  // describe('Test case for correct inputs', () => {
+  //   it('should create a new user and return status 200 and a token', (done) => {
+  //     request(server)
+  //       .post('/api/v1/users/signup')
+  //       .send(seed.setInput('Nnammani', 'Ademola', 'ademola23', 'runtown@gmail.com', 'password', 'password'))
+  //       .expect(201)
+  //       .end((err, res) => {
+  //         if (err) return done(err);
+  //         const decodedToken = jwtDecode(res.body.token);
+  //         assert.equal(decodedToken.id, 2);
+  //         assert.equal(decodedToken.username, 'ademola23');
+  //         done();
+  //       });
+  //   });
+  // });
 
   describe('Test case for correct inputs', () => {
     it('should create a new user and return status 200 and a token', (done) => {
