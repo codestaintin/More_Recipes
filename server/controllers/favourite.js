@@ -53,7 +53,7 @@ const favoriteController = {
     Favorite.findAll({
       where: { userId: req.params.userId },
       include: [{
-        model: Recipe
+        model: Recipe,
       }]
     })
       .then((favorites) => {
