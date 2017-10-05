@@ -17,6 +17,7 @@ const recipeController = {
    */
   create(req, res) {
     const body = req.body;
+    // console.log(body);
     const validator = new Validator(body, Recipe.createRules());
     if (validator.passes()) {
       User.findById(req.decoded.id)
@@ -25,16 +26,17 @@ const recipeController = {
             return res.status(404).json({ code: 404, message: 'This User Does not exit' });
           }
           return Recipe.create({
-            name: req.body.name,
-            description: req.body.description,
-            ingredient: req.body.ingredient,
-            image: req.body.image,
-            userId: req.decoded.id
+            name: body.name,
+            description: body.description,
+            userId: req.decoded.id,
+            ingredient: body.ingredient
           })
             .then(recipe => res.status(201).json({ message: 'Recipe creation succesful ', recipe }))
             .catch(error => res.status(404).send(error));
         })
         .catch(error => res.status(404).send(error));
+    } else {
+      return res.status(401).json({ message: validator.errors.all() });
     }
   },
 
@@ -79,22 +81,26 @@ const recipeController = {
    * @returns 
    */
   update(req, res) {
-    const body = req.body;
-    const validator = new Validator(body, Recipe.updateRules());
-    if (validator.passes()) {
-      return Recipe
-        .findById(req.params.recipeId)
-        .then((recipe) => {
-          if (!recipe) {
-            res.status(404).json({ message: 'Recipe not found in record' });
-          }
-          return recipe
-            .update(req.body, { fields: Object.keys(req.body) });
-        })
-        .then(updatedRecipe => res.status(200).json({ message: 'Update succesful', updatedRecipe }))
-        .catch(error => res.status(400).json({ error }));
-    }
+    return Recipe
+      .findById(req.params.recipeId)
+      .then((recipe) => {
+        if (!recipe) {
+          return res.status(404).send({
+            message: 'Recipe Not Found',
+          });
+        }
+        return recipe
+          .update({
+            name: req.body.name || recipe.name,
+            description: req.body.description || recipe.description,
+            ingredients: req.body.ingredients || recipe.ingredients,
+          })
+          .then(() => res.status(200).send({ message: 'Recipe succesfully updated', recipe }))
+          .catch(error => res.status(400).send({ message: 'Recipe not updated', errors: error.errors }));
+      })
+      .catch(error => res.status(400).send({ errors: error.errors }));
   },
+
 
   /**
    * Delete Recipe
@@ -139,7 +145,9 @@ const recipeController = {
         .catch(() => res.status(400));
     }
     return Recipe
-      .findAll()
+      .findAll({
+        include: [{ model: Review }]
+      })
       .then(recipes => res.status(200).send(recipes))
       .catch(error => res.status(400).send(error));
   },

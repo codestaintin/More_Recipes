@@ -43,16 +43,14 @@ const recipeModel = (sequelize, DataTypes) => {
     return {
       name: 'required|min:4',
       description: 'required|min:4',
-      ingredient: 'required|min:3',
-      userId: 'required'
+      ingredient: 'required|min:3'
     };
   };
   Recipe.updateRules = () => {
     return {
       name: 'required|min:4',
       description: 'required|min:4',
-      ingredient: 'required|min:3',
-      userId: 'required'
+      ingredient: 'required|min:3'
     };
   };
   return Recipe;

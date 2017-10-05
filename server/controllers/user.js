@@ -24,7 +24,7 @@ const userController = {
     const validator = new Validator(body, User.createRules());
     if (validator.passes()) {
       if (body.confirmPassword !== body.password) {
-        return res.status(401).json({ message: 'Password does not match' });
+        return res.status(401).json({ message: 'Invalid credentials' });
       }
       User.findOne({
         where: {
