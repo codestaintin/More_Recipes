@@ -45,4 +45,7 @@ More recipes is an application where a anyone can see recipes and method of prep
 - An unregistered user can not post a review about a recipe
 - An unregistered user can not favorite a recipe
 
+## User template is available on
+- [MoreRecipes](https://codestaintin.github.io/more_recipes_ui)
+
 ### Update comming soon
