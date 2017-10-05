@@ -8,9 +8,12 @@ const User = db.User;
 const Review = db.Review;
 
 const recipeController = {
-  /** Create new Recipe
-   * @param {*req} req
-   * @param {*res} res
+
+  /**
+   * Create new Recipes
+   * 
+   * @param {any} req 
+   * @param {any} res 
    */
   create(req, res) {
     const body = req.body;
@@ -34,9 +37,13 @@ const recipeController = {
         .catch(error => res.status(404).send(error));
     }
   },
+
   /**
-   * Retrieves a recipe
-   * @param {*id}
+   * Retrieve a Recipe
+   * 
+   * @param {any} req 
+   * @param {any} res 
+   * @returns 
    */
   retrieve(req, res) {
     return Recipe
@@ -63,8 +70,13 @@ const recipeController = {
       .catch(error => res.status(400).json({ error }));
   },
 
-  /** Update Recipe
-   * @param{id}
+
+  /**
+   * Update Recipe
+   * 
+   * @param {any} req 
+   * @param {any} res 
+   * @returns 
    */
   update(req, res) {
     const body = req.body;
@@ -83,8 +95,13 @@ const recipeController = {
         .catch(error => res.status(400).json({ error }));
     }
   },
-  /** Delete Recipe
-   * @param{id}
+
+  /**
+   * Delete Recipe
+   * 
+   * @param {any} req 
+   * @param {any} res 
+   * @returns 
    */
   destroy(req, res) {
     return Recipe
@@ -100,22 +117,14 @@ const recipeController = {
       })
       .catch(error => res.status(400).json(error));
   },
+
   /**
    * List all recipes
-   * @param {*} req 
-   * @param {*} res 
+   * 
+   * @param {any} req 
+   * @param {any} res 
+   * @returns 
    */
-  // list(req, res) {
-  //   return Recipe
-  //     .findAll({
-  //       include: [{
-  //         model: Review,
-  //         as: 'reviews'
-  //       }]
-  //     })
-  //     .then(recipe => res.status(200).json({ message: 'List of recipes', recipe }))
-  //     .catch(error => res.status(400).json(error));
-  // },
   list(req, res) {
     const sortType = req.query.sort || null;
     const orderType = req.query.order || null;
