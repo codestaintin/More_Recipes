@@ -11,11 +11,13 @@ const User = db.User;
 const secret = process.env.SECRET_TOKEN;
 
 const userController = {
+
   /**
-   * Create a new user
-   * @param {*req} req 
-   * @param {*res} res
-   * @returns {*obj} obj 
+   * Create User and validate request
+   * 
+   * @param {any} req 
+   * @param {any} res 
+   * @returns 
    */
   create(req, res) {
     const body = req.body;
@@ -48,10 +50,13 @@ const userController = {
       return res.status(401).json({ message: validator.errors.all() });
     }
   },
+
   /**
-   * Log in User and validate user log in requests
-   * @param {*req} req 
-   * @param {*res} res 
+   * Log in user and validate user request
+   * 
+   * @param {any} req 
+   * @param {any} res 
+   * @returns 
    */
   login(req, res) {
     const body = req.body;

@@ -4,10 +4,12 @@ const Favorite = db.Favorite;
 const Recipe = db.Recipe;
 
 const favoriteController = {
+
   /**
-   * Create user favorite
-   * @param {*} req 
-   * @param {*} res 
+   * Create User favorite
+   * 
+   * @param {any} req 
+   * @param {any} res 
    */
   create(req, res) {
     Favorite.findOne({
@@ -40,10 +42,12 @@ const favoriteController = {
         error: error.errors
       }));
   },
+
   /**
-   * List all users favorite
-   * @param {*} req 
-   * @param {*} res 
+   * List all User Favorite
+   * 
+   * @param {any} req 
+   * @param {any} res 
    */
   list(req, res) {
     Favorite.findAll({
