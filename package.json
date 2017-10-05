@@ -4,7 +4,8 @@
   "description": "Andela bootcamp project",
   "main": "server.js",
   "scripts": {
-    "test": "mocha server/tests/*.test.js --compilers js:babel-register",
+    "test": "sequelize db:migrate && nyc --reporter=html mocha server/tests/*.test.js --compilers js:babel-register && nyc report",
+    "test2": "mocha server/tests/*.test.js --compilers js:babel-register",
     "start": "nodemon server --exec babel-node"
   },
   "author": "Isioye Mohammed",
