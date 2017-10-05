@@ -6,8 +6,7 @@
   "scripts": {
     "test": "sequelize db:migrate && nyc --reporter=html mocha server/tests/*.test.js --compilers js:babel-register && nyc report",
     "test2": "mocha server/tests/*.test.js --compilers js:babel-register",
-    "start": "NODE_ENV=development babel-node server.js",
-    "start:prod": "NODE_ENV=production nodemon server --exec babel-node",
+    "start": "nodemon server --exec babel-node",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
@@ -17,6 +16,7 @@
   "author": "Isioye Mohammed",
   "license": "ISC",
   "dependencies": {
+    "babel-core": "^6.26.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
     "coveralls": "^3.0.0",
