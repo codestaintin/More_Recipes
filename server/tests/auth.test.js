@@ -1,12 +1,11 @@
 import request from 'supertest';
 import dotEnv from 'dotenv';
 import jwtDecode from 'jwt-decode';
-import chai from 'chai';
+import { assert } from 'chai';
 import server from '../../server';
 import seed from './seeder/auth_seed';
 
 dotEnv.config();
-const assert = chai.assert;
 
 describe('POST Test suites for User sign up', () => {
   before(seed.emptyUserTable);
