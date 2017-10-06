@@ -2,6 +2,7 @@
   "name": "more_recipes",
   "version": "1.0.0",
   "description": "Andela bootcamp project",
+  "engines" : { "node" : "8.4.0" } ,
   "main": "server.js",
   "scripts": {
     "test": "sequelize db:migrate && nyc --reporter=html mocha server/tests/*.test.js --compilers js:babel-register && nyc report",
