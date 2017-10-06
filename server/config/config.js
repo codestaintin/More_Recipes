@@ -23,11 +23,6 @@ const config = {
   },
   production: {
     use_env_variable: 'DATABASE_URL',
-    /* username: 'postgres',
-    password: 1234,
-    database: 'database_production',
-    host: '127.0.0.1',
-    port: 5432, */  
     dialect: 'postgres'
   }
 };
