@@ -2,16 +2,13 @@ import Validator from 'validatorjs';
 import db from '../models';
 
 const sequelize = db.sequelize;
-
 const Recipe = db.Recipe;
 const User = db.User;
 const Review = db.Review;
 
 const recipeController = {
-
   /**
    * Create new Recipes
-   * 
    * @param {any} req 
    * @param {any} res 
    */
@@ -23,7 +20,7 @@ const recipeController = {
       User.findById(req.decoded.id)
         .then((user) => {
           if (!user) {
-            return res.status(404).json({ code: 404, message: 'This User Does not exit' });
+            return res.status(404).json({ message: 'This User Does not exit' });
           }
           return Recipe.create({
             name: body.name,
@@ -32,9 +29,9 @@ const recipeController = {
             ingredient: body.ingredient
           })
             .then(recipe => res.status(201).json({ message: 'Recipe creation succesful ', recipe }))
-            .catch(error => res.status(404).send(error));
+            .catch(error => res.status(404).json(error));
         })
-        .catch(error => res.status(404).send(error));
+        .catch(error => res.status(404).json(error));
     } else {
       return res.status(401).json({ message: validator.errors.all() });
     }
@@ -42,7 +39,6 @@ const recipeController = {
 
   /**
    * Retrieve a Recipe
-   * 
    * @param {any} req 
    * @param {any} res 
    * @returns 
@@ -74,8 +70,7 @@ const recipeController = {
 
 
   /**
-   * Update Recipe
-   * 
+   * Update Recipe 
    * @param {any} req 
    * @param {any} res 
    * @returns 
@@ -89,22 +84,26 @@ const recipeController = {
             message: 'Recipe Not Found',
           });
         }
+        if (req.decoded.id !== recipe.userId) {
+          return res.status(404).json({
+            message: 'Only the creator of this recipe is permitted this action'
+          });
+        }
         return recipe
           .update({
             name: req.body.name || recipe.name,
             description: req.body.description || recipe.description,
             ingredients: req.body.ingredients || recipe.ingredients,
           })
-          .then(() => res.status(200).send({ message: 'Recipe succesfully updated', recipe }))
-          .catch(error => res.status(400).send({ message: 'Recipe not updated', errors: error.errors }));
+          .then(() => res.status(200).json({ message: 'Recipe succesfully updated', recipe }))
+          .catch(error => res.status(400).json({ message: 'Recipe not updated', errors: error.errors }));
       })
-      .catch(error => res.status(400).send({ errors: error.errors }));
+      .catch(error => res.status(400).json({ errors: error.errors }));
   },
 
 
   /**
    * Delete Recipe
-   * 
    * @param {any} req 
    * @param {any} res 
    * @returns 
@@ -116,6 +115,11 @@ const recipeController = {
         if (!recipe) {
           res.status(404).json({ message: 'Recipe not found' });
         }
+        if (req.decoded.id !== recipe.userId) {
+          return res.status(404).json({
+            message: 'Only the creator of this recipe is permitted this action'
+          });
+        }
         return recipe
           .destroy()
           .then(() => res.status(200).json({ message: 'Recipe deleted' }))
@@ -126,7 +130,6 @@ const recipeController = {
 
   /**
    * List all recipes
-   * 
    * @param {any} req 
    * @param {any} res 
    * @returns 
@@ -142,14 +145,14 @@ const recipeController = {
                           a.* FROM "Recipes" a
                           LEFT JOIN "Votings" b ON a.id = b."recipeId" ORDER BY upvotes DESC`, { type: sequelize.QueryTypes.SELECT })
         .then(recipes => res.status(200).json({ message: 'All Recipes displayed', recipes }))
-        .catch(() => res.status(400));
+        .catch(() => res.status(400).json({ message: 'An error occured during this operation' }));
     }
     return Recipe
       .findAll({
         include: [{ model: Review }]
       })
-      .then(recipes => res.status(200).send(recipes))
-      .catch(error => res.status(400).send(error));
+      .then(recipes => res.status(200).json(recipes))
+      .catch(error => res.status(400).json(error));
   },
 };
 
