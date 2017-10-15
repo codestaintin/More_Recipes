@@ -11,8 +11,14 @@ const User = db.User;
 const secret = process.env.SECRET_TOKEN;
 
 const userController = {
+
   /**
+<<<<<<< HEAD
    * Create User and validate request* 
+=======
+   * Create User and validate request
+   * 
+>>>>>>> e6934fb784f60dd776d96d9e6ec97f992ca22bee
    * @param {any} req 
    * @param {any} res 
    * @returns 
@@ -22,7 +28,7 @@ const userController = {
     const validator = new Validator(body, User.createRules());
     if (validator.passes()) {
       if (body.confirmPassword !== body.password) {
-        return res.status(401).json({ message: 'Password does not match' });
+        return res.status(401).json({ message: 'Invalid credentials' });
       }
       User.findOne({
         where: { email: body.email }
@@ -46,10 +52,13 @@ const userController = {
       return res.status(401).json({ message: validator.errors.all() });
     }
   },
+
   /**
-   * Log in User and validate user log in requests
-   * @param {*req} req 
-   * @param {*res} res 
+   * Log in user and validate user request
+   * 
+   * @param {any} req 
+   * @param {any} res 
+   * @returns 
    */
   login(req, res) {
     const body = req.body;

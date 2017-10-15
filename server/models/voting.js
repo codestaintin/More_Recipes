@@ -4,11 +4,11 @@ const votingModel = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    user_id: {
+    userId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    recipe_id: {
+    recipeId: {
       type: DataTypes.INTEGER,
       allowNull: false
     }

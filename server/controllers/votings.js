@@ -5,7 +5,8 @@ const User = db.User;
 const Recipe = db.Recipe;
 
 /**
- * Vote Parameters* 
+ * Vote Parameters
+ * 
  * @param {any} req 
  * @param {any} res 
  * @param {any} status 
@@ -40,6 +41,7 @@ let vote = (req, res, status) => {
       const user = results[0];
       if (user) {
         return res.status(404).json({
+          code: 404,
           message: 'This user does not exist'
         });
       }
@@ -47,6 +49,7 @@ let vote = (req, res, status) => {
       const recipe = results[1];
       if (!recipe) {
         return res.status(404).json({
+          code: 404,
           message: 'This recipe does not exist'
         });
       }
@@ -65,6 +68,7 @@ let vote = (req, res, status) => {
     })
     .then((updated) => {
       return res.status(201).json({
+        status: 201,
         message: 'Vote successful',
         data: updated
       });
@@ -77,7 +81,8 @@ let vote = (req, res, status) => {
 
 const votingController = {
   /**
-   * Upvote a recipe* 
+   * Upvote a recipe
+   * 
    * @param {any} req 
    * @param {any} res 
    */
@@ -85,7 +90,8 @@ const votingController = {
     vote(req, res, 1);
   },
   /**
-   * Downvote a recipe* 
+   * Downvote a recipe
+   * 
    * @param {any} req 
    * @param {any} res 
    */

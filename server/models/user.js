@@ -2,7 +2,11 @@ import bcrypt from 'bcrypt-nodejs';
 
 const userModel = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
-    fullname: {
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    lastName: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -61,7 +65,8 @@ const userModel = (sequelize, DataTypes) => {
    */
   User.createRules = () => {
     return {
-      fullname: 'required|min:6|alpha',
+      firstName: 'required|min:6|alpha',
+      lastName: 'required|min:4|alpha',
       username: 'required|min:6',
       email: 'required|email',
       password: 'required|min:6'

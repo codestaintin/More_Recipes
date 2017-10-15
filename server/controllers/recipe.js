@@ -2,18 +2,30 @@ import Validator from 'validatorjs';
 import db from '../models';
 
 const sequelize = db.sequelize;
+<<<<<<< HEAD
+=======
+
+>>>>>>> e6934fb784f60dd776d96d9e6ec97f992ca22bee
 const Recipe = db.Recipe;
 const User = db.User;
 const Review = db.Review;
 
 const recipeController = {
+<<<<<<< HEAD
   /**
    * Create new Recipes* 
+=======
+
+  /**
+   * Create new Recipes
+   * 
+>>>>>>> e6934fb784f60dd776d96d9e6ec97f992ca22bee
    * @param {any} req 
    * @param {any} res 
    */
   create(req, res) {
     const body = req.body;
+    // console.log(body);
     const validator = new Validator(body, Recipe.createRules());
     if (validator.passes()) {
       User.findById(req.decoded.id)
@@ -22,22 +34,31 @@ const recipeController = {
             return res.status(404).json({ message: 'This User Does not exit' });
           }
           return Recipe.create({
-            name: req.body.name,
-            description: req.body.description,
-            ingredient: req.body.ingredient,
-            image: req.body.image,
-            userId: req.decoded.id
+            name: body.name,
+            description: body.description,
+            userId: req.decoded.id,
+            ingredient: body.ingredient
           })
             .then(recipe => res.status(201).json({ message: 'Recipe creation succesful ', recipe }))
             .catch(error => res.status(404).json(error));
         })
+<<<<<<< HEAD
         .catch(error => res.status(404).json(error));
+=======
+        .catch(error => res.status(404).send(error));
+>>>>>>> e6934fb784f60dd776d96d9e6ec97f992ca22bee
     } else {
       return res.status(401).json({ message: validator.errors.all() });
     }
   },
+
   /**
+<<<<<<< HEAD
    * Retrieve a Recipe* 
+=======
+   * Retrieve a Recipe
+   * 
+>>>>>>> e6934fb784f60dd776d96d9e6ec97f992ca22bee
    * @param {any} req 
    * @param {any} res 
    * @returns 
@@ -54,17 +75,34 @@ const recipeController = {
         if (!recipe) {
           res.status(404).json({ message: 'Recipe not found' });
         }
+        return recipe
+          .update({ views: recipe.views + 1 });
+      })
+      .then((recipe) => {
+        if (!recipe) {
+          res.status(404).json({ message: 'Recipe not found' });
+        }
+        if (req.decoded && req.decoded.id && req.decoded.id === recipe.userId) recipe.views = 1;
         res.status(200).json({ recipe });
       })
       .catch(error => res.status(400).json({ error }));
   },
+<<<<<<< HEAD
   /**
    * Update Recipe* 
+=======
+
+
+  /**
+   * Update Recipe
+   * 
+>>>>>>> e6934fb784f60dd776d96d9e6ec97f992ca22bee
    * @param {any} req 
    * @param {any} res 
    * @returns 
    */
   update(req, res) {
+<<<<<<< HEAD
     const body = req.body;
     const validator = new Validator(body, Recipe.updateRules());
     if (validator.passes()) {
@@ -96,6 +134,32 @@ const recipeController = {
   },
   /**
    * Delete Recipe* 
+=======
+    return Recipe
+      .findById(req.params.recipeId)
+      .then((recipe) => {
+        if (!recipe) {
+          return res.status(404).send({
+            message: 'Recipe Not Found',
+          });
+        }
+        return recipe
+          .update({
+            name: req.body.name || recipe.name,
+            description: req.body.description || recipe.description,
+            ingredients: req.body.ingredients || recipe.ingredients,
+          })
+          .then(() => res.status(200).send({ message: 'Recipe succesfully updated', recipe }))
+          .catch(error => res.status(400).send({ message: 'Recipe not updated', errors: error.errors }));
+      })
+      .catch(error => res.status(400).send({ errors: error.errors }));
+  },
+
+
+  /**
+   * Delete Recipe
+   * 
+>>>>>>> e6934fb784f60dd776d96d9e6ec97f992ca22bee
    * @param {any} req 
    * @param {any} res 
    * @returns 
@@ -119,8 +183,14 @@ const recipeController = {
       })
       .catch(error => res.status(400).json(error));
   },
+
   /**
+<<<<<<< HEAD
    * List all recipes* 
+=======
+   * List all recipes
+   * 
+>>>>>>> e6934fb784f60dd776d96d9e6ec97f992ca22bee
    * @param {any} req 
    * @param {any} res 
    * @returns 
@@ -136,6 +206,7 @@ const recipeController = {
                           a.* FROM "Recipes" a
                           LEFT JOIN "Votings" b ON a.id = b."recipeId" ORDER BY upvotes DESC`, { type: sequelize.QueryTypes.SELECT })
         .then(recipes => res.status(200).json({ message: 'All Recipes displayed', recipes }))
+<<<<<<< HEAD
         .catch(() => res.status(400).json({ message: 'An error occured during this operation' }));
     }
     return Recipe
@@ -144,6 +215,16 @@ const recipeController = {
       })
       .then(recipes => res.status(200).json(recipes))
       .catch(error => res.status(400).json(error));
+=======
+        .catch(() => res.status(400));
+    }
+    return Recipe
+      .findAll({
+        include: [{ model: Review }]
+      })
+      .then(recipes => res.status(200).send(recipes))
+      .catch(error => res.status(400).send(error));
+>>>>>>> e6934fb784f60dd776d96d9e6ec97f992ca22bee
   },
 };
 

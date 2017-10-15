@@ -5,10 +5,12 @@ const Review = db.Review;
 const Recipe = db.Recipe;
 
 const reviewController = {
+
   /**
-   * Create recipe review
-   * @param {*} req 
-   * @param {*} res 
+   * Create a Recipe Review
+   * 
+   * @param {any} req 
+   * @param {any} res 
    */
   create(req, res) {
     const body = req.body;
@@ -32,10 +34,13 @@ const reviewController = {
         .catch(error => res.status(400).json(error));
     }
   },
+
   /**
-   * Delete a recipe review
-   * @param {*} req 
-   * @param {*} res 
+   * Delete a Recipe Review
+   * 
+   * @param {any} req 
+   * @param {any} res 
+   * @returns 
    */
   destroy(req, res) {
     return Review
@@ -55,10 +60,13 @@ const reviewController = {
       })
       .catch(error => res.status(400).json(error));
   },
+
   /**
-   * List all recipe reviews
-   * @param {*} req 
-   * @param {*} res 
+   * List all Reviews
+   * 
+   * @param {any} req 
+   * @param {any} res 
+   * @returns 
    */
   list(req, res) {
     return Review

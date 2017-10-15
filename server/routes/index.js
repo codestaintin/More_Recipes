@@ -2,6 +2,7 @@ import userCtrl from '../controllers/user';
 import recipeCtrl from '../controllers/recipe';
 import reviewCtrl from '../controllers/review';
 import favoriteCtrl from '../controllers/favourite';
+import votingCtrl from '../controllers/votings';
 import authMiddleware from '../middleware/auth';
 
 const routes = (router) => {
@@ -42,13 +43,27 @@ const routes = (router) => {
   /**
      * GET api/v1/:recipeId - Get a recipe
      */
-    .get(authMiddleware.verifyToken, recipeCtrl.retrieve);
+    .get(authMiddleware.verifyToken, recipeCtrl.retrieve)
+    /**
+     * DELETE api/v1/:recipeID - Delete a recipe
+     */
+    .delete(authMiddleware.verifyToken, recipeCtrl.destroy);
 
   router.route('/recipes/:recipeId/reviews')
   /**
-   * POST api/v1/:recipe_id/reviews - Create a review for a recipe
+   * POST api/v1/:recipeId/reviews - Create a review for a recipe
    */
     .post(authMiddleware.verifyToken, reviewCtrl.create);
+  /**
+ * POST api/vi/votes/:userId/upVotes
+ */
+  router.route('/votes/:userId/upVotes')
+    .post(authMiddleware.verifyToken, authMiddleware.verifyUser, votingCtrl.upVote);
+  /**
+ * POST api/vi/votes/:userId/downvote
+ */
+  router.route('/votes/:userId/downVotes')
+    .post(authMiddleware.verifyToken, authMiddleware.verifyUser, votingCtrl.downVote);
 };
 
 export default routes;
