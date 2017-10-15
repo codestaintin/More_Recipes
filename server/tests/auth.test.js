@@ -173,7 +173,7 @@ describe('POST Test suites for User sign up', () => {
         .expect(401)
         .end((err, res) => {
           if (err) return done(err);
-          assert.equal(res.body.message, 'Password does not match');
+          assert.equal(res.body.message, 'Invalid credentials');
           done();
         });
     });
@@ -187,7 +187,7 @@ describe('POST Test suites for User sign up', () => {
         .expect(401)
         .end((err, res) => {
           if (err) return done(err);
-          assert.equal(res.body.message, 'Password does not match');
+          assert.equal(res.body.message, 'Invalid credentials');
           done();
         });
     });
@@ -206,7 +206,6 @@ describe('POST Test suites for User sign up', () => {
         });
     });
   });
-
   describe('Test case for correct inputs', () => {
     it('should create a new user and return status 200 and a token', (done) => {
       request(server)
@@ -222,7 +221,6 @@ describe('POST Test suites for User sign up', () => {
         });
     });
   });
-
   describe('Test case for correct inputs', () => {
     it('should create a new user and return status 200 and a token', (done) => {
       request(server)
