@@ -1,4 +1,4 @@
-// Import all dependencies
+/** Import all dependencies */
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import _ from 'lodash';
@@ -12,10 +12,10 @@ const secret = process.env.SECRET_TOKEN;
 
 const userController = {
   /**
-   * Create a new user
-   * @param {*req} req 
-   * @param {*res} res
-   * @returns {*obj} obj 
+   * Create User and validate request* 
+   * @param {any} req 
+   * @param {any} res 
+   * @returns 
    */
   create(req, res) {
     const body = req.body;
@@ -25,9 +25,7 @@ const userController = {
         return res.status(401).json({ message: 'Password does not match' });
       }
       User.findOne({
-        where: {
-          $or: [{ email: body.email }, { username: body.username }]
-        }
+        where: { email: body.email }
       })
         .then((user) => {
           if (user) {
@@ -35,14 +33,14 @@ const userController = {
           }
           User.create(body)
             .then((savedUser) => {
-              const data = _.pick(savedUser, ['id', 'fullname', 'username']);
+              const data = _.pick(savedUser, ['id', 'username']);
               const myToken = jwt.sign(data, secret, { expiresIn: 86400 });
-              return res.status(201).send({ message: 'Registration Successful', user: data, token: myToken });
+              return res.status(201).json({ message: 'Registration Successful', user: data, token: myToken });
             })
-            .catch(error => res.status(500).send(error));
+            .catch(error => res.status(500).json(error));
         })
         .catch((error) => {
-          return res.status(500).send('An error occured while trying to create a user ', error.message);
+          return res.status(500).json('An error occured while trying to create a user ', error.message);
         });
     } else {
       return res.status(401).json({ message: validator.errors.all() });
@@ -66,12 +64,12 @@ const userController = {
     })
       .then((user) => {
         if (!user) {
-          return Promise.reject({ code: 404, message: 'User not found, please register' });
+          return Promise.reject({ message: 'User not found, please register' });
         }
         if (!user.comparePassword(user, body.password)) {
-          return res.status(400).json({ message: 'Password does not match the one in record' });
+          return res.status(400).json({ message: 'Invalid email/password' });
         }
-        const data = _.pick(user, ['id', 'fullname', 'username']);
+        const data = _.pick(user, ['id', 'username']);
         const myToken = jwt.sign(data, secret);
         return res.status(201).send({ message: 'Log in successful', token: myToken, });
       })

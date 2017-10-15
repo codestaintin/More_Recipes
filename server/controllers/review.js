@@ -17,7 +17,7 @@ const reviewController = {
       Recipe.findById(req.params.recipeId)
         .then((recipe) => {
           if (!recipe) {
-            return res.status(404).json({ code: 404, message: 'This Recipe Does not exit' });
+            return res.status(404).json({ message: 'This Recipe Does not exit' });
           }
           return Review.create({
             content: req.body.content,
@@ -25,7 +25,7 @@ const reviewController = {
             userId: req.decoded.id
           })
             .then((newrecipe) => {
-              return res.status(201).json({ code: 200, message: 'Review Posted ', data: newrecipe });
+              return res.status(201).json({ message: 'Review Posted ', data: newrecipe });
             })
             .catch(error => res.status(404).json(error));
         })
@@ -63,8 +63,8 @@ const reviewController = {
   list(req, res) {
     return Review
       .all()
-      .then(review => res.status(200).send(review))
-      .catch(error => res.status(400).send(error));
+      .then(review => res.status(200).json(review))
+      .catch(error => res.status(400).json(error));
   },
 };
 
