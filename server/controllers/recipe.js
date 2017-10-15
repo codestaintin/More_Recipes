@@ -14,7 +14,6 @@ const recipeController = {
    */
   create(req, res) {
     const body = req.body;
-    // console.log(body);
     const validator = new Validator(body, Recipe.createRules());
     if (validator.passes()) {
       User.findById(req.decoded.id)
@@ -68,7 +67,6 @@ const recipeController = {
       .catch(error => res.status(400).json({ error }));
   },
 
-
   /**
    * Update Recipe 
    * @param {any} req 
@@ -100,7 +98,6 @@ const recipeController = {
       })
       .catch(error => res.status(400).json({ errors: error.errors }));
   },
-
 
   /**
    * Delete Recipe
@@ -149,7 +146,7 @@ const recipeController = {
     }
     return Recipe
       .findAll({
-        include: [{ model: Review }]
+        include: [{ model: Review, as: 'reviews' }]
       })
       .then(recipes => res.status(200).json(recipes))
       .catch(error => res.status(400).json(error));
