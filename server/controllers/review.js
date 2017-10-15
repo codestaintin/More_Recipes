@@ -5,10 +5,12 @@ const Review = db.Review;
 const Recipe = db.Recipe;
 
 const reviewController = {
+
   /**
-   * Create recipe review
-   * @param {*} req 
-   * @param {*} res 
+   * Create a Recipe Review
+   * 
+   * @param {any} req 
+   * @param {any} res 
    */
   create(req, res) {
     const body = req.body;
@@ -17,7 +19,7 @@ const reviewController = {
       Recipe.findById(req.params.recipeId)
         .then((recipe) => {
           if (!recipe) {
-            return res.status(404).json({ code: 404, message: 'This Recipe Does not exit' });
+            return res.status(404).json({ message: 'This Recipe Does not exit' });
           }
           return Review.create({
             content: req.body.content,
@@ -25,17 +27,20 @@ const reviewController = {
             userId: req.decoded.id
           })
             .then((newrecipe) => {
-              return res.status(201).json({ code: 200, message: 'Review Posted ', data: newrecipe });
+              return res.status(201).json({ message: 'Review Posted ', data: newrecipe });
             })
             .catch(error => res.status(404).json(error));
         })
         .catch(error => res.status(400).json(error));
     }
   },
+
   /**
-   * Delete a recipe review
-   * @param {*} req 
-   * @param {*} res 
+   * Delete a Recipe Review
+   * 
+   * @param {any} req 
+   * @param {any} res 
+   * @returns 
    */
   destroy(req, res) {
     return Review
@@ -55,16 +60,19 @@ const reviewController = {
       })
       .catch(error => res.status(400).json(error));
   },
+
   /**
-   * List all recipe reviews
-   * @param {*} req 
-   * @param {*} res 
+   * List all Reviews
+   * 
+   * @param {any} req 
+   * @param {any} res 
+   * @returns 
    */
   list(req, res) {
     return Review
       .all()
-      .then(review => res.status(200).send(review))
-      .catch(error => res.status(400).send(error));
+      .then(review => res.status(200).json(review))
+      .catch(error => res.status(400).json(error));
   },
 };
 

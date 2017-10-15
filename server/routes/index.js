@@ -43,7 +43,11 @@ const routes = (router) => {
   /**
      * GET api/v1/:recipeId - Get a recipe
      */
-    .get(authMiddleware.verifyToken, recipeCtrl.retrieve);
+    .get(authMiddleware.verifyToken, recipeCtrl.retrieve)
+    /**
+     * DELETE api/v1/:recipeID - Delete a recipe
+     */
+    .delete(authMiddleware.verifyToken, recipeCtrl.destroy);
 
   router.route('/recipes/:recipeId/reviews')
   /**

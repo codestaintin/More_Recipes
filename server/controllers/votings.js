@@ -4,6 +4,13 @@ const Voting = db.Voting;
 const User = db.User;
 const Recipe = db.Recipe;
 
+/**
+ * Vote Parameters
+ * 
+ * @param {any} req 
+ * @param {any} res 
+ * @param {any} status 
+ */
 let vote = (req, res, status) => {
   const voteData = [];
   const findUser = User.findOne({
@@ -73,9 +80,21 @@ let vote = (req, res, status) => {
 };
 
 const votingController = {
+  /**
+   * Upvote a recipe
+   * 
+   * @param {any} req 
+   * @param {any} res 
+   */
   upVote(req, res) {
     vote(req, res, 1);
   },
+  /**
+   * Downvote a recipe
+   * 
+   * @param {any} req 
+   * @param {any} res 
+   */
   downVote(req, res) {
     vote(req, res, 0);
   }

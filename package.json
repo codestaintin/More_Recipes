@@ -2,15 +2,27 @@
   "name": "more_recipes",
   "version": "1.0.0",
   "description": "Andela bootcamp project",
+  "engines": {
+    "node": "8.4.0"
+  },
   "main": "server.js",
   "scripts": {
     "test": "nyc --reporter=html mocha server/tests/*.test.js --compilers js:babel-register && nyc report",
     "test2": "mocha server/tests/*.test.js --compilers js:babel-register",
-    "start": "nodemon server --exec babel-node"
+    "start": "node index",
+    "start:dev": "nodemon server --exec babel-node",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codestaintin/More_Recipes.git"
   },
   "author": "Isioye Mohammed",
   "license": "ISC",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.26.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
     "coveralls": "^3.0.0",
@@ -33,8 +45,6 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-register": "^6.26.0",
     "chai": "^4.1.2",
     "chai-http": "^3.0.0",
     "eslint": "^4.4.1",
