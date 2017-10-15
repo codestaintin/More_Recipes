@@ -13,12 +13,8 @@ const secret = process.env.SECRET_TOKEN;
 const userController = {
 
   /**
-<<<<<<< HEAD
-   * Create User and validate request* 
-=======
    * Create User and validate request
    * 
->>>>>>> e6934fb784f60dd776d96d9e6ec97f992ca22bee
    * @param {any} req 
    * @param {any} res 
    * @returns 
