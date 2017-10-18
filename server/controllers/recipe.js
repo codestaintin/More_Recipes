@@ -21,14 +21,25 @@ const recipeController = {
           if (!user) {
             return res.status(404).json({ message: 'This User Does not exit' });
           }
-          return Recipe.create({
-            name: body.name,
-            description: body.description,
-            userId: req.decoded.id,
-            ingredient: body.ingredient
+          Recipe.findOne({
+            where: { name: body.name, userId: req.decoded.id }
           })
-            .then(recipe => res.status(201).json({ message: 'Recipe creation succesful ', recipe }))
-            .catch(error => res.status(404).json(error));
+            .then((recipe) => {
+              if (recipe) {
+                return res.status(404).json({ message: 'You have this recipe already, please edit it' });
+              }
+              Recipe.create({
+                name: body.name,
+                description: body.description,
+                userId: req.decoded.id,
+                ingredient: body.ingredient
+              })
+                .then(newRecipe => res.status(201).json({ message: 'Recipe creation succesful ', newRecipe }))
+                .catch(error => res.status(404).json(error));
+            })
+            .catch((error) => {
+              return res.status(500).json('An error occured while trying to create this recipe ', error.message);
+            });
         })
         .catch(error => res.status(404).json(error));
     } else {
