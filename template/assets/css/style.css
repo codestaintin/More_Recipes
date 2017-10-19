@@ -35,38 +35,42 @@ body {
   -o-animation: animate_background 10s linear 0s infinite;
   animation: animate_background 10s linear 0s infinite;
 }
+
 /* Animate Background */
-@-webkit-keyframes animate_background { 
-  from { 
-      background-position: 0 0;
-  } 
-  to { 
-      background-position: 0 -200px;
-  } 
+@-webkit-keyframes animate_background {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 -200px;
+  }
 }
-@-moz-keyframes animate_background { 
-  from { 
-      background-position: 0 0;
-  } 
-  to { 
-      background-position: 0 -200px;
-  } 
+
+@-moz-keyframes animate_background {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 -200px;
+  }
 }
-@-o-keyframes animate_background { 
-  from { 
-      background-position: 0 0;
-  } 
-  to { 
-      background-position: 0 -200px;
-  } 
+
+@-o-keyframes animate_background {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 -200px;
+  }
 }
-@keyframes animate_background { 
-  from { 
-      background-position: 0 0;
-  } 
-  to { 
-      background-position: 0 -200px;
-  } 
+
+@keyframes animate_background {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 -200px;
+  }
 }
 
 /*Home search bar*/
@@ -141,6 +145,7 @@ body {
   -webkit-transition-property: transform;
   transition-property: transform;
 }
+
 .hvr-float-shadow:before {
   pointer-events: none;
   position: absolute;
@@ -159,18 +164,19 @@ body {
   -webkit-transition-property: transform, opacity;
   transition-property: transform, opacity;
 }
+
 .hvr-float-shadow:hover, .hvr-float-shadow:focus, .hvr-float-shadow:active {
   -webkit-transform: translateY(-5px);
   transform: translateY(-5px);
   /* move the element up by 5px */
 }
+
 .hvr-float-shadow:hover:before, .hvr-float-shadow:focus:before, .hvr-float-shadow:active:before {
   opacity: 1;
   -webkit-transform: translateY(5px);
   transform: translateY(5px);
   /* move the element down by 5px (it will stay in place because it's attached to the element that also moves up 5px) */
 }
-
 
 .recipe .recipe-img {
   height: 50% !important;
@@ -308,12 +314,14 @@ ul.user-profile, .user-profile li {
     transform: scale(1.5);
   }
 }
+
 @keyframes hvr-icon-pop {
   50% {
     -webkit-transform: scale(1.5);
     transform: scale(1.5);
   }
 }
+
 .hvr-icon-pop {
   display: inline-block;
   vertical-align: middle;
@@ -325,6 +333,7 @@ ul.user-profile, .user-profile li {
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
 }
+
 .hvr-icon-pop:before {
   content: "\f005";
   position: absolute;
@@ -340,6 +349,7 @@ ul.user-profile, .user-profile li {
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
+
 .hvr-icon-pop:hover:before, .hvr-icon-pop:focus:before, .hvr-icon-pop:active:before {
   -webkit-animation-name: hvr-icon-pop;
   animation-name: hvr-icon-pop;
