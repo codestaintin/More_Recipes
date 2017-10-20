@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Recipe Details</title>
@@ -8,17 +9,16 @@
     <link rel="stylesheet" href="assets/css/utils.css" media="screen">
     <link rel="stylesheet" href="assets/css/style.css" media="screen">
 </head>
-<body>
 
-<div class="container-fluid submenu">
-    <nav class="navbar navbar-expand-lg navbar-light bg-navbar fixed-top justify-content-end">
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-navbar fixed-top">
         <a class="navbar-brand" href="index.html">MoreRecipe</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <div class="navbar-nav ml-auto btn-group">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalLong">
@@ -27,144 +27,146 @@
             </div>
         </div>
     </nav>
-</div>
 
-<!--///////////////////////////////Auth Modal/////////////////////////////////////////-->
+    <!--///////////////////////////////Auth Modal/////////////////////////////////////////-->
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content simplebox blade">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Login/Register</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-expanded="true">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Create Account</a>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <form class="mt-15">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                            </div>
-                            <a href="profile.html" class="btn btn-outline-warning" role="button">Submit</a>
-                        </form>
-                    </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <form class="mt-15">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Full name">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="username" aria-describedby="username" placeholder="Username">
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control" id="email" aria-describedby="email" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="mobile" aria-describedby="mobile" placeholder="Mobile Number">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" id="password" placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" id="confirm" placeholder="Confirm Password">
-                            </div>
-                            <button type="submit" class="btn btn-outline-warning">Submit</button>
-                        </form>
-                    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content simplebox blade">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Login/Register</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="wrapper">
-    <ol class="breadcrumb container-fluid mt-50 mb-10 col-md-9 mx-auto bg-white shadow-lite">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item"><a href="#">African Dishes</a></li>
-        <li class="breadcrumb-item active">Jollof rice and chicken nuggets</li>
-    </ol>
-    <div class="container-fluid mb-20 col-md-9 mx-auto bg-white recipe-details-container">
-        <div class="row">
-            <div class="col-12 col-sm-6 col-md-6 col-lg-6 p-10">
-                 <div class="recipe-big-img">
-                     <img src="assets/images/dish.jpg" style='height: 100% !important; width: 100%; object-fit: contain' alt="Recipe">
-                 </div>
-                <div class="mt-20">
-                    <div class="text-left mb-10">
-                        <span class="badge badge-info"><i class="fa fa-eye"></i> 1000</span>
-                        <span class="badge badge-success"><i class="fa fa-thumbs-o-up"></i> 223</span>
-                        <span class="badge badge-danger"><i class="fa fa-thumbs-o-down"></i> 23 </span>
-                    </div>
-                    <p>
-                        <button class="btn btn-outline-warning btn-sm fav-btn hvr-icon-pop">Favourite</button>
-                        <button class="btn btn-outline-success btn-sm"><i class="fa fa-thumbs-o-up"></i> Upvote</button>
-                        <button class="btn btn-outline-danger btn-sm"><i class="fa fa-thumbs-o-down"></i> Downvote</button>                        
-                    </p>                    
-                </div>
-            </div>
-            <div class="simplebox blade col-12 col-sm-6 col-md-6 col-lg-6 p-10" style="box-shadow: none;">
-                <div class="recipe-name light-well p-15">
-                    <h3 class="bold text-muted">Jollof rice and chicken nuggets</h3>
-                    <p>
-                        <span class="badge badge-pill badge-secondary"><i class="fa fa-tags"></i> African Dishes</span>
-                    </p>
-                    <p>
-                       <small><i class="fa fa-clock-o"></i> Uploaded 2hours ago</small>
-                    </p>
-                    <p>
-                      <small><a href="add-recipe.html"> Edit</a></small> <small>/<a href="#"> Delete</a></small>
-                    </p>
-                </div>
-                <div class="mt-10">
-                    <h5>Ingredients</h5>
-                    <ul class="text-muted">
-                        <li>4 cups of rice</li>
-                        <li>A bowl of fresh chicken</li>
-                        <li>Coconut oil</li>
-                        <li>45g of water</li>
-                        <li>Pepper and seasoning</li>
-                        <li>A wooden spoon to stir</li>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-expanded="true">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Create Account</a>
+                        </li>
                     </ul>
-                    <div><hr></div>
-                    <h5>Description</h5>
-                    <div>
-                        It is a long established fact that a reader will be distracted by the
-                        readable content of a page when looking at its layout. The point of using Lorem Ipsum
-                        is that it has a more-or-less normal distribution of letters, as opposed to using
-                        'Content here, content here', making it look like readable English. Many desktop publishing packages
-                        and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum'
-                        will uncover many web sites still in their infancy
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <form class="mt-15">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email address</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                </div>
+                                <a href="profile.html" class="btn btn-outline-warning" role="button">Submit</a>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <form class="mt-15">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Full name">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="username" aria-describedby="username" placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="email" aria-describedby="email" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="mobile" aria-describedby="mobile" placeholder="Mobile Number">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="password" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="confirm" placeholder="Confirm Password">
+                                </div>
+                                <button type="submit" class="btn btn-outline-warning">Submit</button>
+                            </form>
+                        </div>
                     </div>
-
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
-
         </div>
     </div>
-    <div class="container-fluid mt-20 mb-20 col-md-9 mx-auto">
-        <h5 class="p-5">Reviews</h5>
+
+    <div class="container">
         <div class="row">
-            <div class="card mb-10">
+            <ol class="breadcrumb mt-50 mb-10 col-md-9 mx-auto bg-white shadow-lite">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">African Dishes</a></li>
+                <li class="breadcrumb-item active">Jollof rice and chicken nuggets</li>
+            </ol>
+        </div>
+
+        <div class="mb-20 col-md-9 mx-auto bg-white recipe-details-container">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6 p-10">
+                    <div class="recipe-big-img">
+                        <img src="assets/images/dish.jpg" style='height: 100% !important; width: 100%; object-fit: contain' alt="Recipe">
+                    </div>
+                    <div class="mt-20">
+                        <div class="text-left mb-10">
+                            <span class="badge badge-info"><i class="fa fa-eye"></i> 1000</span>
+                            <span class="badge badge-success"><i class="fa fa-thumbs-o-up"></i> 223</span>
+                            <span class="badge badge-danger"><i class="fa fa-thumbs-o-down"></i> 23 </span>
+                        </div>
+                        <p>
+                            <button class="btn btn-outline-warning btn-sm fav-btn hvr-icon-pop">Favourite</button>
+                            <button class="btn btn-outline-success btn-sm"><i class="fa fa-thumbs-o-up"></i> Upvote</button>
+                            <button class="btn btn-outline-danger btn-sm"><i class="fa fa-thumbs-o-down"></i> Downvote</button>
+                        </p>
+                    </div>
+                </div>
+                <div class="simplebox blade col-sm-6 col-md-6 col-lg-6 p-10" style="box-shadow: none;">
+                    <div class="recipe-name light-well p-15">
+                        <h3 class="bold text-muted">Jollof rice and chicken nuggets</h3>
+                        <p>
+                            <span class="badge badge-pill badge-secondary"><i class="fa fa-tags"></i> African Dishes</span>
+                        </p>
+                        <p>
+                            <small><i class="fa fa-clock-o"></i> Uploaded 2hours ago</small>
+                        </p>
+                        <p>
+                            <small><a href="add-recipe.html"> Edit</a></small> <small>/<a href="#"> Delete</a></small>
+                        </p>
+                    </div>
+                    <div class="mt-10">
+                        <h5>Ingredients</h5>
+                        <ul class="text-muted">
+                            <li>4 cups of rice</li>
+                            <li>A bowl of fresh chicken</li>
+                            <li>Coconut oil</li>
+                            <li>45g of water</li>
+                            <li>Pepper and seasoning</li>
+                            <li>A wooden spoon to stir</li>
+                        </ul>
+                        <div>
+                            <hr>
+                        </div>
+                        <h5>Description</h5>
+                        <div>
+                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+                            The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
+                            as opposed to using 'Content here, content here', making it look like readable English. Many
+                            desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,
+                            and a search for 'lorem ipsum' will uncover many web sites still in their infancy
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-20 mb-20 mx-auto">
+        <h5 class="p-5 text-center">Reviews</h5>
+        <div class="row justify-content-center">
+            <div class="card mb-10 col-lg-10 p-0">
                 <div class="card-header">
                     Mohammed Isioye
                 </div>
@@ -175,7 +177,7 @@
                     </blockquote>
                 </div>
             </div>
-            <div class="card mb-10">
+            <div class="card mb-10 col-lg-10 p-0">
                 <div class="card-header">
                     Mohammed Isioye
                 </div>
@@ -188,18 +190,18 @@
             </div>
         </div>
     </div>
-</div>
 
-<footer class="p-10 well well-sm m-0 shadow-lite">
-    <div class="text-center text-muted">
-        <p class="bold">&copy; 2017 More Recipes</p>
-    </div>
-</footer>
+    <footer class="p-10 well well-sm m-0 shadow-lite">
+        <div class="text-center text-muted">
+            <p class="bold">&copy; 2017 More Recipes</p>
+        </div>
+    </footer>
 
-<script src="assets/js/jquery-3.2.1.js"></script>
-<script src="assets/js/popper.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/js/script.js"></script>
+    <script src="assets/js/jquery-3.2.1.js"></script>
+    <script src="assets/js/popper.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/script.js"></script>
 
 </body>
+
 </html>

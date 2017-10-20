@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>User Profile</title>
@@ -8,33 +9,29 @@
     <link rel="stylesheet" href="assets/css/utils.css" media="screen">
     <link rel="stylesheet" href="assets/css/style.css" media="screen">
 </head>
+
 <body>
-
-
-<div class="container-fluid submenu">
-    <nav class="navbar navbar-expand-lg navbar-light bg-navbar fixed-top justify-content-end">
+    <nav class="navbar navbar-expand-lg navbar-light bg-navbar fixed-top">
         <a class="navbar-brand" href="index.html">MoreRecipe</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <div class="navbar-nav ml-auto btn-group">
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-outline-secondary" data-toggle="modal"
-                        data-target="#exampleModalLong">
+                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalLong">
                     <i class="fa fa-user-circle"></i> My Account
                 </button>
             </div>
         </div>
     </nav>
-</div>
 
-<!--///////////////////////////////Auth Modal/////////////////////////////////////////-->
+    <!--///////////////////////////////Auth Modal/////////////////////////////////////////-->
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content simplebox blade">
                 <div class="modal-header">
@@ -99,27 +96,27 @@
         </div>
     </div>
 
-<div class="wrapper">
-    <ol class="breadcrumb container-fluid mt-50 mb-10 col-md-9 mx-auto bg-white shadow-lite">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item"><a href="#">User</a></li>
-        <li class="breadcrumb-item active">Profile</li>
-    </ol>
-    <div class="container-fluid mb-20 col-md-9 mx-auto recipe-details-container">
-        <div class="row">
-            <div class="col-12 col-sm-4 col-md-4 col-lg-4 user-profile-outer">
+    <div class="wrapper">
+        <ol class="breadcrumb container mt-50 mb-10 col-md-9 mx-auto bg-white shadow-lite">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">User</a></li>
+            <li class="breadcrumb-item active">Profile</li>
+        </ol>
+        <div class="mb-20 col-md-9 mx-auto recipe-details-container">
+            <div class="row">
+                <div class="col-12 col-sm-4 col-md-4 col-lg-4 user-profile-outer">
                     <div class="col-12 col-sm-12 col-md-12 pt-20 shadow-lite bg-white full-height">
                         <div class="avatar-area">
                             <div class="center-content">
-                                    <img src="assets/images/no-avatar.png" class="avatar text-center circulate circulate-xlg" alt="avatar">
+                                <img src="assets/images/no-avatar.png" class="avatar text-center circulate circulate-xlg" alt="avatar">
                             </div>
 
-                            <form class="text-center" >
+                            <form class="text-center">
                                 <label class="btn btn-secondary btn-sm mt-2">
                                     <i class="fa fa-camera"></i> Choose photo
                                     <input type="file" name="file" class="hidden avatar-input" accept="image/*">
                                 </label>
-                                <button type="submit"  class="btn btn-outline-success btn-sm">
+                                <button type="submit" class="btn btn-outline-success btn-sm">
                                     Upload
                                 </button>
                             </form>
@@ -149,63 +146,65 @@
                             </ul>
                         </div>
                     </div>
-            </div>
-            <div class="simplebox blade col-12 col-sm-8 col-md-8 col-lg-8 p-10" style="box-shadow: none;">
-                <form class="mt-15">
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="inputEmail1"
-                               aria-describedby="emailHelp" placeholder="Email" value="mohammedisioye@gmail.com" readonly>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="inputUserName"
-                               aria-describedby="emailHelp" placeholder="Username" value="@mohzak" readonly>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="inputFullName"
-                               aria-describedby="emailHelp" placeholder="Full name">
-                    </div>
+                </div>
+                <div class="simplebox blade col-12 col-sm-8 col-md-8 col-lg-8 p-10" style="box-shadow: none;">
+                    <form class="mt-15">
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp" placeholder="Email" value="mohammedisioye@gmail.com"
+                                readonly>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="inputUserName" aria-describedby="userNameHelp" placeholder="Username" value="@mohzak"
+                                readonly>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="inputFullName" aria-describedby="fullNameHelp" placeholder="Full name">
+                        </div>
 
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="inputMobile"
-                               aria-describedby="emailHelp" placeholder="Mobile Number">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="inputMobile" aria-describedby="mobileHelp" placeholder="Mobile Number">
+                        </div>
+                        <button type="submit" class="btn btn-outline-warning">Update</button>
+                    </form>
+                    <div class="row">
+                        <div class="col-4 col-md-4 col-sm-4">
+                            <hr>
+                        </div>
+                        <div class="col-4 col-md-4 col-sm-4 text-center">
+                            <h5 class="text-muted">Change Password</h5>
+                        </div>
+                        <div class="col-4 col-md-4 col-sm-4">
+                            <hr>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-outline-warning">Update</button>
-                </form>
-                 <div class="row">
-                     <div class="col-4 col-md-4 col-sm-4"><hr></div>
-                     <div class="col-4 col-md-4 col-sm-4 text-center"><h5 class="text-muted">Change Password</h5></div>
-                     <div class="col-4 col-md-4 col-sm-4"><hr></div>
-                 </div>
-                <form class="mt-15">
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="inputPassword"
-                               placeholder="Current Password">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="inputPassword2"
-                               placeholder="New Password">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="inputPassword3"
-                               placeholder="Confirm New Password">
-                    </div>
-                    <button type="submit" class="btn btn-success">Submit</button>
-                </form>
-            </div>
+                    <form class="mt-15">
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="inputPassword" placeholder="Current Password">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="inputPassword2" placeholder="New Password">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="inputPassword3" placeholder="Confirm New Password">
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                </div>
 
+            </div>
         </div>
     </div>
-</div>
-<footer class="p-10 well well-sm m-0 shadow-lite">
-    <div class="text-center text-muted">
-        <p class="bold">&copy; 2017 More Recipes</p>
-    </div>
-</footer>
+    <footer class="p-10 well well-sm m-0 shadow-lite">
+        <div class="text-center text-muted">
+            <p class="bold">&copy; 2017 More Recipes</p>
+        </div>
+    </footer>
 
-<script src="assets/js/jquery-3.2.1.js"></script>
-<script src="assets/js/popper.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/js/script.js"></script>
+    <script src="assets/js/jquery-3.2.1.js"></script>
+    <script src="assets/js/popper.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/script.js"></script>
 
 </body>
+
 </html>
