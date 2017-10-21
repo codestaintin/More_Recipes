@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Add Recipe</title>
@@ -8,152 +9,151 @@
     <link rel="stylesheet" href="assets/css/utils.css" media="screen">
     <link rel="stylesheet" href="assets/css/style.css" media="screen">
 </head>
+
 <body>
 
-<div class="container-fluid submenu">
-    <nav class="navbar navbar-expand-lg navbar-light bg-navbar fixed-top justify-content-end">
+    <nav class="navbar navbar-expand-lg navbar-light bg-navbar fixed-top">
         <a class="navbar-brand" href="index.html">MoreRecipe</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <div class="navbar-nav ml-auto btn-group">
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-outline-secondary" data-toggle="modal"
-                        data-target="#exampleModalLong">
+                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalLong">
                     <i class="fa fa-user-circle"></i> My Account
                 </button>
             </div>
         </div>
     </nav>
-</div>
 
-<!-- ///////////////////////////////Auth Modal///////////////////////////////////////// -->
+    <!-- ///////////////////////////////Auth Modal///////////////////////////////////////// -->
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content simplebox blade">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Login/Register</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content simplebox blade">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Login/Register</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-            </div>
-            <div class="modal-body">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-expanded="true">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Create Account</a>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <form class="mt-15">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                            </div>
-                            <a href="profile.html" class="btn btn-outline-warning" role="button">Submit</a>
-                        </form>
-                    </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <form class="mt-15">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Full name">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="username" aria-describedby="username" placeholder="Username">
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control" id="email" aria-describedby="email" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="mobile" aria-describedby="mobile" placeholder="Mobile Number">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" id="password" placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" id="confirm" placeholder="Confirm Password">
-                            </div>
-                            <button type="submit" class="btn btn-outline-warning">Submit</button>
-                        </form>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-expanded="true">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Create Account</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <form class="mt-15">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email address</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                </div>
+                                <a href="profile.html" class="btn btn-outline-warning" role="button">Submit</a>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <form class="mt-15">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Full name">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="username" aria-describedby="username" placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="email" aria-describedby="email" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="mobile" aria-describedby="mobile" placeholder="Mobile Number">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="password" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="confirm" placeholder="Confirm Password">
+                                </div>
+                                <button type="submit" class="btn btn-outline-warning">Submit</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="wrapper">
-    <ol class="breadcrumb container-fluid mt-50 mb-10 col-md-9 mx-auto bg-white shadow-lite">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item"><a href="#">Recipes</a></li>
-        <li class="breadcrumb-item active">Add new</li>
-    </ol>
-    <div class="container-fluid mb-20 col-md-9 mx-auto recipe-details-container">
-        <div class="row">
-            <div class="col-12 col-sm-6 col-md-6 col-lg-6 p-10 shadow-lite bg-white" style="height: 400px; max-height: 400px;">
-                <div class="light-well center-content" style="height: 100%;">
+    <div class="wrapper">
+        <ol class="breadcrumb container mt-50 mb-10 col-md-9 mx-auto bg-white shadow-lite">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Recipes</a></li>
+            <li class="breadcrumb-item active">Add new</li>
+        </ol>
+        <div class="container mb-20 col-md-9 mx-auto recipe-details-container">
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-6 p-10 shadow-lite bg-white" style="height: 400px; max-height: 400px;">
+                    <div class="light-well center-content" style="height: 100%;">
                         <div class="text-center file-upload full-height full-width center-content">
                             <!--<h1 class="bolder"><i class="fa fa-camera"></i></h1>-->
-<!--                            <img class="advert-image product-image-input img-responsive">-->
-                            <input type="file" class="recipe-upload text-hide" name="recipe-upload" accept="image/*"/>
+                            <!--                            <img class="advert-image product-image-input img-responsive">-->
+                            <input type="file" class="recipe-upload text-hide" name="recipe-upload" accept="image/*" />
                         </div>
 
+                    </div>
                 </div>
+                <div class="simplebox blade col-12 col-sm-6 col-md-6 col-lg-6 p-10" style="box-shadow: none;">
+                    <h5>Recipe Details</h5>
+                    <form class="mt-15 recipe-form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Recipe Name">
+                        </div>
+                        <h6>Description</h6>
+                        <div class="form-group">
+                            <textarea class="form-control" rows="4" placeholder="Recipe description here">
+                            </textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Recipe category">
+                        </div>
+                        <h6>Ingredients</h6>
+                        <div class="form-group">
+                            <textarea class="form-control" rows="4" placeholder="Ingredient">
+                            </textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-outline-success">Add Recipe</button>
+                    </form>
+                </div>
+
             </div>
-            <div class="simplebox blade col-12 col-sm-6 col-md-6 col-lg-6 p-10" style="box-shadow: none;">
-                <h5>Recipe Details</h5>
-                <form class="mt-15 recipe-form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Recipe Name">
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" rows="4" placeholder="Recipe description here">
-                        </textarea>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Recipe category">
-                    </div>
-                    <h6>Ingredients</h6>
-
-                    <div class="form-group ingredients">
-                        <input type="text" class="form-control ingredient mb-2" placeholder="Ingredient here">
-                        <button type="button" class="btn btn-secondary ingredient-btn btn-sm mt-5"><i class="fa fa-plus"></i> More ingredient?</button>
-                    </div>
-
-                    <button type="submit" class="btn btn-outline-success">Submit</button>
-                </form>
-            </div>
-
         </div>
+
+
     </div>
+    <footer class="p-10 well well-sm m-0 shadow-lite">
+        <div class="text-center text-muted">
+            <p class="bold">&copy; 2017 More Recipes</p>
+        </div>
+    </footer>
 
-
-</div>
-<footer class="p-10 well well-sm m-0 shadow-lite">
-    <div class="text-center text-muted">
-        <p class="bold">&copy; 2017 More Recipes</p>
-    </div>
-</footer>
-
-<script src="assets/js/jquery-3.2.1.js"></script>
-<script src="assets/js/popper.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/js/script.js"></script>
+    <script src="assets/js/jquery-3.2.1.js"></script>
+    <script src="assets/js/popper.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/script.js"></script>
 
 </body>
+
 </html>
