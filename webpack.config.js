@@ -11,7 +11,7 @@ const PATHS = {
 module.exports = {
   context: PATHS.app,
   entry: {
-    app: './index.js' // bug is here fix it
+    app: './index.js'
   },
   output: {
     path: PATHS.build,
@@ -40,27 +40,22 @@ module.exports = {
       test: /\.jsx?$/,
       loader: 'babel-loader',
       exclude: /node_modules/
-    },
-    {
+    }, {
       test: /\.(scss|css)?$/,
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
         use: ['css-loader', 'resolve-url-loader', 'sass-loader?sourceMap']
       })
-    },
-    {
+    }, {
       test: /\.(tff|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
       loader: 'file-loader'
-    },
-    {
+    }, {
       test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
       loader: 'url-loader?limit=10000&mimetype=application/font-woff'
-    },
-    {
+    }, {
       test: /\.(png|jpg|gif)$/,
       loader: 'url-loader?limit=250000'
-    }
-    ]
+    }]
   },
   devServer: {
     historyApiFallback: true,
@@ -75,7 +70,7 @@ module.exports = {
         secure: false
       }
     },
-    contentBase: '/'
+    contentBase: PATHS.build
   },
   externals: {
     jquery: 'jQuery'

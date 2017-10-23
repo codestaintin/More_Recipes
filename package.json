@@ -27,6 +27,7 @@
     "babel-register": "^6.26.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
+    "classnames": "^2.2.5",
     "coveralls": "^3.0.0",
     "dotenv": "^4.0.0",
     "express": "^4.15.4",
@@ -40,6 +41,11 @@
     "nyc": "^11.2.1",
     "pg": "^7.3.0",
     "pg-hstore": "^2.3.2",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
     "sequelize": "^4.8.0",
     "sequelize-cli": "^2.8.0",
     "validatorjs": "^3.13.5"
@@ -67,7 +73,9 @@
     "resolve-url-loader": "^2.1.1",
     "sass-loader": "^6.0.6",
     "should": "^13.0.1",
+    "style-loader": "^0.19.0",
     "supertest": "^3.0.0",
+    "url-loader": "^0.6.2",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.2"
   }
