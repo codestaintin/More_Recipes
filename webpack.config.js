@@ -11,7 +11,7 @@ const PATHS = {
 module.exports = {
   context: PATHS.app,
   entry: {
-    app: './index.js'
+    app: './index.jsx'
   },
   output: {
     path: PATHS.build,
@@ -24,8 +24,8 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new ExtractTextPlugin('styles.css'),
     new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
+      $: 'jQuery',
+      jQuery: 'jQuery',
       'window.jQuery': 'jquery',
       Popper: ['popper.js', 'default']
     })
@@ -48,7 +48,7 @@ module.exports = {
           use: ['css-loader', 'resolve-url-loader', 'sass-loader?sourceMap']
         })
       }, {
-        test: /\.(tff|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'file-loader'
       }, {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -75,6 +75,6 @@ module.exports = {
     contentBase: PATHS.build
   },
   externals: {
-    jquery: 'jQuery'
+    jquery: 'jquery'
   }
 };
