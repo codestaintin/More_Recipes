@@ -26,8 +26,7 @@ module.exports = {
     new webpack.ProvidePlugin({
       $: 'jQuery',
       jQuery: 'jQuery',
-      'window.jQuery': 'jquery',
-      Popper: ['popper.js', 'default']
+      'window.jQuery': 'jquery'
     })
   ],
   devtool: 'eval-source-map',

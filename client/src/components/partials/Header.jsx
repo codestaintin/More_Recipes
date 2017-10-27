@@ -36,7 +36,7 @@ export default class HeaderComponent extends React.Component {
                         </button>
                     </div>
                 </div>
-            </nav>
-        );
+            </nav>                  
+        )
     }
 }

@@ -13,11 +13,6 @@ body {
   flex: 1;
 }
 
-.container-fluid {
-  margin: 0;
-  padding: 0;
-}
-
 .text-custom {
   color: #F7BA74 !important;
 }
@@ -212,6 +207,13 @@ body {
   background-position: 100% 100%;
 }
 
+.details {
+  height: 100% !important;
+  width: 100%;
+  background-image: url("../images/dish.jpg") !important;
+  object-fit: contain;
+}
+
 .recipe .recipe-meta {
   height: 33%;
 }
@@ -230,9 +232,10 @@ body {
   min-height: 70vh;
 }
 
-.recipe-big-img img {
+.recipe-big-img {
   width: 100%;
   height: 70%;
+  background-image: url("../images/dish.jpg") !important;
 }
 
 .recipe-image-thumb {
