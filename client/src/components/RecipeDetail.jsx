@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import HeaderComponent from './partials/Header';
+import SignInComponent from './partials/User/SignIn';
+import SignUpComponent from './partials/User/SignUp';
 import FooterComponent from './partials/Footer';
 
 /**
@@ -15,6 +17,8 @@ export default class RecipeDetailComponent extends React.Component {
         return (
             <div>
                 <HeaderComponent/>
+                <SignInComponent/>
+                <SignUpComponent/>
                 <div className="container">
                     <div className="row">
                         <ol className="breadcrumb mt-50 mb-10 col-md-10 mx-auto bg-white shadow-lite">

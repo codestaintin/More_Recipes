@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import RecipeBoardComponent from './partials/Recipe/RecipeBoard';
-import ModalComponent from './partials/Modal';
+import SignInComponent from './partials/User/SignIn';
+import SignUpComponent from './partials/User/SignUp';
 import HeaderComponent from './partials/Header';
 import FooterComponent from './partials/Footer';
 
@@ -16,7 +17,8 @@ export default class HomePageComponent extends React.Component {
     return (
       <div>
         <HeaderComponent/>
-        <ModalComponent/>
+        <SignInComponent/>
+        <SignUpComponent/>
         <div className="container-fluid banner pt-90">
           <div className="row">
             <div className="col-lg-12 text-white">

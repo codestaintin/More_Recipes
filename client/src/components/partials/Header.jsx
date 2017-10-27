@@ -30,13 +30,22 @@ export default class HeaderComponent extends React.Component {
                             type="button"
                             className="btn btn-outline-secondary"
                             data-toggle="modal"
-                            data-target="#exampleModalLong">
-                            <i className="fa fa-user-circle"></i>
-                            My Account
+                            data-target="#signInModal">
+                            Sign In
+                            <i className="fa fa-sign-in"></i>
+                        </button>
+
+                        <button
+                            type="button"
+                            className="btn btn-outline-secondary"
+                            data-toggle="modal"
+                            data-target="#signUpModal">
+                            Sign Up
+                            <i className="fa fa-user-plus"></i>
                         </button>
                     </div>
                 </div>
-            </nav>                  
+            </nav>
         )
     }
 }

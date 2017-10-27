@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import HeaderComponent from './partials/Header';
+import SignInComponent from './partials/User/SignIn';
+import SignUpComponent from './partials/User/SignUp';
 import FooterComponent from './partials/Footer';
 import UserPanelComponent from './partials/UserPanel';
 import PaginateComponent from './partials/Paginate'
@@ -17,6 +19,8 @@ export default class FavoriteComponent extends React.Component {
         return (
             <div>
                 <HeaderComponent/>
+                <SignInComponent/>
+                <SignUpComponent/>
                 <div className="wrapper">
                     <ol
                         class="breadcrumb container mt-50 mb-10 col-md-9 mx-auto bg-white shadow-lite">
@@ -41,7 +45,7 @@ export default class FavoriteComponent extends React.Component {
                                         <div
                                             className="recipe-img"
                                             style={{
-                                            backgroundImage: `url(${'assets/images/dish.jpg'})`
+                                            backgroundImage: `url(${ 'assets/images/dish.jpg'})`
                                         }}></div>
                                         <div className="recipe-meta pt-5">
                                             <h6 className="recipe-name">Rice/Chicken Nuggets</h6>

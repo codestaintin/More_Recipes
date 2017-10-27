@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import HeaderComponent from './partials/Header';
+import SignInComponent from './partials/User/SignIn';
+import SignUpComponent from './partials/User/SignUp';
 import FooterComponent from './partials/Footer';
 import RecipeComponent from './partials/Recipe/Recipe';
 import UserPanelComponent from './partials/UserPanel';
@@ -18,6 +20,8 @@ export default class UserRecipeComponent extends React.Component {
         return (
             <div>
                 <HeaderComponent/>
+                <SignInComponent/>
+                <SignUpComponent/>
                 <div className="wrapper">
                     <ol
                         className="breadcrumb container mt-50 mb-10 col-md-9 mx-auto bg-white shadow-lite">
