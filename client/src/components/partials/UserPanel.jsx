@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 
 export default class UserPanelComponent extends React.Component {
     render() {
@@ -54,29 +54,34 @@ export default class UserPanelComponent extends React.Component {
                     <div className="mt-5">
                         <ul className="user-profile">
                             <li>
-                                <a href="profile.html">
+                                <Link to="/profile">
                                     <i className="fa fa-user"></i>
-                                    My Profile</a>
+                                    My Profile
+                                </Link>
                             </li>
                             <li>
-                                <a href="my-recipes.html">
+                                <Link to="/user">
                                     <i className="fa fa-list"></i>
-                                    My Recipes</a>
+                                    My Recipes
+                                </Link>
                             </li>
                             <li>
-                                <a href="favourites.html">
+                                <Link to="/favorite">
                                     <i className="fa fa-star text-warning"></i>
-                                    My Favourites</a>
+                                    My Favourites
+                                </Link>
                             </li>
                             <li>
-                                <a href="add-recipe.html">
+                                <Link to="/addRecipe">
                                     <i className="fa fa-plus"></i>
-                                    Add Recipe</a>
+                                    Add Recipe
+                                </Link>
                             </li>
                             <li>
-                                <a href="index.html">
+                                <Link to="/">
                                     <i className="fa fa-power-off"></i>
-                                    Logout</a>
+                                    Logout
+                                </Link>
                             </li>
                         </ul>
                     </div>

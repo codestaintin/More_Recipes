@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import HeaderComponent from './partials/Header';
 import SignInComponent from './partials/User/SignIn';
