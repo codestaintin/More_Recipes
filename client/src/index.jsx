@@ -20,7 +20,7 @@ const App = () => (
             <Route path="/recipe" component={RecipeDetailComponent}></Route>
             <Route path="/favorite" component={FavoriteComponent}></Route>
             <Route path="/user" component={UserRecipeComponent}></Route>
-            <Route path="/addRecipe" component={ProfileComponent}></Route>
+            <Route path="/addRecipe" component={AddRecipeComponent}></Route>
         </Switch>
     </Router>
 );
