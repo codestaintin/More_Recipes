@@ -25,7 +25,7 @@ export default class FavoriteComponent extends React.Component {
                     <ol
                         class="breadcrumb container mt-50 mb-10 col-md-9 mx-auto bg-white shadow-lite">
                         <li class="breadcrumb-item">
-                            <a href="#">Home</a>
+                            <Link to="/">Home</Link>
                         </li>
                         <li class="breadcrumb-item">
                             <a href="#">User</a>

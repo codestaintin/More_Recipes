@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Link} from 'react-router-dom';
 import HeaderComponent from './partials/Header';
 import SignInComponent from './partials/User/SignIn';
 import SignUpComponent from './partials/User/SignUp';
@@ -23,7 +24,7 @@ export default class AddRecipeComponent extends React.Component {
                     <ol
                         className="breadcrumb container mt-50 mb-10 col-md-9 mx-auto bg-white shadow-lite">
                         <li className="breadcrumb-item">
-                            <a href="#">Home</a>
+                            <Link to="/">Home</Link>
                         </li>
                         <li className="breadcrumb-item">
                             <a href="#">Recipes</a>
@@ -50,7 +51,6 @@ export default class AddRecipeComponent extends React.Component {
                                             name="recipe-upload"
                                             accept="image/*"/>
                                     </div>
-
                                 </div>
                             </div>
                             <div
@@ -80,7 +80,6 @@ export default class AddRecipeComponent extends React.Component {
                                     <button type="submit" className="btn btn-outline-success">Add Recipe</button>
                                 </form>
                             </div>
-
                         </div>
                     </div>
                 </div>

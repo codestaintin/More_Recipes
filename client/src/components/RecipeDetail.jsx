@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 import HeaderComponent from './partials/Header';
 import SignInComponent from './partials/User/SignIn';
 import SignUpComponent from './partials/User/SignUp';
@@ -23,7 +24,7 @@ export default class RecipeDetailComponent extends React.Component {
                     <div className="row">
                         <ol className="breadcrumb mt-50 mb-10 col-md-10 mx-auto bg-white shadow-lite">
                             <li className="breadcrumb-item">
-                                <a href="index.html">Home</a>
+                                <Link to="/">Home</Link>
                             </li>
                             <li className="breadcrumb-item">
                                 <a href="#">African Dishes</a>

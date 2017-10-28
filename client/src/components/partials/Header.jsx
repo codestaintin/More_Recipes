@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 
 /**
  * @export
@@ -10,7 +11,7 @@ export default class HeaderComponent extends React.Component {
     render() {
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-navbar fixed-top">
-                <a className="navbar-brand" href="index.html">MoreRecipe</a>
+                <Link to="/" className="navbar-brand" >MoreRecipe</Link>
                 <button
                     className="navbar-toggler"
                     type="button"

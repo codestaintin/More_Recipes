@@ -24,7 +24,7 @@ export default class ProfileComponent extends React.Component {
                     <ol
                         className="breadcrumb container mt-50 mb-10 col-md-9 mx-auto bg-white shadow-lite">
                         <li className="breadcrumb-item">
-                            <a href="#">Home</a>
+                            <Link to="/">Home</Link>
                         </li>
                         <li className="breadcrumb-item">
                             <a href="#">User</a>
