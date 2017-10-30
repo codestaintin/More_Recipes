@@ -35,7 +35,7 @@ module.exports = {
     loaders: [
       {
         query: {
-          presets: ['react', 'es2015', 'react-hmre']
+          cacheDirectory: true,
         },
         test: /\.jsx?$/,
         loader: 'babel-loader',
