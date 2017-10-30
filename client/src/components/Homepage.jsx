@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import RecipeBoardComponent from './partials/Recipe/RecipeBoard';
-import SignInComponent from './partials/User/SignIn';
-import SignUpComponent from './partials/User/SignUp';
-import HeaderComponent from './partials/Header';
-import FooterComponent from './partials/Footer';
+import RecipeBoardComponent from './partials/Recipe/RecipeBoard.jsx';
+import SignInComponent from './partials/User/SignIn.jsx';
+import SignUpComponent from './partials/User/SignUp.jsx';
+import FooterComponent from './partials/Footer.jsx';
 
 /**
  *
@@ -13,10 +12,15 @@ import FooterComponent from './partials/Footer';
  * @extends {React.Component}
  */
 export default class HomePageComponent extends React.Component {
+  /**
+   * 
+   * 
+   * @returns {XML} XML/JSX
+   * @memberof HomePageComponent
+   */
   render() {
     return (
       <div>
-        <HeaderComponent/>
         <SignInComponent/>
         <SignUpComponent/>
         <div className="container-fluid banner pt-90">
@@ -26,8 +30,8 @@ export default class HomePageComponent extends React.Component {
               <p
                 className="lead text-center"
                 style={{
-                opacity: 0.9
-              }}>
+                  opacity: 0.9
+                }}>
                 Amazing food recipes at your beck</p>
 
               <div id="custom-search-input center-content">
