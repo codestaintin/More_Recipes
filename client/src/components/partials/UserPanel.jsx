@@ -39,7 +39,7 @@ export default class UserPanelComponent extends React.Component {
                   accept="image/*"/>
               </label>
               <button type="submit" className="btn btn-outline-success btn-sm">
-                                Upload
+                Upload
               </button>
             </form>
           </div>
