@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import HeaderComponent from './partials/Header';
-import SignInComponent from './partials/User/SignIn';
-import SignUpComponent from './partials/User/SignUp';
-import FooterComponent from './partials/Footer';
+import SignInComponent from './partials/User/SignIn.jsx';
+import SignUpComponent from './partials/User/SignUp.jsx';
+import FooterComponent from './partials/Footer.jsx';
 
 /**
  *
@@ -22,8 +21,8 @@ export default class RecipeDetailComponent extends React.Component {
   render() {
     return (
       <div>
-        <SignInComponent/>
-        <SignUpComponent/>
+        <SignInComponent />
+        <SignUpComponent />
         <div className="container">
           <div className="row">
             <ol className="breadcrumb mt-50 mb-10 col-md-10 mx-auto bg-white shadow-lite">
@@ -45,28 +44,30 @@ export default class RecipeDetailComponent extends React.Component {
                 className="recipe-big-img"
                 style={{
                   objectFit: 'contain'
-                }}></div>
+                }} />
               <div className="mt-20">
                 <div className="text-left mb-10">
                   <span className="badge badge-info">
-                    <i className="fa fa-eye"></i>
-                                        1000</span>
+                    <i className="fa fa-eye" />
+                    1000</span>
                   <span className="badge badge-success">
-                    <i className="fa fa-thumbs-o-up"></i>
-                                        223</span>
+                    <i className="fa fa-thumbs-o-up" />
+                    223</span>
                   <span className="badge badge-danger">
-                    <i className="fa fa-thumbs-o-down"></i>
-                                        23
+                    <i className="fa fa-thumbs-o-down" />
+                    23
                   </span>
                 </div>
                 <p>
-                  <button className="btn btn-outline-warning btn-sm fav-btn hvr-icon-pop">Favourite</button>
+                  <button className="btn btn-outline-warning btn-sm fav-btn hvr-icon-pop">
+                    Favourite
+                  </button>
                   <button className="btn btn-outline-success btn-sm">
-                    <i className="fa fa-thumbs-o-up"></i>
-                                        Upvote</button>
+                    <i className="fa fa-thumbs-o-up" />
+                    Upvote</button>
                   <button className="btn btn-outline-danger btn-sm">
-                    <i className="fa fa-thumbs-o-down"></i>
-                                        Downvote</button>
+                    <i className="fa fa-thumbs-o-down" />
+                    Downvote</button>
                 </p>
               </div>
             </div>
@@ -79,22 +80,22 @@ export default class RecipeDetailComponent extends React.Component {
                 <h3 className="bold text-muted">Jollof rice and chicken nuggets</h3>
                 <p>
                   <span className="badge badge-pill badge-secondary">
-                    <i className="fa fa-tags"></i>
-                                        African Dishes</span>
+                    <i className="fa fa-tags" />
+                    African Dishes</span>
                 </p>
                 <p>
                   <small>
-                    <i className="fa fa-clock-o"></i>
-                                        Uploaded 2hours ago</small>
+                    <i className="fa fa-clock-o" />
+                    Uploaded 2hours ago</small>
                 </p>
                 <p>
                   <small>
                     <a href="add-recipe.html">
-                                            Edit</a>
+                      Edit</a>
                   </small>
                   <small>/
                     <a href="#">
-                                            Delete</a>
+                      Delete</a>
                   </small>
                 </p>
               </div>
@@ -109,10 +110,10 @@ export default class RecipeDetailComponent extends React.Component {
                   <li>A wooden spoon to stir</li>
                 </ul>
                 <div>
-                  <hr/></div>
+                  <hr /></div>
                 <h5>Description</h5>
                 <div>
-                                    It is a long established fact that a reader will be distracted by the readable
+                  It is a long established fact that a reader will be distracted by the readable
                                     content of a page when looking at its layout. The point of using Lorem Ipsum is
                                     that it has a more-or-less normal distribution of letters, as opposed to using
                                     'Content here, content here', making it look like readable English. Many desktop
@@ -130,7 +131,7 @@ export default class RecipeDetailComponent extends React.Component {
           <div className="row justify-content-center">
             <div className="card mb-10 col-lg-10 p-0">
               <div className="card-header">
-                                Mohammed Isioye
+                Mohammed Isioye
               </div>
               <div className="card-body">
                 <blockquote className="blockquote mb-0">
@@ -146,7 +147,7 @@ export default class RecipeDetailComponent extends React.Component {
             </div>
             <div className="card mb-10 col-lg-10 p-0">
               <div className="card-header">
-                                Mohammed Isioye
+                Mohammed Isioye
               </div>
               <div className="card-body">
                 <blockquote className="blockquote mb-0">
@@ -162,7 +163,7 @@ export default class RecipeDetailComponent extends React.Component {
             </div>
           </div>
         </div>
-        <FooterComponent/>
+        <FooterComponent />
       </div>
     );
   }

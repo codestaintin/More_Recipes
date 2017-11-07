@@ -10,6 +10,7 @@ const favoriteController = {
    * 
    * @param {any} req 
    * @param {any} res 
+   * @returns {object} object
    */
   create(req, res) {
     Favorite.findOne({
@@ -48,6 +49,7 @@ const favoriteController = {
    * 
    * @param {any} req 
    * @param {any} res 
+   * @returns {object} object
    */
   list(req, res) {
     Favorite.findAll({

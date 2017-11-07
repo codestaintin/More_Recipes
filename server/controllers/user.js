@@ -16,7 +16,7 @@ const userController = {
    * Create User and validate request 
    * @param {any} req 
    * @param {any} res 
-   * @returns 
+   * @returns {object} object
    */
   create(req, res) {
     const body = req.body;
@@ -44,15 +44,17 @@ const userController = {
           return res.status(500).json('An error occured while trying to create a user ', error.message);
         });
     } else {
-      return res.status(401).json({ message: validator.errors.all() });
+      return res.status(401).json({ 
+        message: 'A validation error occured',
+        error: validator.errors.all() });
     }
   },
 
   /**
    * Log in user and validate user request 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   * @param {reques} req 
+   * @param {resoponse} res 
+   * @returns {object} object
    */
   login(req, res) {
     const body = req.body;

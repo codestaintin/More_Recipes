@@ -19,13 +19,13 @@ app.use(logger('dev'));
 
 // Parse incoming request data
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // API Routes
 app.use('/api/v1', router);
 
 // Set up all default catch-all route that sends a message in JSON format
-app.get('*', (req, res) => res.status(404).send({message: 'That route does not exist'}));
+app.get('*', (req, res) => res.status(404).send({ message: 'That route does not exist' }));
 
 // Create server
 const server = http.createServer(app);

@@ -11,6 +11,7 @@ const reviewController = {
    * 
    * @param {any} req 
    * @param {any} res 
+   * @returns {object} object
    */
   create(req, res) {
     const body = req.body;
@@ -40,7 +41,7 @@ const reviewController = {
    * 
    * @param {any} req 
    * @param {any} res 
-   * @returns 
+   * @returns {object} object
    */
   destroy(req, res) {
     return Review
@@ -66,7 +67,7 @@ const reviewController = {
    * 
    * @param {any} req 
    * @param {any} res 
-   * @returns 
+   * @returns {object} object
    */
   list(req, res) {
     return Review

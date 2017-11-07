@@ -11,6 +11,7 @@ const recipeController = {
    * Create new Recipes
    * @param {any} req 
    * @param {any} res 
+   * @returns {object} object
    */
   create(req, res) {
     const body = req.body;
@@ -51,7 +52,7 @@ const recipeController = {
    * Retrieve a Recipe
    * @param {any} req 
    * @param {any} res 
-   * @returns 
+   * @returns {object} object
    */
   retrieve(req, res) {
     return Recipe
@@ -82,7 +83,7 @@ const recipeController = {
    * Update Recipe 
    * @param {any} req 
    * @param {any} res 
-   * @returns 
+   * @returns {object} object
    */
   update(req, res) {
     return Recipe
@@ -114,7 +115,7 @@ const recipeController = {
    * Delete Recipe
    * @param {any} req 
    * @param {any} res 
-   * @returns 
+   * @returns {object} object
    */
   destroy(req, res) {
     return Recipe
@@ -140,7 +141,7 @@ const recipeController = {
    * List all recipes
    * @param {any} req 
    * @param {any} res 
-   * @returns 
+   * @returns {object} object
    */
   list(req, res) {
     const sortType = req.query.sort || null;
