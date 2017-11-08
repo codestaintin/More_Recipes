@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Andela bootcamp project",
   "engines": {
-    "node": "8.4.0"
+    "node": "8.9.0"
   },
   "main": "server.js",
   "scripts": {
