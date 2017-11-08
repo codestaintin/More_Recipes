@@ -13,10 +13,10 @@ const secret = process.env.SECRET_TOKEN;
 const userController = {
 
   /**
-   * Create User and validate request 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   * Create User and validate request
+   * @param { request } req
+   * @param { response} res
+   * @returns { obj } object
    */
   create(req, res) {
     const body = req.body;
@@ -50,9 +50,9 @@ const userController = {
 
   /**
    * Log in user and validate user request 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   * @param { request } req 
+   * @param { response } res 
+   * @returns {obj} object
    */
   login(req, res) {
     const body = req.body;

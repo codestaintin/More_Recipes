@@ -10,7 +10,7 @@ const userModel = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    username: {
+    userName: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true
@@ -65,9 +65,9 @@ const userModel = (sequelize, DataTypes) => {
    */
   User.createRules = () => {
     return {
-      firstName: 'required|min:6|alpha',
-      lastName: 'required|min:4|alpha',
-      username: 'required|min:6',
+      firstName: 'required|alpha',
+      lastName: 'required|alpha',
+      userName: 'required|min:6',
       email: 'required|email',
       password: 'required|min:6'
     };
