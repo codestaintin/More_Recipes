@@ -9,7 +9,7 @@ const app = express();
 const router = express.Router();
 
 // Port configuration
-const port = parseInt(process.env.PORT, 10) || 8080;
+const port = parseInt(process.env.PORT, 10) || 8000;
 app.set('port', port);
 
 routes(router);
