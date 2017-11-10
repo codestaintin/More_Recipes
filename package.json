@@ -9,7 +9,7 @@
   "scripts": {
     "test": "nyc --reporter=html mocha server/tests/*.test.js --compilers js:babel-register && nyc report",
     "test2": "mocha server/tests/*.test.js --compilers js:babel-register",
-    "start": "node index",
+    "start": "NODE_ENV=production node index",
     "start:dev": "nodemon server --exec babel-node",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
