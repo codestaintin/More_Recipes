@@ -6,6 +6,7 @@ const Recipe = db.Recipe;
 const User = db.User;
 const Review = db.Review;
 const Voting = db.Voting;
+const Favorite = db.Favorite;
 
 const recipeController = {
   /**
@@ -62,7 +63,14 @@ const recipeController = {
           model: Review,
           as: 'reviews'
         },
-        { model: Voting, as: 'votings' }
+        {
+          model: Voting,
+          as: 'votings'
+        },
+        {
+          model: Favorite,
+          as: 'favorites'
+        }
         ]
       })
       .then((recipe) => {
@@ -162,7 +170,19 @@ const recipeController = {
     }
     return Recipe
       .findAll({
-        include: [{ model: Review, as: 'reviews' }, { model: Voting, as: 'votings' }]
+        include: [{
+          model: Review,
+          as: 'reviews'
+        },
+        {
+          model: Voting,
+          as: 'votings'
+        },
+        {
+          model: Favorite,
+          as: 'favorites'
+        }
+        ]
       })
       .then(recipes => res.status(200).json(recipes))
       .catch(error => res.status(400).json(error));

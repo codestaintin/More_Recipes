@@ -41,7 +41,6 @@ let vote = (req, res, status) => {
       const user = results[0];
       if (user) {
         return res.status(404).json({
-          code: 404,
           message: 'This user does not exist'
         });
       }
@@ -49,7 +48,6 @@ let vote = (req, res, status) => {
       const recipe = results[1];
       if (!recipe) {
         return res.status(404).json({
-          code: 404,
           message: 'This recipe does not exist'
         });
       }
@@ -68,7 +66,6 @@ let vote = (req, res, status) => {
     })
     .then((updated) => {
       return res.status(201).json({
-        status: 201,
         message: 'Vote successful',
         data: updated
       });
