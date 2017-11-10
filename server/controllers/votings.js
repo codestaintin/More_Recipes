@@ -6,10 +6,10 @@ const Recipe = db.Recipe;
 
 /**
  * Vote Parameters
- * 
- * @param {any} req 
- * @param {any} res 
- * @param {any} status 
+ *
+ * @param { req } HTTP request
+   * @param { res } HTTP response
+   * @returns { object } obj
  */
 let vote = (req, res, status) => {
   const voteData = [];
@@ -82,18 +82,18 @@ let vote = (req, res, status) => {
 const votingController = {
   /**
    * Upvote a recipe
-   * 
-   * @param {any} req 
-   * @param {any} res 
+   *
+   * @param { req } HTTP request
+   * @param { res } HTTP response
    */
   upVote(req, res) {
     vote(req, res, 1);
   },
   /**
    * Downvote a recipe
-   * 
-   * @param {any} req 
-   * @param {any} res 
+   *
+   * @param { req } HTTP request
+   * @param { res } HTTP response
    */
   downVote(req, res) {
     vote(req, res, 0);

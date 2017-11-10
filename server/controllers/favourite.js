@@ -7,9 +7,9 @@ const favoriteController = {
 
   /**
    * Create User favorite
-   * 
-   * @param {any} req 
-   * @param {any} res 
+   *
+   * @param { req } HTTP request
+   * @param { res } HTTP response
    */
   create(req, res) {
     Favorite.findOne({
@@ -21,7 +21,6 @@ const favoriteController = {
       .then((favorite) => {
         if (favorite) {
           return res.status(404).json({
-            code: 404,
             message: 'This recipe is already your favorite'
           });
         }
@@ -32,7 +31,6 @@ const favoriteController = {
       })
       .then((isFavorite) => {
         return res.status(200).json({
-          code: 200,
           message: 'Recipe successfully made your favorite',
           data: isFavorite
         });
@@ -45,9 +43,9 @@ const favoriteController = {
 
   /**
    * List all User Favorite
-   * 
-   * @param {any} req 
-   * @param {any} res 
+   *
+   * @param { req } HTTP request
+   * @param { res } HTTP response
    */
   list(req, res) {
     Favorite.findAll({

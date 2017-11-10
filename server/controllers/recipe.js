@@ -9,8 +9,8 @@ const Review = db.Review;
 const recipeController = {
   /**
    * Create new Recipes
-   * @param {any} req 
-   * @param {any} res 
+   * @param { req } HTTP request
+   * @param { res } HTTP response
    */
   create(req, res) {
     const body = req.body;
@@ -32,7 +32,8 @@ const recipeController = {
                 name: body.name,
                 description: body.description,
                 userId: req.decoded.id,
-                ingredient: body.ingredient
+                ingredient: body.ingredient,
+                image: body.image
               })
                 .then(newRecipe => res.status(201).json({ message: 'Recipe creation succesful ', newRecipe }))
                 .catch(error => res.status(404).json(error));
@@ -49,9 +50,9 @@ const recipeController = {
 
   /**
    * Retrieve a Recipe
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   * @param { req } HTTP request
+   * @param { res } HTTP response
+   * @returns { obj } object
    */
   retrieve(req, res) {
     return Recipe
@@ -79,10 +80,10 @@ const recipeController = {
   },
 
   /**
-   * Update Recipe 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   * Update Recipe
+   * @param { req } HTTP request
+   * @param { res } HTTP response
+   * @returns { obj } object
    */
   update(req, res) {
     return Recipe
@@ -103,6 +104,7 @@ const recipeController = {
             name: req.body.name || recipe.name,
             description: req.body.description || recipe.description,
             ingredients: req.body.ingredients || recipe.ingredients,
+            image: req.body.image || recipe.image
           })
           .then(() => res.status(200).json({ message: 'Recipe succesfully updated', recipe }))
           .catch(error => res.status(400).json({ message: 'Recipe not updated', errors: error.errors }));
@@ -112,9 +114,9 @@ const recipeController = {
 
   /**
    * Delete Recipe
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   * @param { req } HTTP request
+   * @param { res } HTTP response
+   * @returns { obj } object
    */
   destroy(req, res) {
     return Recipe
@@ -130,7 +132,7 @@ const recipeController = {
         }
         return recipe
           .destroy()
-          .then(() => res.status(200).json({ message: 'Recipe deleted' }))
+          .then(() => res.status(200).json({ message: 'Recipe succesfully deleted' }))
           .catch(error => res.status(400).json(error));
       })
       .catch(error => res.status(400).json(error));
@@ -138,9 +140,9 @@ const recipeController = {
 
   /**
    * List all recipes
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   * @param { req } HTTP request
+   * @param { res } HTTP response
+   * @returns { obj } object
    */
   list(req, res) {
     const sortType = req.query.sort || null;

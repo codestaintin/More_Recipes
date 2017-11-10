@@ -14,9 +14,9 @@ const userController = {
 
   /**
    * Create User and validate request
-   * @param { request } req
-   * @param { response} res
-   * @returns { obj } object
+   * @param { req } HTTP request
+   * @param { res } HTTP response
+   * @returns { object } obj
    */
   create(req, res) {
     const body = req.body;
@@ -49,10 +49,10 @@ const userController = {
   },
 
   /**
-   * Log in user and validate user request 
-   * @param { request } req 
-   * @param { response } res 
-   * @returns {obj} object
+   * Log in user and validate user request
+   * @param { req } HTTP request
+   * @param { res } HTTP response
+   * @returns { object } obj
    */
   login(req, res) {
     const body = req.body;

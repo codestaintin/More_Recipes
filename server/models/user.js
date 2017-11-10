@@ -10,7 +10,7 @@ const userModel = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    userName: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true
@@ -67,7 +67,7 @@ const userModel = (sequelize, DataTypes) => {
     return {
       firstName: 'required|alpha',
       lastName: 'required|alpha',
-      userName: 'required|min:6',
+      username: 'required|min:6',
       email: 'required|email',
       password: 'required|min:6'
     };

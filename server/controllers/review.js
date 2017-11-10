@@ -8,9 +8,9 @@ const reviewController = {
 
   /**
    * Create a Recipe Review
-   * 
-   * @param {any} req 
-   * @param {any} res 
+   *
+   * @param { req } HTTP request
+   * @param { res } HTTP response
    */
   create(req, res) {
     const body = req.body;
@@ -37,10 +37,10 @@ const reviewController = {
 
   /**
    * Delete a Recipe Review
-   * 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   *
+   * @param { req } HTTP request
+   * @param { res } HTTP response
+   * @returns { object } obj
    */
   destroy(req, res) {
     return Review
@@ -63,10 +63,10 @@ const reviewController = {
 
   /**
    * List all Reviews
-   * 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns 
+   *
+   * @param { req } HTTP request
+   * @param { res } HTTP response
+   * @returns { object } obj
    */
   list(req, res) {
     return Review
