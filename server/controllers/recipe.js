@@ -5,6 +5,7 @@ const sequelize = db.sequelize;
 const Recipe = db.Recipe;
 const User = db.User;
 const Review = db.Review;
+const Voting = db.Voting;
 
 const recipeController = {
   /**
@@ -60,7 +61,9 @@ const recipeController = {
         include: [{
           model: Review,
           as: 'reviews'
-        }]
+        },
+        { model: Voting, as: 'votings' }
+        ]
       })
       .then((recipe) => {
         if (!recipe) {
@@ -159,7 +162,7 @@ const recipeController = {
     }
     return Recipe
       .findAll({
-        include: [{ model: Review, as: 'reviews' }]
+        include: [{ model: Review, as: 'reviews' }, { model: Voting, as: 'votings' }]
       })
       .then(recipes => res.status(200).json(recipes))
       .catch(error => res.status(400).json(error));
