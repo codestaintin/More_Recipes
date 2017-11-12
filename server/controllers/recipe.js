@@ -1,6 +1,6 @@
 import Validator from 'validatorjs';
 import db from '../models';
-import { errorHandler } from '../utils/helper';
+import { errorHandler, generatePaginationMeta } from '../utils/helper';
 
 const sequelize = db.sequelize;
 const Recipe = db.Recipe;
@@ -156,40 +156,25 @@ const recipeController = {
    * @returns { obj } object
    */
   list(req, res) {
-    const sortType = req.query.sort || null;
+    // const sortType = req.query.sort || null;
     const limit = req.query.limit || 2;
-    const offset = 0;
-    const orderType = req.query.order || null;
-    if ((sortType != null) || (orderType !== null)) {
-      return sequelize.query(`
-                          SELECT DISTINCT
-                          (SELECT COUNT(id) FROM "Votings" WHERE "recipeId"=a.id AND vote=1) AS upvotes,
-                          (SELECT COUNT(id) FROM "Votings" WHERE "recipeId"=a.id AND vote=0) AS downvotes,
-                          a.* FROM "Recipes" a
-                          LEFT JOIN "Votings" b ON a.id = b."recipeId" ORDER BY upvotes DESC`, { type: sequelize.QueryTypes.SELECT })
-        .then(recipes => res.status(200).json({ message: 'All Recipes displayed', recipes }))
-        .catch(() => res.status(400).json({ message: 'An error occured during this operation' }));
-    }
+    const offset = req.query.offset || 0;
+    const order = (req.query.order && req.query.order.toLowerCase() === 'desc')
+      ? [['createdAt', 'DESC']] : [['createdAt', 'ASC']];
+    console.log(req.query.order, '>>>>>>');
+
     return Recipe
       .findAndCountAll({
-        include: [{
-          model: Review,
-          as: 'reviews'
-        },
-        {
-          model: Voting,
-          as: 'votings'
-        },
-        {
-          model: Favorite,
-          as: 'favorites'
-        }
-        ],
         limit,
-        offset
+        offset,
+        order,
       })
-      .then(recipes => res.status(200).json(recipes))
-      .catch(error => res.status(400).json(error));
+      .then(recipes => res.status(200).json(
+        { message: 'All Recipes displayed',
+          pagimationMeta: generatePaginationMeta(recipes, limit, offset),
+          recipes: recipes.rows
+        }))
+      .catch(error => res.status(400).json({ error }));
   },
 };
 

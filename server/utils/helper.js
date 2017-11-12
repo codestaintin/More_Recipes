@@ -18,4 +18,15 @@ const successHandler = (code, body, res) => {
   }
 };
 
-export { errorHandler, successHandler };
+const generatePaginationMeta = (dbResult, limit, offset) => {
+  const paginationMeta = {
+    pageCount: Math.ceil(dbResult.count / limit),
+    totalCount: dbResult.count,
+    outputCount: dbResult.rows.length,
+    pageSize: limit,
+    currentPage: Math.floor(offset / limit) + 1
+  };
+  return paginationMeta;
+};
+
+export { errorHandler, successHandler, generatePaginationMeta };
