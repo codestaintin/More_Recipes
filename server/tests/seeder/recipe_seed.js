@@ -4,7 +4,7 @@ const Recipe = db.Recipe;
 
 const seeder = {
   emptyRecipeTable(done) {
-    Recipe.destroy({ truncate: true, cascade: true, restartIdentity: true })
+    Recipe.destroy({ truncate: true, cascade: true })
       .then(() => done())
       .catch(err => done(err));
   },

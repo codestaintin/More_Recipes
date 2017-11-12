@@ -41,7 +41,7 @@ const userController = {
             .catch(error => res.status(500).json(error));
         })
         .catch((error) => {
-          return res.status(500).json('An error occured while trying to create a user ', error.message);
+          return res.status(500).json('An error occured while trying to create a user', error.message);
         });
     } else {
       return res.status(401).json({ message: validator.errors.all() });

@@ -1,5 +1,6 @@
 import Validator from 'validatorjs';
 import db from '../models';
+import { errorHandler } from '../utils/helper';
 
 const sequelize = db.sequelize;
 const Recipe = db.Recipe;
@@ -75,19 +76,18 @@ const recipeController = {
       })
       .then((recipe) => {
         if (!recipe) {
-          res.status(404).json({ message: 'Recipe not found' });
+          return Promise.reject({ code: 404, message: 'Recipe not found' });
         }
         return recipe
           .update({ views: recipe.views + 1 });
       })
       .then((recipe) => {
-        if (!recipe) {
-          res.status(404).json({ message: 'Recipe not found' });
-        }
         if (req.decoded && req.decoded.id && req.decoded.id === recipe.userId) recipe.views = 1;
-        res.status(200).json({ recipe });
+        return res.status(200).json({ recipe });
       })
-      .catch(error => res.status(400).json({ error }));
+      .catch((error) => {
+        return errorHandler(error, res);
+      });
   },
 
   /**
@@ -157,6 +157,8 @@ const recipeController = {
    */
   list(req, res) {
     const sortType = req.query.sort || null;
+    const limit = req.query.limit || 2;
+    const offset = 0;
     const orderType = req.query.order || null;
     if ((sortType != null) || (orderType !== null)) {
       return sequelize.query(`
@@ -169,7 +171,7 @@ const recipeController = {
         .catch(() => res.status(400).json({ message: 'An error occured during this operation' }));
     }
     return Recipe
-      .findAll({
+      .findAndCountAll({
         include: [{
           model: Review,
           as: 'reviews'
@@ -182,7 +184,9 @@ const recipeController = {
           model: Favorite,
           as: 'favorites'
         }
-        ]
+        ],
+        limit,
+        offset
       })
       .then(recipes => res.status(200).json(recipes))
       .catch(error => res.status(400).json(error));

@@ -12,7 +12,7 @@ describe('POST Test suites for User sign up', () => {
   before(seed.addUser);
 
   describe('Test case for firstName inputs', () => {
-    it('should return status code 401 and a message when firstName input is empty', (done) => {
+    it('should return status code 401 and a message when firstName input field is empty', (done) => {
       request(server)
         .post('/api/v1/users/signup')
         .send(seed.setInput('', 'Ademola', 'ademola23', 'runtown@gmail.com', 'password', 'password'))
@@ -20,20 +20,6 @@ describe('POST Test suites for User sign up', () => {
         .end((err, res) => {
           if (err) return done(err);
           assert.equal(res.body.message.firstName[0], 'The firstName field is required.');
-          done();
-        });
-    });
-  });
-
-  describe('Test case for firstName inputs', () => {
-    it('should return status code 401 and a message when firstName input is less than 6 characters', (done) => {
-      request(server)
-        .post('/api/v1/users/signup')
-        .send(seed.setInput('Ade', 'Ademola', 'ademola23', 'runtown@gmail.com', 'password', 'password'))
-        .expect(401)
-        .end((err, res) => {
-          if (err) return done(err);
-          assert.equal(res.body.message.firstName[0], 'The firstName must be at least 6 characters.');
           done();
         });
     });
@@ -62,20 +48,6 @@ describe('POST Test suites for User sign up', () => {
         .end((err, res) => {
           if (err) return done(err);
           assert.equal(res.body.message.lastName[0], 'The lastName field is required.');
-          done();
-        });
-    });
-  });
-
-  describe('Test case for lastname inputs', () => {
-    it('should return status code 401 and a message when firstName input is less than 6 characters', (done) => {
-      request(server)
-        .post('/api/v1/users/signup')
-        .send(seed.setInput('Ademola', 'Xu', 'ademola23', 'runtown@gmail.com', 'password', 'password'))
-        .expect(401)
-        .end((err, res) => {
-          if (err) return done(err);
-          assert.equal(res.body.message.lastName[0], 'The lastName must be at least 4 characters.');
           done();
         });
     });
@@ -180,7 +152,21 @@ describe('POST Test suites for User sign up', () => {
   });
 
   describe('Test case for password inputs', () => {
-    it('should return status code 401 and a message when firstName input is empty', (done) => {
+    it('should return status code 404 when user already exists', (done) => {
+      request(server)
+        .post('/api/v1/users/signup')
+        .send(seed.setInput('Isioye', 'Mohammed', 'mohzaky', 'mohzak@gmail.com', 'password', 'password'))
+        .expect(404)
+        .end((err, res) => {
+          if (err) return done(err);
+          assert.equal(res.body.message, 'A user with those credentials already exist');
+          done();
+        });
+    });
+  });
+
+  describe('Test case for password inputs', () => {
+    it('should return status code 404 and a message when firstName input is empty', (done) => {
       request(server)
         .post('/api/v1/users/signup')
         .send(seed.setInput('Nnammani', 'Ademola', 'ademola23', 'runtown@gmail.com', 'password', 'anomaly'))
@@ -264,11 +250,10 @@ describe('POST Test suites for User sign in', () => {
   it('should return status code 404 and a message if the email does not exist', (done) => {
     request(server)
       .post('/api/v1/users/signin')
-      .send(seed.setLogin('Benjamin@gmail.com', 'password'))
+      .send(seed.setLogin('benjamin@gmail.com', 'password'))
       .expect(200)
       .end((err, res) => {
         if (err) return done(err);
-        assert.equal(res.body.code, 404);
         assert.equal(res.body.message, 'User not found, please register');
         done();
       });
@@ -284,6 +269,17 @@ describe('POST Test suites for User sign in', () => {
         assert.exists(res.body);
         const decodedToken = jwtDecode(res.body.token);
         assert.equal(decodedToken.username, 'mohzaky');
+        done();
+      });
+  });
+  it('should return 200 and give the user token if credentials are correct.', (done) => {
+    request(server)
+      .post('/api/v1/users/signin')
+      .send(seed.setLogin('mohzak@gmail.com', 'nothepassword'))
+      .expect(400)
+      .end((err, res) => {
+        if (err) return done(err);
+        assert.equal(res.body.message, 'Invalid email/password');
         done();
       });
   });
