@@ -31,10 +31,6 @@ export default class SignUpComponent extends React.Component {
       },
       errors: {}
     };
-    handleSubmit = (e) => {
-      e.preventDefault();
-      this.props.signupAction(this.state.regDetails);
-    };
   }
   /**
  * 
