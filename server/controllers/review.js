@@ -27,7 +27,7 @@ const reviewController = {
             userId: req.decoded.id
           })
             .then((newrecipe) => {
-              return res.status(201).json({ message: 'Review Posted ', data: newrecipe });
+              return res.status(201).json({ message: 'Review Posted ', recipe: newrecipe });
             })
             .catch(error => res.status(404).json(error));
         })

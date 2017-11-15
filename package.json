@@ -13,7 +13,7 @@
   },
   "scripts": {
     "test": "NODE_ENV=test nyc --reporter=html mocha server/tests/*.test.js --compilers js:babel-register && nyc report",
-    "test:file": "NODE_ENV=test nyc --reporter=html mocha server/tests/auth.test.js --compilers js:babel-register && nyc report",
+    "test:file": "NODE_ENV=test nyc --reporter=html mocha server/tests/review.test.js --compilers js:babel-register && nyc report",
     "test2": "mocha server/tests/*.test.js --compilers js:babel-register",
     "start": "NODE_ENV=production node index",
     "start:dev": "nodemon server --exec babel-node",
