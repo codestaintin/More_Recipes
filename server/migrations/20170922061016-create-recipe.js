@@ -29,6 +29,10 @@ module.exports = {
           as: 'userId'
         }
       },
+      imageUrl: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
       views: {
         type: Sequelize.INTEGER,
         defaultValue: 0

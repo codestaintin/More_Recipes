@@ -7,10 +7,9 @@ const favoriteController = {
 
   /**
    * Create User favorite
-   * 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns {object} object
+   *
+   * @param { object } HTTP request
+   * @param { object } HTTP response
    */
   create(req, res) {
     Favorite.findOne({
@@ -19,37 +18,32 @@ const favoriteController = {
         userId: req.decoded.id
       }
     })
-      .then((favorite) => {
-        if (favorite) {
-          return res.status(404).json({
-            code: 404,
-            message: 'This recipe is already your favorite'
-          });
+      .then((foundFavorite) => {
+        if (foundFavorite) {
+          return Promise.resolve(foundFavorite);
         }
         return Favorite.create({
           recipeId: req.body.recipeId,
           userId: req.decoded.id
         });
       })
-      .then((isFavorite) => {
-        return res.status(200).json({
-          code: 200,
+      .then((favorite) => {
+        return res.status(201).json({
           message: 'Recipe successfully made your favorite',
-          data: isFavorite
+          favorite
         });
       })
-      .catch(error => res.status(400).json({
-        message: 'An error occured during this operation',
+      .catch(error => res.status(500).json({
+        message: error.message ? error.message : 'An error occured during this operation',
         error: error.errors
       }));
   },
 
   /**
    * List all User Favorite
-   * 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns {object} object
+   *
+   * @param { object } HTTP request
+   * @param { object } HTTP response
    */
   list(req, res) {
     Favorite.findAll({
@@ -59,9 +53,9 @@ const favoriteController = {
       }]
     })
       .then((favorites) => {
-        return res.status(200).json({ message: 'User Favorites', favorites });
+        return res.status(200).json({ favorites });
       })
-      .catch(error => res.status(400).json({ error: error.message }));
+      .catch(error => res.status(500).json({ error: error.message }));
   }
 };
 

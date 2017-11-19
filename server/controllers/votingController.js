@@ -6,17 +6,17 @@ const Recipe = db.Recipe;
 
 /**
  * Vote Parameters
- * 
- * @param {reques} req 
- * @param {response} res 
- * @param {status} status 
- * @returns {object} object
+ *
+ * @param { req } HTTP request
+ * @param { res } HTTP response
+ *
+ * @returns { object } obj
  */
-let vote = (req, res, status) => {
+const vote = (req, res, status) => {
   const voteData = [];
   const findUser = User.findOne({
     where: {
-      id: req.decoded.userId
+      id: req.params.userId
     }
   });
 
@@ -40,9 +40,8 @@ let vote = (req, res, status) => {
   Promise.all(voteData)
     .then((results) => {
       const user = results[0];
-      if (user) {
+      if (!user) {
         return res.status(404).json({
-          code: 404,
           message: 'This user does not exist'
         });
       }
@@ -50,7 +49,6 @@ let vote = (req, res, status) => {
       const recipe = results[1];
       if (!recipe) {
         return res.status(404).json({
-          code: 404,
           message: 'This recipe does not exist'
         });
       }
@@ -69,12 +67,11 @@ let vote = (req, res, status) => {
     })
     .then((updated) => {
       return res.status(201).json({
-        status: 201,
         message: 'Vote successful',
         data: updated
       });
     })
-    .catch(error => res.status(400).json({
+    .catch(error => res.status(500).json({
       message: 'An error occured during this operation',
       errors: error.errors
     }));
@@ -83,20 +80,18 @@ let vote = (req, res, status) => {
 const votingController = {
   /**
    * Upvote a recipe
-   * 
-   * @param {request} req 
-   * @param {response} res 
-   * @returns {object} object
+   *
+   * @param { req } HTTP request
+   * @param { res } HTTP response
    */
   upVote(req, res) {
     vote(req, res, 1);
   },
   /**
    * Downvote a recipe
-   * 
-   * @param {any} req 
-   * @param {any} res 
-   * @returns {object} object
+   *
+   * @param { req } HTTP request
+   * @param { res } HTTP response
    */
   downVote(req, res) {
     vote(req, res, 0);
