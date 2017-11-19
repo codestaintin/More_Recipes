@@ -2,27 +2,27 @@ import db from '../../models';
 
 const Recipe = db.Recipe;
 
-const seeder = {
+const recipeSeed = {
   emptyRecipeTable(done) {
     Recipe.destroy({ truncate: true, cascade: true })
       .then(() => done())
       .catch(err => done(err));
   },
-  setInput(name, ingredient, description, image, views) {
+  setInput(name, ingredient, description, imageUrl, views) {
     return {
       name,
       ingredient,
       description,
-      image,
+      imageUrl,
       views
     };
   },
-  setUpdateRecipe(name, ingredient, description, image, views) {
+  setUpdateRecipe(name, ingredient, description, imageUrl, views) {
     return {
       name,
       ingredient,
       description,
-      image,
+      imageUrl,
       views
     };
   },
@@ -31,12 +31,13 @@ const seeder = {
       name: 'Yam Porridge',
       ingredient: 'Yam, pepper, and water',
       description: 'This is how to make ya porridge',
-      image: 'yam_img',
-      views: 9
+      userId: 1,
+      imageUrl: 'yam_img',
+      views: 0
     })
       .then(() => done())
       .catch(err => done(err));
   }
 };
 
-export default seeder;
+export default recipeSeed;

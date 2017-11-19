@@ -8,12 +8,13 @@
   "main": "server.js",
   "nyc": {
     "exclude": [
-      "server/tests/seeder"
+      "server/tests/seeder",
+      "server/conig/config.js"
     ]
   },
   "scripts": {
     "test": "NODE_ENV=test nyc --reporter=html mocha server/tests/*.test.js --compilers js:babel-register && nyc report",
-    "test:file": "NODE_ENV=test nyc --reporter=html mocha server/tests/review.test.js --compilers js:babel-register && nyc report",
+    "test:file": "NODE_ENV=test nyc --reporter=html mocha server/tests/*.test.js --compilers js:babel-register && nyc report",
     "test2": "mocha server/tests/*.test.js --compilers js:babel-register",
     "start": "NODE_ENV=production node index",
     "start:dev": "nodemon server --exec babel-node",

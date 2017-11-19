@@ -16,7 +16,7 @@ const recipeModel = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    image: {
+    imageUrl: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -48,7 +48,7 @@ const recipeModel = (sequelize, DataTypes) => {
       name: 'required|min:4',
       description: 'required|min:4',
       ingredient: 'required|min:3',
-      image: 'required'
+      imageUrl: 'required'
     };
   };
   Recipe.updateRules = () => {
@@ -56,7 +56,7 @@ const recipeModel = (sequelize, DataTypes) => {
       name: 'required|min:4',
       description: 'required|min:4',
       ingredient: 'required|min:3',
-      image: 'required'
+      imageUrl: 'required'
     };
   };
   return Recipe;

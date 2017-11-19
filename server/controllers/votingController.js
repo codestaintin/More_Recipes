@@ -8,14 +8,15 @@ const Recipe = db.Recipe;
  * Vote Parameters
  *
  * @param { req } HTTP request
-   * @param { res } HTTP response
-   * @returns { object } obj
+ * @param { res } HTTP response
+ *
+ * @returns { object } obj
  */
-let vote = (req, res, status) => {
+const vote = (req, res, status) => {
   const voteData = [];
   const findUser = User.findOne({
     where: {
-      id: req.decoded.userId
+      id: req.params.userId
     }
   });
 
@@ -39,7 +40,7 @@ let vote = (req, res, status) => {
   Promise.all(voteData)
     .then((results) => {
       const user = results[0];
-      if (user) {
+      if (!user) {
         return res.status(404).json({
           message: 'This user does not exist'
         });
@@ -70,7 +71,7 @@ let vote = (req, res, status) => {
         data: updated
       });
     })
-    .catch(error => res.status(400).json({
+    .catch(error => res.status(500).json({
       message: 'An error occured during this operation',
       errors: error.errors
     }));

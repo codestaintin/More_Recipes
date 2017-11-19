@@ -29,7 +29,7 @@ module.exports = {
           as: 'userId'
         }
       },
-      image: {
+      imageUrl: {
         type: Sequelize.STRING,
         allowNull: false
       },

@@ -2,7 +2,7 @@ import db from '../../models';
 
 const User = db.User;
 
-const seeder = {
+const authSeed = {
   emptyUserTable(done) {
     User.destroy({ truncate: true, cascade: true, restartIdentity: true })
       .then(() => done())
@@ -34,4 +34,4 @@ const seeder = {
   }
 };
 
-export default seeder;
+export default authSeed;

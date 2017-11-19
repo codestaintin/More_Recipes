@@ -2,7 +2,7 @@ import db from '../../models';
 
 const Review = db.Review;
 
-const seeder = {
+const reviewSeed = {
   emptyReviewTable(done) {
     Review.destroy({ truncate: true, cascade: true })
       .then(() => done())
@@ -24,4 +24,4 @@ const seeder = {
   }
 };
 
-export default seeder;
+export default reviewSeed;

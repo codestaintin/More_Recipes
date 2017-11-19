@@ -17,17 +17,21 @@ const reviewController = {
     const validator = new Validator(body, Review.createRules());
     if (validator.passes()) {
       Recipe.findById(req.params.recipeId)
-        .then((recipe) => {
-          if (!recipe) {
-            return res.status(404).json({ message: 'This Recipe Does not exit' });
+        .then((foundRecipe) => {
+          if (!foundRecipe) {
+            return res.status(404).json({
+              message: 'This Recipe Does not exit'
+            });
           }
           return Review.create({
             content: req.body.content,
             recipeId: req.params.recipeId,
             userId: req.decoded.id
           })
-            .then((newrecipe) => {
-              return res.status(201).json({ message: 'Review Posted ', recipe: newrecipe });
+            .then((recipe) => {
+              return res.status(201).json({
+                message: 'Review Posted ',
+                recipe });
             })
             .catch(error => res.status(404).json(error));
         })
@@ -49,13 +53,17 @@ const reviewController = {
           recipeId: req.params.recipeId
         },
       })
-      .then((review) => {
-        if (!review) {
-          res.status(404).json({ message: 'No reviews found' });
+      .then((foundReview) => {
+        if (!foundReview) {
+          return res.status(404).json({
+            message: 'No reviews found'
+          });
         }
-        return review
+        return foundReview
           .destroy()
-          .then(() => res.status(200).json({ message: 'Review deleted' }))
+          .then(() => res.status(200).json({
+            message: 'Review deleted'
+          }))
           .catch(error => res.status(400).json(error));
       })
       .catch(error => res.status(400).json(error));
@@ -64,8 +72,8 @@ const reviewController = {
   /**
    * List all Reviews
    *
-   * @param { req } HTTP request
-   * @param { res } HTTP response
+   * @param { object } HTTP request
+   * @param { object } HTTP response
    * @returns { object } obj
    */
   list(req, res) {
