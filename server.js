@@ -2,38 +2,37 @@ import http from 'http';
 import express from 'express';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
-import routes from './server/routes/index';
+import routes from './server/routes/routes';
 
 // Set up express app
-const app = express();
+const server = express();
 const router = express.Router();
 
 // Port configuration
-const port = parseInt(process.env.PORT, 10) || 8080;
-app.set('port', port);
+const port = parseInt(process.env.PORT, 10) || 8000;
 
 routes(router);
 
 // Log requests to the console
-app.use(logger('dev'));
+server.use(logger('dev'));
 
 // Parse incoming request data
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({ extended: false }));
 
 // API Routes
-app.use('/api/v1', router);
+server.use('/api/v1', router);
 
 // Set up all default catch-all route that sends a message in JSON format
-app.get('*', (req, res) => res.status(404).send({
+server.get('*', (req, res) => res.status(404).send({
   message: 'That route does not exist'
 }));
 
 // Create server
-const server = http.createServer(app);
+const app = http.createServer(server);
 
-server.listen(port, () => {
+app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
 
-export default app;
+export default server;

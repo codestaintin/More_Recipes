@@ -11,7 +11,7 @@ const PATHS = {
 module.exports = {
   context: PATHS.app,
   entry: {
-    app: './index.js' // bug is here fix it
+    app: './index.jsx'
   },
   output: {
     path: PATHS.build,
@@ -24,42 +24,38 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new ExtractTextPlugin('styles.css'),
     new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery',
-      Popper: ['popper.js', 'default']
+      $: 'jQuery',
+      jQuery: 'jQuery',
+      'window.jQuery': 'jquery'
     })
   ],
   devtool: 'eval-source-map',
 
   module: {
-    loaders: [{
-      query: {
-        presets: ['react', 'es2015', 'react-hmre']
-      },
-      test: /\.jsx?$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/
-    },
-    {
-      test: /\.(scss|css)?$/,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: ['css-loader', 'resolve-url-loader', 'sass-loader?sourceMap']
-      })
-    },
-    {
-      test: /\.(tff|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'file-loader'
-    },
-    {
-      test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: 'url-loader?limit=10000&mimetype=application/font-woff'
-    },
-    {
-      test: /\.(png|jpg|gif)$/,
-      loader: 'url-loader?limit=250000'
-    }
+    loaders: [
+      {
+        query: {
+          cacheDirectory: true,
+        },
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/
+      }, {
+        test: /\.(scss|css)?$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'resolve-url-loader', 'sass-loader?sourceMap']
+        })
+      }, {
+        test: /\.(ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file-loader'
+      }, {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+      }, {
+        test: /\.(png|jpg|gif)$/,
+        loader: 'url-loader?limit=250000'
+      }
     ]
   },
   devServer: {
@@ -71,13 +67,13 @@ module.exports = {
     port: process.env.PORT,
     proxy: {
       '/api/v1/**': {
-        target: 'http://[::1]:8080',
+        target: 'http://[::1]:8000',
         secure: false
       }
     },
-    contentBase: '/'
+    contentBase: PATHS.build
   },
   externals: {
-    jquery: 'jQuery'
+    jquery: 'jquery'
   }
 };

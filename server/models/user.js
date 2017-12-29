@@ -53,20 +53,29 @@ const userModel = (sequelize, DataTypes) => {
     return bcrypt.compareSync(password, user.password);
   };
   /**
-   * Hook for hashing password
+   * Hook for hashing password before creating a new user
    */
   User.hook('beforeCreate', (user) => {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(user.password, salt);
     user.password = hash;
   });
+
   /**
-   * User validation rules for user creation and login
+   * Hook for hashing password before creating a new user
+   */
+  User.hook('beforeUpdate', (user) => {
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(user.newPassword, salt);
+    user.newPassword = hash;
+  });
+  /**
+   * Auth validation rules for user creation and login
    */
   User.createRules = () => {
     return {
-      firstName: 'required|min:6|alpha',
-      lastName: 'required|min:4|alpha',
+      firstName: 'required|alpha',
+      lastName: 'required|alpha',
       username: 'required|min:6',
       email: 'required|email',
       password: 'required|min:6'

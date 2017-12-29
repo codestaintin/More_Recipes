@@ -17,7 +17,7 @@ const auth = {
         User.findById(decoded.id)
           .then((user) => {
             if (!user) {
-              return Promise.reject('There is no user with this token');
+              return Promise.reject('This user does not exist');
             }
             req.decoded = decoded;
             return next();

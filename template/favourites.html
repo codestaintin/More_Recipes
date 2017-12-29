@@ -7,25 +7,23 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" media="screen">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css" media="screen">
     <link rel="stylesheet" href="assets/css/utils.css" media="screen">
-    <link rel="stylesheet" href="assets/css/style.css" media="screen">
+    <link rel="stylesheet" href="assets/css/recipes.css" media="screen">
 </head>
 
 <body>
-
-
     <nav class="navbar navbar-expand-lg navbar-light bg-navbar fixed-top">
         <a class="navbar-brand" href="index.html">MoreRecipe</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <div class="navbar-nav ml-auto btn-group">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalLong">
-                <i class="fa fa-user-circle"></i> My Account
-            </button>
+                    <i class="fa fa-user-circle"></i> My Account
+                </button>
             </div>
         </div>
     </nav>
@@ -100,8 +98,12 @@
 
     <div class="wrapper">
         <ol class="breadcrumb container mt-50 mb-10 col-md-9 mx-auto bg-white shadow-lite">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">User</a></li>
+            <li class="breadcrumb-item">
+                <a href="#">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="#">User</a>
+            </li>
             <li class="breadcrumb-item active">My Favourites</li>
         </ol>
         <div class="container mb-20 col-md-9 mx-auto recipe-details-container">
@@ -115,36 +117,57 @@
 
                             <form class="text-center">
                                 <label class="btn btn-secondary btn-sm mt-2">
-                                <i class="fa fa-camera"></i> Choose photo
-                                <input type="file" name="file" class="hidden avatar-input" accept="image/*">
-                            </label>
+                                    <i class="fa fa-camera"></i> Choose photo
+                                    <input type="file" name="file" class="hidden avatar-input" accept="image/*">
+                                </label>
                                 <button type="submit" class="btn btn-outline-success btn-sm">
-                                Upload
-                            </button>
+                                    Upload
+                                </button>
                             </form>
                         </div>
                         <div class="stat-area light-well row pt-2 shadow-lite">
                             <div class="col-4 col-md-4 col-sm-4 col-lg-4 text-center">
                                 <h6 class="text-muted">Recipes</h6>
-                                <h6><small>234</small></h6>
+                                <h6>
+                                    <small>234</small>
+                                </h6>
                             </div>
                             <div class="col-4 col-md-4 col-sm-4 col-lg-4 text-center">
                                 <h6 class="text-muted">Favourites</h6>
-                                <h6><small>23</small></h6>
+                                <h6>
+                                    <small>23</small>
+                                </h6>
                             </div>
                             <div class="col-4 col-md-4 col-sm-4 col-lg-4 text-center">
                                 <h6 class="text-muted">Reviews</h6>
-                                <h6><small>120</small></h6>
+                                <h6>
+                                    <small>120</small>
+                                </h6>
                             </div>
                         </div>
                         <div class="clearfix"></div>
                         <div class="mt-5">
                             <ul class="user-profile">
-                                <li><a href="profile.html"><i class="fa fa-user"></i> My Profile</a></li>
-                                <li><a href="my-recipes.html"><i class="fa fa-list"></i> My Recipes</a></li>
-                                <li><a href="favourites.html"><i class="fa fa-star text-warning"></i> My Favourites</a></li>
-                                <li><a href="add-recipe.html"><i class="fa fa-plus"></i> Add Recipe</a></li>
-                                <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                                <li>
+                                    <a href="profile.html">
+                                        <i class="fa fa-user"></i> My Profile</a>
+                                </li>
+                                <li>
+                                    <a href="my-recipes.html">
+                                        <i class="fa fa-list"></i> My Recipes</a>
+                                </li>
+                                <li>
+                                    <a href="favourites.html">
+                                        <i class="fa fa-star text-warning"></i> My Favourites</a>
+                                </li>
+                                <li>
+                                    <a href="add-recipe.html">
+                                        <i class="fa fa-plus"></i> Add Recipe</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-power-off"></i> Logout</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -157,15 +180,24 @@
                             </div>
                             <div class="recipe-meta pt-5">
                                 <h6 class="recipe-name">Rice/Chicken Nuggets</h6>
-                                <h6><small><i class="fa fa-tags"></i> African Dishes</small></h6>
-                                <h6 class="text-muted"><small><i class="fa fa-user"></i> By Mohammed Isioye</small></h6>
+                                <h6>
+                                    <small>
+                                        <i class="fa fa-tags"></i> African Dishes</small>
+                                </h6>
+                                <h6 class="text-muted">
+                                    <small>
+                                        <i class="fa fa-user"></i> By Mohammed Isioye</small>
+                                </h6>
                             </div>
                             <div class="recipe-met2">
                                 <hr class="m-1">
-                                <p class="text-left"><small>
-                                <span><i class="fa fa-eye text-muted"></i> 2334</span> &nbsp;
-                                <span><i class="fa fa-thumbs-o-up text-muted"></i> 211</span>
-                            </small>
+                                <p class="text-left">
+                                    <small>
+                                        <span>
+                                            <i class="fa fa-eye text-muted"></i> 2334</span> &nbsp;
+                                        <span>
+                                            <i class="fa fa-thumbs-o-up text-muted"></i> 211</span>
+                                    </small>
                                 </p>
                             </div>
                         </div>
@@ -179,15 +211,24 @@
                             </div>
                             <div class="recipe-meta pt-5">
                                 <h6 class="recipe-name">Rice and Tilapia</h6>
-                                <h6><small><i class="fa fa-tags"></i> African Dishes</small></h6>
-                                <h6 class="text-muted"><small><i class="fa fa-user"></i> By Mohammed Isioye</small></h6>
+                                <h6>
+                                    <small>
+                                        <i class="fa fa-tags"></i> African Dishes</small>
+                                </h6>
+                                <h6 class="text-muted">
+                                    <small>
+                                        <i class="fa fa-user"></i> By Mohammed Isioye</small>
+                                </h6>
                             </div>
                             <div class="recipe-met2">
                                 <hr class="m-1">
-                                <p class="text-left"><small>
-                                <span><i class="fa fa-eye text-muted"></i> 23</span> &nbsp;
-                                <span><i class="fa fa-thumbs-o-up text-muted"></i> 4011</span>
-                            </small>
+                                <p class="text-left">
+                                    <small>
+                                        <span>
+                                            <i class="fa fa-eye text-muted"></i> 23</span> &nbsp;
+                                        <span>
+                                            <i class="fa fa-thumbs-o-up text-muted"></i> 4011</span>
+                                    </small>
                                 </p>
                             </div>
                         </div>
@@ -201,15 +242,24 @@
                             </div>
                             <div class="recipe-meta pt-5">
                                 <h6 class="recipe-name">Rice/Chicken Nuggets</h6>
-                                <h6><small><i class="fa fa-tags"></i> African Dishes</small></h6>
-                                <h6 class="text-muted"><small><i class="fa fa-user"></i> By Mohammed Isioye</small></h6>
+                                <h6>
+                                    <small>
+                                        <i class="fa fa-tags"></i> African Dishes</small>
+                                </h6>
+                                <h6 class="text-muted">
+                                    <small>
+                                        <i class="fa fa-user"></i> By Mohammed Isioye</small>
+                                </h6>
                             </div>
                             <div class="recipe-met2">
                                 <hr class="m-1">
-                                <p class="text-left"><small>
-                                <span><i class="fa fa-eye text-muted"></i> 2334</span> &nbsp;
-                                <span><i class="fa fa-thumbs-o-up text-muted"></i> 211</span>
-                            </small>
+                                <p class="text-left">
+                                    <small>
+                                        <span>
+                                            <i class="fa fa-eye text-muted"></i> 2334</span> &nbsp;
+                                        <span>
+                                            <i class="fa fa-thumbs-o-up text-muted"></i> 211</span>
+                                    </small>
                                 </p>
                             </div>
                         </div>
@@ -222,15 +272,24 @@
                             </div>
                             <div class="recipe-meta pt-5">
                                 <h6 class="recipe-name">Rice/Chicken Nuggets</h6>
-                                <h6><small><i class="fa fa-tags"></i> African Dishes</small></h6>
-                                <h6 class="text-muted"><small><i class="fa fa-user"></i> By Mohammed Isioye</small></h6>
+                                <h6>
+                                    <small>
+                                        <i class="fa fa-tags"></i> African Dishes</small>
+                                </h6>
+                                <h6 class="text-muted">
+                                    <small>
+                                        <i class="fa fa-user"></i> By Mohammed Isioye</small>
+                                </h6>
                             </div>
                             <div class="recipe-met2">
                                 <hr class="m-1">
-                                <p class="text-left"><small>
-                                <span><i class="fa fa-eye text-muted"></i> 2334</span> &nbsp;
-                                <span><i class="fa fa-thumbs-o-up text-muted"></i> 211</span>
-                            </small>
+                                <p class="text-left">
+                                    <small>
+                                        <span>
+                                            <i class="fa fa-eye text-muted"></i> 2334</span> &nbsp;
+                                        <span>
+                                            <i class="fa fa-thumbs-o-up text-muted"></i> 211</span>
+                                    </small>
                                 </p>
                             </div>
                         </div>
@@ -244,15 +303,24 @@
                             </div>
                             <div class="recipe-meta pt-5">
                                 <h6 class="recipe-name">Rice and Tilapia</h6>
-                                <h6><small><i class="fa fa-tags"></i> African Dishes</small></h6>
-                                <h6 class="text-muted"><small><i class="fa fa-user"></i> By Mohammed Isioye</small></h6>
+                                <h6>
+                                    <small>
+                                        <i class="fa fa-tags"></i> African Dishes</small>
+                                </h6>
+                                <h6 class="text-muted">
+                                    <small>
+                                        <i class="fa fa-user"></i> By Mohammed Isioye</small>
+                                </h6>
                             </div>
                             <div class="recipe-met2">
                                 <hr class="m-1">
-                                <p class="text-left"><small>
-                                <span><i class="fa fa-eye text-muted"></i> 23</span> &nbsp;
-                                <span><i class="fa fa-thumbs-o-up text-muted"></i> 4011</span>
-                            </small>
+                                <p class="text-left">
+                                    <small>
+                                        <span>
+                                            <i class="fa fa-eye text-muted"></i> 23</span> &nbsp;
+                                        <span>
+                                            <i class="fa fa-thumbs-o-up text-muted"></i> 4011</span>
+                                    </small>
                                 </p>
                             </div>
                         </div>
@@ -266,15 +334,24 @@
                             </div>
                             <div class="recipe-meta pt-5">
                                 <h6 class="recipe-name">Rice/Chicken Nuggets</h6>
-                                <h6><small><i class="fa fa-tags"></i> African Dishes</small></h6>
-                                <h6 class="text-muted"><small><i class="fa fa-user"></i> By Mohammed Isioye</small></h6>
+                                <h6>
+                                    <small>
+                                        <i class="fa fa-tags"></i> African Dishes</small>
+                                </h6>
+                                <h6 class="text-muted">
+                                    <small>
+                                        <i class="fa fa-user"></i> By Mohammed Isioye</small>
+                                </h6>
                             </div>
                             <div class="recipe-met2">
                                 <hr class="m-1">
-                                <p class="text-left"><small>
-                                <span><i class="fa fa-eye text-muted"></i> 2334</span> &nbsp;
-                                <span><i class="fa fa-thumbs-o-up text-muted"></i> 211</span>
-                            </small>
+                                <p class="text-left">
+                                    <small>
+                                        <span>
+                                            <i class="fa fa-eye text-muted"></i> 2334</span> &nbsp;
+                                        <span>
+                                            <i class="fa fa-thumbs-o-up text-muted"></i> 211</span>
+                                    </small>
                                 </p>
                             </div>
                         </div>
@@ -284,11 +361,21 @@
                 </div>
                 <nav aria-label="Page navigation example" class="ml-auto">
                     <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Previous</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
                     </ul>
                 </nav>
 
