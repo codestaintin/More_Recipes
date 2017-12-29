@@ -31,7 +31,7 @@ export default class UserPanelComponent extends React.Component {
             <form className="text-center">
               <label className="btn btn-secondary btn-sm mt-2">
                 <i className="fa fa-camera"></i>
-                                Choose photo
+                  Choose photo
                 <input
                   type="file"
                   name="file"
@@ -69,31 +69,31 @@ export default class UserPanelComponent extends React.Component {
               <li>
                 <Link to="/profile">
                   <i className="fa fa-user"></i>
-                                    My Profile
+                    My Profile
                 </Link>
               </li>
               <li>
                 <Link to="/user">
                   <i className="fa fa-list"></i>
-                                    My Recipes
+                    My Recipes
                 </Link>
               </li>
               <li>
                 <Link to="/favorite">
                   <i className="fa fa-star text-warning"></i>
-                                    My Favourites
+                    My Favourites
                 </Link>
               </li>
               <li>
                 <Link to="/addRecipe">
                   <i className="fa fa-plus"></i>
-                                    Add Recipe
+                    Add Recipe
                 </Link>
               </li>
               <li>
                 <Link to="/">
                   <i className="fa fa-power-off"></i>
-                                    Logout
+                    Logout
                 </Link>
               </li>
             </ul>

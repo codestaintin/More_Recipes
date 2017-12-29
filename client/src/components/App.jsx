@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'react-proptypes';
-import HeaderComponent from './partials/Header.jsx';
+import HeaderComponent from './partials/Headers/Header.jsx';
 /**
  * App class declaration
  */
@@ -12,7 +12,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <HeaderComponent/>
+        {/*<HeaderComponent/>*/}
         { this.props.children }
       </div>
     );

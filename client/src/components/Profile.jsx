@@ -1,12 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SignInComponent from './partials/User/SignIn.jsx';
-import SignUpComponent from './partials/User/SignUp.jsx';
 import FooterComponent from './partials/Footer.jsx';
 import UserPanelComponent from './partials/UserPanel.jsx';
-
+import MainHeader from "./partials/Headers/MainHeader.jsx";
 /**
- *
  *
  * @export
  * @class ProfileComponent
@@ -22,8 +19,7 @@ export default class ProfileComponent extends React.Component {
   render() {
     return (
       <div>
-        <SignInComponent/>
-        <SignUpComponent/>
+        <MainHeader/>
         <div className="wrapper">
           <ol
             className="breadcrumb container mt-50 mb-10 col-md-9 mx-auto bg-white shadow-lite">

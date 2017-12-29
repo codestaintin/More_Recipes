@@ -6,7 +6,7 @@ const Recipe = db.Recipe;
 const favoriteController = {
 
   /**
-   * Create User favorite
+   * Create Auth favorite
    *
    * @param { object } HTTP request
    * @param { object } HTTP response
@@ -40,7 +40,7 @@ const favoriteController = {
   },
 
   /**
-   * List all User Favorite
+   * List all Auth Favorite
    *
    * @param { object } HTTP request
    * @param { object } HTTP response

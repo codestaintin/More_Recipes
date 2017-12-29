@@ -6,7 +6,7 @@ const initialState = {
   fails: null
 };
 
-const signupReducer = (state = initialState, action) => {
+const signUpReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SIGNUP_SUCCESSFUL:
       state = {
@@ -34,5 +34,5 @@ const signupReducer = (state = initialState, action) => {
       return state;
   }
   return state;
-}
-export default signupReducer;
+};
+export default signUpReducer;

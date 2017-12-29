@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SignInComponent from './partials/User/SignIn.jsx';
-import SignUpComponent from './partials/User/SignUp.jsx';
+import SignInComponent from './Auth/SignIn.jsx';
+import SignUpComponent from './Auth/SignUp.jsx';
 import FooterComponent from './partials/Footer.jsx';
 
 /**
@@ -30,7 +30,7 @@ export default class AddRecipeComponent extends React.Component {
               <Link to="/">Home</Link>
             </li>
             <li className="breadcrumb-item">
-              <a href="#">Recipes</a>
+              <Link to="#">Recipes</Link>
             </li>
             <li className="breadcrumb-item active">Add new</li>
           </ol>
@@ -39,13 +39,13 @@ export default class AddRecipeComponent extends React.Component {
               <div
                 className="col-12 col-sm-6 col-md-6 col-lg-6 p-10 shadow-lite bg-white"
                 style={{
-                  height: `${400  }px`,
-                  maxHeight: `${400  }px`
+                  height: `${400}px`,
+                  maxHeight: `${400}px`
                 }}>
                 <div
                   className="light-well center-content"
                   style={{
-                    height: `${100  }%`
+                    height: `${100}%`
                   }}>
                   <div className="text-center file-upload full-height full-width center-content">
                     <input

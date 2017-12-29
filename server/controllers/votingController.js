@@ -7,9 +7,9 @@ const Recipe = db.Recipe;
 /**
  * Vote Parameters
  *
- * @param { req } HTTP request
- * @param { res } HTTP response
- *
+ * @param { req } req
+ * @param { res } res
+ * @param { status } status
  * @returns { object } obj
  */
 const vote = (req, res, status) => {
@@ -65,12 +65,10 @@ const vote = (req, res, status) => {
         userId: req.decoded.id
       });
     })
-    .then((updated) => {
-      return res.status(201).json({
-        message: 'Vote successful',
-        data: updated
-      });
-    })
+    .then(updated => res.status(201).json({
+      message: 'Vote successful',
+      data: updated
+    }))
     .catch(error => res.status(500).json({
       message: 'An error occured during this operation',
       errors: error.errors
@@ -81,8 +79,9 @@ const votingController = {
   /**
    * Upvote a recipe
    *
-   * @param { req } HTTP request
-   * @param { res } HTTP response
+   * @param { req } req
+   * @param { res } res
+   * @returns { object } obj
    */
   upVote(req, res) {
     vote(req, res, 1);
@@ -90,8 +89,9 @@ const votingController = {
   /**
    * Downvote a recipe
    *
-   * @param { req } HTTP request
-   * @param { res } HTTP response
+   * @param { req } req
+   * @param { res } res
+   * @returns { object } obj
    */
   downVote(req, res) {
     vote(req, res, 0);

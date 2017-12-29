@@ -70,7 +70,7 @@ const userModel = (sequelize, DataTypes) => {
     user.newPassword = hash;
   });
   /**
-   * User validation rules for user creation and login
+   * Auth validation rules for user creation and login
    */
   User.createRules = () => {
     return {

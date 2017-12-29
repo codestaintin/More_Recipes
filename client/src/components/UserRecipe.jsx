@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SignInComponent from './partials/User/SignIn.jsx';
-import SignUpComponent from './partials/User/SignUp.jsx';
+import SignInComponent from './Auth/SignIn.jsx';
+import SignUpComponent from './Auth/SignUp.jsx';
 import FooterComponent from './partials/Footer.jsx';
 import UserPanelComponent from './partials/UserPanel.jsx';
 import PaginateComponent from './partials/Paginate.jsx';
@@ -266,7 +266,6 @@ export default class UserRecipeComponent extends React.Component {
                     </div>
                   </div>
                 </div>
-
               </div>
               <PaginateComponent/>
             </div>

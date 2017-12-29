@@ -13,9 +13,9 @@ const secret = process.env.SECRET_TOKEN;
 const userController = {
 
   /**
-   * Create User and validate request
-   * @param { object } HTTP request
-   * @param { object } HTTP response
+   * Create Auth and validate request
+   * @param { req } req
+   * @param { res } res
    *
    * @returns { object } object
    */
@@ -47,11 +47,9 @@ const userController = {
             })
             .catch(error => res.status(500).json(error));
         })
-        .catch((error) => {
-          return res.status(500).json({
-            message: 'An error occured while trying to create a user',
-            error: error.message });
-        });
+        .catch(error => res.status(500).json({
+          message: 'An error occurred while trying to create a user',
+          error: error.message }));
     } else {
       return res.status(422).json({ message: validator.errors.all() });
     }
@@ -59,8 +57,8 @@ const userController = {
 
   /**
    * Log in user and validate user request
-   * @param { object } HTTP request
-   * @param { object } HTTP response
+   * @param { req } req
+   * @param { res } res
    *
    * @returns { object } object
    */
@@ -89,7 +87,7 @@ const userController = {
         }
         const user = lodash.pick(foundUser, ['id', 'username']);
         const token = jwt.sign(user, secret);
-        return res.status(200).send({
+        return res.status(200).json({
           message: 'Log in successful',
           token,
           user

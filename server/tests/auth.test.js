@@ -7,7 +7,7 @@ import seed from './seeder/authSeed';
 
 dotEnv.config();
 
-describe('POST Test suites for User sign up', () => {
+describe('POST Test suites for Auth sign up', () => {
   before(seed.emptyUserTable);
   before(seed.addUser);
 
@@ -216,7 +216,7 @@ describe('POST Test suites for User sign up', () => {
   });
 });
 
-describe('POST Test suites for User sign in', () => {
+describe('POST Test suites for Auth sign in', () => {
   before(seed.emptyUserTable);
   before(seed.addUser);
 
@@ -239,7 +239,7 @@ describe('POST Test suites for User sign in', () => {
       .expect(500)
       .end((err, res) => {
         if (err) return done(err);
-        assert.equal(res.body.message, 'User not found, please register');
+        assert.equal(res.body.message, 'Auth not found, please register');
         done();
       });
   });

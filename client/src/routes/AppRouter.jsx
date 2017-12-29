@@ -14,12 +14,12 @@ const AppRouter = () => (
     <div>
       <Switch>
         <App>
-          <Route path="/" exact component={HomePageComponent}></Route>
-          <Route path="/profile" component={ProfileComponent}></Route>
-          <Route path="/recipe" component={RecipeDetailComponent}></Route>
-          <Route path="/favorite" component={FavoriteComponent}></Route>
-          <Route path="/user" component={UserRecipeComponent}></Route>
-          <Route path="/addRecipe" component={AddRecipeComponent}></Route>
+          <Route path="/" exact component={HomePageComponent} />
+          <Route path="/profile" component={ProfileComponent} />
+          <Route path="/recipe" component={RecipeDetailComponent} />
+          <Route path="/favorite" component={FavoriteComponent} />
+          <Route path="/user" component={UserRecipeComponent} />
+          <Route path="/addRecipe" component={AddRecipeComponent} />
         </App>
       </Switch>
     </div>

@@ -11,8 +11,8 @@ const Favorite = db.Favorite;
 const recipeController = {
   /**
    * Create new Recipes
-   * @param { object } HTTP request
-   * @param { object } HTTP response
+   * @param { object }  req
+   * @param { object }  res
    *
    * @returns { object } object
    */
@@ -49,12 +49,10 @@ const recipeController = {
                 }))
                 .catch(error => res.status(404).json(error));
             })
-            .catch((error) => {
-              return res.status(500).json({
-                message: 'An error occured while trying to create this recipe ',
-                error: error.message
-              });
-            });
+            .catch(error => res.status(500).json({
+              message: 'An error occurred while trying to create this recipe ',
+              error: error.message
+            }));
         })
         .catch(error => res.status(500).json({ error }));
     } else {
@@ -64,8 +62,8 @@ const recipeController = {
 
   /**
    * Retrieve a Recipe
-   * @param { object } HTTP request
-   * @param { object } HTTP response
+   * @param { object }  req
+   * @param { object }  res
    *
    * @returns { object } object
    */
@@ -99,15 +97,13 @@ const recipeController = {
         }
         return res.status(200).json({ recipe });
       })
-      .catch((error) => {
-        return errorHandler(error, res);
-      });
+      .catch(error => errorHandler(error, res));
   },
 
   /**
    * Update Recipe
-   * @param { object } HTTP request
-   * @param { object } HTTP response
+   * @param { object }  req
+   * @param { object }  res
    *
    * @returns { object } object
    */
@@ -125,7 +121,7 @@ const recipeController = {
           }
           if (req.decoded.id !== recipe.userId) {
             return res.status(404).json({
-              message: 'User not found'
+              message: 'Auth not found'
             });
           }
           return recipe
@@ -145,8 +141,8 @@ const recipeController = {
 
   /**
    * Delete Recipe
-   * @param { object } HTTP request
-   * @param { object } HTTP response
+   * @param { object }  req
+   * @param { object }  res
    *
    * @returns { object } object
    */
@@ -159,7 +155,7 @@ const recipeController = {
         }
         if (req.decoded.id !== recipe.userId) {
           return res.status(404).json({
-            message: 'User not found'
+            message: 'Auth not found'
           });
         }
         return recipe
@@ -174,8 +170,8 @@ const recipeController = {
 
   /**
    * List all recipes
-   * @param { object } HTTP request
-   * @param { object } HTTP response
+   * @param { object }  req
+   * @param { object }  res
    *
    * @returns { object } object
    */

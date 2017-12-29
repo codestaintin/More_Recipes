@@ -1,9 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import RecipeBoardComponent from './partials/Recipe/RecipeBoard.jsx';
-import SignInComponent from './partials/User/SignIn.jsx';
-import SignUpComponent from './partials/User/SignUp.jsx';
+import SignInComponent from './Auth/SignIn.jsx';
+import SignUpComponent from './Auth/SignUp.jsx';
 import FooterComponent from './partials/Footer.jsx';
+import HeaderComponent from "./partials/Headers/Header.jsx";
 
 /**
  *
@@ -21,6 +21,7 @@ export default class HomePageComponent extends React.Component {
   render() {
     return (
       <div>
+        <HeaderComponent/>
         <SignInComponent/>
         <SignUpComponent/>
         <div className="container-fluid banner pt-90">

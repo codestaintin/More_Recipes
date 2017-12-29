@@ -6,15 +6,15 @@ const signupAction = userDetails => (dispatch) => {
     .then((res) => {
       const token = res.data.token;
       window.sessionStorage.setItem('token', token);
-      return dispatch({ type: actionTypes.SIGNIN_SUCCESSFUL });
+      return dispatch({ type: actionTypes.SIGNUP_SUCCESSFUL });
     })
     .catch((err) => {
-      if (err.response.data.message === 'A validation error occured') {
-        return dispatch({ type: actionTypes.SIGNIN_VALIDATION_ERROR,
+      if (err.response.data.message === 'A validation error occurred') {
+        return dispatch({ type: actionTypes.SIGNUP_VALIDATION_ERROR,
           payload: err.response.data.errors
         });
       }
-      return dispatch({ type: actionTypes.SIGNIN_UNSUCCESSFUL, 
+      return dispatch({ type: actionTypes.SIGNUP_UNSUCCESSFUL, 
         payload: 'Registration Failed'
       });
     });
