@@ -1,18 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { logout } from '../../../utils/helpers';
 
 /**
  * @export
- * @class MainHeader
+ * @class HeaderComponent
  * @extends {React.Component}
  */
-export default class MainHeader extends React.Component {
+export default class GuestHeader extends React.Component {
   /**
-   *
-   * @returns {XML} XML/JSX
-   * @memberof MainHeader
-   */
+     *
+     * @returns {XML} XML/JSX
+     * @memberof HeaderComponent
+     */
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-navbar fixed-top">
@@ -34,8 +33,18 @@ export default class MainHeader extends React.Component {
             <button
               type="button"
               className="btn btn-outline-secondary"
-              onClick={logout}>
-              Log out <i className="fa fa-sign-out"></i>
+              data-toggle="modal"
+              data-target="#signInModal">
+              Sign In
+              <i className="fa fa-sign-in"></i>
+            </button>
+            <button
+              type="button"
+              className="btn btn-outline-secondary"
+              data-toggle="modal"
+              data-target="#signUpModal">
+              Sign Up
+              <i className="fa fa-user-plus"></i>
             </button>
           </div>
         </div>

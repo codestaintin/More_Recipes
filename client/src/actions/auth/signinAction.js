@@ -1,6 +1,6 @@
 import axios from 'axios';
-import actionTypes from './actionTypes';
-import { decodeToken } from '../utils/helpers';
+import actionTypes from '../actionTypes';
+import { decodeToken } from '../../utils/helpers';
 // import history from '../utils/history';
 
 const signinAction = userCredentials => (dispatch) => {
@@ -10,7 +10,6 @@ const signinAction = userCredentials => (dispatch) => {
       window.sessionStorage.setItem('token', token);
       if (decodeToken(token)) {
         dispatch({ type: actionTypes.SIGNIN_SUCCESSFUL });
-        // history.push('/profile');
       }
     })
     .catch(() => {

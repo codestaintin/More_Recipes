@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const PATHS = {
   app: path.join(__dirname, 'client/src'),
@@ -27,6 +28,10 @@ module.exports = {
       $: 'jQuery',
       jQuery: 'jQuery',
       'window.jQuery': 'jquery'
+    }),
+    new Dotenv({
+      path: './.env',
+      systemvars: true
     })
   ],
   devtool: 'eval-source-map',

@@ -1,3 +1,4 @@
+/* eslint-disable */
 // Create a clone of the menu, right next to original.
 /**
  * Custom javascript file
