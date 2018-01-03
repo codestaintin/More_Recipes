@@ -1,5 +1,5 @@
 import axios from 'axios';
-import actionTypes from './actionTypes';
+import actionTypes from '../actionTypes';
 
 const signupAction = userDetails => (dispatch) => {
   axios.post('api/v1/users/signup', userDetails)

@@ -3,7 +3,7 @@ import RecipeBoardComponent from './partials/Recipe/RecipeBoard.jsx';
 import SignInComponent from './Auth/SignIn.jsx';
 import SignUpComponent from './Auth/SignUp.jsx';
 import FooterComponent from './partials/Footer.jsx';
-import HeaderComponent from "./partials/Headers/Header.jsx";
+import HeaderComponent from "./partials/Headers/GuestHeader.jsx";
 
 /**
  *

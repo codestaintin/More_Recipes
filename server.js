@@ -2,6 +2,7 @@ import http from 'http';
 import express from 'express';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
+import path from 'path';
 import routes from './server/routes/routes';
 
 // Set up express app
@@ -19,6 +20,7 @@ server.use(logger('dev'));
 // Parse incoming request data
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: false }));
+server.use(express.static(path.join(__dirname, '/client/src/build')));
 
 // API Routes
 server.use('/api/v1', router);

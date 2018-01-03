@@ -38,9 +38,6 @@ export default class UserPanelComponent extends React.Component {
                   className="hidden avatar-input"
                   accept="image/*"/>
               </label>
-              <button type="submit" className="btn btn-outline-success btn-sm">
-                Upload
-              </button>
             </form>
           </div>
           <div className="stat-area light-well row pt-2 shadow-lite">
@@ -88,12 +85,6 @@ export default class UserPanelComponent extends React.Component {
                 <Link to="/addRecipe">
                   <i className="fa fa-plus"></i>
                     Add Recipe
-                </Link>
-              </li>
-              <li>
-                <Link to="/">
-                  <i className="fa fa-power-off"></i>
-                    Logout
                 </Link>
               </li>
             </ul>

@@ -17,7 +17,7 @@ const recipeController = {
    * @returns { object } object
    */
   create(req, res) {
-    const body = req.body;
+    const body = req.body.recipeDetails;
     const validator = new Validator(body, Recipe.createRules());
     if (validator.passes()) {
       User.findById(req.decoded.id)
@@ -41,10 +41,10 @@ const recipeController = {
                 description: body.description,
                 userId: req.decoded.id,
                 ingredient: body.ingredient,
-                imageUrl: body.imageUrl
+                imageUrl: req.body.cloudImageUrl
               })
                 .then(recipe => res.status(201).json({
-                  message: 'Recipe creation succesful ',
+                  message: 'Recipe creation successful ',
                   recipe
                 }))
                 .catch(error => res.status(404).json(error));
@@ -56,7 +56,10 @@ const recipeController = {
         })
         .catch(error => res.status(500).json({ error }));
     } else {
-      return res.status(500).json({ message: validator.errors.all() });
+      return res.status(400).json({
+        message: 'A validation error occurred',
+        errors: validator.errors.all()
+      });
     }
   },
 
@@ -127,7 +130,7 @@ const recipeController = {
           return recipe
             .update(req.body, { fields: Object.keys(req.body) })
             .then(() => res.status(201).json({
-              message: 'Recipe succesfully updated',
+              message: 'Recipe successfully updated',
               recipe
             }))
             .catch(error => res.status(400).json({
@@ -161,7 +164,7 @@ const recipeController = {
         return recipe
           .destroy()
           .then(() => res.status(200).json({
-            message: 'Recipe succesfully deleted'
+            message: 'Recipe successfully deleted'
           }))
           .catch(error => res.status(500).json({ error }));
       })

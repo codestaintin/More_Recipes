@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import signInAction from '../../actions/signinAction';
+import signInAction from '../../actions/auth/signinAction';
 import history from '../../utils/history';
 import loginValidate from '../../utils/loginValidate';
 
@@ -170,7 +170,7 @@ export class SignIn extends React.Component {
     );
   }
 }
-SignIn.PropTypes = {
+SignIn.propTypes = {
   signInState: PropTypes.object.isRequired,
   signInAction: PropTypes.func.isRequired
 };

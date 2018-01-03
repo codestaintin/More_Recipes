@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import FooterComponent from './partials/Footer.jsx';
 import UserPanelComponent from './partials/UserPanel.jsx';
-import MainHeader from "./partials/Headers/MainHeader.jsx";
+import MainHeader from "./partials/Headers/AuthHeader.jsx";
 /**
  *
  * @export

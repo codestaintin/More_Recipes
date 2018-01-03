@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SignInComponent from './Auth/SignIn.jsx';
-import SignUpComponent from './Auth/SignUp.jsx';
 import FooterComponent from './partials/Footer.jsx';
+import MainHeader from "./partials/Headers/AuthHeader.jsx";
+
 
 /**
- *
  *
  * @export
  * @class RecipeDetailComponent
@@ -14,18 +13,16 @@ import FooterComponent from './partials/Footer.jsx';
 export default class RecipeDetailComponent extends React.Component {
   /**
    * 
-   * 
    * @returns {XML} XML/JSX
    * @memberof RecipeDetailComponent
    */
   render() {
     return (
       <div>
-        <SignInComponent />
-        <SignUpComponent />
+        <MainHeader/>
         <div className="container">
           <div className="row">
-            <ol className="breadcrumb mt-50 mb-10 col-md-10 mx-auto bg-white shadow-lite">
+            <ol className="breadcrumb mt-50 mb-10 col-md-11 mx-auto bg-white shadow-lite">
               <li className="breadcrumb-item">
                 <Link to="/">Home</Link>
               </li>

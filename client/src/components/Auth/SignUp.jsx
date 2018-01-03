@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import signUpAction from '../../actions/signupAction';
+import signUpAction from '../../actions/auth/signupAction';
 import history from '../../utils/history';
 import registerValidate from '../../utils/registerValidate';
 
