@@ -246,7 +246,7 @@ export class SignUp extends React.Component {
   }
 }
 
-SignUp.PropTypes = {
+SignUp.propTypes = {
   signUpState: PropTypes.object.isRequired,
   signUpAction: PropTypes.func.isRequired
 };

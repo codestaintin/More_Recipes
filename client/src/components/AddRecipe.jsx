@@ -58,6 +58,14 @@ export class AddRecipe extends React.Component {
         }
       });
       console.log(this.state.recipeDetails);
+      this.setState({
+        recipeDetails: {
+          name: '',
+          description: '',
+          ingredient: ''
+        },
+        imageSrc: '/assets/images/no-image.jpg'
+      });
     }
   }
   /**

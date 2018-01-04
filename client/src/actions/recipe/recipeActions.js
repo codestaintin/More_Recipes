@@ -34,16 +34,16 @@ const addRecipeAction = (recipeDetails, cloudImageUrl, callback) => (dispatch) =
     });
 };
 
-const addRecipeRequest = (recipe, imageFile, callback) => (
+const recipeActions = (recipe, imageFile, callback) => (
   (dispatch) => {
     dispatch(isRecipeCreating(true));
-    let cloudImageUrl = 'http://res.cloudinary.com/ditm0nduo/image/upload/v1514910897/foodie_i9ruos.png';
+    let cloudImageUrl = process.env.DEFAULT_IMAGE;
     if (imageFile.name) {
       const imageData = new FormData();
       imageData.append('file', imageFile);
-      imageData.append('upload_preset', 'h5ih1kz8');
+      imageData.append('upload_preset', process.env.CLOUDINARY_UPLOAD_PRESET);
 
-      axios.post('https://api.cloudinary.com/v1_1/ditm0nduo/image/upload', imageData)
+      axios.post(process.env.CLOUDINARY_URL, imageData)
         .then((response) => {
           cloudImageUrl = response.data.url;
           dispatch(addRecipeAction(recipe, cloudImageUrl, callback));
@@ -58,4 +58,4 @@ const addRecipeRequest = (recipe, imageFile, callback) => (
   }
 );
 
-export default addRecipeRequest;
+export default recipeActions;
