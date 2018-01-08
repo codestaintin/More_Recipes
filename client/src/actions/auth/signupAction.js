@@ -6,7 +6,8 @@ const signupAction = userDetails => (dispatch) => {
     .then((res) => {
       const token = res.data.token;
       window.sessionStorage.setItem('token', token);
-      return dispatch({ type: actionTypes.SIGNUP_SUCCESSFUL });
+      dispatch({ type: actionTypes.SIGNUP_SUCCESSFUL });
+      dispatch({ type: actionTypes.SIGNIN_SUCCESSFUL });
     })
     .catch((err) => {
       if (err.response.data.message === 'A validation error occurred') {

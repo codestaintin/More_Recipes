@@ -1,19 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SignInComponent from './Auth/SignIn.jsx';
-import SignUpComponent from './Auth/SignUp.jsx';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import PropTypes from 'react-proptypes';
+import Header from './partials/Headers/Header.jsx';
 import FooterComponent from './partials/Footer.jsx';
-import UserPanelComponent from './partials/UserPanel.jsx';
+import RecipeComponent from './Recipe/Recipe.jsx';
 import PaginateComponent from './partials/Paginate.jsx';
+import { getUserRecipes } from '../actions/recipe/recipeActions';
+import { decodeToken } from '../utils/helpers';
 
 /**
  *
  *
  * @export
- * @class UserRecipeComponent
+ * @className UserRecipeComponent
  * @extends {React.Component}
  */
-export default class UserRecipeComponent extends React.Component {
+class UserRecipe extends React.Component {
+  /**
+   *
+   *
+   * @returns {XML} XML/JSX
+   * @memberof UserRecipeComponent
+   */
+  componentDidMount() {
+    const { token } = window.sessionStorage;
+    const { id } = decodeToken(token);
+    this.props.getUserRecipes(id);
+  }
+
+
   /**
    * 
    * 
@@ -21,258 +38,50 @@ export default class UserRecipeComponent extends React.Component {
    * @memberof UserRecipeComponent
    */
   render() {
+    const userRecipes = this.props.userRecipes;
+    const decodedToken = decodeToken(window.sessionStorage.token);
     return (
       <div>
-        <SignInComponent/>
-        <SignUpComponent/>
+        <Header/>
         <div className="wrapper">
-          <ol
-            className="breadcrumb container mt-50 mb-10 col-md-9 mx-auto bg-white shadow-lite">
-            <li className="breadcrumb-item">
-              <Link to="/">Home</Link>
-            </li>
-            <li className="breadcrumb-item">
-              <a href="#">User</a>
-            </li>
-            <li className="breadcrumb-item active">My Recipes</li>
-          </ol>
-          <div className="container mb-20 col-md-9 mx-auto recipe-details-container">
+          <div className="container">
+            <nav aria-label="breadcrumb" className="mt-40 mb-10" >
+              <ol className="breadcrumb bg-white">
+                <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                <li className="breadcrumb-item"><Link to="/profile">User</Link></li>
+                <li className="breadcrumb-item active" aria-current="page">My Recipes</li>
+              </ol>
+            </nav>
+          </div>
+          <div className="container mb-20 recipe-details-container">
             <div className="row">
-              <UserPanelComponent/>
-              <div
-                className="simplebox blade col-12 col-sm-8 col-md-8 col-lg-8 p-10 row"
-                style={{
-                  boxShadow: 'none'
-                }}>
-                <div className="col-sm-12 col-md-6 col-lg-4">
-                  <div className="col-md-12 recipe">
-                    <div
-                      className="recipe-img"
-                      style={{
-                        backgroundImage: `url(${'assets/images/dish.jpg'})`
-                      }}></div>
-                    <div className="recipe-meta pt-5">
-                      <h6 className="recipe-name">Rice/Chicken Nuggets</h6>
-                      <h6>
-                        <small>
-                          <i className="fa fa-tags"></i>
-                                                    African Dishes</small>
-                      </h6>
-                      <h6 className="text-muted">
-                        <small>
-                          <i className="fa fa-user"></i>
-                                                    By Mohammed Isioye</small>
-                      </h6>
-                    </div>
-                    <div className="recipe-met2">
-                      <hr className="m-1"/>
-                      <p className="text-left">
-                        <small>
-                          <span>
-                            <i className="fa fa-eye text-muted"></i>
-                                                        2334</span>
-                                                    &nbsp;
-                          <span>
-                            <i className="fa fa-thumbs-o-up text-muted"></i>
-                                                        211</span>
-                        </small>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-sm-12 col-md-6 col-lg-4">
-                  <div className="col-md-12 recipe">
-                    <div
-                      className="recipe-img"
-                      style={{
-                        backgroundImage: `url(${'assets/images/dish2.jpg'})`
-                      }}></div>
-                    <div className="recipe-meta pt-5">
-                      <h6 className="recipe-name">Rice and Tilapia</h6>
-                      <h6>
-                        <small>
-                          <i className="fa fa-tags"></i>
-                                                    African Dishes</small>
-                      </h6>
-                      <h6 className="text-muted">
-                        <small>
-                          <i className="fa fa-user"></i>
-                                                    By Mohammed Isioye</small>
-                      </h6>
-                    </div>
-                    <div className="recipe-met2">
-                      <hr className="m-1"/>
-                      <p className="text-left">
-                        <small>
-                          <span>
-                            <i className="fa fa-eye text-muted"></i>
-                                                        23</span>
-                                                    &nbsp;
-                          <span>
-                            <i className="fa fa-thumbs-o-up text-muted"></i>
-                                                        4011</span>
-                        </small>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-sm-12 col-md-6 col-lg-4">
-                  <div className="col-md-12 recipe">
-                    <div
-                      className="recipe-img"
-                      style={{
-                        backgroundImage: `url(${'assets/images/dish.jpg'})`
-                      }}></div>
-                    <div className="recipe-meta pt-5">
-                      <h6 className="recipe-name">Rice/Chicken Nuggets</h6>
-                      <h6>
-                        <small>
-                          <i className="fa fa-tags"></i>
-                                                    African Dishes</small>
-                      </h6>
-                      <h6 className="text-muted">
-                        <small>
-                          <i className="fa fa-user"></i>
-                                                    By Mohammed Isioye</small>
-                      </h6>
-                    </div>
-                    <div className="recipe-met2">
-                      <hr className="m-1"/>
-                      <p className="text-left">
-                        <small>
-                          <span>
-                            <i className="fa fa-eye text-muted"></i>
-                                                        2334</span>
-                                                    &nbsp;
-                          <span>
-                            <i className="fa fa-thumbs-o-up text-muted"></i>
-                                                        211</span>
-                        </small>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-sm-12 col-md-6 col-lg-4">
-                  <div className="col-md-12 recipe">
-                    <div
-                      className="recipe-img"
-                      style={{
-                        backgroundImage: `url(${'assets/images/dish2.jpg'})`
-                      }}></div>
-                    <div className="recipe-meta pt-5">
-                      <h6 className="recipe-name">Rice/Chicken Nuggets</h6>
-                      <h6>
-                        <small>
-                          <i className="fa fa-tags"></i>
-                                                    African Dishes</small>
-                      </h6>
-                      <h6 className="text-muted">
-                        <small>
-                          <i className="fa fa-user"></i>
-                                                    By Mohammed Isioye</small>
-                      </h6>
-                    </div>
-                    <div className="recipe-met2">
-                      <hr className="m-1"/>
-                      <p className="text-left">
-                        <small>
-                          <span>
-                            <i className="fa fa-eye text-muted"></i>
-                                                        2334</span>
-                                                    &nbsp;
-                          <span>
-                            <i className="fa fa-thumbs-o-up text-muted"></i>
-                                                        211</span>
-                        </small>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-sm-12 col-md-6 col-lg-4">
-                  <div className="col-md-12 recipe">
-                    <div
-                      className="recipe-img"
-                      style={{
-                        backgroundImage: `url(${'assets/images/dish.jpg'})`
-                      }}></div>
-                    <div className="recipe-meta pt-5">
-                      <h6 className="recipe-name">Rice and Tilapia</h6>
-                      <h6>
-                        <small>
-                          <i className="fa fa-tags"></i>
-                                                    African Dishes</small>
-                      </h6>
-                      <h6 className="text-muted">
-                        <small>
-                          <i className="fa fa-user"></i>
-                                                    By Mohammed Isioye</small>
-                      </h6>
-                    </div>
-                    <div className="recipe-met2">
-                      <hr className="m-1"/>
-                      <p className="text-left">
-                        <small>
-                          <span>
-                            <i className="fa fa-eye text-muted"></i>
-                                                        23</span>
-                                                    &nbsp;
-                          <span>
-                            <i className="fa fa-thumbs-o-up text-muted"></i>
-                                                        4011</span>
-                        </small>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-sm-12 col-md-6 col-lg-4">
-                  <div className="col-md-12 recipe">
-
-                    <div
-                      className="recipe-img"
-                      style={{
-                        backgroundImage: `url(${'assets/images/dish2.jpg'})`
-                      }}></div>
-                    <div className="recipe-meta pt-5">
-                      <h6 className="recipe-name">Rice/Chicken Nuggets</h6>
-                      <h6>
-                        <small>
-                          <i className="fa fa-tags"></i>
-                                                    African Dishes</small>
-                      </h6>
-                      <h6 className="text-muted">
-                        <small>
-                          <i className="fa fa-user"></i>
-                                                    By Mohammed Isioye</small>
-                      </h6>
-                    </div>
-                    <div className="recipe-met2">
-                      <hr className="m-1"/>
-                      <p className="text-left">
-                        <small>
-                          <span>
-                            <i className="fa fa-eye text-muted"></i>
-                                                        2334</span>
-                                                    &nbsp;
-                          <span>
-                            <i className="fa fa-thumbs-o-up text-muted"></i>
-                                                        211</span>
-                        </small>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <PaginateComponent/>
+              {userRecipes.map((recipe, index) => (
+                <RecipeComponent
+                  key={index}
+                  recipe={recipe}
+                  decodedToken={decodedToken}
+                />
+              ))}
             </div>
           </div>
+          <div className="clearfix" />
+          <PaginateComponent/>
         </div>
         <FooterComponent/>
       </div>
     );
   }
 }
+
+UserRecipe.propTypes = {
+  getUserRecipes: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  userRecipes: state.recipeReducer.getUserRecipesSuccess
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ getUserRecipes }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserRecipe);

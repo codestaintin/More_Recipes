@@ -1,9 +1,10 @@
 import React from 'react';
-import RecipeBoardComponent from './partials/Recipe/RecipeBoard.jsx';
+import { Link } from 'react-router-dom';
 import SignInComponent from './Auth/SignIn.jsx';
 import SignUpComponent from './Auth/SignUp.jsx';
 import FooterComponent from './partials/Footer.jsx';
-import HeaderComponent from "./partials/Headers/GuestHeader.jsx";
+import Header from "./partials/Headers/Header.jsx";
+import RecipeComponent2 from "./Recipe/RecipeFaker.jsx";
 
 /**
  *
@@ -21,7 +22,7 @@ export default class HomePageComponent extends React.Component {
   render() {
     return (
       <div>
-        <HeaderComponent/>
+        <Header/>
         <SignInComponent/>
         <SignUpComponent/>
         <div className="container-fluid banner pt-90">
@@ -72,7 +73,15 @@ export default class HomePageComponent extends React.Component {
             </div>
           </div>
         </div>
-        <RecipeBoardComponent/>
+        <div className='clearfix mb-20'></div>
+        <div className='container' style={{ paddingTop: '50px' }}>
+          <div className="row">
+            <RecipeComponent2/>
+            <RecipeComponent2/>
+            <RecipeComponent2/>
+            <RecipeComponent2/>
+          </div>
+        </div>
         <FooterComponent/>
       </div>
     );

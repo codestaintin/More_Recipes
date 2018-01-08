@@ -2,14 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import FooterComponent from './partials/Footer.jsx';
 import UserPanelComponent from './partials/UserPanel.jsx';
-import MainHeader from "./partials/Headers/AuthHeader.jsx";
+import Header from "./partials/Headers/Header.jsx";
+import SignInComponent from './Auth/SignIn.jsx';
+import SignUpComponent from './Auth/SignUp.jsx';
 /**
  *
  * @export
  * @class ProfileComponent
  * @extends {React.Component}
  */
-export default class ProfileComponent extends React.Component {
+class ProfileComponent extends React.Component {
   /**
    * 
    * 
@@ -19,10 +21,14 @@ export default class ProfileComponent extends React.Component {
   render() {
     return (
       <div>
-        <MainHeader/>
+        <Header/>
         <div className="wrapper">
           <ol
-            className="breadcrumb container mt-50 mb-10 col-md-9 mx-auto bg-white shadow-lite">
+            className="breadcrumb
+            container
+            mt-50 mb-10 col-10 col-md-9 col-lg-9
+            mx-auto bg-white shadow-lite"
+          >
             <li className="breadcrumb-item">
               <Link to="/">Home</Link>
             </li>
@@ -35,7 +41,7 @@ export default class ProfileComponent extends React.Component {
             <div className="row">
               <UserPanelComponent/>
               <div
-                className="simplebox blade col-12 col-sm-8 col-md-8 col-lg-8 p-10"
+                className="simplebox blade col-12 col-sm-12 col-md-9 col-lg-9 p-10"
                 style={{
                   boxShadow: 'none'
                 }}>
@@ -123,3 +129,5 @@ export default class ProfileComponent extends React.Component {
     );
   }
 }
+
+export default ProfileComponent;

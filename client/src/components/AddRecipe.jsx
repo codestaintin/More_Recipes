@@ -8,7 +8,7 @@ import Spinner from "react-md-spinner";
 import addRecipeRequest from '../actions/recipe/recipeActions';
 import recipeValidate from '../utils/recipeValidate';
 import FooterComponent from './partials/Footer.jsx';
-import MainHeader from "./partials/Headers/AuthHeader.jsx";
+import Header from "./partials/Headers/Header.jsx";
 
 /**
  *
@@ -125,7 +125,7 @@ export class AddRecipe extends React.Component {
     const { recipeState } = this.props;
     return (
       <div>
-        <MainHeader/>
+        <Header/>
         <div className="wrapper">
           <ol
             className="breadcrumb container mt-50 mb-10 col-md-9 mx-auto bg-white shadow-lite">

@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'react-proptypes';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import signInAction from '../../actions/auth/signinAction';
-import history from '../../utils/history';
+import { signInAction } from '../../actions/auth/authAction';
 import loginValidate from '../../utils/loginValidate';
 
 /**
@@ -67,7 +65,7 @@ export class SignIn extends React.Component {
    */
   componentWillReceiveProps(nextProps) {
     if (nextProps.signInState.success === true) {
-      history.push('/profile');
+      $('.close').click();
     }
   }
 
@@ -91,12 +89,6 @@ export class SignIn extends React.Component {
     const { loginDetails, errors } = this.state;
     const { signInState } = this.props;
 
-    if (signInState.success) {
-      $('.modal-backdrop').hide();
-      return (
-        <Redirect to={'/profile'}/>
-      );
-    }
     return (
       <div
         className="modal fade"
@@ -115,12 +107,12 @@ export class SignIn extends React.Component {
             </div>
             <div className="modal-body">
               <form className="mt-15" onSubmit={this.handleSubmit}>
-                { this.props.signInState.fails ?
+                { signInState.fails ?
                   <div id="error" className="alert alert-danger alert-dismissible">
                     <button type="button" className="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">x</span>
                     </button>
-                    { this.props.signInState.fails }
+                    { signInState.fails }
                   </div> : null
                 }
                 <div className="form-group">
