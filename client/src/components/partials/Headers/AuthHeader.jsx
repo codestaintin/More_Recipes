@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { logout } from '../../../utils/helpers';
 
@@ -7,7 +7,7 @@ import { logout } from '../../../utils/helpers';
  * @className MainHeader
  * @extends {React.Component}
  */
-export default class AuthHeader extends React.Component {
+export default class AuthHeader extends Component {
   /**
    *
    * @returns {XML} XML/JSX

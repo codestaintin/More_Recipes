@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'react-proptypes';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
@@ -12,7 +12,7 @@ import loginValidate from '../../utils/loginValidate';
  * @class SignInComponent
  * @extends {React.Component}
  */
-export class SignIn extends React.Component {
+export class SignIn extends Component {
   /**
    * Creates an instance of SignInComponent.
    * @param {any} props 

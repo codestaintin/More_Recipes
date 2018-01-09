@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'react-proptypes';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
@@ -15,7 +15,7 @@ import registerValidate from '../../utils/registerValidate';
  * @class SignUpComponent
  * @extends {React.Component}
  */
-export class SignUp extends React.Component {
+export class SignUp extends Component {
 /**
  * Creates an instance of SignUpComponent.
  * @param {any} props 

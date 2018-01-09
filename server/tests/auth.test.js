@@ -179,7 +179,7 @@ describe('POST Test suites for Auth sign up', () => {
     });
   });
   describe('Test case for correct inputs', () => {
-    it('should create a new user and return status 200 and a token', (done) => {
+    it('should create a new user and return status 201 and a token', (done) => {
       request(server)
         .post('/api/v1/users/signup')
         .send(seed.setInput('Nnammani', 'Ademola', 'ademola23', 'runtown@gmail.com', 'password', 'password'))
@@ -239,7 +239,7 @@ describe('POST Test suites for Auth sign in', () => {
       .expect(500)
       .end((err, res) => {
         if (err) return done(err);
-        assert.equal(res.body.message, 'Auth not found, please register');
+        assert.equal(res.body.message, 'User not found, please register');
         done();
       });
   });

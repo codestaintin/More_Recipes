@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from './partials/Headers/Header.jsx';
 import FooterComponent from './partials/Footer.jsx';
@@ -12,7 +12,7 @@ import PaginateComponent from './partials/Paginate.jsx';
  * @class FavoriteComponent
  * @extends {React.Component}
  */
-export default class FavoriteComponent extends React.Component {
+export default class FavoriteComponent extends Component {
   /**
      * 
      * 

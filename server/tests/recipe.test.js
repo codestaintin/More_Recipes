@@ -33,7 +33,7 @@ describe('Test cases for all recipes actions', () => {
       it('should return a status code of 403 if user is not authorized', (done) => {
         request(server)
           .post('/api/v1/recipes')
-          .send(recipeSeed.setInput('Okro soup', 'Okro plant', 'How to cook okro', 'okro_img', 4))
+          .send({ recipeDetails: recipeSeed.setInput('Food', 'Okro plant', 'This is how to cook okro soup', 'okro_img', 4) })
           .expect(403)
           .end((err, res) => {
             if (err) return done(err);
@@ -47,7 +47,7 @@ describe('Test cases for all recipes actions', () => {
         request(server)
           .post('/api/v1/recipes')
           .set({ 'x-access-token': 'nonsense' })
-          .send(recipeSeed.setInput('Food', 'Okro plant', 'This is how to cook okro soup', 'okro_img', 4))
+          .send({ recipeDetails: recipeSeed.setInput('Food', 'Okro plant', 'This is how to cook okro soup', 'okro_img', 4) })
           .expect(401)
           .end((err, res) => {
             if (err) return done(err);
@@ -61,11 +61,11 @@ describe('Test cases for all recipes actions', () => {
         request(server)
           .post('/api/v1/recipes')
           .set({ 'x-access-token': token })
-          .send(recipeSeed.setInput('', 'Okro plant', 'This is how to cook okro soup', 'okro_img', 4))
-          .expect(500)
+          .send({ recipeDetails: recipeSeed.setInput('', 'Okro plant', 'This is how to cook okro soup', 'okro_img', 4) })
+          .expect(400)
           .end((err, res) => {
             if (err) return done(err);
-            assert.equal(res.body.message.name[0], 'The name field is required.');
+            assert.equal(res.body.errors.name[0], 'The name field is required.');
             done();
           });
       });
@@ -73,11 +73,11 @@ describe('Test cases for all recipes actions', () => {
         request(server)
           .post('/api/v1/recipes')
           .set({ 'x-access-token': token })
-          .send(recipeSeed.setInput('Okro soup', '', 'This is how to cook okro soup', 'okro_img', 4))
-          .expect(500)
+          .send({ recipeDetails: recipeSeed.setInput('Okro soup', '', 'This is how to cook okro soup', 'okro_img', 4) })
+          .expect(400)
           .end((err, res) => {
             if (err) return done(err);
-            assert.equal(res.body.message.ingredient[0], 'The ingredient field is required.');
+            assert.equal(res.body.errors.ingredient[0], 'The ingredient field is required.');
             done();
           });
       });
@@ -85,11 +85,11 @@ describe('Test cases for all recipes actions', () => {
         request(server)
           .post('/api/v1/recipes')
           .set({ 'x-access-token': token })
-          .send(recipeSeed.setInput('Okro soup', 'Okro plant', '', 'okro_img', 4))
-          .expect(500)
+          .send({ recipeDetails: recipeSeed.setInput('Okro soup', 'Okro plant', '', 'okro_img', 4) })
+          .expect(400)
           .end((err, res) => {
             if (err) return done(err);
-            assert.equal(res.body.message.description[0], 'The description field is required.');
+            assert.equal(res.body.errors.description[0], 'The description field is required.');
             done();
           });
       });

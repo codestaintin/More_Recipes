@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 /**
@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
  * @class UserPanelComponent
  * @extends {React.Component}
  */
-export default class UserPanelComponent extends React.Component {
+export default class UserPanelComponent extends Component {
   /**
    * 
    * 

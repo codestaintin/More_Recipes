@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import FooterComponent from './partials/Footer.jsx';
-import MainHeader from "./partials/Headers/AuthHeader.jsx";
+import MainHeader from './partials/Headers/AuthHeader.jsx';
 
 
 /**
@@ -10,7 +10,7 @@ import MainHeader from "./partials/Headers/AuthHeader.jsx";
  * @class RecipeDetailComponent
  * @extends {React.Component}
  */
-export default class RecipeDetailComponent extends React.Component {
+export default class RecipeDetailComponent extends Component {
   /**
    * 
    * @returns {XML} XML/JSX
@@ -44,27 +44,26 @@ export default class RecipeDetailComponent extends React.Component {
                 }} />
               <div className="mt-20">
                 <div className="text-left mb-10">
-                  <span className="badge badge-info">
-                    <i className="fa fa-eye" />
-                    1000</span>
-                  <span className="badge badge-success">
-                    <i className="fa fa-thumbs-o-up" />
-                    223</span>
-                  <span className="badge badge-danger">
-                    <i className="fa fa-thumbs-o-down" />
-                    23
+                  <span className="badge badge-info"><i className="fa fa-eye fa-2x"/>&nbsp; 1000
+                  </span>&nbsp;&nbsp;
+                  <span className="badge badge-success"><i className="fa fa-thumbs-o-up fa-2x"/>
+                    &nbsp;  223</span>&nbsp;&nbsp;
+                  <span className="badge badge-danger"><i className="fa fa-thumbs-o-down fa-2x"/>
+                    &nbsp; 23
                   </span>
                 </div>
                 <p>
                   <button className="btn btn-outline-warning btn-sm fav-btn hvr-icon-pop">
                     Favourite
-                  </button>
+                  </button>&nbsp; &nbsp;
                   <button className="btn btn-outline-success btn-sm">
                     <i className="fa fa-thumbs-o-up" />
-                    Upvote</button>
+                    Upvote
+                  </button>&nbsp; &nbsp;
                   <button className="btn btn-outline-danger btn-sm">
                     <i className="fa fa-thumbs-o-down" />
-                    Downvote</button>
+                    Downvote
+                  </button>
                 </p>
               </div>
             </div>
@@ -84,16 +83,6 @@ export default class RecipeDetailComponent extends React.Component {
                   <small>
                     <i className="fa fa-clock-o" />
                     Uploaded 2hours ago</small>
-                </p>
-                <p>
-                  <small>
-                    <a href="add-recipe.html">
-                      Edit</a>
-                  </small>
-                  <small>/
-                    <a href="#">
-                      Delete</a>
-                  </small>
                 </p>
               </div>
               <div className="mt-10">
@@ -126,7 +115,7 @@ export default class RecipeDetailComponent extends React.Component {
         <div className="container mt-20 mb-20 mx-auto">
           <h5 className="p-5 text-center">Reviews</h5>
           <div className="row justify-content-center">
-            <div className="card mb-10 col-lg-10 p-0">
+            <div className="card mb-10 col-lg-11 p-0">
               <div className="card-header">
                 Mohammed Isioye
               </div>
@@ -134,15 +123,16 @@ export default class RecipeDetailComponent extends React.Component {
                 <blockquote className="blockquote mb-0">
                   <p>
                     <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-                                            erat a ante.</small>
+                      erat a ante.
+                    </small>
                   </p>
                   <footer className="blockquote-footer">Posted
-                    <cite title="Source Title">4 days ago</cite>
+                    <cite title="Source Title"> 4 days ago</cite>
                   </footer>
                 </blockquote>
               </div>
             </div>
-            <div className="card mb-10 col-lg-10 p-0">
+            <div className="card mb-10 col-lg-11 p-0">
               <div className="card-header">
                 Mohammed Isioye
               </div>
@@ -150,10 +140,11 @@ export default class RecipeDetailComponent extends React.Component {
                 <blockquote className="blockquote mb-0">
                   <p>
                     <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-                                            erat a ante.</small>
+                      erat a ante.
+                    </small>
                   </p>
                   <footer className="blockquote-footer">Posted
-                    <cite title="Source Title">5 mins ago</cite>
+                    <cite title="Source Title"> 5 mins ago</cite>
                   </footer>
                 </blockquote>
               </div>

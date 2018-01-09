@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -17,7 +17,7 @@ import { decodeToken } from '../utils/helpers';
  * @className UserRecipeComponent
  * @extends {React.Component}
  */
-class UserRecipe extends React.Component {
+class UserRecipe extends Component {
   /**
    *
    *
