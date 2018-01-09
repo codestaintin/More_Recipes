@@ -25,6 +25,10 @@ const routes = (router) => {
   /** GET api/v1/:userId/recipes - Get user favourite recipes */
     .get(authMiddleware.verifyToken, authMiddleware.verifyUser, favoriteController.list);
 
+  router.route('/users/:userId/my-recipes')
+  /** GET api/v1/:userId/recipes - Get recipes created by a user */
+    .get(authMiddleware.verifyToken, authMiddleware.verifyUser, recipeController.getUserRecipe);
+
   router.route('/recipes')
   /**
    * GET api/v1/recipes - Get list of all recipes

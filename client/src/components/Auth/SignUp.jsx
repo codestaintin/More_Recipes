@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'react-proptypes';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import signUpAction from '../../actions/auth/signupAction';
 import history from '../../utils/history';
@@ -66,6 +65,12 @@ export class SignUp extends React.Component {
     }
     return isValid;
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.signUpState.success === true) {
+      $('.close').click();
+    }
+  }
   /**
   * Handle submit
   * 
@@ -99,12 +104,6 @@ export class SignUp extends React.Component {
     const { regDetails, errors } = this.state;
     const { signUpState } = this.props;
 
-    if (signUpState.success) {
-      $('.modal-backdrop').hide();
-      return (
-        <Redirect to={'/'}/>
-      );
-    }
     return (
       <div
         className="modal fade"
@@ -252,7 +251,8 @@ SignUp.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  signUpState: state.signupReducer
+  signUpState: state.signupReducer,
+  signInState: state.signinReducer
 });
 
 const mapDispatchToProps = dispatch => 

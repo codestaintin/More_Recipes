@@ -16,8 +16,8 @@ export default class PaginateComponent extends React.Component {
      */
   render() {
     return (
-      <nav aria-label="Page navigation example" className="ml-auto">
-        <ul className="pagination">
+      <nav aria-label="Page navigation example">
+        <ul className="pagination justify-content-center">
           <li className="page-item">
             <a className="page-link" href="#">Previous</a>
           </li>

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'react-proptypes';
-import HeaderComponent from './partials/Headers/GuestHeader.jsx';
 /**
  * App class declaration
  */

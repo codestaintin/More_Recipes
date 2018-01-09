@@ -197,6 +197,42 @@ const recipeController = {
         }))
       .catch(error => res.status(500).json({ error }));
   },
+  /**
+   * Get user recipe
+   * @param { object }  req
+   * @param { object }  res
+   *
+   * @returns { object } object
+   */
+  getUserRecipe(req, res) {
+    const userId = req.params.userId;
+    if (Number(userId) !== req.decoded.id) {
+      return res.status(400).json({
+        message: 'User not found!'
+      });
+    }
+    return User.findById(userId)
+      .then((user) => {
+        if (!user) {
+          return res.status(404).json({
+            message: 'This User Does not exit'
+          });
+        }
+        Recipe.findAll({
+          where: { userId: req.decoded.id }
+        })
+          .then((recipes) => {
+            if (!recipes) {
+              return res.status(404).json({
+                message: 'This user has no recipe'
+              });
+            }
+            return res.status(200).json({ recipes });
+          })
+          .catch(error => res.status(500).json({ error }));
+      })
+      .catch(error => res.status(500).json({ error }));
+  }
 };
 
 export default recipeController;

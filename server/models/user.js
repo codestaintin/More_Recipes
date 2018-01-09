@@ -49,9 +49,7 @@ const userModel = (sequelize, DataTypes) => {
   /**
    * Method for comparing passwords
    */
-  User.prototype.comparePassword = (user, password) => {
-    return bcrypt.compareSync(password, user.password);
-  };
+  User.prototype.comparePassword = (user, password) => bcrypt.compareSync(password, user.password);
   /**
    * Hook for hashing password before creating a new user
    */
@@ -71,22 +69,19 @@ const userModel = (sequelize, DataTypes) => {
   });
   /**
    * Auth validation rules for user creation and login
+   * @returns { object } object
    */
-  User.createRules = () => {
-    return {
-      firstName: 'required|alpha',
-      lastName: 'required|alpha',
-      username: 'required|min:6',
-      email: 'required|email',
-      password: 'required|min:6'
-    };
-  };
-  User.loginRules = () => {
-    return {
-      email: 'required|email',
-      password: 'required'
-    };
-  };
+  User.createRules = () => ({
+    firstName: 'required|alpha',
+    lastName: 'required|alpha',
+    username: 'required|min:6',
+    email: 'required|email',
+    password: 'required|min:6'
+  });
+  User.loginRules = () => ({
+    email: 'required|email',
+    password: 'required'
+  });
   return User;
 };
 

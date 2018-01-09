@@ -3,7 +3,9 @@ import actionTypes from '../../actions/actionTypes';
 const initialState = {
   addRecipeSuccess: '',
   addRecipeFailure: '',
-  isCreating: false
+  isCreating: false,
+  getUserRecipesSuccess: [],
+  getUserRecipesFailure: ''
 };
 
 const recipeReducer = (state = initialState, action) => {
@@ -22,6 +24,16 @@ const recipeReducer = (state = initialState, action) => {
       return {
         ...state,
         isCreating: action.bool
+      };
+    case actionTypes.GET_USER_RECIPES_SUCCESS:
+      return {
+        ...state,
+        getUserRecipesSuccess: action.data
+      };
+    case actionTypes.GET_USER_RECIPES_FAILURE:
+      return {
+        ...state,
+        getUserRecipesFailure: action.error
       };
     default:
       return state;

@@ -17,6 +17,16 @@ const addRecipeFailure = error => ({
   error
 });
 
+const getUserRecipesSuccess = data => ({
+  type: actionTypes.GET_USER_RECIPES_SUCCESS,
+  data
+});
+
+const getUserRecipesFailure = error => ({
+  type: actionTypes.GET_USER_RECIPES_FAILURE,
+  error
+});
+
 const addRecipeAction = (recipeDetails, cloudImageUrl, callback) => (dispatch) => {
   const data = { recipeDetails, cloudImageUrl };
   axios.post('api/v1/recipes', data, {
@@ -55,6 +65,19 @@ const recipeActions = (recipe, imageFile, callback) => (
     } else {
       dispatch(addRecipeAction(recipe, cloudImageUrl, callback));
     }
+  }
+);
+
+export const getUserRecipes = userId => (
+  (dispatch) => {
+    axios.get(`api/v1/users/${userId}/my-recipes`, {
+      headers: { 'x-access-token': window.sessionStorage.token }
+    })
+      .then((res) => {
+        console.log(res.data.recipes);
+        dispatch(getUserRecipesSuccess(res.data.recipes));
+      })
+      .catch(error => dispatch(getUserRecipesFailure(error)));
   }
 );
 

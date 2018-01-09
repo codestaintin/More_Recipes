@@ -1,4 +1,5 @@
 import React from 'react';
+// import { BrowserRouter as Router, Route, Switch, browserHistory } from 'react-router-dom';
 import { Router, Route, Switch } from 'react-router-dom';
 import history from '../utils/history';
 import HomePageComponent from '../components/Homepage.jsx';
@@ -15,10 +16,10 @@ const AppRouter = () => (
       <Switch>
         <App>
           <Route path="/" exact component={HomePageComponent} />
-          <Route path="/profile" component={ProfileComponent} />
+          <Route exact path="/profile" component={ProfileComponent} />
           <Route path="/recipe" component={RecipeDetailComponent} />
           <Route path="/favorite" component={FavoriteComponent} />
-          <Route path="/user" component={UserRecipeComponent} />
+          <Route path="/user-recipes" component={UserRecipeComponent} />
           <Route path="/addRecipe" component={AddRecipeComponent} />
         </App>
       </Switch>

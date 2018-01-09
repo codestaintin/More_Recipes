@@ -3,6 +3,7 @@ import actionTypes from '../../actions/actionTypes';
 const initialState = {
   success: false,
   fails: null,
+  logout: false
 };
 const signinReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -18,6 +19,12 @@ const signinReducer = (state = initialState, action) => {
         ...state,
         success: false,
         fails: action.payload
+      };
+      break;
+    case actionTypes.LOG_OUT_SUCCESS:
+      state = {
+        ...state,
+        success: false
       };
       break;
     default:
