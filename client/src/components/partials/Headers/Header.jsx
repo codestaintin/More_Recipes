@@ -94,7 +94,7 @@ logoutUser = () => {
                   data-target="#signInModal">
                 Sign In
                   <i className="fa fa-sign-in" />
-                </button>
+                </button>&nbsp;&nbsp;
                 <button
                   type="button"
                   className="btn btn-outline-secondary"

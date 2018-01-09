@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'react-proptypes';
 import classnames from 'classnames';
@@ -8,7 +8,7 @@ import Spinner from "react-md-spinner";
 import addRecipeRequest from '../actions/recipe/recipeActions';
 import recipeValidate from '../utils/recipeValidate';
 import FooterComponent from './partials/Footer.jsx';
-import Header from "./partials/Headers/Header.jsx";
+import Header from './partials/Headers/Header.jsx';
 
 /**
  *
@@ -16,7 +16,7 @@ import Header from "./partials/Headers/Header.jsx";
  * @class AddRecipe
  * @extends {React.Component}
  */
-export class AddRecipe extends React.Component {
+export class AddRecipe extends Component {
   /**
    * Creates an instance of SignInComponent.
    * @param {any} props

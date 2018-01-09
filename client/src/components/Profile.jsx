@@ -1,17 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import FooterComponent from './partials/Footer.jsx';
 import UserPanelComponent from './partials/UserPanel.jsx';
 import Header from "./partials/Headers/Header.jsx";
-import SignInComponent from './Auth/SignIn.jsx';
-import SignUpComponent from './Auth/SignUp.jsx';
 /**
  *
  * @export
  * @class ProfileComponent
  * @extends {React.Component}
  */
-class ProfileComponent extends React.Component {
+class ProfileComponent extends Component {
   /**
    * 
    * 

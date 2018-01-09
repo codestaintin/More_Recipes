@@ -124,7 +124,7 @@ const recipeController = {
           }
           if (req.decoded.id !== recipe.userId) {
             return res.status(404).json({
-              message: 'Auth not found'
+              message: 'This User Does not exit'
             });
           }
           return recipe
@@ -158,7 +158,7 @@ const recipeController = {
         }
         if (req.decoded.id !== recipe.userId) {
           return res.status(404).json({
-            message: 'Auth not found'
+            message: 'This User Does not exit'
           });
         }
         return recipe
@@ -208,7 +208,7 @@ const recipeController = {
     const userId = req.params.userId;
     if (Number(userId) !== req.decoded.id) {
       return res.status(400).json({
-        message: 'User not found!'
+        message: 'This User Does not exit'
       });
     }
     return User.findById(userId)

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 /**
  * 
@@ -7,7 +7,7 @@ import React from 'react';
  * @class PaginateComponent
  * @extends {React.Component}
  */
-export default class PaginateComponent extends React.Component {
+export default class PaginateComponent extends Component {
   /**
      * 
      * 
