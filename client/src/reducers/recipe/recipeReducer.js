@@ -5,7 +5,9 @@ const initialState = {
   addRecipeFailure: '',
   isCreating: false,
   getUserRecipesSuccess: [],
-  getUserRecipesFailure: ''
+  getUserRecipesFailure: '',
+  viewRecipeSuccess: [],
+  viewRecipeFailure: ''
 };
 
 const recipeReducer = (state = initialState, action) => {
@@ -34,6 +36,16 @@ const recipeReducer = (state = initialState, action) => {
       return {
         ...state,
         getUserRecipesFailure: action.error
+      };
+    case actionTypes.VIEW_RECIPE_SUCCESS:
+      return {
+        ...state,
+        viewRecipeSuccess: action.data
+      };
+    case actionTypes.VIEW_RECIPE_FAILURE:
+      return {
+        ...state,
+        viewRecipeFailure: action.error
       };
     default:
       return state;

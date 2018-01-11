@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'react-proptypes';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getRecipe } from '../actions/recipe/recipeActions';
 import FooterComponent from './partials/Footer.jsx';
-import MainHeader from './partials/Headers/AuthHeader.jsx';
+import Header from './partials/Headers/Header.jsx';
 
 
 /**
@@ -10,16 +14,54 @@ import MainHeader from './partials/Headers/AuthHeader.jsx';
  * @class RecipeDetailComponent
  * @extends {React.Component}
  */
-export default class RecipeDetailComponent extends Component {
+class RecipeDetail extends Component {
   /**
-   * 
+   *
+   * @param {props} props
+   */
+  constructor(props) {
+    super(props);
+    this.state = {
+      recipe: {}
+    };
+  }
+  /**
+   *
+   *
+   * @returns {XML} XML/JSX
+   * @memberof RecipeDetail
+   */
+  componentWillMount() {
+    this.props.getRecipe(this.props.match.params.recipeId);
+    const { recipeState } = this.props;
+  }
+  /**
+   *
+   * @param  {object} nextProps
+   * @returns {XML} XML/JSX
+   * @memberof RecipeDetail
+   */
+  componentWillReceiveProps(nextProps) {
+    this.setState({ recipe: nextProps.recipeState });
+  }
+  /**
+   *
    * @returns {XML} XML/JSX
    * @memberof RecipeDetailComponent
    */
   render() {
+    const {
+        name,
+        imageUrl,
+        ingredient,
+        description
+      } = this.props.recipeState,
+      ingredientList = ingredient.split(',').map((Ingredient, index) => (
+        <li key={index}>{Ingredient}</li>
+      ));
     return (
       <div>
-        <MainHeader/>
+        <Header/>
         <div className="container">
           <div className="row">
             <ol className="breadcrumb mt-50 mb-10 col-md-11 mx-auto bg-white shadow-lite">
@@ -27,9 +69,9 @@ export default class RecipeDetailComponent extends Component {
                 <Link to="/">Home</Link>
               </li>
               <li className="breadcrumb-item">
-                <a href="#">African Dishes</a>
+                <Link to="#">African Dishes</Link>
               </li>
-              <li className="breadcrumb-item active">Jollof rice and chicken nuggets</li>
+              <li className="breadcrumb-item active">{ name }</li>
             </ol>
           </div>
         </div>
@@ -37,11 +79,7 @@ export default class RecipeDetailComponent extends Component {
         <div className="mb-20 col-md-9 mx-auto bg-white recipe-details-container">
           <div className="row">
             <div className="col-sm-6 col-md-6 col-lg-6 p-10">
-              <div
-                className="recipe-big-img"
-                style={{
-                  objectFit: 'contain'
-                }} />
+              <img className="recipe-big-img" src={imageUrl} alt="Recipe Image"/>
               <div className="mt-20">
                 <div className="text-left mb-10">
                   <span className="badge badge-info"><i className="fa fa-eye fa-2x"/>&nbsp; 1000
@@ -73,7 +111,7 @@ export default class RecipeDetailComponent extends Component {
                 boxShadow: 'none'
               }}>
               <div className="recipe-name light-well p-15">
-                <h3 className="bold text-muted">Jollof rice and chicken nuggets</h3>
+                <h3 className="bold text-muted">{name}</h3>
                 <p>
                   <span className="badge badge-pill badge-secondary">
                     <i className="fa fa-tags" />
@@ -88,24 +126,13 @@ export default class RecipeDetailComponent extends Component {
               <div className="mt-10">
                 <h5>Ingredients</h5>
                 <ul className="text-muted">
-                  <li>4 cups of rice</li>
-                  <li>A bowl of fresh chicken</li>
-                  <li>Coconut oil</li>
-                  <li>45g of water</li>
-                  <li>Pepper and seasoning</li>
-                  <li>A wooden spoon to stir</li>
+                  {ingredientList}
                 </ul>
                 <div>
                   <hr /></div>
                 <h5>Description</h5>
                 <div>
-                  It is a long established fact that a reader will be distracted by the readable
-                  content of a page when looking at its layout. The point of using Lorem Ipsum is
-                  that it has a more-or-less normal distribution of letters, as opposed to using
-                  Content here, content here, making it look like readable English. Many desktop
-                  publishing packages and web page editors now use Lorem Ipsum as their default
-                  model text, and a search for lorem ipsum will uncover many web sites still in
-                  their infancy
+                  {description}
                 </div>
               </div>
             </div>
@@ -156,3 +183,20 @@ export default class RecipeDetailComponent extends Component {
     );
   }
 }
+
+RecipeDetail.propTypes = {
+  getRecipe: PropTypes.func.isRequired,
+  match: PropTypes.shape().isRequired,
+  recipeState: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array
+  ]).isRequired
+};
+
+const mapStateToProps = state => ({
+  recipeState: state.recipeReducer.viewRecipeSuccess
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ getRecipe }, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeDetail);
