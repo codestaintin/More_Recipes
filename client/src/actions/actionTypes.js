@@ -13,5 +13,7 @@ export default keymirror({
   ADD_RECIPE_FAILURE: null,
   IS_RECIPE_CREATING: null,
   GET_USER_RECIPES_SUCCESS: null,
-  GET_USER_RECIPES_FAILURE: null
+  GET_USER_RECIPES_FAILURE: null,
+  VIEW_RECIPE_SUCCESS: null,
+  VIEW_RECIPE_FAILURE: null
 });

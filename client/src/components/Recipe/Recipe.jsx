@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'react-proptypes';
 
 /**
@@ -13,7 +14,10 @@ const RecipeComponent = props => (
         backgroundImage: `url(${props.recipe.imageUrl})`
       }} />
       <div className="recipe-meta pt-5">
-        <h6 className="recipe-name">{props.recipe.name}</h6>
+        <Link to={`/recipes/${props.recipe.id}/`}>
+          <h6 className="recipe-name">{props.recipe.name}</h6>
+        </Link>
+
         <h6>
           <small>
             <i className="fa fa-tags" /> African Dishes</small>
@@ -21,6 +25,11 @@ const RecipeComponent = props => (
         <h6 className="text-muted">
           <small>
             <i className="fa fa-user" /> {props.decodedToken.username}</small>
+        </h6>
+        <h6 className="text-muted">
+          <small>
+            <Link to="#">Details</Link>
+          </small>
         </h6>
       </div>
       <div className="recipe-met2">

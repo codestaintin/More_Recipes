@@ -27,6 +27,16 @@ const getUserRecipesFailure = error => ({
   error
 });
 
+const viewRecipeSuccess = data => ({
+  type: actionTypes.VIEW_RECIPE_SUCCESS,
+  data
+});
+
+const viewRecipeFailure = error => ({
+  type: actionTypes.VIEW_RECIPE_FAILURE,
+  error
+});
+
 const addRecipeAction = (recipeDetails, cloudImageUrl, callback) => (dispatch) => {
   const data = { recipeDetails, cloudImageUrl };
   axios.post('api/v1/recipes', data, {
@@ -70,14 +80,27 @@ const recipeActions = (recipe, imageFile, callback) => (
 
 export const getUserRecipes = userId => (
   (dispatch) => {
-    axios.get(`api/v1/users/${userId}/my-recipes`, {
+    axios.get(`/api/v1/users/${userId}/my-recipes`, {
       headers: { 'x-access-token': window.sessionStorage.token }
     })
       .then((res) => {
-        console.log(res.data.recipes);
+        console.table(res.data.recipes);
         dispatch(getUserRecipesSuccess(res.data.recipes));
       })
       .catch(error => dispatch(getUserRecipesFailure(error)));
+  }
+);
+
+export const getRecipe = recipeId => (
+  (dispatch) => {
+    axios.get(`/api/v1/recipes/${recipeId}`, {
+      headers: { 'x-access-token': window.sessionStorage.token }
+    })
+      .then((res) => {
+        console.table(res.data.recipe);
+        dispatch(viewRecipeSuccess(res.data.recipe));
+      })
+      .catch(error => dispatch(viewRecipeFailure(error)));
   }
 );
 

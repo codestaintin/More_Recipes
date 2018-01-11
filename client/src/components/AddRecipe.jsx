@@ -218,11 +218,12 @@ export class AddRecipe extends Component {
                       'is-invalid': errors.ingredient ? !!errors.ingredient : false
                     })}
                     rows="4"
-                    placeholder="Ingredient"
+                    placeholder="Ingredient1, ingredient2..."
                     name="ingredient"
                     value={recipeDetails.ingredient}
                     onChange={this.handleChange}
                     />
+                    <span className="small text-info">Please enter comma separated values</span>
                     { errors.ingredient ?
                       <span className="invalid-feedback">{ errors.ingredient }</span> : null
                     }
