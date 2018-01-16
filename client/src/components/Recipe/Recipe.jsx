@@ -26,11 +26,6 @@ const RecipeComponent = props => (
           <small>
             <i className="fa fa-user" /> {props.decodedToken.username}</small>
         </h6>
-        <h6 className="text-muted">
-          <small>
-            <Link to="#">Details</Link>
-          </small>
-        </h6>
       </div>
       <div className="recipe-met2">
         <hr className="m-1" />

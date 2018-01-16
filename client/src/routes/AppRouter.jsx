@@ -8,6 +8,7 @@ import RecipeDetailComponent from '../components/RecipeDetail.jsx';
 import ProfileComponent from '../components/Profile.jsx';
 import FavoriteComponent from '../components/Favorites.jsx';
 import AddRecipeComponent from '../components/AddRecipe.jsx';
+import EditRecipeComponent from '../components/EditRecipe.jsx';
 import App from '../components/App.jsx';
 
 const AppRouter = () => (
@@ -21,6 +22,7 @@ const AppRouter = () => (
           <Route exact path="/favorite" component={FavoriteComponent} />
           <Route exact path="/user-recipes" component={UserRecipeComponent} />
           <Route exact path="/addRecipe" component={AddRecipeComponent} />
+          <Route exact path="/recipes/:recipeId/edit" component={EditRecipeComponent} />
         </App>
       </Switch>
     </div>

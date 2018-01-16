@@ -12,13 +12,28 @@ import { logoutAction } from '../../../actions/auth/authAction';
  */
 class Header extends Component {
   /**
+ * Creates an instance of Header.
+ * @param {any} props 
+ * @memberof Header
+ */
+  constructor(props) {
+    super(props);
+    this.logoutUser = this.logoutUser.bind(this);
+  }
+  /**
      *
      * @returns {XML} XML/JSX
      * @memberof HeaderComponent
      */
-logoutUser = () => {
-  this.props.logoutAction();
-};
+  logoutUser() {
+    this.props.logoutAction();
+  }
+  /**
+   *
+   *
+   * @returns {XML} XML/JSX
+   * @memberof HeaderComponent
+   */
   render() {
     return (
       <div>
