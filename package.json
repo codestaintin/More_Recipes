@@ -6,6 +6,11 @@
     "node": "8.4.0"
   },
   "main": "server.js",
+  "nyc": {
+    "exclude": [
+      "server/tests/seeder"
+    ]
+  },
   "scripts": {
     "build": "webpack",
     "build:dev": "webpack-dev-server",
@@ -50,6 +55,7 @@
     "nyc": "^11.2.1",
     "pg": "^7.3.0",
     "pg-hstore": "^2.3.2",
+    "query-string": "^5.0.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-md-spinner": "^0.2.5",
@@ -62,6 +68,7 @@
     "redux-thunk": "^2.2.0",
     "sequelize": "^4.8.0",
     "sequelize-cli": "^2.8.0",
+    "toastr": "^2.1.4",
     "validator": "^9.1.1",
     "validatorjs": "^3.13.5"
   },

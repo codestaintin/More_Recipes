@@ -1,13 +1,12 @@
 import actionTypes from '../../actions/actionTypes';
 
 const initialState = {
-  addRecipeSuccess: '',
-  addRecipeFailure: '',
+  success: null,
+  message: '',
   isCreating: false,
   getUserRecipesSuccess: [],
   getUserRecipesFailure: '',
-  viewRecipeSuccess: [],
-  viewRecipeFailure: ''
+  recipe: { }
 };
 
 const recipeReducer = (state = initialState, action) => {
@@ -15,12 +14,14 @@ const recipeReducer = (state = initialState, action) => {
     case actionTypes.ADD_RECIPE_SUCCESS:
       return {
         ...state,
-        addRecipeSuccess: action.message
+        success: true,
+        message: action.message
       };
     case actionTypes.ADD_RECIPE_FAILURE:
       return {
         ...state,
-        addRecipeFailure: action.error
+        success: false,
+        message: action.error
       };
     case actionTypes.IS_RECIPE_CREATING:
       return {
@@ -40,12 +41,31 @@ const recipeReducer = (state = initialState, action) => {
     case actionTypes.VIEW_RECIPE_SUCCESS:
       return {
         ...state,
-        viewRecipeSuccess: action.data
+        success: true,
+        recipe: action.data
       };
     case actionTypes.VIEW_RECIPE_FAILURE:
       return {
         ...state,
-        viewRecipeFailure: action.error
+        success: false,
+      };
+    case actionTypes.EDIT_RECIPE_SUCCESS:
+      return {
+        ...state,
+        success: true,
+        message: action.message
+      };
+    case actionTypes.EDIT_RECIPE_FAILURE:
+      return {
+        ...state,
+        success: false,
+        message: action.error
+      };
+    case actionTypes.CLEAR_RECIPE_MESSAGE:
+      return {
+        ...state,
+        success: null,
+        message: ''
       };
     default:
       return state;

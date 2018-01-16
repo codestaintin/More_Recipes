@@ -22,7 +22,14 @@ class RecipeDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      recipe: {}
+      recipe: {
+        id: '',
+        name: '',
+        imageUrl: '',
+        ingredient: '',
+        description: '',
+        views: ''
+      }
     };
   }
   /**
@@ -33,7 +40,6 @@ class RecipeDetail extends Component {
    */
   componentWillMount() {
     this.props.getRecipe(this.props.match.params.recipeId);
-    const { recipeState } = this.props;
   }
   /**
    *
@@ -42,7 +48,7 @@ class RecipeDetail extends Component {
    * @memberof RecipeDetail
    */
   componentWillReceiveProps(nextProps) {
-    this.setState({ recipe: nextProps.recipeState });
+    this.setState({ recipe: nextProps.recipeDetailState });
   }
   /**
    *
@@ -51,11 +57,13 @@ class RecipeDetail extends Component {
    */
   render() {
     const {
+        id,
         name,
         imageUrl,
         ingredient,
-        description
-      } = this.props.recipeState,
+        description,
+        views
+      } = this.state.recipe,
       ingredientList = ingredient.split(',').map((Ingredient, index) => (
         <li key={index}>{Ingredient}</li>
       ));
@@ -82,7 +90,7 @@ class RecipeDetail extends Component {
               <img className="recipe-big-img" src={imageUrl} alt="Recipe Image"/>
               <div className="mt-20">
                 <div className="text-left mb-10">
-                  <span className="badge badge-info"><i className="fa fa-eye fa-2x"/>&nbsp; 1000
+                  <span className="badge badge-info"><i className="fa fa-eye fa-2x"/>&nbsp; {views}
                   </span>&nbsp;&nbsp;
                   <span className="badge badge-success"><i className="fa fa-thumbs-o-up fa-2x"/>
                     &nbsp;  223</span>&nbsp;&nbsp;
@@ -120,8 +128,13 @@ class RecipeDetail extends Component {
                 <p>
                   <small>
                     <i className="fa fa-clock-o" />
-                    Uploaded 2hours ago</small>
+                    Uploaded 2hours ago
+                  </small>
                 </p>
+                <Link to={`/recipes/${id}/edit`}><button className="btn btn-success">
+                  <i className="fa fa-edit" /> Edit</button>
+                </Link>&nbsp;&nbsp;
+                <button className="btn btn-danger"> <i className="fa fa-trash"></i> Delete</button>
               </div>
               <div className="mt-10">
                 <h5>Ingredients</h5>
@@ -187,14 +200,11 @@ class RecipeDetail extends Component {
 RecipeDetail.propTypes = {
   getRecipe: PropTypes.func.isRequired,
   match: PropTypes.shape().isRequired,
-  recipeState: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.array
-  ]).isRequired
+  recipeDetailState: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  recipeState: state.recipeReducer.viewRecipeSuccess
+  recipeDetailState: state.recipeReducer.recipe
 });
 
 const mapDispatchToProps = dispatch =>

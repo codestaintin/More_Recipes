@@ -1,6 +1,9 @@
 import Validator from 'validatorjs';
+import dotenv from 'dotenv';
 import db from '../models';
 import { errorHandler, generatePaginationMeta } from '../utils/helper';
+
+dotenv.config();
 
 const Recipe = db.Recipe;
 const User = db.User;
@@ -41,7 +44,7 @@ const recipeController = {
                 description: body.description,
                 userId: req.decoded.id,
                 ingredient: body.ingredient,
-                imageUrl: req.body.cloudImageUrl
+                imageUrl: req.body.cloudImageUrl || process.env.DEFAULT_IMAGE
               })
                 .then(recipe => res.status(201).json({
                   message: 'Recipe creation successful ',

@@ -4,8 +4,8 @@ import PropTypes from 'react-proptypes';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Spinner from "react-md-spinner";
-import { processRecipeActions, clearToast } from "../actions/recipe/recipeActions";
+import Spinner from 'react-md-spinner';
+import { getRecipe, processRecipeActions, clearToast } from '../actions/recipe/recipeActions';
 import recipeValidate from '../utils/recipeValidate';
 import FooterComponent from './partials/Footer.jsx';
 import Header from './partials/Headers/Header.jsx';
@@ -13,10 +13,10 @@ import Header from './partials/Headers/Header.jsx';
 /**
  *
  * @export
- * @class AddRecipe
+ * @class EditRecipe
  * @extends {React.Component}
  */
-export class AddRecipe extends Component {
+export class EditRecipe extends Component {
   /**
    * Creates an instance of SignInComponent.
    * @param {any} props
@@ -38,12 +38,26 @@ export class AddRecipe extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleImageChange = this.handleImageChange.bind(this);
   }
+
+  /**
+   *
+   *
+   * @returns {XML} XML/JSX
+   * @memberof EditRecipe
+   */
+  componentWillMount() {
+    const recipeId = this.props.match.params.recipeId;
+    this.props.getRecipe(recipeId);
+  }
   /**
    * @return {nextProps} nextProps
    * @param {nextProps} nextProps
    */
   componentWillReceiveProps(nextProps) {
-    const { message, success } = nextProps.recipeState;
+    const { message, success, recipe } = nextProps.recipeState;
+    if (recipe.ingredient !== this.state.recipeDetails.ingredient) {
+      this.setState({ recipeDetails: recipe });
+    }
     if (success === true && message !== '') {
       toastr.clear();
       toastr.success(message);
@@ -64,15 +78,12 @@ export class AddRecipe extends Component {
     event.preventDefault();
     if (this.checkValidity()) {
       this.setState({ errors: {} });
-      this.props.processRecipeActions(this.state.recipeDetails, this.state.imageFile);
-      this.setState({
-        recipeDetails: {
-          name: '',
-          description: '',
-          ingredient: ''
-        },
-        imageSrc: '/assets/images/no-image.jpg'
-      });
+      const recipeId = this.props.match.params.recipeId;
+      this.props.processRecipeActions(this.state.recipeDetails,
+        this.state.imageFile,
+        'updateRecipe',
+        recipeId
+      );
     }
   }
   /**
@@ -122,14 +133,13 @@ export class AddRecipe extends Component {
     this.setState({ recipeDetails });
   }
   /**
-   * 
-   * 
+   *
+   *
    * @returns {XML} XML/JSX
    * @memberof AddRecipeComponent
    */
   render() {
     const { recipeDetails, imageSrc, errors } = this.state;
-    const { recipeState } = this.props;
     return (
       <div>
         <Header/>
@@ -142,7 +152,7 @@ export class AddRecipe extends Component {
             <li className="breadcrumb-item">
               <Link to="#">Recipes</Link>
             </li>
-            <li className="breadcrumb-item active">Add new</li>
+            <li className="breadcrumb-item active">Edit Recipe</li>
           </ol>
           <div className="container mb-20 col-md-9 mx-auto recipe-details-container">
             <div className="row">
@@ -163,7 +173,7 @@ export class AddRecipe extends Component {
                       className="recipe-upload text-hide"
                       onChange={this.handleImageChange}
                       accept="image/*" />
-                    <img src={imageSrc} alt="sample" height="400" width="100%"/>
+                    <img src={imageSrc} alt="Image" height="400" width="100%"/>
                   </div>
                 </div>
               </div>
@@ -174,22 +184,13 @@ export class AddRecipe extends Component {
                 }}>
                 <h5>Recipe Details</h5>
                 <form className="mt-15 recipe-form" onSubmit={this.handleSubmit}>
-                  { recipeState.fails ?
-                    <div id="error" className="alert alert-danger alert-dismissible">
-                      <button type="button"
-                        className="close"
-                        data-dismiss="alert"
-                        aria-label="Close">
-                        <span aria-hidden="true">x</span>
-                      </button>
-                      { recipeState.fails }
-                    </div> : null
-                  }
                   <div className="form-group">
                     <input type="text"
                       className={
-                        classnames('form-control',
-                          { 'is-invalid': errors.name ? !!errors.name : false })
+                        classnames(
+                          'form-control',
+                          { 'is-invalid': errors.name ? !!errors.name : false }
+                        )
                       }
                       name="name"
                       aria-describedby="name"
@@ -205,10 +206,12 @@ export class AddRecipe extends Component {
                   <div className="form-group">
                     <textarea
                       className={
-                        classnames('form-control',
+                        classnames(
+                          'form-control',
                           {
                             'is-invalid': errors.description ? !!errors.description : false
-                          })
+                          }
+                        )
                       }
                       rows="4"
                       name="description"
@@ -237,9 +240,8 @@ export class AddRecipe extends Component {
                   </div>
                   <button type="submit"
                     className="btn btn-outline-success"
-                    disabled={recipeState.isCreating}
-                  >
-                    {recipeState.isCreating ? <span>Adding Recipe... <Spinner size={20} /></span> : 'Add Recipe' }
+                    disabled={this.props.recipeState.isCreating}>
+                    {this.props.recipeState.isCreating ? <span>Updating Recipe... <Spinner size={20} /></span> : 'Update Recipe' }
                   </button>
                 </form>
               </div>
@@ -252,8 +254,9 @@ export class AddRecipe extends Component {
   }
 }
 
-AddRecipe.propTypes = {
+EditRecipe.propTypes = {
   recipeState: PropTypes.object.isRequired,
+  getRecipe: PropTypes.func.isRequired,
   processRecipeActions: PropTypes.func.isRequired,
   clearToast: PropTypes.func.isRequired
 };
@@ -263,6 +266,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ processRecipeActions, clearToast }, dispatch);
+  bindActionCreators({ getRecipe, processRecipeActions, clearToast }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddRecipe);
+export default connect(mapStateToProps, mapDispatchToProps)(EditRecipe);
