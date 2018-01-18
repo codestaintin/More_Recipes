@@ -51,10 +51,27 @@ const clearMessage = () => ({
   type: actionTypes.CLEAR_RECIPE_MESSAGE
 });
 
-const addRecipeAction = (recipeDetails, cloudImageUrl) => (dispatch) => {
-  const recipeDetail = { recipeDetails, cloudImageUrl };
+const deleteRecipeSuccess = message => ({
+  type: actionTypes.DELETE_RECIPE_SUCCESS,
+  message
+});
+
+const deleteRecipeFailure = error => ({
+  type: actionTypes.DELETE_RECIPE_FAILURE,
+  error
+});
+
+/**
+ * Add recipe function
+ * 
+ * @param {object} recipeDetails - Id of the recipe
+ * @param {string} cloudImageUrl - Cloud image URL
+ * @returns {object} recipes
+ */
+const addRecipeAction = (recipeDetails, cloudImageUrl = '') => (dispatch) => {
+  const recipeDetail = { recipeDetails, imageUrl: cloudImageUrl };
   axios.post('api/v1/recipes', recipeDetail, {
-    headers: { 'x-access-token': window.sessionStorage.token }
+    headers: { 'x-access-token': window.localStorage.token }
   })
     .then((res) => {
       dispatch(addRecipeSuccess(res.data.message));
@@ -66,14 +83,24 @@ const addRecipeAction = (recipeDetails, cloudImageUrl) => (dispatch) => {
     });
 };
 
+/**
+ * Clear toaster message function
+ * @returns {string} message
+ */
 const clearToast = () => (dispatch) => {
   dispatch(clearMessage());
 };
 
+/**
+ * Get user recipes function
+ * 
+ * @param {userId} userId - Id of the recipe
+ * @returns {object} recipes
+ */
 const getUserRecipes = userId => (
   (dispatch) => {
     axios.get(`/api/v1/users/${userId}/my-recipes`, {
-      headers: { 'x-access-token': window.sessionStorage.token }
+      headers: { 'x-access-token': window.localStorage.token }
     })
       .then((res) => {
         console.table(res.data.recipes);
@@ -83,10 +110,16 @@ const getUserRecipes = userId => (
   }
 );
 
+/**
+ * Get a recipes function
+ * 
+ * @param {integer} recipeId - Id of the recipe
+ * @returns {object} recipe
+ */
 const getRecipe = recipeId => (
   dispatch => (
     axios.get(`/api/v1/recipes/${recipeId}`, {
-      headers: { 'x-access-token': window.sessionStorage.token }
+      headers: { 'x-access-token': window.localStorage.token }
     })
       .then((res) => {
         dispatch(viewRecipeSuccess(res.data.recipe));
@@ -95,20 +128,51 @@ const getRecipe = recipeId => (
   )
 );
 
-const editRecipe = (recipeId, recipeDetails, cloudImageUrl) => (dispatch) => {
-  const recipe = { ...recipeDetails, imageUrl: cloudImageUrl };
+/**
+ * Edit a recipe function
+ * 
+ * @param {integer} recipeId - Id of the recipe
+ * @param {object} recipeDetails - Details of the recipe
+ * @param {string} cloudImageUrl - Clould image URL
+ * @returns {object} recipe
+ */
+const editRecipe = (recipeId, recipeDetails, cloudImageUrl = '') => (dispatch) => {
+  const recipe = (cloudImageUrl !== '') ? { ...recipeDetails, imageUrl: cloudImageUrl } : recipeDetails;
   axios.put(`/api/v1/recipes/${recipeId}`, recipe, {
-    headers: { 'x-access-token': window.sessionStorage.token }
+    headers: { 'x-access-token': window.localStorage.token }
   })
     .then((res) => {
-      console.log(res.data.message);
       dispatch(editRecipeSuccess(res.data.message));
       dispatch(isRecipeCreating(false));
     })
     // .catch(error => dispatch(editRecipeFailure(error.res.data.recipe.message)));
     .catch(error => console.log(error.message));
 };
+/**
+ * Delete recipe function
+ * 
+ * @param {recipeId} recipeId
+ * @returns {message} message
+ */
+const deleteRecipe = recipeId => (dispatch) => {
+  axios.delete(`/api/v1/recipes/${recipeId}`, {
+    headers: { 'x-access-token': window.localStorage.token }
+  })
+    .then((res) => {
+      dispatch(deleteRecipeSuccess(res.data.recipe.message));
+    })
+    .catch(error => dispatch(deleteRecipeFailure(error)));
+};
 
+/**
+ * Process image upload
+ * 
+ * @param {recipe} recipe - Recipe
+ * @param {object|string} imageFile - Image file
+ * @param {type} type - Type of action
+ * @param {recipeId} recipeId - Id of the recipe
+ * @returns {object} recipe
+ */
 const processRecipeActions = (recipe, imageFile, type = 'addRecipe', recipeId = '') => (
   (dispatch) => {
     dispatch(isRecipeCreating(true));
@@ -137,6 +201,13 @@ const processRecipeActions = (recipe, imageFile, type = 'addRecipe', recipeId = 
             dispatch(isRecipeCreating(false));
           });
       }
+    } else {
+      if (type === 'updateRecipe') {
+        dispatch(editRecipe(recipeId, recipe));
+      } else {
+        dispatch(addRecipeAction(recipe));
+      }
+      dispatch(isRecipeCreating(false));
     }
   }
 );
@@ -144,6 +215,7 @@ export {
   processRecipeActions,
   editRecipe,
   getRecipe,
+  deleteRecipe,
   getUserRecipes,
   clearToast
 };

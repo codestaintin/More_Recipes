@@ -68,6 +68,7 @@
     "redux-thunk": "^2.2.0",
     "sequelize": "^4.8.0",
     "sequelize-cli": "^2.8.0",
+    "sweetalert2": "^7.4.0",
     "toastr": "^2.1.4",
     "validator": "^9.1.1",
     "validatorjs": "^3.13.5"

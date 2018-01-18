@@ -25,7 +25,7 @@ class UserRecipe extends Component {
    * @memberof UserRecipeComponent
    */
   componentDidMount() {
-    const { token } = window.sessionStorage;
+    const { token } = window.localStorage;
     const { id } = decodeToken(token);
     this.props.getUserRecipes(id);
   }
@@ -39,7 +39,7 @@ class UserRecipe extends Component {
    */
   render() {
     const userRecipes = this.props.userRecipes;
-    const decodedToken = decodeToken(window.sessionStorage.token);
+    const decodedToken = decodeToken(window.localStorage.token);
     return (
       <div>
         <Header/>

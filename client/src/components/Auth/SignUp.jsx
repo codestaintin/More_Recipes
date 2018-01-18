@@ -47,7 +47,7 @@ export class SignUp extends Component {
   * @returns {void} void
  */
   componentWillMount() {
-    if (window.sessionStorage.token) {
+    if (window.localStorage.token) {
       history.push('/');
     }
   }

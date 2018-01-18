@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'react-proptypes';
 import { connect } from 'react-redux';
+import swal from 'sweetalert2';
 import { bindActionCreators } from 'redux';
-import { getRecipe } from '../actions/recipe/recipeActions';
+import { getRecipe, deleteRecipe } from '../actions/recipe/recipeActions';
+import { decodeToken } from '../utils/helpers';
+import history from '../utils/history';
 import FooterComponent from './partials/Footer.jsx';
 import Header from './partials/Headers/Header.jsx';
 
@@ -31,6 +34,7 @@ class RecipeDetail extends Component {
         views: ''
       }
     };
+    this.handleDelete = this.handleDelete.bind(this);
   }
   /**
    *
@@ -51,7 +55,33 @@ class RecipeDetail extends Component {
     this.setState({ recipe: nextProps.recipeDetailState });
   }
   /**
-   *
+   * Handles recipe deletion
+   * @method handleDelete
+   * @return {void}
+     */
+  handleDelete() {
+    swal({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#2475a6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirm!'
+    }).then((result) => {
+      if (result.value) {
+        swal(
+          'Deleted!',
+          'Recipe Deletion successful',
+          'success'
+        );
+        this.props.deleteRecipe(this.props.match.params.recipeId);
+      }
+    });
+    history.push('/user-recipes');
+  }
+  /**
+   *Renders RecipeDetail component
    * @returns {XML} XML/JSX
    * @memberof RecipeDetailComponent
    */
@@ -64,9 +94,12 @@ class RecipeDetail extends Component {
         description,
         views
       } = this.state.recipe,
+      image = (imageUrl !== '') ? imageUrl : process.env.DEFAULT_IMAGE,
       ingredientList = ingredient.split(',').map((Ingredient, index) => (
         <li key={index}>{Ingredient}</li>
       ));
+    const { userId } = this.state.recipe;
+    const decodedId = decodeToken(window.localStorage.token).id;
     return (
       <div>
         <Header/>
@@ -87,7 +120,7 @@ class RecipeDetail extends Component {
         <div className="mb-20 col-md-9 mx-auto bg-white recipe-details-container">
           <div className="row">
             <div className="col-sm-6 col-md-6 col-lg-6 p-10">
-              <img className="recipe-big-img" src={imageUrl} alt="Recipe Image"/>
+              <img className="recipe-big-img" src={image} alt="Recipe Image"/>
               <div className="mt-20">
                 <div className="text-left mb-10">
                   <span className="badge badge-info"><i className="fa fa-eye fa-2x"/>&nbsp; {views}
@@ -131,10 +164,19 @@ class RecipeDetail extends Component {
                     Uploaded 2hours ago
                   </small>
                 </p>
-                <Link to={`/recipes/${id}/edit`}><button className="btn btn-success">
-                  <i className="fa fa-edit" /> Edit</button>
-                </Link>&nbsp;&nbsp;
-                <button className="btn btn-danger"> <i className="fa fa-trash"></i> Delete</button>
+                {
+                  (userId === decodedId) ?
+                    <div>
+                      <Link to={`/recipes/${id}/edit`}><button className="btn btn-success">
+                        <i className="fa fa-edit" /> Edit</button>
+                      </Link> { '\u00A0' }
+                      <button className="btn btn-danger" onClick={this.handleDelete} >
+                        <i className="fa fa-trash"/>
+                        Delete
+                      </button>
+                    </div>
+                    : null
+                }
               </div>
               <div className="mt-10">
                 <h5>Ingredients</h5>
@@ -200,13 +242,16 @@ class RecipeDetail extends Component {
 RecipeDetail.propTypes = {
   getRecipe: PropTypes.func.isRequired,
   match: PropTypes.shape().isRequired,
-  recipeDetailState: PropTypes.object.isRequired
+  recipeDetailState: PropTypes.object.isRequired,
+  recipeDelete: PropTypes.object.isRequired,
+  deleteRecipe: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  recipeDetailState: state.recipeReducer.recipe
+  recipeDetailState: state.recipeReducer.recipe,
+  recipeDelete: state.recipeReducer
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ getRecipe }, dispatch);
+  bindActionCreators({ getRecipe, deleteRecipe }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(RecipeDetail);

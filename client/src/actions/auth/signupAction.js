@@ -5,7 +5,7 @@ const signupAction = userDetails => (dispatch) => {
   axios.post('api/v1/users/signup', userDetails)
     .then((res) => {
       const token = res.data.token;
-      window.sessionStorage.setItem('token', token);
+      window.localStorage.setItem('token', token);
       dispatch({ type: actionTypes.SIGNUP_SUCCESSFUL });
       dispatch({ type: actionTypes.SIGNIN_SUCCESSFUL });
     })
