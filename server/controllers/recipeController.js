@@ -44,7 +44,7 @@ const recipeController = {
                 description: body.description,
                 userId: req.decoded.id,
                 ingredient: body.ingredient,
-                imageUrl: req.body.cloudImageUrl || process.env.DEFAULT_IMAGE
+                imageUrl: req.body.imageUrl || ''
               })
                 .then(recipe => res.status(201).json({
                   message: 'Recipe creation successful ',
@@ -114,8 +114,7 @@ const recipeController = {
    * @returns { object } object
    */
   update(req, res) {
-    const body = req.body;
-    const validator = new Validator(body, Recipe.updateRules());
+    const validator = new Validator(req.body, Recipe.updateRules());
     if (validator.passes()) {
       return Recipe
         .findById(req.params.recipeId)

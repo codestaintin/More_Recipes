@@ -41,15 +41,15 @@ const routes = (router) => {
 
   router.route('/recipes/:recipeId')
   /**
-   * PUT api/v1/:recipeId - Update an existing recipe
+   * PUT api/v1/recipes/:recipeId - Update an existing recipe
    */
     .put(authMiddleware.verifyToken, recipeController.update)
   /**
-     * GET api/v1/:recipeId - Get a recipe
+     * GET api/v1/recipes/:recipeId - Get a recipe
      */
     .get(authMiddleware.verifyToken, recipeController.retrieve)
     /**
-     * DELETE api/v1/:recipeID - Delete a recipe
+     * DELETE api/v1/recipes/:recipeID - Delete a recipe
      */
     .delete(authMiddleware.verifyToken, recipeController.destroy);
 

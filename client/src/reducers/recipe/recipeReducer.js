@@ -6,7 +6,7 @@ const initialState = {
   isCreating: false,
   getUserRecipesSuccess: [],
   getUserRecipesFailure: '',
-  recipe: { }
+  recipe: {},
 };
 
 const recipeReducer = (state = initialState, action) => {
@@ -66,6 +66,18 @@ const recipeReducer = (state = initialState, action) => {
         ...state,
         success: null,
         message: ''
+      };
+    case actionTypes.DELETE_RECIPE_SUCCESS:
+      return {
+        ...state,
+        success: true,
+        message: action.message
+      };
+    case actionTypes.DELETE_RECIPE_FAILURE:
+      return {
+        ...state,
+        success: false,
+        message: action.error
       };
     default:
       return state;

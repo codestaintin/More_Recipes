@@ -18,5 +18,7 @@ export default keymirror({
   VIEW_RECIPE_FAILURE: null,
   EDIT_RECIPE_SUCCESS: null,
   EDIT_RECIPE_FAILURE: null,
-  CLEAR_RECIPE_MESSAGE: null
+  CLEAR_RECIPE_MESSAGE: null,
+  DELETE_RECIPE_SUCCESS: null,
+  DELETE_RECIPE_FAILURE: null
 });

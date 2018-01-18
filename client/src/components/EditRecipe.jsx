@@ -32,7 +32,7 @@ export class EditRecipe extends Component {
       },
       errors: {},
       imageFile: '',
-      imageSrc: '/assets/images/no-image.jpg'
+      imageSrc: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -57,6 +57,7 @@ export class EditRecipe extends Component {
     const { message, success, recipe } = nextProps.recipeState;
     if (recipe.ingredient !== this.state.recipeDetails.ingredient) {
       this.setState({ recipeDetails: recipe });
+      this.setState({ imageSrc: recipe.imageUrl });
     }
     if (success === true && message !== '') {
       toastr.clear();
@@ -173,7 +174,7 @@ export class EditRecipe extends Component {
                       className="recipe-upload text-hide"
                       onChange={this.handleImageChange}
                       accept="image/*" />
-                    <img src={imageSrc} alt="Image" height="400" width="100%"/>
+                    <img src={imageSrc || '/assets/images/no-image.jpg'} alt="Image" height="400" width="100%"/>
                   </div>
                 </div>
               </div>

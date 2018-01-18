@@ -4,7 +4,7 @@ import history from '../utils/history';
 const decodeToken = token => jwtDecode(token);
 
 const logout = () => {
-  window.sessionStorage.removeItem('token');
+  window.localStorage.removeItem('token');
   history.push('/');
 };
 

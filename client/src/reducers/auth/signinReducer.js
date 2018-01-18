@@ -10,7 +10,7 @@ const signinReducer = (state = initialState, action) => {
     case actionTypes.SIGNIN_SUCCESSFUL:
       state = {
         ...state,
-        success: !!window.sessionStorage.token,
+        success: !!window.localStorage.token,
         fails: null
       };
       break;

@@ -37,7 +37,7 @@ class Header extends Component {
   render() {
     return (
       <div>
-        { (window.sessionStorage.token) ?
+        { (window.localStorage.token) ?
           <nav className="navbar navbar-expand-sm navbar-light bg-navbar fixed-top">
             <Link to="/" className="navbar-brand">More Recipes</Link>
             <button className="navbar-toggler"
