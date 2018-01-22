@@ -4,9 +4,14 @@ import PropTypes from 'react-proptypes';
 import { connect } from 'react-redux';
 import swal from 'sweetalert2';
 import { bindActionCreators } from 'redux';
-import { getRecipe, deleteRecipe } from '../actions/recipe/recipeActions';
+import {
+  getRecipe,
+  deleteRecipe,
+  getReview
+} from '../actions/recipe/recipeActions';
 import { decodeToken } from '../utils/helpers';
 import history from '../utils/history';
+import Review from './review/Review.jsx';
 import FooterComponent from './partials/Footer.jsx';
 import Header from './partials/Headers/Header.jsx';
 
@@ -43,7 +48,9 @@ class RecipeDetail extends Component {
    * @memberof RecipeDetail
    */
   componentWillMount() {
-    this.props.getRecipe(this.props.match.params.recipeId);
+    const { recipeId } = this.props.match.params;
+    this.props.getRecipe(recipeId);
+    this.props.getReview(recipeId);
   }
   /**
    *
@@ -52,7 +59,10 @@ class RecipeDetail extends Component {
    * @memberof RecipeDetail
    */
   componentWillReceiveProps(nextProps) {
-    this.setState({ recipe: nextProps.recipeDetailState });
+    const { recipeDetailState } = nextProps;
+    if (recipeDetailState && recipeDetailState.id) {
+      this.setState({ recipe: nextProps.recipeDetailState });
+    }
   }
   /**
    * Handles recipe deletion
@@ -72,14 +82,15 @@ class RecipeDetail extends Component {
       if (result.value) {
         swal(
           'Deleted!',
-          'Recipe Deletion successful',
+          'recipe Deletion successful',
           'success'
         );
         this.props.deleteRecipe(this.props.match.params.recipeId);
+        history.push('/user-recipes');
       }
     });
-    history.push('/user-recipes');
   }
+
   /**
    *Renders RecipeDetail component
    * @returns {XML} XML/JSX
@@ -105,7 +116,10 @@ class RecipeDetail extends Component {
         <Header/>
         <div className="container">
           <div className="row">
-            <ol className="breadcrumb mt-50 mb-10 col-md-11 mx-auto bg-white shadow-lite">
+            <ol
+              className=
+                "breadcrumb mt-50 mb-10 col-md-11 mx-auto bg-white shadow-lite"
+            >
               <li className="breadcrumb-item">
                 <Link to="/">Home</Link>
               </li>
@@ -117,22 +131,27 @@ class RecipeDetail extends Component {
           </div>
         </div>
 
-        <div className="mb-20 col-md-9 mx-auto bg-white recipe-details-container">
+        <div className=
+          "mb-20 col-md-9 mx-auto bg-white recipe-details-container">
           <div className="row">
             <div className="col-sm-6 col-md-6 col-lg-6 p-10">
               <img className="recipe-big-img" src={image} alt="Recipe Image"/>
               <div className="mt-20">
                 <div className="text-left mb-10">
-                  <span className="badge badge-info"><i className="fa fa-eye fa-2x"/>&nbsp; {views}
+                  <span className="badge badge-info">
+                    <i className="fa fa-eye fa-2x"/>&nbsp; {views}
                   </span>&nbsp;&nbsp;
-                  <span className="badge badge-success"><i className="fa fa-thumbs-o-up fa-2x"/>
+                  <span className="badge badge-success">
+                    <i className="fa fa-thumbs-o-up fa-2x"/>
                     &nbsp;  223</span>&nbsp;&nbsp;
-                  <span className="badge badge-danger"><i className="fa fa-thumbs-o-down fa-2x"/>
+                  <span className="badge badge-danger">
+                    <i className="fa fa-thumbs-o-down fa-2x"/>
                     &nbsp; 23
                   </span>
                 </div>
                 <p>
-                  <button className="btn btn-outline-warning btn-sm fav-btn hvr-icon-pop">
+                  <button className=
+                    "btn btn-outline-warning btn-sm fav-btn hvr-icon-pop">
                     Favourite
                   </button>&nbsp; &nbsp;
                   <button className="btn btn-outline-success btn-sm">
@@ -167,10 +186,12 @@ class RecipeDetail extends Component {
                 {
                   (userId === decodedId) ?
                     <div>
-                      <Link to={`/recipes/${id}/edit`}><button className="btn btn-success">
-                        <i className="fa fa-edit" /> Edit</button>
+                      <Link to={`/recipes/${id}/edit`}>
+                        <button className="btn btn-success">
+                          <i className="fa fa-edit" /> Edit</button>
                       </Link> { '\u00A0' }
-                      <button className="btn btn-danger" onClick={this.handleDelete} >
+                      <button className="btn btn-danger"
+                        onClick={this.handleDelete} >
                         <i className="fa fa-trash"/>
                         Delete
                       </button>
@@ -185,7 +206,7 @@ class RecipeDetail extends Component {
                 </ul>
                 <div>
                   <hr /></div>
-                <h5>Description</h5>
+                <h5>Procedure</h5>
                 <div>
                   {description}
                 </div>
@@ -195,43 +216,10 @@ class RecipeDetail extends Component {
         </div>
 
         <div className="container mt-20 mb-20 mx-auto">
-          <h5 className="p-5 text-center">Reviews</h5>
-          <div className="row justify-content-center">
-            <div className="card mb-10 col-lg-11 p-0">
-              <div className="card-header">
-                Mohammed Isioye
-              </div>
-              <div className="card-body">
-                <blockquote className="blockquote mb-0">
-                  <p>
-                    <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-                      erat a ante.
-                    </small>
-                  </p>
-                  <footer className="blockquote-footer">Posted
-                    <cite title="Source Title"> 4 days ago</cite>
-                  </footer>
-                </blockquote>
-              </div>
-            </div>
-            <div className="card mb-10 col-lg-11 p-0">
-              <div className="card-header">
-                Mohammed Isioye
-              </div>
-              <div className="card-body">
-                <blockquote className="blockquote mb-0">
-                  <p>
-                    <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-                      erat a ante.
-                    </small>
-                  </p>
-                  <footer className="blockquote-footer">Posted
-                    <cite title="Source Title"> 5 mins ago</cite>
-                  </footer>
-                </blockquote>
-              </div>
-            </div>
-          </div>
+          <Review
+            match={this.props.match}
+            reviews={this.props.reviews}
+          />
         </div>
         <FooterComponent />
       </div>
@@ -241,17 +229,20 @@ class RecipeDetail extends Component {
 
 RecipeDetail.propTypes = {
   getRecipe: PropTypes.func.isRequired,
+  getReview: PropTypes.func.isRequired,
   match: PropTypes.shape().isRequired,
-  recipeDetailState: PropTypes.object.isRequired,
+  reviews: PropTypes.array,
+  recipeDetailState: PropTypes.object,
   recipeDelete: PropTypes.object.isRequired,
   deleteRecipe: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   recipeDetailState: state.recipeReducer.recipe,
-  recipeDelete: state.recipeReducer
+  recipeDelete: state.recipeReducer,
+  reviews: state.recipeReducer.review
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ getRecipe, deleteRecipe }, dispatch);
+  bindActionCreators({ getRecipe, deleteRecipe, getReview }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(RecipeDetail);

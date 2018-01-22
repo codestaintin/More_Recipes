@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'react-proptypes';
 
 /**
- * Recipe
+ * recipe
  * @param { props } props
  * @returns { object } object
  */
-const RecipeComponent = (props) => {
+const Recipe = (props) => {
   const image = (props.recipe.imageUrl !== '') ? props.recipe.imageUrl 
     : process.env.DEFAULT_IMAGE;
   return (
@@ -48,9 +48,9 @@ const RecipeComponent = (props) => {
     </div>
   );
 };
-RecipeComponent.propTypes = {
+Recipe.propTypes = {
   recipe: PropTypes.object.isRequired,
   decodedToken: PropTypes.object.isRequired,
 };
 
-export default RecipeComponent;
+export default Recipe;

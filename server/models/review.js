@@ -8,6 +8,7 @@ const reviewModel = (sequelize, DataTypes) => {
   Review.associate = (models) => {
     Review.belongsTo(models.User, {
       foreignKey: 'userId',
+      as: 'users',
       onDelete: 'CASCADE'
     });
     Review.belongsTo(models.Recipe, {
@@ -15,11 +16,9 @@ const reviewModel = (sequelize, DataTypes) => {
       onDelete: 'CASCADE'
     });
   };
-  Review.createRules = () => {
-    return {
-      content: 'required|min:4',
-    };
-  };
+  Review.createRules = () => ({
+    content: 'required|min:4',
+  });
   return Review;
 };
 

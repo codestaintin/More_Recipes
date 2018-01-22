@@ -68,7 +68,7 @@ const userModel = (sequelize, DataTypes) => {
     user.newPassword = hash;
   });
   /**
-   * Auth validation rules for user creation and login
+   * auth validation rules for user creation and login
    * @returns { object } object
    */
   User.createRules = () => ({

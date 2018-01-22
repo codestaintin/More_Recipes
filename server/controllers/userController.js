@@ -13,7 +13,7 @@ const secret = process.env.SECRET_TOKEN;
 const userController = {
 
   /**
-   * Create Auth and validate request
+   * Create auth and validate request
    * @param { req } req
    * @param { res } res
    *

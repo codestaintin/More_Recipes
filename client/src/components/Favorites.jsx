@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from './partials/Headers/Header.jsx';
 import FooterComponent from './partials/Footer.jsx';
-import RecipeComponent2 from './Recipe/RecipeFaker.jsx';
+import RecipeComponent2 from './recipe/RecipeFaker.jsx';
 import PaginateComponent from './partials/Paginate.jsx';
 
 /**

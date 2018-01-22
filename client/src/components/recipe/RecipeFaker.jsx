@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'react-proptypes';
 
 /**
- * Recipe
+ * recipe
  * @param props
  * @constructor
  */

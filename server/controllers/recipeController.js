@@ -47,7 +47,7 @@ const recipeController = {
                 imageUrl: req.body.imageUrl || ''
               })
                 .then(recipe => res.status(201).json({
-                  message: 'Recipe creation successful ',
+                  message: 'recipe creation successful ',
                   recipe
                 }))
                 .catch(error => res.status(404).json(error));
@@ -67,7 +67,7 @@ const recipeController = {
   },
 
   /**
-   * Retrieve a Recipe
+   * Retrieve a recipe
    * @param { object }  req
    * @param { object }  res
    *
@@ -76,23 +76,20 @@ const recipeController = {
   retrieve(req, res) {
     return Recipe
       .findById(req.params.recipeId, {
-        include: [{
-          model: Review,
-          as: 'reviews'
-        },
-        {
-          model: Voting,
-          as: 'votings'
-        },
-        {
-          model: Favorite,
-          as: 'favorites'
-        }
+        include: [
+          {
+            model: Voting,
+            as: 'votings'
+          },
+          {
+            model: Favorite,
+            as: 'favorites'
+          }
         ]
       })
       .then((recipe) => {
         if (!recipe) {
-          return Promise.reject({ code: 404, message: 'Recipe not found' });
+          return Promise.reject({ code: 404, message: 'recipe not found' });
         }
         return recipe
           .update({ views: recipe.views + 1 });
@@ -107,7 +104,7 @@ const recipeController = {
   },
 
   /**
-   * Update Recipe
+   * Update recipe
    * @param { object }  req
    * @param { object }  res
    *
@@ -121,7 +118,7 @@ const recipeController = {
         .then((recipe) => {
           if (!recipe) {
             return res.status(404).send({
-              message: 'Recipe Not Found',
+              message: 'recipe Not Found',
             });
           }
           if (req.decoded.id !== recipe.userId) {
@@ -136,7 +133,7 @@ const recipeController = {
               recipe
             }))
             .catch(error => res.status(400).json({
-              message: 'Recipe not updated',
+              message: 'recipe not updated',
               errors: error.errors }));
         })
         .catch(error => res.status(500).json({ errors: error.errors }));
@@ -145,7 +142,7 @@ const recipeController = {
   },
 
   /**
-   * Delete Recipe
+   * Delete recipe
    * @param { object }  req
    * @param { object }  res
    *
@@ -156,7 +153,7 @@ const recipeController = {
       .findById(req.params.recipeId)
       .then((recipe) => {
         if (!recipe) {
-          return res.status(404).json({ message: 'Recipe not found' });
+          return res.status(404).json({ message: 'recipe not found' });
         }
         if (req.decoded.id !== recipe.userId) {
           return res.status(404).json({
@@ -166,7 +163,7 @@ const recipeController = {
         return recipe
           .destroy()
           .then(() => res.status(200).json({
-            message: 'Recipe successfully deleted'
+            message: 'recipe successfully deleted'
           }))
           .catch(error => res.status(500).json({ error }));
       })

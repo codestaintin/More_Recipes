@@ -103,7 +103,6 @@ describe('Test cases for all recipes actions', () => {
     it('should return a status of 403 if the user is not authorized', (done) => {
       request(server)
         .get('/api/v1/recipes')
-        .send(recipeSeed.setInput('Okro soup', 'Okro plant', 'This is how cook okro', 'okro_img', 4))
         .expect(403)
         .end((err, res) => {
           if (err) return done(err);
