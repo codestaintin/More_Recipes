@@ -3,25 +3,6 @@
 /**
  * Custom javascript file
  */
-function sticky_relocate() {
-  const navbarTop = $('.navbar').outerHeight();
-  if ($(window).scrollTop() > $('#sticky-anchor').offset().top) {
-    $('#sticky')
-      .addClass('stick')
-    $('#sticky-anchor').height($('#sticky').outerHeight());
-  } else {
-    $('#sticky')
-      .removeClass('stick')
-      .css({position: 'static'});
-    $('#sticky-anchor').height(0);
-  }
-}
-
-$(() => {
-  $(window).scroll(sticky_relocate);
-  sticky_relocate();
-});
-
 $('.recipe-image-thumb').click(function (e) {
   let url = $(this).attr('src');
   if (url) {

@@ -5,10 +5,12 @@ import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Spinner from "react-md-spinner";
-import { processRecipeActions, clearToast } from "../actions/recipe/recipeActions";
+import { processRecipeActions, clearToast } from '../actions/recipe/recipeActions';
 import recipeValidate from '../utils/recipeValidate';
 import FooterComponent from './partials/Footer.jsx';
 import Header from './partials/Headers/Header.jsx';
+import { recipeResponseType } from '../utils/helpers';
+
 
 /**
  *
@@ -18,7 +20,7 @@ import Header from './partials/Headers/Header.jsx';
  */
 export class AddRecipe extends Component {
   /**
-   * Creates an instance of SignInComponent.
+   * Creates an instance of AddRecipeComponent.
    * @param {any} props
    * @memberof AddRecipeComponent
    */
@@ -43,12 +45,12 @@ export class AddRecipe extends Component {
    * @param {nextProps} nextProps
    */
   componentWillReceiveProps(nextProps) {
-    const { message, success } = nextProps.recipeState;
-    if (success === true && message !== '') {
+    const { message, responseType } = nextProps.recipeState;
+    if (responseType === recipeResponseType.ADD_RECIPE_SUCCESS && message !== '') {
       toastr.clear();
       toastr.success(message);
       this.props.clearToast();
-    } else if (success === false && message !== '') {
+    } else if (message !== '') {
       toastr.clear();
       toastr.error(message);
       this.props.clearToast();
@@ -99,8 +101,7 @@ export class AddRecipe extends Component {
   /**
    * Check Validity
    *
-   * @return {event} event
-   * @param {event} event
+   * @return {object} event
    */
   checkValidity() {
     const { errors, isValid } = recipeValidate(this.state.recipeDetails);
@@ -201,7 +202,7 @@ export class AddRecipe extends Component {
                       <span className="invalid-feedback">{ errors.name }</span> : null
                     }
                   </div>
-                  <h6>Description</h6>
+                  <h6>Procedure</h6>
                   <div className="form-group">
                     <textarea
                       className={
@@ -239,7 +240,9 @@ export class AddRecipe extends Component {
                     className="btn btn-outline-success"
                     disabled={recipeState.isCreating}
                   >
-                    {recipeState.isCreating ? <span>Adding Recipe... <Spinner size={20} /></span> : 'Add Recipe' }
+                    {recipeState.isCreating ? 
+                      <span>Adding Recipe... <Spinner size={20} />
+                      </span> : 'Add Recipe' }
                   </button>
                 </form>
               </div>

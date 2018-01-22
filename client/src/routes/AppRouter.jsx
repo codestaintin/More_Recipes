@@ -1,5 +1,4 @@
 import React from 'react';
-// import { BrowserRouter as Router, Route, Switch, browserHistory } from 'react-router-dom';
 import { Router, Route, Switch } from 'react-router-dom';
 import history from '../utils/history';
 import HomePageComponent from '../components/Homepage.jsx';

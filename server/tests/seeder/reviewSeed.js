@@ -8,16 +8,16 @@ const reviewSeed = {
       .then(() => done())
       .catch(err => done(err));
   },
-  setInput(content, userId) {
+  setInput(content) {
     return {
-      content,
-      userId,
+      content
     };
   },
-  addRecipe(done) {
+  addReview(done) {
     Review.create({
       content: 'A very tasty meal',
       userId: 1,
+      recipeId: 1
     })
       .then(() => done())
       .catch(err => done(err));

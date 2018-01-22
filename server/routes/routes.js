@@ -8,7 +8,7 @@ import authMiddleware from '../middleware/auth';
 const routes = (router) => {
   router.get('/', (req, res) => {
     res.json({
-      status: 'Welcome to Recipe API'
+      status: 'Welcome to recipe API'
     });
   });
   router.route('/users/signup')
@@ -57,10 +57,14 @@ const routes = (router) => {
   /**
    * POST api/v1/:recipeId/reviews - Create a review for a recipe
    */
-    .post(authMiddleware.verifyToken, reviewController.create);
+    .post(authMiddleware.verifyToken, reviewController.create)
   /**
- * POST api/vi/votes/:userId/upVotes
- */
+    * GET api/v1/:recipeId/reviews - Get all recipe reviews
+   */
+    .get(authMiddleware.verifyToken, reviewController.list);
+  /**
+  * POST api/vi/votes/:userId/upVotes
+  */
   router.route('/votes/:userId/upVotes')
     .post(authMiddleware.verifyToken, authMiddleware.verifyUser, votingController.upVote);
   /**

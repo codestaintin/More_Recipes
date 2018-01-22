@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'react-proptypes';
 import Header from './partials/Headers/Header.jsx';
 import FooterComponent from './partials/Footer.jsx';
-import RecipeComponent from './Recipe/Recipe.jsx';
+import RecipeComponent from './recipe/Recipe.jsx';
 import PaginateComponent from './partials/Paginate.jsx';
 import { getUserRecipes } from '../actions/recipe/recipeActions';
 import { decodeToken } from '../utils/helpers';

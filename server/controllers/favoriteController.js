@@ -6,7 +6,7 @@ const Recipe = db.Recipe;
 const favoriteController = {
 
   /**
-   * Create Auth favorite
+   * Create auth favorite
    *
    * @param { object } HTTP request
    * @param { object } HTTP response
@@ -29,7 +29,7 @@ const favoriteController = {
       })
       .then((favorite) => {
         return res.status(201).json({
-          message: 'Recipe successfully made your favorite',
+          message: 'recipe successfully made your favorite',
           favorite
         });
       })
@@ -40,7 +40,7 @@ const favoriteController = {
   },
 
   /**
-   * List all Auth Favorite
+   * List all auth Favorite
    *
    * @param { object } HTTP request
    * @param { object } HTTP response

@@ -9,6 +9,7 @@ import { getRecipe, processRecipeActions, clearToast } from '../actions/recipe/r
 import recipeValidate from '../utils/recipeValidate';
 import FooterComponent from './partials/Footer.jsx';
 import Header from './partials/Headers/Header.jsx';
+import { recipeResponseType } from '../utils/helpers';
 
 /**
  *
@@ -54,16 +55,16 @@ export class EditRecipe extends Component {
    * @param {nextProps} nextProps
    */
   componentWillReceiveProps(nextProps) {
-    const { message, success, recipe } = nextProps.recipeState;
+    const { message, responseType, recipe } = nextProps.recipeState;
     if (recipe.ingredient !== this.state.recipeDetails.ingredient) {
       this.setState({ recipeDetails: recipe });
       this.setState({ imageSrc: recipe.imageUrl });
     }
-    if (success === true && message !== '') {
+    if (responseType === recipeResponseType.EDIT_RECIPE_SUCCESS && message !== '') {
       toastr.clear();
       toastr.success(message);
       this.props.clearToast();
-    } else if (success === false && message !== '') {
+    } else if (message !== '') {
       toastr.clear();
       toastr.error(message);
       this.props.clearToast();
@@ -242,7 +243,9 @@ export class EditRecipe extends Component {
                   <button type="submit"
                     className="btn btn-outline-success"
                     disabled={this.props.recipeState.isCreating}>
-                    {this.props.recipeState.isCreating ? <span>Updating Recipe... <Spinner size={20} /></span> : 'Update Recipe' }
+                    {this.props.recipeState.isCreating ? 
+                      <span>Updating Recipe... <Spinner size={20} />
+                      </span> : 'Update Recipe' }
                   </button>
                 </form>
               </div>
@@ -259,7 +262,8 @@ EditRecipe.propTypes = {
   recipeState: PropTypes.object.isRequired,
   getRecipe: PropTypes.func.isRequired,
   processRecipeActions: PropTypes.func.isRequired,
-  clearToast: PropTypes.func.isRequired
+  clearToast: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
