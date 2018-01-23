@@ -8,6 +8,7 @@ const initialState = {
   getUserRecipesSuccess: [],
   getUserRecipesFailure: '',
   recipe: { },
+  recipes: [],
   review: []
 };
 
@@ -16,7 +17,7 @@ const recipeReducer = (state = initialState, action) => {
     case actionTypes.ADD_RECIPE_SUCCESS:
       return {
         ...state,
-        responseType: recipeResponseType.ADD_RECIPE,
+        responseType: recipeResponseType.ADD_RECIPE_SUCCESS,
         message: action.message
       };
     case actionTypes.ADD_RECIPE_FAILURE:
@@ -106,6 +107,17 @@ const recipeReducer = (state = initialState, action) => {
         ...state,
         responseType: recipeResponseType.FAILURE,
         message: action.error
+      };
+    case actionTypes.GET_ALL_RECIPES_SUCCESS:
+      return {
+        ...state,
+        responseType: recipeResponseType.GET_ALL_RECIPES_SUCCESS,
+        recipes: action.data.allRecipes
+      };
+    case actionTypes.GET_ALL_RECIPES_FAILURE:
+      return {
+        ...state,
+        responseType: recipeResponseType.FAILURE,
       };
     default:
       return state;

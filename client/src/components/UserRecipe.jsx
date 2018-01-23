@@ -74,7 +74,8 @@ class UserRecipe extends Component {
 }
 
 UserRecipe.propTypes = {
-  getUserRecipes: PropTypes.func.isRequired
+  getUserRecipes: PropTypes.func.isRequired,
+  userRecipes: PropTypes.array
 };
 
 const mapStateToProps = state => ({

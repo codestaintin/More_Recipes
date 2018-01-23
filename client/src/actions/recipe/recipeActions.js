@@ -80,6 +80,16 @@ const getReviewFailure = error => ({
   type: actionTypes.GET_REVIEW_FAILURE,
   error
 });
+
+const getAllRecipesSuccess = data => ({
+  type: actionTypes.GET_ALL_RECIPES_SUCCESS,
+  data
+});
+
+const getAllRecipesFailure = errors => ({
+  type: actionTypes.GET_ALL_RECIPES_FAILURE,
+  errors
+});
 /**
  * Add recipe function
  * 
@@ -146,6 +156,26 @@ const getRecipe = recipeId => (
         dispatch(viewRecipeSuccess(res.data.recipe));
       })
       .catch(error => dispatch(viewRecipeFailure(error)))
+  )
+);
+
+/**
+ * Get all recipes function
+ * 
+ * @returns {object} recipe
+ */
+const getAllRecipes = () => (
+  dispatch => (
+    axios.get(`/api/v1/recipes`, {
+      headers: { 'x-access-token': window.localStorage.token }
+    })
+      .then((res) => {
+        dispatch(getAllRecipesSuccess({
+          allRecipes: res.data.recipes,
+          pagination: res.data.paginationMeta
+        }));
+      })
+      .catch(errors => dispatch(getAllRecipesFailure(errors.error)))
   )
 );
 
@@ -262,6 +292,7 @@ export {
   processRecipeActions,
   editRecipe,
   getRecipe,
+  getAllRecipes,
   deleteRecipe,
   getUserRecipes,
   postReview,

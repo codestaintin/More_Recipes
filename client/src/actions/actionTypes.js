@@ -25,4 +25,6 @@ export default keymirror({
   POST_REVIEW_FAILURE: null,
   GET_REVIEW_SUCCESS: null,
   GET_REVIEW_FAILURE: null,
+  GET_ALL_RECIPES_SUCCESS: null,
+  GET_ALL_RECIPES_FAILURE: null,
 });

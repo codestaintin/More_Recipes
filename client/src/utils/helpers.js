@@ -17,6 +17,7 @@ const recipeResponseType = {
   POST_REVIEW_SUCCESS: 5,
   CLEAR_RECIPE_MESSAGE: 6,
   DELETE_RECIPE_SUCCESS: 7,
+  GET_ALL_RECIPES_SUCCESS: 9
 };
 
 export {

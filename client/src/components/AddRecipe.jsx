@@ -5,7 +5,10 @@ import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Spinner from "react-md-spinner";
-import { processRecipeActions, clearToast } from '../actions/recipe/recipeActions';
+import {
+  processRecipeActions,
+  clearToast
+} from '../actions/recipe/recipeActions';
 import recipeValidate from '../utils/recipeValidate';
 import FooterComponent from './partials/Footer.jsx';
 import Header from './partials/Headers/Header.jsx';
