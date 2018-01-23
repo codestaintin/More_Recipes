@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'react-proptypes';
 
 /**
- * recipe
- * @param { props } props
+ * Recipe
+ * @param { object } props
  * @returns { object } object
  */
 const Recipe = (props) => {
@@ -20,14 +20,13 @@ const Recipe = (props) => {
           <Link to={`/recipes/${props.recipe.id}/`}>
             <h6 className="recipe-name">{props.recipe.name}</h6>
           </Link>
-
           <h6>
             <small>
               <i className="fa fa-tags" /> African Dishes</small>
           </h6>
           <h6 className="text-muted">
             <small>
-              <i className="fa fa-user" /> {props.decodedToken.username}</small>
+              <i className="fa fa-user" /> {props.recipe.User ? props.recipe.User.username : ''}</small>
           </h6>
         </div>
         <div className="recipe-met2">
@@ -36,11 +35,9 @@ const Recipe = (props) => {
             <small>
               <span>
                 <i className="fa fa-eye text-muted" /> 2334</span> &nbsp;
-              {
-                (props.recipe.userId === props.decodedToken.id) ?
-                  <span><i className="fa fa-thumbs-o-up text-muted" /> 211</span>
-                  : null
-              }
+              <span>
+                <i className="fa fa-thumbs-o-up text-muted" /> 211
+              </span>
             </small>
           </p>
         </div>
@@ -50,7 +47,7 @@ const Recipe = (props) => {
 };
 Recipe.propTypes = {
   recipe: PropTypes.object.isRequired,
-  decodedToken: PropTypes.object.isRequired,
+  // decodedToken: PropTypes.object.isRequired,
 };
 
 export default Recipe;

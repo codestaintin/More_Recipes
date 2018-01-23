@@ -47,7 +47,7 @@ const recipeController = {
                 imageUrl: req.body.imageUrl || ''
               })
                 .then(recipe => res.status(201).json({
-                  message: 'recipe creation successful ',
+                  message: 'Recipe creation successful ',
                   recipe
                 }))
                 .catch(error => res.status(404).json(error));
@@ -84,12 +84,16 @@ const recipeController = {
           {
             model: Favorite,
             as: 'favorites'
+          },
+          {
+            model: User,
+            attributes: ['username']
           }
         ]
       })
       .then((recipe) => {
         if (!recipe) {
-          return Promise.reject({ code: 404, message: 'recipe not found' });
+          return Promise.reject({ code: 404, message: 'Recipe not found' });
         }
         return recipe
           .update({ views: recipe.views + 1 });
@@ -118,7 +122,7 @@ const recipeController = {
         .then((recipe) => {
           if (!recipe) {
             return res.status(404).send({
-              message: 'recipe Not Found',
+              message: 'Recipe Not Found',
             });
           }
           if (req.decoded.id !== recipe.userId) {
@@ -133,7 +137,7 @@ const recipeController = {
               recipe
             }))
             .catch(error => res.status(400).json({
-              message: 'recipe not updated',
+              message: 'Recipe not updated',
               errors: error.errors }));
         })
         .catch(error => res.status(500).json({ errors: error.errors }));
@@ -153,7 +157,7 @@ const recipeController = {
       .findById(req.params.recipeId)
       .then((recipe) => {
         if (!recipe) {
-          return res.status(404).json({ message: 'recipe not found' });
+          return res.status(404).json({ message: 'Recipe not found' });
         }
         if (req.decoded.id !== recipe.userId) {
           return res.status(404).json({
@@ -163,7 +167,7 @@ const recipeController = {
         return recipe
           .destroy()
           .then(() => res.status(200).json({
-            message: 'recipe successfully deleted'
+            message: 'Recipe successfully deleted'
           }))
           .catch(error => res.status(500).json({ error }));
       })
@@ -178,8 +182,7 @@ const recipeController = {
    * @returns { object } object
    */
   list(req, res) {
-    // const sortType = req.query.sort || null;
-    const limit = req.query.limit || 2;
+    const limit = req.query.limit || 8;
     const offset = req.query.offset || 0;
     const order = (req.query.order && req.query.order.toLowerCase() === 'desc')
       ? [['createdAt', 'DESC']] : [['createdAt', 'ASC']];
@@ -188,6 +191,7 @@ const recipeController = {
         limit,
         offset,
         order,
+        include: [{ model: User, attributes: ['username'] }]
       })
       .then(recipes => res.status(200).json(
         {
@@ -218,7 +222,8 @@ const recipeController = {
           });
         }
         Recipe.findAll({
-          where: { userId: req.decoded.id }
+          where: { userId: req.decoded.id },
+          include: [{ model: User, attributes: ['username'] }]
         })
           .then((recipes) => {
             if (!recipes) {
