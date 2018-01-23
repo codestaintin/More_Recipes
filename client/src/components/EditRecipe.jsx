@@ -5,7 +5,10 @@ import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Spinner from 'react-md-spinner';
-import { getRecipe, processRecipeActions, clearToast } from '../actions/recipe/recipeActions';
+import { getRecipe,
+  processRecipeActions,
+  clearToast
+} from '../actions/recipe/recipeActions';
 import recipeValidate from '../utils/recipeValidate';
 import FooterComponent from './partials/Footer.jsx';
 import Header from './partials/Headers/Header.jsx';
@@ -21,7 +24,7 @@ export class EditRecipe extends Component {
   /**
    * Creates an instance of SignInComponent.
    * @param {any} props
-   * @memberof AddRecipeComponent
+   * @memberof EditRecipe
    */
   constructor(props) {
     super(props);
@@ -138,7 +141,7 @@ export class EditRecipe extends Component {
    *
    *
    * @returns {XML} XML/JSX
-   * @memberof AddRecipeComponent
+   * @memberof EditRecipe
    */
   render() {
     const { recipeDetails, imageSrc, errors } = this.state;
@@ -175,7 +178,8 @@ export class EditRecipe extends Component {
                       className="recipe-upload text-hide"
                       onChange={this.handleImageChange}
                       accept="image/*" />
-                    <img src={imageSrc || '/assets/images/no-image.jpg'} alt="Image" height="400" width="100%"/>
+                    <img src={imageSrc || '/assets/images/no-image.jpg'}
+                      alt="Image" height="400" width="100%"/>
                   </div>
                 </div>
               </div>
@@ -185,7 +189,8 @@ export class EditRecipe extends Component {
                   boxShadow: 'none'
                 }}>
                 <h5>Recipe Details</h5>
-                <form className="mt-15 recipe-form" onSubmit={this.handleSubmit}>
+                <form className="mt-15 recipe-form"
+                  onSubmit={this.handleSubmit}>
                   <div className="form-group">
                     <input type="text"
                       className={
@@ -201,7 +206,8 @@ export class EditRecipe extends Component {
                       placeholder="Recipe Name"
                     />
                     { errors.name ?
-                      <span className="invalid-feedback">{ errors.name }</span> : null
+                      <span className="invalid-feedback">{ errors.name }</span>
+                      : null
                     }
                   </div>
                   <h6>Description</h6>
@@ -211,7 +217,8 @@ export class EditRecipe extends Component {
                         classnames(
                           'form-control',
                           {
-                            'is-invalid': errors.description ? !!errors.description : false
+                            'is-invalid': errors.description ? 
+                              !!errors.description : false
                           }
                         )
                       }
@@ -221,13 +228,15 @@ export class EditRecipe extends Component {
                       value={recipeDetails.description}
                       placeholder="Recipe description here" />
                     { errors.description ?
-                      <span className="invalid-feedback">{ errors.description }</span> : null
+                      <span className="invalid-feedback">{ errors.description }
+                      </span> : null
                     }
                   </div>
                   <h6>Ingredients</h6>
                   <div className="form-group">
                     <textarea className={classnames('form-control', {
-                      'is-invalid': errors.ingredient ? !!errors.ingredient : false
+                      'is-invalid': errors.ingredient ? !!errors.ingredient
+                        : false
                     })}
                     rows="4"
                     placeholder="Ingredient1, ingredient2..."
@@ -235,9 +244,12 @@ export class EditRecipe extends Component {
                     value={recipeDetails.ingredient}
                     onChange={this.handleChange}
                     />
-                    <span className="small text-info">Please enter comma separated values</span>
+                    <span className="small text-info">
+                    Please enter comma separated values
+                    </span>
                     { errors.ingredient ?
-                      <span className="invalid-feedback">{ errors.ingredient }</span> : null
+                      <span className="invalid-feedback">{ errors.ingredient }
+                      </span> : null
                     }
                   </div>
                   <button type="submit"

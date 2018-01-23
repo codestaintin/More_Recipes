@@ -8,8 +8,10 @@ const favoriteController = {
   /**
    * Create auth favorite
    *
-   * @param { object } HTTP request
-   * @param { object } HTTP response
+   * @param { object } req
+   * @param { object } res
+   * 
+   * @returns { object } object
    */
   create(req, res) {
     Favorite.findOne({
@@ -27,12 +29,10 @@ const favoriteController = {
           userId: req.decoded.id
         });
       })
-      .then((favorite) => {
-        return res.status(201).json({
-          message: 'recipe successfully made your favorite',
-          favorite
-        });
-      })
+      .then(favorite => res.status(201).json({
+        message: 'Recipe successfully made your favorite',
+        favorite
+      }))
       .catch(error => res.status(500).json({
         message: error.message ? error.message : 'An error occured during this operation',
         error: error.errors
@@ -42,8 +42,10 @@ const favoriteController = {
   /**
    * List all auth Favorite
    *
-   * @param { object } HTTP request
-   * @param { object } HTTP response
+   * @param { object } req
+   * @param { object } res
+   * 
+   * @returns { object } object
    */
   list(req, res) {
     Favorite.findAll({
@@ -52,9 +54,7 @@ const favoriteController = {
         model: Recipe,
       }]
     })
-      .then((favorites) => {
-        return res.status(200).json({ favorites });
-      })
+      .then(favorites => res.status(200).json({ favorites }))
       .catch(error => res.status(500).json({ error: error.message }));
   }
 };

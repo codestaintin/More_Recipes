@@ -27,4 +27,6 @@ export default keymirror({
   GET_REVIEW_FAILURE: null,
   GET_ALL_RECIPES_SUCCESS: null,
   GET_ALL_RECIPES_FAILURE: null,
+  GET_USER_PROFILE_SUCCESS: null,
+  GET_USER_PROFILE_FAILURE: null
 });

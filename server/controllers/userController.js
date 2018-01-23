@@ -14,8 +14,8 @@ const userController = {
 
   /**
    * Create auth and validate request
-   * @param { req } req
-   * @param { res } res
+   * @param { object } req
+   * @param { object } res
    *
    * @returns { object } object
    */
@@ -57,8 +57,8 @@ const userController = {
 
   /**
    * Log in user and validate user request
-   * @param { req } req
-   * @param { res } res
+   * @param { object } req
+   * @param { object } res
    *
    * @returns { object } object
    */
@@ -94,6 +94,33 @@ const userController = {
         });
       })
       .catch(error => res.status(500).json(error));
+  },
+
+  /**
+   * Retrieve a user
+   * @param { object } req
+   * @param { object } res
+   *
+   * @returns { object } object
+   */
+  retrieve(req, res) {
+    const userId = req.params.userId;
+    if (Number(userId) !== req.decoded.id) {
+      return res.status(404).json({
+        message: 'This User Does not exit'
+      });
+    }
+    return User.findById(userId)
+      .then((user) => {
+        if (!user) {
+          return res.status(404).json({ message: 'User not found!' });
+        }
+        return res.status(200).json({ user });
+      })
+      .catch(error => res.status(500).json({
+        message: 'An error occured during this operation',
+        error
+      }));
   }
 };
 

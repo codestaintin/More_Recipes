@@ -10,8 +10,8 @@ const reviewController = {
   /**
    * Create a recipe Review
    *
-   * @param { req } req
-   * @param { res } res
+   * @param { object } req
+   * @param { object } res
    *
    * @return { object } object
    */
@@ -46,41 +46,11 @@ const reviewController = {
   },
 
   /**
-   * Delete a recipe Review
-   *
-   * @param { object } req
-   * @param { object } res
-   * @returns { object } obj
-   */
-  // destroy(req, res) {
-  //   return Review
-  //     .find({
-  //       where: {
-  //         recipeId: req.params.recipeId
-  //       },
-  //     })
-  //     .then((foundReview) => {
-  //       if (!foundReview) {
-  //         return res.status(404).json({
-  //           message: 'No reviews found'
-  //         });
-  //       }
-  //       return foundReview
-  //         .destroy()
-  //         .then(() => res.status(200).json({
-  //           message: 'Review deleted'
-  //         }))
-  //         .catch(error => res.status(400).json(error));
-  //     })
-  //     .catch(error => res.status(400).json(error));
-  // },
-
-  /**
    * List all Reviews
    *
    * @param { object } req
    * @param { object } res
-   * @returns { object } obj
+   * @returns { object } object
    */
   list(req, res) {
     return Review

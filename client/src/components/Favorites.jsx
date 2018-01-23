@@ -9,15 +9,15 @@ import PaginateComponent from './partials/Paginate.jsx';
  *
  *
  * @export
- * @class FavoriteComponent
+ * @class Favorite
  * @extends {React.Component}
  */
-export default class FavoriteComponent extends Component {
+export default class Favorite extends Component {
   /**
      * 
      * 
      * @returns {XML} XML/JSX
-     * @memberof FavoriteComponent
+     * @memberof Favorite
      */
   render() {
     return (
