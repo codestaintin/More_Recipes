@@ -10,7 +10,9 @@ dotEnv.config();
 describe('POST Test suites for Auth sign up', () => {
   before(seed.emptyUserTable);
   before(seed.addUser);
-
+  /**
+ * Test cases for POST user actions
+ */
   describe('Test case for firstName inputs', () => {
     it('should return status code 422 and a message when firstName input field is empty', (done) => {
       request(server)
@@ -266,6 +268,60 @@ describe('POST Test suites for Auth sign in', () => {
       .end((err, res) => {
         if (err) return done(err);
         assert.equal(res.body.message, 'Invalid email/password');
+        done();
+      });
+  });
+});
+
+describe('Get Test suites for getting a user', () => {
+  before(seed.emptyUserTable);
+  before(seed.addUser);
+
+  let token;
+  before((done) => {
+    request(server)
+      .post('/api/v1/users/signin')
+      .send(seed.setLogin('mohzak@gmail.com', 'password'))
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err);
+        token = res.body.token;
+        done();
+      });
+  });
+
+  it('should return status code 403 if user is unauthorized', (done) => {
+    request(server)
+      .get('/api/v1/users/0')
+      .expect(403)
+      .end((err, res) => {
+        if (err) return done(err);
+        assert.equal(res.body.message, 'Token not provided');
+        done();
+      });
+  });
+
+  it('should return status code 404 if user does not exists', (done) => {
+    request(server)
+      .get('/api/v1/users/0')
+      .set({ 'x-access-token': token })
+      .expect(404)
+      .end((err, res) => {
+        if (err) return done(err);
+        assert.equal(res.body.message, 'This User Does not exit');
+        done();
+      });
+  });
+
+  it('should return status code 200 if operation is successful', (done) => {
+    request(server)
+      .get('/api/v1/users/1')
+      .set({ 'x-access-token': token })
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err);
+        assert.isObject(res.body);
+        assert.isNotEmpty(res.body);
         done();
       });
   });

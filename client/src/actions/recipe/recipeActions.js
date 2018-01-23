@@ -93,7 +93,7 @@ const getAllRecipesFailure = errors => ({
 /**
  * Add recipe function
  * 
- * @param {object} recipeDetails - Id of the recipe
+ * @param {object} recipeDetails
  * @param {string} cloudImageUrl - Cloud image URL
  * @returns {object} recipes
  */
@@ -166,9 +166,7 @@ const getRecipe = recipeId => (
  */
 const getAllRecipes = () => (
   dispatch => (
-    axios.get(`/api/v1/recipes`, {
-      headers: { 'x-access-token': window.localStorage.token }
-    })
+    axios.get(`/api/v1/recipes`)
       .then((res) => {
         dispatch(getAllRecipesSuccess({
           allRecipes: res.data.recipes,
@@ -217,6 +215,13 @@ const deleteRecipe = recipeId => (dispatch) => {
     .catch(error => dispatch(deleteRecipeFailure(error.res.data.message)));
 };
 
+/**
+ * Post a review function
+ * 
+ * @param {obejct} recipeId
+ * @param {object} content
+ * @returns {object} reviews
+ */
 const postReview = (recipeId, content) => (dispatch) => {
   axios.post(`/api/v1/recipes/${recipeId}/reviews`, { content }, {
     headers: { 'x-access-token': window.localStorage.token }

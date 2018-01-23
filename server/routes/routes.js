@@ -18,22 +18,31 @@ const routes = (router) => {
   router.route('/users/signin')
   /** POST api/v1/users/signin - Log in a user */
     .post(userController.login);
+  
+  router.route('/users/:userId')
+  /** GET api/v1/:userId/ - Get a user */
+    .get(authMiddleware.verifyToken,
+      authMiddleware.verifyUser,
+      userController.retrieve);
 
   router.route('/users/:userId/recipes')
   /** POST api/v1/:userId/recipes - Make a recipes favourite */
-    .post(authMiddleware.verifyToken, authMiddleware.verifyUser, favoriteController.create)
+    .post(authMiddleware.verifyToken, authMiddleware.verifyUser,
+      favoriteController.create)
   /** GET api/v1/:userId/recipes - Get user favourite recipes */
-    .get(authMiddleware.verifyToken, authMiddleware.verifyUser, favoriteController.list);
+    .get(authMiddleware.verifyToken, authMiddleware.verifyUser,
+      favoriteController.list);
 
   router.route('/users/:userId/my-recipes')
   /** GET api/v1/:userId/recipes - Get recipes created by a user */
-    .get(authMiddleware.verifyToken, authMiddleware.verifyUser, recipeController.getUserRecipe);
+    .get(authMiddleware.verifyToken, authMiddleware.verifyUser,
+      recipeController.getUserRecipe);
 
   router.route('/recipes')
   /**
    * GET api/v1/recipes - Get list of all recipes
    */
-    .get(authMiddleware.verifyToken, recipeController.list)
+    .get(recipeController.list)
   /**
    * POST api/v1/recipes - Create a new recipe
    */
@@ -66,12 +75,14 @@ const routes = (router) => {
   * POST api/vi/votes/:userId/upVotes
   */
   router.route('/votes/:userId/upVotes')
-    .post(authMiddleware.verifyToken, authMiddleware.verifyUser, votingController.upVote);
+    .post(authMiddleware.verifyToken, authMiddleware.verifyUser,
+      votingController.upVote);
   /**
  * POST api/vi/votes/:userId/downvote
  */
   router.route('/votes/:userId/downVotes')
-    .post(authMiddleware.verifyToken, authMiddleware.verifyUser, votingController.downVote);
+    .post(authMiddleware.verifyToken, authMiddleware.verifyUser,
+      votingController.downVote);
 };
 
 export default routes;

@@ -14,7 +14,7 @@ import { decodeToken } from '../utils/helpers';
  *
  *
  * @export
- * @className UserRecipeComponent
+ * @className UserRecipe
  * @extends {React.Component}
  */
 class UserRecipe extends Component {
@@ -22,7 +22,7 @@ class UserRecipe extends Component {
    *
    *
    * @returns {XML} XML/JSX
-   * @memberof UserRecipeComponent
+   * @memberof UserRecipe
    */
   componentDidMount() {
     const { token } = window.localStorage;
@@ -35,7 +35,7 @@ class UserRecipe extends Component {
    * 
    * 
    * @returns {XML} XML/JSX
-   * @memberof UserRecipeComponent
+   * @memberof UserRecipe
    */
   render() {
     const userRecipes = this.props.userRecipes;

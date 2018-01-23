@@ -25,7 +25,7 @@ export class AddRecipe extends Component {
   /**
    * Creates an instance of AddRecipeComponent.
    * @param {any} props
-   * @memberof AddRecipeComponent
+   * @memberof AddRecipeC
    */
   constructor(props) {
     super(props);
@@ -202,7 +202,8 @@ export class AddRecipe extends Component {
                       placeholder="Recipe Name"
                     />
                     { errors.name ?
-                      <span className="invalid-feedback">{ errors.name }</span> : null
+                      <span className="invalid-feedback">{ errors.name }
+                      </span> : null
                     }
                   </div>
                   <h6>Procedure</h6>
@@ -211,7 +212,8 @@ export class AddRecipe extends Component {
                       className={
                         classnames('form-control',
                           {
-                            'is-invalid': errors.description ? !!errors.description : false
+                            'is-invalid': errors.description ?
+                              !!errors.description : false
                           })
                       }
                       rows="4"
@@ -220,13 +222,15 @@ export class AddRecipe extends Component {
                       value={recipeDetails.description}
                       placeholder="Recipe description here" />
                     { errors.description ?
-                      <span className="invalid-feedback">{ errors.description }</span> : null
+                      <span className="invalid-feedback">{ errors.description }
+                      </span> : null
                     }
                   </div>
                   <h6>Ingredients</h6>
                   <div className="form-group">
                     <textarea className={classnames('form-control', {
-                      'is-invalid': errors.ingredient ? !!errors.ingredient : false
+                      'is-invalid': errors.ingredient ? !!errors.ingredient 
+                        : false
                     })}
                     rows="4"
                     placeholder="Ingredient1, ingredient2..."
@@ -234,9 +238,12 @@ export class AddRecipe extends Component {
                     value={recipeDetails.ingredient}
                     onChange={this.handleChange}
                     />
-                    <span className="small text-info">Please enter comma separated values</span>
+                    <span className="small text-info">
+                    Please enter comma separated values
+                    </span>
                     { errors.ingredient ?
-                      <span className="invalid-feedback">{ errors.ingredient }</span> : null
+                      <span className="invalid-feedback">{ errors.ingredient }
+                      </span> : null
                     }
                   </div>
                   <button type="submit"
