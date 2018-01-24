@@ -33,11 +33,6 @@ module.exports = {
     new Dotenv({
       path: './.env',
       systemvars: true
-    }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('development')
-      }
     })
   ],
   devtool: 'eval-source-map',
