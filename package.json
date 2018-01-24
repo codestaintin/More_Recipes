@@ -15,7 +15,9 @@
     "build": "webpack",
     "build:dev": "webpack-dev-server",
     "test": "export NODE_ENV=test && sequelize db:migrate:undo:all && sequelize db:migrate && nyc --reporter=html mocha server/tests/*.test.js --compilers js:babel-register && nyc report",
-    "start": "node index",
+    "start": "node tools/buildTools/publicServer.js",
+    "heroku-prebuild": "npm install",
+    "heroku-postbuild": "NODE_ENV=production webpack -p --config ./webpack.config.prod.js --progress",
     "start:dev": "nodemon --exec babel-node server.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
@@ -34,6 +36,7 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
     "classnames": "^2.2.5",
+    "compression": "^1.7.1",
     "cors": "^2.8.4",
     "coveralls": "^3.0.0",
     "dotenv": "^4.0.0",
@@ -71,7 +74,8 @@
     "sweetalert2": "^7.4.0",
     "toastr": "^2.1.4",
     "validator": "^9.1.1",
-    "validatorjs": "^3.13.5"
+    "validatorjs": "^3.13.5",
+    "winston": "^2.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
