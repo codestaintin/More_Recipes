@@ -6,6 +6,3 @@ coverage
 .idea/
 /package-lock.json
 .vscode
-production/bundle.js
-production/style.css
-production/5a2c2cc72bf910baeacefd8da4debd33.png
