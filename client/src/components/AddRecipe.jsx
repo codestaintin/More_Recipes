@@ -37,7 +37,7 @@ export class AddRecipe extends Component {
       },
       errors: {},
       imageFile: '',
-      imageSrc: '/assets/images/no-image.jpg'
+      imageSrc: process.env.NO_IMAGE
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);

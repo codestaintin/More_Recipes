@@ -1,90 +1,74 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
 
 const PATHS = {
   app: path.join(__dirname, 'client/src'),
-  build: path.join(__dirname, 'client/src/build'),
-  styles: path.join(__dirname, 'client/src/build/assets/css')
+  build: path.join(__dirname, 'production'),
 };
-
-module.exports = {
+const common = {
   context: PATHS.app,
   entry: {
     app: './index.jsx'
+  },
+  resolve: {
+    extensions: ['*', '.js', '.jsx']
   },
   output: {
     path: PATHS.build,
     publicPath: '/',
     filename: 'bundle.js'
   },
-  resolve: {
-    extensions: ['*', '.js', '.jsx']
-  },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin('styles.css'),
+    new ExtractTextPlugin('style.css'),
     new webpack.ProvidePlugin({
-      $: 'jQuery',
-      jQuery: 'jQuery',
+      $: 'jquery',
+      jquery: 'jquery',
       'window.jQuery': 'jquery'
-    }),
-    new Dotenv({
-      path: './.env',
-      systemvars: true
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('development')
+        NODE_ENV: JSON.stringify('production'),
+        API_HOST: JSON.stringify('https://mrecipes.herokuapp.com/'),
+        DEFAULT_IMAGE: JSON.stringify(process.env.DEFAULT_IMAGE),
+        NO_IMAGE: JSON.stringify(process.env.NO_IMAGE)
       }
     })
   ],
-  devtool: 'eval-source-map',
-
+  devtool: 'none',
   module: {
     loaders: [
+      // Set up jsx. This accepts js too thanks to RegExp
       {
-        query: {
-          cacheDirectory: true,
-        },
         test: /\.jsx?$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
-      }, {
+        include: PATHS.app
+      },
+      {
         test: /\.(scss|css)?$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
+          // resolve-url-loader may be chained before sass-loader if necessary
           use: ['css-loader', 'resolve-url-loader', 'sass-loader?sourceMap']
         })
-      }, {
+      },
+      {
         test: /\.(ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'file-loader'
-      }, {
+      },
+      {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'url-loader?limit=10000&mimetype=application/font-woff'
-      }, {
+      },
+      {
         test: /\.(png|jpg|gif)$/,
         loader: 'url-loader?limit=250000'
       }
     ]
   },
-  devServer: {
-    historyApiFallback: true,
-    hot: true,
-    inline: true,
-    stats: 'errors-only',
-    host: process.env.HOST,
-    port: process.env.PORT,
-    proxy: {
-      '/api/v1/**': {
-        target: 'http://[::1]:8000',
-        secure: false
-      }
-    },
-    contentBase: PATHS.build
-  },
   externals: {
-    jquery: 'jquery'
+    jquery: 'jQuery'
   }
 };
+module.exports = common;
+
