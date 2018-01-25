@@ -20,6 +20,7 @@ server.use(logger('dev'));
 // Parse incoming request data
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: false }));
+server.use('/documentation', express.static('build'));
 server.use(express.static(path.join(__dirname, '/client/src/build')));
 
 // API Routes

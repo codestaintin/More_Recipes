@@ -65,7 +65,11 @@ export class SignUp extends Component {
     }
     return isValid;
   }
-
+  /**
+   * componentWillReceiveProps
+   * @param {object }nextProps
+   * @return {object} object
+   */
   componentWillReceiveProps(nextProps) {
     if (nextProps.signUpState.success === true) {
       $('.close').click();
@@ -82,6 +86,16 @@ export class SignUp extends Component {
     if (this.checkValidity()) {
       this.setState({ errors: {} });
       this.props.signUpAction(this.state.regDetails);
+      this.setState({
+        regDetails: {
+          firstName: '',
+          lastName: '',
+          username: '',
+          email: '',
+          password: '',
+          confirmPassword: ''
+        }
+      });
     }
   }
   /**

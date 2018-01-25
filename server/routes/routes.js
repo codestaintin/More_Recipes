@@ -25,10 +25,12 @@ const routes = (router) => {
       authMiddleware.verifyUser,
       userController.retrieve);
 
-  router.route('/users/:userId/recipes')
+  router.route('/recipes/:recipeId/favorite')
   /** POST api/v1/:userId/recipes - Make a recipes favourite */
     .post(authMiddleware.verifyToken, authMiddleware.verifyUser,
-      favoriteController.create)
+      favoriteController.create);
+
+  router.route('/users/:userId/recipes')
   /** GET api/v1/:userId/recipes - Get user favourite recipes */
     .get(authMiddleware.verifyToken, authMiddleware.verifyUser,
       favoriteController.list);
@@ -74,13 +76,13 @@ const routes = (router) => {
   /**
   * POST api/vi/votes/:userId/upVotes
   */
-  router.route('/votes/:userId/upVotes')
+  router.route('/votes/:recipeId/upVote')
     .post(authMiddleware.verifyToken, authMiddleware.verifyUser,
       votingController.upVote);
   /**
  * POST api/vi/votes/:userId/downvote
  */
-  router.route('/votes/:userId/downVotes')
+  router.route('/votes/:recipeId/downVote')
     .post(authMiddleware.verifyToken, authMiddleware.verifyUser,
       votingController.downVote);
 };
