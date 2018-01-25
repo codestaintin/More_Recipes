@@ -90,6 +90,26 @@ const getAllRecipesFailure = errors => ({
   type: actionTypes.GET_ALL_RECIPES_FAILURE,
   errors
 });
+
+const createUserFavourite = message => ({
+  type: actionTypes.CREATE_USER_FAVORITE_SUCCESS,
+  message
+});
+
+const createUserFavouriteFailure = error => ({
+  type: actionTypes.CREATE_USER_FAVORITE_FAILURE,
+  error
+});
+
+const getUserFavoritesSuccess = data => ({
+  type: actionTypes.GET_USER_FAVORITES_SUCCESS,
+  data
+});
+
+const getUserFavoritesFailure = error => ({
+  type: actionTypes.GET_USER_FAVORITES_FAILURE,
+  error
+});
 /**
  * Add recipe function
  * 
@@ -126,7 +146,7 @@ const clearToast = () => (dispatch) => {
 /**
  * Get user recipes function
  * 
- * @param {userId} userId - Id of the recipe
+ * @param {integer} userId - Id of the recipe
  * @returns {object} recipes
  */
 const getUserRecipes = userId => (
@@ -182,7 +202,7 @@ const getAllRecipes = () => (
  * 
  * @param {integer} recipeId - Id of the recipe
  * @param {object} recipeDetails - Details of the recipe
- * @param {string} cloudImageUrl - Clould image URL
+ * @param {string} cloudImageUrl - Cloud image URL
  * @returns {object} recipe
  */
 const editRecipe = (recipeId, recipeDetails, cloudImageUrl = '') => 
@@ -202,8 +222,8 @@ const editRecipe = (recipeId, recipeDetails, cloudImageUrl = '') =>
 /**
  * Delete recipe function
  * 
- * @param {recipeId} recipeId
- * @returns {message} message
+ * @param {integer} recipeId
+ * @returns {string} message
  */
 const deleteRecipe = recipeId => (dispatch) => {
   axios.delete(`/api/v1/recipes/${recipeId}`, {
@@ -218,8 +238,8 @@ const deleteRecipe = recipeId => (dispatch) => {
 /**
  * Post a review function
  * 
- * @param {obejct} recipeId
- * @param {object} content
+ * @param {integer} recipeId
+ * @param {string} content
  * @returns {object} reviews
  */
 const postReview = (recipeId, content) => (dispatch) => {
@@ -231,7 +251,12 @@ const postReview = (recipeId, content) => (dispatch) => {
     })
     .catch(error => dispatch(postReviewFailure(error)));
 };
-
+/**
+ * Get a recipe reviews function
+ * 
+ * @param {integer} recipeId
+ * @returns {object} reviews
+ */
 const getReview = recipeId => (dispatch) => {
   axios.get(`/api/v1/recipes/${recipeId}/reviews`, {
     headers: { 'x-access-token': window.localStorage.token }
@@ -243,12 +268,46 @@ const getReview = recipeId => (dispatch) => {
     .catch(error => dispatch(getReviewFailure(error.res.data.error)));
 };
 /**
+ * 
+ *
+ * @param {integer} recipeId
+ * 
+ * @returns {object} favourites
+ */
+const createFavourite = recipeId => (dispatch) => {
+  axios.post(`/api/v1/recipes/${recipeId}/favorite`, { recipeId }, {
+    headers: { 'x-access-token': window.localStorage.token }
+  })
+    .then((res) => {
+      dispatch(createUserFavourite(res.data.message));
+    })
+    .catch(error => dispatch(createUserFavouriteFailure(error.res.data.error.message)));
+};
+/**
+ * Get all user favorites function
+ *
+ * @param {integer} userId
+ * @returns {object} recipe
+ */
+const getUserFavorites = userId => (dispatch) => {
+  axios.get(`/api/v1/users/${userId}/recipes`, {
+    headers: { 'x-access-token': window.localStorage.token }
+  })
+    .then((res) => {
+      dispatch(getUserFavoritesSuccess({
+        userFavorites: res.data.favorites,
+        pagination: res.data.paginationMeta
+      }));
+    })
+    .catch(error => dispatch(getUserFavoritesFailure(error.res.data.error)));
+};
+/**
  * Process image upload
  * 
- * @param {recipe} recipe - recipe
+ * @param {object} recipe - recipe
  * @param {object|string} imageFile - Image file
  * @param {type} type - Type of action
- * @param {recipeId} recipeId - Id of the recipe
+ * @param {integer} recipeId - Id of the recipe
  * @returns {object} recipe
  */
 const processRecipeActions =
@@ -266,7 +325,8 @@ const processRecipeActions =
           .then((response) => {
             cloudImageUrl = response.data.url;
             dispatch(editRecipe(recipeId, recipe, cloudImageUrl));
-          }).catch(() => {
+          }).catch((error) => {
+            console.dir(error);
             dispatch(editRecipeFailure('Recipe not updated'));
             dispatch(isRecipeCreating(false));
           });
@@ -300,6 +360,8 @@ export {
   getAllRecipes,
   deleteRecipe,
   getUserRecipes,
+  createFavourite,
+  getUserFavorites,
   postReview,
   getReview,
   clearToast

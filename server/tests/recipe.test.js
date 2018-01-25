@@ -1,5 +1,6 @@
 import request from 'supertest';
 import dotEnv from 'dotenv';
+import jwtDecode from 'jwt-decode';
 import { assert } from 'chai';
 import server from '../../server';
 import authSeed from './seeder/authSeed';
@@ -11,9 +12,13 @@ describe('Test cases for all recipes actions', () => {
   before(authSeed.emptyUserTable);
   before(recipeSeed.emptyRecipeTable);
   before(authSeed.addUser);
+  before(authSeed.addUser1);
   before(recipeSeed.addRecipe);
 
   let token;
+  let token2;
+  let id;
+  let id2;
   before((done) => {
     request(server)
       .post('/api/v1/users/signin')
@@ -22,6 +27,20 @@ describe('Test cases for all recipes actions', () => {
       .end((err, res) => {
         if (err) return done(err);
         token = res.body.token;
+        id = jwtDecode(token).id;
+        done();
+      });
+  });
+
+  before((done) => {
+    request(server)
+      .post('/api/v1/users/signin')
+      .send(authSeed.setLogin('jayjay@gmail.com', 'password'))
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err);
+        token2 = res.body.token;
+        id2 = jwtDecode(token2).id;
         done();
       });
   });
@@ -143,7 +162,6 @@ describe('Test cases for all recipes actions', () => {
     it('should return a status of 403 if the user is not authorized', (done) => {
       request(server)
         .put('/api/v1/recipes/:recipeId')
-        .send(recipeSeed.setUpdateRecipe('Okro soup', 'Okro plant', 'This is how cook okro', 'okro_img', 4))
         .expect(403)
         .end((err, res) => {
           if (err) return done(err);
@@ -160,6 +178,93 @@ describe('Test cases for all recipes actions', () => {
         .end((err, res) => {
           if (err) return done(err);
           assert.equal(res.body.message, 'Invalid authorization token');
+          done();
+        });
+    });
+  });
+  /**
+   * Test cases for GET user recipes actions
+   */
+  describe('GET /users/:userId/my-recipes', () => {
+    it('should return a status of 403 if the user is not authorized', (done) => {
+      request(server)
+        .get('/api/v1/users/1/my-recipes')
+        .expect(403)
+        .end((err, res) => {
+          if (err) return done(err);
+          assert.equal(res.body.message, 'Token not provided');
+          done();
+        });
+    });
+    it('should return a status of 403 if the user is not authorized', (done) => {
+      request(server)
+        .get('/api/v1/users/1/my-recipes')
+        .set({ 'x-access-token': 'nonsense' })
+        .expect(401)
+        .end((err, res) => {
+          if (err) return done(err);
+          assert.equal(res.body.message, 'Invalid authorization token');
+          done();
+        });
+    });
+    it('should return a status of 403 if the user is not authorized', (done) => {
+      request(server)
+        .get(`/api/v1/users/${id}/my-recipes`)
+        .set({ 'x-access-token': token })
+        .expect(200)
+        .end((err, res) => {
+          if (err) return done(err);
+          assert.equal(res.body.message, 'This are your recipes');
+          assert.isObject(res.body);
+          assert.isArray(res.body.recipes);
+          done();
+        });
+    });
+  });
+  /**
+   * Test cases for GET recipes actions
+   */
+  describe('DEL /api/v1/recipes/:recipeId when deleting a recipe', () => {
+    it('should return a status of 403 if the user is not authorized', (done) => {
+      request(server)
+        .del('/api/v1/recipes/1')
+        .expect(403)
+        .end((err, res) => {
+          if (err) return done(err);
+          assert.equal(res.body.message, 'Token not provided');
+          done();
+        });
+    });
+    it('should return a status code of 401 when an invalid authorization token is entered', (done) => {
+      request(server)
+        .post('/api/v1/recipes')
+        .set({ 'x-access-token': 'nonsense' })
+        .expect(401)
+        .end((err, res) => {
+          if (err) return done(err);
+          assert.equal(res.body.message, 'Invalid authorization token');
+          done();
+        });
+    });
+    it('should return a status of 404 if recipe does not exists', (done) => {
+      request(server)
+        .del('/api/v1/recipes/0')
+        .set({ 'x-access-token': token })
+        .expect(404)
+        .end((err, res) => {
+          if (err) return done(err);
+          assert.equal(res.body.message, 'Recipe not found');
+          done();
+        });
+    });
+    it('should return a status of 200 if recipe does not exists', (done) => {
+      request(server)
+        .del('/api/v1/recipes/1')
+        .set({ 'x-access-token': token })
+        .expect(200)
+        .end((err, res) => {
+          if (err) return done(err);
+          assert.equal(res.body.message, 'Recipe successfully deleted');
           done();
         });
     });

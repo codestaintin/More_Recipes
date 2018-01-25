@@ -9,7 +9,8 @@ const initialState = {
   getUserRecipesFailure: '',
   recipe: { },
   recipes: [],
-  review: []
+  review: [],
+  favorites: []
 };
 
 const recipeReducer = (state = initialState, action) => {
@@ -112,12 +113,30 @@ const recipeReducer = (state = initialState, action) => {
       return {
         ...state,
         responseType: recipeResponseType.GET_ALL_RECIPES_SUCCESS,
-        recipes: action.data.allRecipes
+        recipes: action.data.allRecipes,
+        pagination: action.data.pagination
       };
     case actionTypes.GET_ALL_RECIPES_FAILURE:
       return {
         ...state,
         responseType: recipeResponseType.FAILURE,
+      };
+    case actionTypes.CREATE_USER_FAVORITE_SUCCESS:
+      return {
+        ...state,
+        responseType: recipeResponseType.CREATE_USER_FAVOURITE
+      };
+    case actionTypes.CREATE_USER_FAVORITE_FAILURE:
+      return {
+        ...state,
+        responseType: recipeResponseType.FAILURE
+      };
+    case actionTypes.GET_USER_FAVORITES_SUCCESS:
+      return {
+        ...state,
+        responseType: recipeResponseType.GET_USER_FAVORITE_SUCCESS,
+        favorites: action.data.userFavorites,
+        pagination: action.data.pagination
       };
     default:
       return state;

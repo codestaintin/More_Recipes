@@ -7,7 +7,6 @@ dotenv.config();
 
 const Recipe = db.Recipe;
 const User = db.User;
-const Review = db.Review;
 const Voting = db.Voting;
 const Favorite = db.Favorite;
 
@@ -231,7 +230,7 @@ const recipeController = {
                 message: 'This user has no recipe'
               });
             }
-            return res.status(200).json({ recipes });
+            return res.status(200).json({ message: 'This are your recipes', recipes });
           })
           .catch(error => res.status(500).json({ error }));
       })

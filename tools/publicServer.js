@@ -31,6 +31,7 @@ server.use(morganLogger('dev'));
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(compression());
+server.use('/documentation', express.static('build'));
 server.use(express.static('production'));
 
 // API Routes
