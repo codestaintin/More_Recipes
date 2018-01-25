@@ -42,6 +42,12 @@ export class SignIn extends Component {
     if (this.checkValidity()) {
       this.setState({ errors: {} });
       this.props.signInAction(this.state.loginDetails);
+      this.setState({
+        loginDetails: {
+          email: '',
+          password: ''
+        }
+      });
     }
   }
   /**

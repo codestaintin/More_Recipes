@@ -17,15 +17,17 @@ import { recipeResponseType } from '../utils/helpers';
 
 /**
  *
- * @export
  * @class AddRecipe
+ * 
  * @extends {React.Component}
  */
 export class AddRecipe extends Component {
   /**
    * Creates an instance of AddRecipeComponent.
+   * 
    * @param {any} props
-   * @memberof AddRecipeC
+   * 
+   * @memberof AddRecipe
    */
   constructor(props) {
     super(props);
@@ -44,8 +46,9 @@ export class AddRecipe extends Component {
     this.handleImageChange = this.handleImageChange.bind(this);
   }
   /**
-   * @return {nextProps} nextProps
-   * @param {nextProps} nextProps
+   * @return {object} nextProps
+   * 
+   * @param {object} nextProps
    */
   componentWillReceiveProps(nextProps) {
     const { message, responseType } = nextProps.recipeState;
@@ -62,8 +65,9 @@ export class AddRecipe extends Component {
   /**
    * Handle submit
    *
-   * @return {event} event
-   * @param {event} event
+   * @return {object} event
+   * 
+   * @param {object} event
    */
   handleSubmit(event) {
     event.preventDefault();
@@ -76,15 +80,16 @@ export class AddRecipe extends Component {
           description: '',
           ingredient: ''
         },
-        imageSrc: '/assets/images/no-image.jpg'
+        imageSrc: process.env.NO_IMAGE
       });
     }
   }
   /**
    * Handle Image Upload
    *
-   * @return {event} event
-   * @param {event} event
+   * @return {object} event
+   * 
+   * @param {object} event
    */
   handleImageChange(event) {
     if (event.target.files && event.target.files[0]) {
@@ -96,7 +101,7 @@ export class AddRecipe extends Component {
       reader.readAsDataURL(event.target.files[0]);
     } else {
       this.setState({
-        imageSrc: '/assets/images/no-image.jpg',
+        imageSrc: process.env.NO_IMAGE,
         imageFile: ''
       });
     }
@@ -117,8 +122,9 @@ export class AddRecipe extends Component {
   /**
    * Handle change
    *
-   * @return {event} event
-   * @param {event} event
+   * @return {object} event
+   * 
+   * @param {object} event
    */
   handleChange(event) {
     const recipeDetails = this.state.recipeDetails;
@@ -127,9 +133,9 @@ export class AddRecipe extends Component {
   }
   /**
    * 
-   * 
    * @returns {XML} XML/JSX
-   * @memberof AddRecipeComponent
+   * 
+   * @memberof AddRecipe
    */
   render() {
     const { recipeDetails, imageSrc, errors } = this.state;
@@ -169,7 +175,10 @@ export class AddRecipe extends Component {
                       accept="image/*" />
                     <img src={imageSrc} alt="sample" height="400" width="100%"/>
                   </div>
-                </div>
+                </div><br/>
+                <span className="text-info">Please click to upload an image &nbsp;
+                  <i className="fa fa-upload" />
+                </span>
               </div>
               <div
                 className="simplebox blade col-12 col-sm-6 col-md-8 col-lg-8 p-10"

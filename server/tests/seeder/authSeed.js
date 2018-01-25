@@ -31,6 +31,17 @@ const authSeed = {
     })
       .then(() => done())
       .catch(err => done(err));
+  },
+  addUser1(done) {
+    User.create({
+      firstName: 'Adeyemo',
+      lastName: 'Ayodele',
+      username: 'jayjay',
+      email: 'jayjay@gmail.com',
+      password: 'password'
+    })
+      .then(() => done())
+      .catch(err => done(err));
   }
 };
 

@@ -1,7 +1,10 @@
 import db from '../models';
+import { generatePaginationMeta } from '../utils/helper';
+
 
 const Favorite = db.Favorite;
 const Recipe = db.Recipe;
+const User = db.User;
 
 const favoriteController = {
 
@@ -34,7 +37,7 @@ const favoriteController = {
         favorite
       }))
       .catch(error => res.status(500).json({
-        message: error.message ? error.message : 'An error occured during this operation',
+        message: error.message ? error.message : 'An error occurred during this operation',
         error: error.errors
       }));
   },
@@ -48,13 +51,30 @@ const favoriteController = {
    * @returns { object } object
    */
   list(req, res) {
-    Favorite.findAll({
+    const limit = req.query.limit || 8;
+    const offset = req.query.offset || 0;
+    const order = (req.query.order && req.query.order.toLowerCase() === 'desc')
+      ? [['createdAt', 'DESC']] : [['createdAt', 'ASC']];
+    Favorite.findAndCountAll({
+      limit,
+      offset,
+      order,
       where: { userId: req.params.userId },
-      include: [{
-        model: Recipe,
-      }]
+      include: [
+        {
+          model: Recipe,
+          include: [
+            {
+              model: User, attributes: ['username']
+            }
+          ]
+        }
+      ]
     })
-      .then(favorites => res.status(200).json({ favorites }))
+      .then(favorites => res.status(200).json({
+        paginationMeta: generatePaginationMeta(favorites, limit, offset),
+        favorites: favorites.rows
+      }))
       .catch(error => res.status(500).json({ error: error.message }));
   }
 };
