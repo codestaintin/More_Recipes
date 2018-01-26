@@ -321,12 +321,13 @@ const processRecipeActions =
       imageData.append('upload_preset', process.env.CLOUDINARY_UPLOAD_PRESET);
 
       if (type === 'updateRecipe') {
-        axios.post(process.env.CLOUDINARY_URL, imageData)
+        console.log('------>', type);
+        axios.post('https://api.cloudinary.com/v1_1/ditm0nduo/image/upload', imageData)
           .then((response) => {
             cloudImageUrl = response.data.url;
             dispatch(editRecipe(recipeId, recipe, cloudImageUrl));
           }).catch((error) => {
-            console.dir(error);
+            console.log(error);
             dispatch(editRecipeFailure('Recipe not updated'));
             dispatch(isRecipeCreating(false));
           });
