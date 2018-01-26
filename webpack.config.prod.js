@@ -31,7 +31,8 @@ const common = {
         NODE_ENV: JSON.stringify('production'),
         API_HOST: JSON.stringify('https://mrecipes.herokuapp.com/'),
         DEFAULT_IMAGE: JSON.stringify(process.env.DEFAULT_IMAGE),
-        NO_IMAGE: JSON.stringify(process.env.NO_IMAGE)
+        NO_IMAGE: JSON.stringify(process.env.NO_IMAGE),
+        CLOUDINARY_UPLOAD_PRESET: JSON.stringify(process.env.CLOUDINARY_UPLOAD_PRESET)
       }
     })
   ],

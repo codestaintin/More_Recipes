@@ -89,6 +89,7 @@ export class EditRecipe extends Component {
         'updateRecipe',
         recipeId
       );
+      console.log('()()()->', this.state.imageFile);
     }
   }
   /**
@@ -183,7 +184,7 @@ export class EditRecipe extends Component {
                   </div>
                 </div><br/>
                 <span className="text-info">Please click to upload an image &nbsp;
-                  <i className="fa fa-upload"></i>
+                  <i className="fa fa-upload" />
                 </span>
               </div>
               <div

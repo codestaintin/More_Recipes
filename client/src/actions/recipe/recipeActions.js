@@ -322,12 +322,14 @@ const processRecipeActions =
 
       if (type === 'updateRecipe') {
         console.log('------>', type);
+        console.log('+++++++>', imageData);
         axios.post('https://api.cloudinary.com/v1_1/ditm0nduo/image/upload', imageData)
           .then((response) => {
+            console.log('#########', imageData);
             cloudImageUrl = response.data.url;
             dispatch(editRecipe(recipeId, recipe, cloudImageUrl));
           }).catch((error) => {
-            console.log(error);
+            console.log(error.message);
             dispatch(editRecipeFailure('Recipe not updated'));
             dispatch(isRecipeCreating(false));
           });
