@@ -16,14 +16,16 @@ import { recipeResponseType } from '../utils/helpers';
 
 /**
  *
- * @export
  * @class EditRecipe
+ * 
  * @extends {React.Component}
  */
 export class EditRecipe extends Component {
   /**
    * Creates an instance of SignInComponent.
+   * 
    * @param {any} props
+   * 
    * @memberof EditRecipe
    */
   constructor(props) {
@@ -36,7 +38,7 @@ export class EditRecipe extends Component {
       },
       errors: {},
       imageFile: '',
-      imageSrc: ''
+      imageSrc: process.env.NO_IMAGE
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -45,8 +47,8 @@ export class EditRecipe extends Component {
 
   /**
    *
-   *
    * @returns {XML} XML/JSX
+   * 
    * @memberof EditRecipe
    */
   componentWillMount() {
@@ -54,8 +56,9 @@ export class EditRecipe extends Component {
     this.props.getRecipe(recipeId);
   }
   /**
-   * @return {nextProps} nextProps
-   * @param {nextProps} nextProps
+   * @return {object} nextProps
+   * 
+   * @param {object} nextProps
    */
   componentWillReceiveProps(nextProps) {
     const { message, responseType, recipe } = nextProps.recipeState;
@@ -76,8 +79,9 @@ export class EditRecipe extends Component {
   /**
    * Handle submit
    *
-   * @return {event} event
-   * @param {event} event
+   * @return {object} event
+   * 
+   * @param {object} event
    */
   handleSubmit(event) {
     event.preventDefault();
@@ -94,8 +98,9 @@ export class EditRecipe extends Component {
   /**
    * Handle Image Upload
    *
-   * @return {event} event
-   * @param {event} event
+   * @return {object} event
+   * 
+   * @param {object} event
    */
   handleImageChange(event) {
     if (event.target.files && event.target.files[0]) {
@@ -107,7 +112,7 @@ export class EditRecipe extends Component {
       reader.readAsDataURL(event.target.files[0]);
     } else {
       this.setState({
-        imageSrc: '/assets/images/no-image.jpg',
+        imageSrc: process.env.NO_IMAGE,
         imageFile: ''
       });
     }
@@ -115,8 +120,9 @@ export class EditRecipe extends Component {
   /**
    * Check Validity
    *
-   * @return {event} event
-   * @param {event} event
+   * @return {object} event
+   * 
+   * @param {object} event
    */
   checkValidity() {
     const { errors, isValid } = recipeValidate(this.state.recipeDetails);
@@ -129,8 +135,9 @@ export class EditRecipe extends Component {
   /**
    * Handle change
    *
-   * @return {event} event
-   * @param {event} event
+   * @return {object} event
+   * 
+   * @param {object} event
    */
   handleChange(event) {
     const recipeDetails = this.state.recipeDetails;
@@ -141,6 +148,7 @@ export class EditRecipe extends Component {
    *
    *
    * @returns {XML} XML/JSX
+   * 
    * @memberof EditRecipe
    */
   render() {
@@ -178,10 +186,13 @@ export class EditRecipe extends Component {
                       className="recipe-upload text-hide"
                       onChange={this.handleImageChange}
                       accept="image/*" />
-                    <img src={imageSrc || '/assets/images/no-image.jpg'}
+                    <img src={imageSrc || process.env.NO_IMAGE}
                       alt="Image" height="400" width="100%"/>
                   </div>
-                </div>
+                </div><br/>
+                <span className="text-info">Please click to upload an image &nbsp;
+                  <i className="fa fa-upload" />
+                </span>
               </div>
               <div
                 className="simplebox blade col-12 col-sm-6 col-md-8 col-lg-8 p-10"
@@ -217,7 +228,7 @@ export class EditRecipe extends Component {
                         classnames(
                           'form-control',
                           {
-                            'is-invalid': errors.description ? 
+                            'is-invalid': errors.description ?
                               !!errors.description : false
                           }
                         )
@@ -255,7 +266,7 @@ export class EditRecipe extends Component {
                   <button type="submit"
                     className="btn btn-outline-success"
                     disabled={this.props.recipeState.isCreating}>
-                    {this.props.recipeState.isCreating ? 
+                    {this.props.recipeState.isCreating ?
                       <span>Updating Recipe... <Spinner size={20} />
                       </span> : 'Update Recipe' }
                   </button>

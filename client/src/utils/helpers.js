@@ -18,6 +18,8 @@ const recipeResponseType = {
   CLEAR_RECIPE_MESSAGE: 6,
   DELETE_RECIPE_SUCCESS: 7,
   GET_ALL_RECIPES_SUCCESS: 9,
+  CREATE_USER_FAVOURITE: 10,
+  GET_USER_FAVORITE_SUCCESS: 11
 };
 
 const userResponseType = {

@@ -13,8 +13,8 @@ import Header from './partials/Headers/Header.jsx';
 export default class NotFound extends Component {
   /**
    * 
-   * 
    * @returns {XML} XML/JSX
+   * 
    * @memberof NotFound
    */
   render() {

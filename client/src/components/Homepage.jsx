@@ -14,8 +14,8 @@ import { recipeResponseType } from './../utils/helpers';
 
 /**
  *
- *
  * @class HomePage
+ * 
  * @extends {React.Component}
  */
 export class HomePage extends Component {
@@ -31,8 +31,8 @@ export class HomePage extends Component {
   }
   /**
    *
-   *
    * @returns {XML} XML/JSX
+   * 
    * @memberof HomePage
    */
   componentWillMount() {
@@ -41,7 +41,9 @@ export class HomePage extends Component {
   /**
    *
    * @param  {object} nextProps
+   * 
    * @returns {XML} XML/JSX
+   * 
    * @memberof HomePage
    */
   componentWillReceiveProps(nextProps) {

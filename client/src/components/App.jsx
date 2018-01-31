@@ -6,6 +6,7 @@ import PropTypes from 'react-proptypes';
 export default class App extends Component {
   /**
    * Renders the component
+   * 
    * @return {XML} XML/JSX
    */
   render() {

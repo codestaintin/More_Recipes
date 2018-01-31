@@ -7,7 +7,8 @@ import { bindActionCreators } from 'redux';
 import {
   getRecipe,
   deleteRecipe,
-  getReview
+  getReview,
+  createFavourite
 } from '../actions/recipe/recipeActions';
 import { decodeToken } from '../utils/helpers';
 import history from '../utils/history';
@@ -18,14 +19,14 @@ import Header from './partials/Headers/Header.jsx';
 
 /**
  *
- * @export
  * @class RecipeDetailComponent
+ * 
  * @extends {React.Component}
  */
 class RecipeDetail extends Component {
   /**
    *
-   * @param {props} props
+   * @param {object} props
    */
   constructor(props) {
     super(props);
@@ -40,11 +41,12 @@ class RecipeDetail extends Component {
       }
     };
     this.handleDelete = this.handleDelete.bind(this);
+    this.createFavourite = this.createFavourite.bind(this);
   }
   /**
    *
-   *
    * @returns {XML} XML/JSX
+   * 
    * @memberof RecipeDetail
    */
   componentWillMount() {
@@ -55,7 +57,9 @@ class RecipeDetail extends Component {
   /**
    *
    * @param  {object} nextProps
+   * 
    * @returns {XML} XML/JSX
+   * 
    * @memberof RecipeDetail
    */
   componentWillReceiveProps(nextProps) {
@@ -66,7 +70,9 @@ class RecipeDetail extends Component {
   }
   /**
    * Handles recipe deletion
+   * 
    * @method handleDelete
+   * 
    * @return {void}
      */
   handleDelete() {
@@ -92,9 +98,31 @@ class RecipeDetail extends Component {
   }
 
   /**
+   * Handles favourite creation
+   * 
+   * @method createFavourites
+   * 
+   * @return {void}
+   */
+  createFavourite() {
+    const { recipeId } = this.props.match.params;
+    this.props.createFavourite(recipeId);
+    swal({
+      position: 'top-end',
+      title: 'Yummy !',
+      text: 'This is recipe is now your favorite !',
+      type: 'success',
+      showConfirmButton: false,
+      timer: 1000
+    });
+  }
+
+  /**
    *Renders RecipeDetail component
+
    * @returns {XML} XML/JSX
-   * @memberof RecipeDetailComponent
+   * 
+   * @memberof RecipeDetail
    */
   render() {
     const {
@@ -150,8 +178,9 @@ class RecipeDetail extends Component {
                   </span>
                 </div>
                 <p>
-                  <button className=
-                    "btn btn-outline-warning btn-sm fav-btn hvr-icon-pop">
+                  <button
+                    className="btn btn-outline-warning btn-sm fav-btn hvr-icon-pop"
+                    onClick={this.createFavourite}>
                     Favourite
                   </button>&nbsp; &nbsp;
                   <button className="btn btn-outline-success btn-sm">
@@ -234,7 +263,8 @@ RecipeDetail.propTypes = {
   reviews: PropTypes.array,
   recipeDetailState: PropTypes.object,
   recipeDelete: PropTypes.object.isRequired,
-  deleteRecipe: PropTypes.func.isRequired
+  deleteRecipe: PropTypes.func.isRequired,
+  createFavourite: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -244,5 +274,5 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ getRecipe, deleteRecipe, getReview }, dispatch);
+  bindActionCreators({ getRecipe, deleteRecipe, getReview, createFavourite }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(RecipeDetail);

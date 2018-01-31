@@ -10,7 +10,6 @@ import FooterComponent from './partials/Footer.jsx';
 import Header from "./partials/Headers/Header.jsx";
 /**
  *
- * @export
  * @class Profile
  * @extends {React.Component}
  */
@@ -27,8 +26,8 @@ class Profile extends Component {
   }
   /**
    *
-   *
    * @returns {XML} XML/JSX
+   * 
    * @memberof Profile
    */
   componentWillMount() {
@@ -39,7 +38,9 @@ class Profile extends Component {
   /**
    *
    * @param  {object} nextProps
+   * 
    * @returns {XML} XML/JSX
+   * 
    * @memberof Profile
    */
   componentWillReceiveProps(nextProps) {
@@ -51,9 +52,9 @@ class Profile extends Component {
     }
   }
   /**
-   * 
-   * 
+   *
    * @returns {XML} XML/JSX
+   * 
    * @memberof Profile
    */
   render() {

@@ -12,16 +12,15 @@ import { decodeToken } from '../utils/helpers';
 
 /**
  *
- *
- * @export
- * @className UserRecipe
+ * @class UserRecipe
+ * 
  * @extends {React.Component}
  */
 class UserRecipe extends Component {
   /**
    *
-   *
    * @returns {XML} XML/JSX
+   * 
    * @memberof UserRecipe
    */
   componentDidMount() {
@@ -32,9 +31,9 @@ class UserRecipe extends Component {
 
 
   /**
-   * 
-   * 
+   *
    * @returns {XML} XML/JSX
+   * 
    * @memberof UserRecipe
    */
   render() {

@@ -7,8 +7,8 @@ import PropTypes from 'react-proptypes';
  * @param { object } props
  * @returns { object } object
  */
-const Recipe = (props) => {
-  const image = (props.recipe.imageUrl !== '') ? props.recipe.imageUrl 
+const RecipeFavorite = (props) => {
+  const image = (props.recipe.imageUrl !== '') ? props.recipe.imageUrl
     : process.env.DEFAULT_IMAGE;
   return (
     <div className="col-12 col-sm-6 col-md-4 col-lg-3 align-self-center hvr-float-shadow">
@@ -26,7 +26,7 @@ const Recipe = (props) => {
           </h6>
           <h6 className="text-muted">
             <small>
-              <i className="fa fa-user" /> {props.recipe.User ? props.recipe.User.username : ''}</small>
+              <i className="fa fa-user" /> {props.recipe.User.username}</small>
           </h6>
         </div>
         <div className="recipe-met2">
@@ -46,8 +46,8 @@ const Recipe = (props) => {
   );
 };
 
-Recipe.propTypes = {
+RecipeFavorite.propTypes = {
   recipe: PropTypes.object.isRequired
 };
 
-export default Recipe;
+export default RecipeFavorite;
