@@ -113,8 +113,7 @@ const getUserFavoritesFailure = error => ({
 
 const upvoteRecipeSuccess = data => ({
   type: actionTypes.CREATE_UPVOTE_SUCCESSFUL,
-  message: data.message,
-  upvoteCount: data.recipe.upvotes
+  data
 });
 const upvoteRecipeFailure = error => ({
   type: actionTypes.CREATE_UPVOTE_FAILURE,
@@ -123,8 +122,7 @@ const upvoteRecipeFailure = error => ({
 
 const downvoteRecipeSuccess = data => ({
   type: actionTypes.CREATE_DOWNVOTE_SUCCESSFUL,
-  message: data.message,
-  downvoteCount: data.recipe.downvotes
+  data
 });
 
 const downvoteRecipeFailure = error => ({
@@ -135,7 +133,9 @@ const downvoteRecipeFailure = error => ({
  * Add recipe function
  *
  * @param {object} recipeDetails
+ * 
  * @param {string} cloudImageUrl - Cloud image URL
+ * 
  * @returns {object} recipes
  */
 const addRecipeAction = (recipeDetails, cloudImageUrl = '') => (dispatch) => {
@@ -158,6 +158,7 @@ const addRecipeAction = (recipeDetails, cloudImageUrl = '') => (dispatch) => {
 
 /**
  * Clear toaster message function
+ * 
  * @returns {string} message
  */
 const clearToast = () => (dispatch) => {
@@ -168,6 +169,7 @@ const clearToast = () => (dispatch) => {
  * Get user recipes function
  *
  * @param {integer} userId - Id of the recipe
+ * 
  * @returns {object} recipes
  */
 const getUserRecipes = userId => (
@@ -177,7 +179,6 @@ const getUserRecipes = userId => (
     })
       .then((res) => {
         dispatch(getUserRecipesSuccess(res.data.recipes));
-        console.log('000000', res.data);
       })
       .catch(error => dispatch(getUserRecipesFailure(error)));
   }
@@ -187,6 +188,7 @@ const getUserRecipes = userId => (
  * Get a recipes function
  *
  * @param {integer} recipeId - Id of the recipe
+ * 
  * @returns {object} recipe
  */
 const getRecipe = recipeId => (
@@ -223,8 +225,11 @@ const getAllRecipes = () => (
  * Edit a recipe function
  *
  * @param {integer} recipeId - Id of the recipe
+ * 
  * @param {object} recipeDetails - Details of the recipe
+ * 
  * @param {string} cloudImageUrl - Cloud image URL
+ * 
  * @returns {object} recipe
  */
 const editRecipe = (recipeId, recipeDetails, cloudImageUrl = '') =>
@@ -245,6 +250,7 @@ const editRecipe = (recipeId, recipeDetails, cloudImageUrl = '') =>
  * Delete recipe function
  *
  * @param {integer} recipeId
+ * 
  * @returns {string} message
  */
 const deleteRecipe = recipeId => (dispatch) => {
@@ -261,7 +267,9 @@ const deleteRecipe = recipeId => (dispatch) => {
  * Post a review function
  *
  * @param {integer} recipeId
+ * 
  * @param {string} content
+ * 
  * @returns {object} reviews
  */
 const postReview = (recipeId, content) => (dispatch) => {
@@ -277,6 +285,7 @@ const postReview = (recipeId, content) => (dispatch) => {
  * Get a recipe reviews function
  *
  * @param {integer} recipeId
+ * 
  * @returns {object} reviews
  */
 const getReview = recipeId => (dispatch) => {
@@ -309,6 +318,7 @@ const createFavourite = recipeId => (dispatch) => {
  * Get all user favorites function
  *
  * @param {integer} userId
+ * 
  * @returns {object} recipe
  */
 const getUserFavorites = userId => (dispatch) => {
@@ -321,46 +331,60 @@ const getUserFavorites = userId => (dispatch) => {
         pagination: res.data.paginationMeta
       }));
     })
-    .catch(error => dispatch(getUserFavoritesFailure(error.res.data.error)));
+    .catch((error) => {
+      dispatch(getUserFavoritesFailure(error.response.data.error));
+    });
 };
 /**
  * Upvote a recipe
  *
  * @param {integer} recipeId
+ * 
  * @returns {object} recipe
  */
 const upvoteRecipe = recipeId => (dispatch) => {
   axios.put(`/api/v1/recipe/${recipeId}/upVote`, {}, {
     headers: { 'x-access-token': window.localStorage.token }
   })
-    .then((res) => {
-      dispatch(upvoteRecipeSuccess(res.data));
+    .then(({ data }) => {
+      console.log(data);
+      dispatch(upvoteRecipeSuccess(data));
     })
-    .catch(error => dispatch(upvoteRecipeFailure(error.res.data.error)));
+    .catch((error) => {
+      dispatch(upvoteRecipeFailure(error.res.data.error));
+    });
 };
 
 /**
  * Downvote a recipe
  *
  * @param {integer} recipeId
+ * 
  * @returns {object} recipe
  */
 const downvoteRecipe = recipeId => (dispatch) => {
   axios.put(`/api/v1/recipe/${recipeId}/downVote`, {}, {
     headers: { 'x-access-token': window.localStorage.token }
   })
-    .then((res) => {
-      dispatch(downvoteRecipeSuccess(res.data));
+    .then(({ data }) => {
+      console.log(data);
+      dispatch(downvoteRecipeSuccess(data));
     })
-    .catch(error => dispatch(downvoteRecipeFailure(error.res.data.error)));
+    .catch((error) => {
+      dispatch(downvoteRecipeFailure(error));
+    });
 };
 /**
  * Process image upload
  *
  * @param {object} recipe - recipe
+ * 
  * @param {object|string} imageFile - Image file
+ * 
  * @param {type} type - Type of action
+ * 
  * @param {integer} recipeId - Id of the recipe
+ * 
  * @returns {object} recipe
  */
 const processRecipeActions =

@@ -12,9 +12,8 @@ import PaginateComponent from './partials/Paginate.jsx';
 
 /**
  *
- *
- * @export
  * @class Favorite
+ * 
  * @extends {React.Component}
  */
 class Favorite extends Component {
@@ -29,20 +28,19 @@ class Favorite extends Component {
     };
   }
   /**
-   *
-   *
    * @returns {XML} XML/JSX
+   * 
    * @memberof Favorite
    */
   componentWillMount() {
-    const { token } = window.localStorage;
-    const { id } = decodeToken(token);
+    const { id } = decodeToken(window.localStorage.token);
     this.props.getUserFavorites(id);
   }
   /**
-   *
    * @param  {object} nextProps
+   * 
    * @returns {XML} XML/JSX
+   * 
    * @memberof HomePage
    */
   componentWillReceiveProps(nextProps) {
@@ -55,8 +53,8 @@ class Favorite extends Component {
   }
   /**
      * 
-     * 
      * @returns {XML} XML/JSX
+     * 
      * @memberof Favorite
      */
   render() {
@@ -69,11 +67,8 @@ class Favorite extends Component {
             <nav aria-label="breadcrumb" className="mt-40 mb-10" >
               <ol className="breadcrumb bg-white">
                 <li className="breadcrumb-item"><Link to="/">Home</Link></li>
-                <li className="breadcrumb-item"><Link to="/profile">User</Link>
-                </li>
-                <li className="breadcrumb-item active" aria-current="page">
-                My Favorites
-                </li>
+                <li className="breadcrumb-item"><Link to="/profile">User</Link></li>
+                <li className="breadcrumb-item active" aria-current="page">My Favorites</li>
               </ol>
             </nav>
           </div>

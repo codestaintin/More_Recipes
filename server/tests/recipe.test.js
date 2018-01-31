@@ -306,6 +306,45 @@ describe('Test cases for all recipes actions', () => {
     });
   });
   /**
+   * Test cases for GET user recipes actions
+   */
+  describe('GET /users/:userId/my-recipes', () => {
+    it('should return a status of 403 if the user is not authorized', (done) => {
+      request(server)
+        .get('/api/v1/users/1/my-recipes')
+        .expect(403)
+        .end((err, res) => {
+          if (err) return done(err);
+          assert.equal(res.body.message, 'Token not provided');
+          done();
+        });
+    });
+    it('should return a status of 403 if the user is not authorized', (done) => {
+      request(server)
+        .get('/api/v1/users/1/my-recipes')
+        .set({ 'x-access-token': 'nonsense' })
+        .expect(401)
+        .end((err, res) => {
+          if (err) return done(err);
+          assert.equal(res.body.message, 'Invalid authorization token');
+          done();
+        });
+    });
+    it('should return a status of 403 if the user is not authorized', (done) => {
+      request(server)
+        .get(`/api/v1/users/${id}/my-recipes`)
+        .set({ 'x-access-token': token })
+        .expect(200)
+        .end((err, res) => {
+          if (err) return done(err);
+          assert.equal(res.body.message, 'This are your recipes');
+          assert.isObject(res.body);
+          assert.isArray(res.body.recipes);
+          done();
+        });
+    });
+  });
+  /**
    * Test cases for DELETE recipes actions
    */
   describe('DEL /api/v1/recipes/:recipeId when deleting a recipe', () => {
@@ -338,17 +377,6 @@ describe('Test cases for all recipes actions', () => {
         .end((err, res) => {
           if (err) return done(err);
           assert.equal(res.body.message, 'Recipe not found');
-          done();
-        });
-    });
-    it('should return a status of 404 if recipe does not exists', (done) => {
-      request(server)
-        .del('/api/v1/recipes/1')
-        .set({ 'x-access-token': token2 })
-        .expect(404)
-        .end((err, res) => {
-          if (err) return done(err);
-          assert.equal(res.body.message, 'This User Does not exit');
           done();
         });
     });

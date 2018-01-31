@@ -4,7 +4,6 @@ import { assert } from 'chai';
 import server from '../../server';
 import authSeed from './seeder/authSeed';
 import recipeSeed from './seeder/recipeSeed';
-import VotingSeed from './seeder/favoriteSeed';
 import votingSeed from './seeder/votingSeed';
 
 dotEnv.config();

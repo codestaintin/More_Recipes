@@ -16,14 +16,16 @@ import { recipeResponseType } from '../utils/helpers';
 
 /**
  *
- * @export
  * @class EditRecipe
+ * 
  * @extends {React.Component}
  */
 export class EditRecipe extends Component {
   /**
    * Creates an instance of SignInComponent.
+   * 
    * @param {any} props
+   * 
    * @memberof EditRecipe
    */
   constructor(props) {
@@ -45,8 +47,8 @@ export class EditRecipe extends Component {
 
   /**
    *
-   *
    * @returns {XML} XML/JSX
+   * 
    * @memberof EditRecipe
    */
   componentWillMount() {
@@ -55,6 +57,7 @@ export class EditRecipe extends Component {
   }
   /**
    * @return {object} nextProps
+   * 
    * @param {object} nextProps
    */
   componentWillReceiveProps(nextProps) {
@@ -77,6 +80,7 @@ export class EditRecipe extends Component {
    * Handle submit
    *
    * @return {object} event
+   * 
    * @param {object} event
    */
   handleSubmit(event) {
@@ -95,6 +99,7 @@ export class EditRecipe extends Component {
    * Handle Image Upload
    *
    * @return {object} event
+   * 
    * @param {object} event
    */
   handleImageChange(event) {
@@ -116,6 +121,7 @@ export class EditRecipe extends Component {
    * Check Validity
    *
    * @return {object} event
+   * 
    * @param {object} event
    */
   checkValidity() {
@@ -130,6 +136,7 @@ export class EditRecipe extends Component {
    * Handle change
    *
    * @return {object} event
+   * 
    * @param {object} event
    */
   handleChange(event) {
@@ -141,6 +148,7 @@ export class EditRecipe extends Component {
    *
    *
    * @returns {XML} XML/JSX
+   * 
    * @memberof EditRecipe
    */
   render() {

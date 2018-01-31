@@ -142,7 +142,8 @@ const recipeReducer = (state = initialState, action) => {
       return {
         ...state,
         responseType: recipeResponseType.CREATE_UPVOTE_SUCCESSFUL,
-        upvoteCount: action.upvoteCount
+        upvotes: action.data.recipe.upvotes,
+        downvotes: action.data.recipe.downvotes
       };
     case actionTypes.CREATE_UPVOTE_FAILURE:
       return {
@@ -153,7 +154,8 @@ const recipeReducer = (state = initialState, action) => {
       return {
         ...state,
         responseType: recipeResponseType.CREATE_DOWNVOTE_SUCCESSFUL,
-        downvoteCount: action.downvoteCount
+        upvotes: action.data.recipe.upvotes,
+        downvotes: action.data.recipe.downvotes
       };
     case actionTypes.CREATE_DOWNVOTE_FAILURE:
       return {

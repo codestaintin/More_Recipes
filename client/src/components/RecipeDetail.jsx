@@ -21,8 +21,8 @@ import Header from './partials/Headers/Header.jsx';
 
 /**
  *
- * @export
  * @class RecipeDetailComponent
+ * 
  * @extends {React.Component}
  */
 class RecipeDetail extends Component {
@@ -52,11 +52,11 @@ class RecipeDetail extends Component {
   }
   /**
    *
-   *
    * @returns {XML} XML/JSX
+   * 
    * @memberof RecipeDetail
    */
-  componentWillMount() {
+  componentDidMount() {
     const { recipeId } = this.props.match.params;
     this.props.getRecipe(recipeId);
     this.props.getReview(recipeId);
@@ -64,7 +64,9 @@ class RecipeDetail extends Component {
   /**
    *
    * @param  {object} nextProps
+   * 
    * @returns {XML} XML/JSX
+   * 
    * @memberof RecipeDetail
    */
   componentWillReceiveProps(nextProps) {
@@ -81,7 +83,7 @@ class RecipeDetail extends Component {
         recipe: 
         {
           ...this.state.recipe,
-          upvotes: recipeState.upvoteCount
+          upvotes: recipeState.upvotes
         } 
       });
     }
@@ -90,14 +92,16 @@ class RecipeDetail extends Component {
         recipe:
         {
           ...this.state.recipe,
-          downvotes: recipeState.downvoteCount
+          downvotes: recipeState.downvotes
         }
       });
     }
   }
   /**
    * Handles recipe deletion
+   * 
    * @method handleDelete
+   * 
    * @return {void}
      */
   handleDelete() {
@@ -124,7 +128,9 @@ class RecipeDetail extends Component {
 
   /**
    * Handles favourite creation
+   * 
    * @method createFavourites
+   * 
    * @return {void}
    */
   createFavourite() {
@@ -142,7 +148,9 @@ class RecipeDetail extends Component {
 
   /**
    * Upvote a recipe
-   * @method createFavourites
+   * 
+   * @method upvote
+   * 
    * @return {void}
    */
   upvote() {
@@ -152,7 +160,9 @@ class RecipeDetail extends Component {
 
   /**
    * Downvote a recipe
-   * @method createFavourites
+   * 
+   * @method downvote
+   * 
    * @return {void}
    */
   downvote() {
@@ -162,7 +172,9 @@ class RecipeDetail extends Component {
 
   /**
    *Renders RecipeDetail component
+
    * @returns {XML} XML/JSX
+   * 
    * @memberof RecipeDetail
    */
   render() {

@@ -10,7 +10,6 @@ import FooterComponent from './partials/Footer.jsx';
 import Header from "./partials/Headers/Header.jsx";
 /**
  *
- * @export
  * @class Profile
  * @extends {React.Component}
  */
@@ -27,8 +26,8 @@ class Profile extends Component {
   }
   /**
    *
-   *
    * @returns {XML} XML/JSX
+   * 
    * @memberof Profile
    */
   componentWillMount() {
@@ -39,7 +38,9 @@ class Profile extends Component {
   /**
    *
    * @param  {object} nextProps
+   * 
    * @returns {XML} XML/JSX
+   * 
    * @memberof Profile
    */
   componentWillReceiveProps(nextProps) {
@@ -51,19 +52,33 @@ class Profile extends Component {
     }
   }
   /**
-   * 
-   * 
+   *
    * @returns {XML} XML/JSX
+   * 
    * @memberof Profile
    */
   render() {
-    const { firstName, lastName, username, email, createdAt } = this.state.user;
+    const {
+      firstName,
+      lastName,
+      username,
+      email,
+      createdAt
+    } = this.state.user;
     return (
       <div>
         <Header/>
         <div className="wrapper">
           <ol
-            className="breadcrumb container mt-50 col-10 col-md-10 col-lg-10 mx-auto bg-white shadow-lite">
+            className="breadcrumb
+            container
+            mt-50
+            col-10
+            col-md-10
+            col-lg-10
+            mx-auto
+            bg-white
+            shadow-lite">
             <li className="breadcrumb-item">
               <Link to="/">Home</Link>
             </li>
@@ -72,6 +87,13 @@ class Profile extends Component {
             </li>
             <li className="breadcrumb-item active">Profile</li>
           </ol>
+          
+          <div className="center-content">
+            <img src="/assets/images/no-avatar.png"
+              className="avatar text-center circulate circulate-xlg"
+              alt="avatar" />
+          </div>
+
           <div className="mb-20 col-md-10 mx-auto recipe-details-container">
             <div className="row">
               <div

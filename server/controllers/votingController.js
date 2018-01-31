@@ -127,10 +127,10 @@ const votingController = {
                   userId: req.decoded.id
                 })
                 .then(() => {
-                  Recipe.findById(req.params.recipeId).then((newRecipe) => {
+                  Recipe.findById(req.params.recipeId).then((recipe) => {
                     recipe.increment('downvotes').then(() => res.status(201).json({
                       message: 'Downvote Successful',
-                      newRecipe
+                      recipe
                     }));
                   });
                 });
@@ -144,12 +144,12 @@ const votingController = {
                     }
                 })
                 .then(() => {
-                  Recipe.findById(req.params.recipeId).then((newRecipe) => {
+                  Recipe.findById(req.params.recipeId).then((recipe) => {
                     recipe.update({ downvotes: recipe.downvotes - 1 },
                       { fields: ['downvotes'] })
                       .then(() => res.status(200).json({
                         message: 'Voting removed',
-                        newRecipe
+                        recipe
                       }));
                   });
                 });
@@ -168,15 +168,15 @@ const votingController = {
                   });
               Recipe
                 .findById(req.params.recipeId)
-                .then((newRecipe) => {
-                  newRecipe.update({
+                .then((recipe) => {
+                  recipe.update({
                     upvotes: recipe.upvotes - 1,
                     downvotes: recipe.downvotes + 1
                   },
                   { fields: ['upvotes', 'downvotes'] })
                     .then(updatedRecipe => res.status(200).json({
                       message: 'Voting recorded',
-                      newRecipe: updatedRecipe
+                      recipe: updatedRecipe
                     }));
                 });
             }

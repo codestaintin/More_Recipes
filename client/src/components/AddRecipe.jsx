@@ -17,14 +17,16 @@ import { recipeResponseType } from '../utils/helpers';
 
 /**
  *
- * @export
  * @class AddRecipe
+ * 
  * @extends {React.Component}
  */
 export class AddRecipe extends Component {
   /**
    * Creates an instance of AddRecipeComponent.
+   * 
    * @param {any} props
+   * 
    * @memberof AddRecipe
    */
   constructor(props) {
@@ -127,7 +129,6 @@ export class AddRecipe extends Component {
   }
   /**
    * 
-   * 
    * @returns {XML} XML/JSX
    * @memberof AddRecipe
    */
@@ -171,7 +172,7 @@ export class AddRecipe extends Component {
                   </div>
                 </div><br/>
                 <span className="text-info">Please click to upload an image &nbsp;
-                  <i className="fa fa-upload"></i>
+                  <i className="fa fa-upload" />
                 </span>
               </div>
               <div

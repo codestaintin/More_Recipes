@@ -118,7 +118,7 @@ const userController = {
         return res.status(200).json({ user });
       })
       .catch(error => res.status(500).json({
-        message: 'An error occured during this operation',
+        message: 'An error occurred during this operation',
         error
       }));
   }

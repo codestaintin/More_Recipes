@@ -15,7 +15,8 @@ const signupAction = userDetails => (dispatch) => {
           payload: err.response.data.errors
         });
       }
-      return dispatch({ type: actionTypes.SIGNUP_UNSUCCESSFUL, 
+      return dispatch({
+        type: actionTypes.SIGNUP_UNSUCCESSFUL, 
         payload: 'Registration Failed'
       });
     });
