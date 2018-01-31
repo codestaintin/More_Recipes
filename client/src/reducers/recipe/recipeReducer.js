@@ -9,7 +9,7 @@ const initialState = {
   getUserRecipesFailure: '',
   recipe: { },
   recipes: [],
-  review: [],
+  reviews: [],
   favorites: []
 };
 
@@ -101,7 +101,7 @@ const recipeReducer = (state = initialState, action) => {
         ...state,
         responseType: recipeResponseType.GET_REVIEW_SUCCESS,
         message: '',
-        review: action.review
+        reviews: action.review
       };
     case actionTypes.GET_REVIEW_FAILURE:
       return {
@@ -137,6 +137,28 @@ const recipeReducer = (state = initialState, action) => {
         responseType: recipeResponseType.GET_USER_FAVORITE_SUCCESS,
         favorites: action.data.userFavorites,
         pagination: action.data.pagination
+      };
+    case actionTypes.CREATE_UPVOTE_SUCCESSFUL:
+      return {
+        ...state,
+        responseType: recipeResponseType.CREATE_UPVOTE_SUCCESSFUL,
+        upvoteCount: action.upvoteCount
+      };
+    case actionTypes.CREATE_UPVOTE_FAILURE:
+      return {
+        ...state,
+        responseType: recipeResponseType.CREATE_UPVOTE_FAILURE
+      };
+    case actionTypes.CREATE_DOWNVOTE_SUCCESSFUL:
+      return {
+        ...state,
+        responseType: recipeResponseType.CREATE_DOWNVOTE_SUCCESSFUL,
+        downvoteCount: action.downvoteCount
+      };
+    case actionTypes.CREATE_DOWNVOTE_FAILURE:
+      return {
+        ...state,
+        responseType: recipeResponseType.CREATE_DOWNVOTE_FAILURE
       };
     default:
       return state;

@@ -125,7 +125,8 @@ export class Review extends Component {
             placeholder="Kindly enter your review"
             />
             { errors.content ?
-              <span className="invalid-feedback">{ errors.content }</span> : null
+              <span className="invalid-feedback">{ errors.content }
+              </span> : null
             }
           </div>
           <button type="submit"

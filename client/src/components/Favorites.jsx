@@ -69,8 +69,11 @@ class Favorite extends Component {
             <nav aria-label="breadcrumb" className="mt-40 mb-10" >
               <ol className="breadcrumb bg-white">
                 <li className="breadcrumb-item"><Link to="/">Home</Link></li>
-                <li className="breadcrumb-item"><Link to="/profile">User</Link></li>
-                <li className="breadcrumb-item active" aria-current="page">My Favorites</li>
+                <li className="breadcrumb-item"><Link to="/profile">User</Link>
+                </li>
+                <li className="breadcrumb-item active" aria-current="page">
+                My Favorites
+                </li>
               </ol>
             </nav>
           </div>

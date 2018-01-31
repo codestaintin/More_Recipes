@@ -8,11 +8,13 @@ import {
   getRecipe,
   deleteRecipe,
   getReview,
-  createFavourite
+  createFavourite,
+  upvoteRecipe,
+  downvoteRecipe
 } from '../actions/recipe/recipeActions';
-import { decodeToken } from '../utils/helpers';
+import { decodeToken, recipeResponseType } from '../utils/helpers';
 import history from '../utils/history';
-import Review from './review/Review.jsx';
+import ReviewList from './review/Review.jsx';
 import FooterComponent from './partials/Footer.jsx';
 import Header from './partials/Headers/Header.jsx';
 
@@ -36,12 +38,17 @@ class RecipeDetail extends Component {
         name: '',
         imageUrl: '',
         ingredient: '',
+        upvotes: '',
+        downvotes: '',
         description: '',
         views: ''
-      }
+      },
+      reviews: []
     };
     this.handleDelete = this.handleDelete.bind(this);
     this.createFavourite = this.createFavourite.bind(this);
+    this.upvote = this.upvote.bind(this);
+    this.downvote = this.downvote.bind(this);
   }
   /**
    *
@@ -61,9 +68,31 @@ class RecipeDetail extends Component {
    * @memberof RecipeDetail
    */
   componentWillReceiveProps(nextProps) {
-    const { recipeDetailState } = nextProps;
-    if (recipeDetailState && recipeDetailState.id) {
-      this.setState({ recipe: nextProps.recipeDetailState });
+    const { recipeState } = nextProps;
+    const { recipe, reviews } = recipeState;
+    if (recipe && recipe.id) {
+      this.setState({ recipe });
+    }
+    if (reviews.length > 0) {
+      this.setState({ reviews });
+    }
+    if (recipeState.responseType === recipeResponseType.CREATE_UPVOTE_SUCCESSFUL) {
+      this.setState({ 
+        recipe: 
+        {
+          ...this.state.recipe,
+          upvotes: recipeState.upvoteCount
+        } 
+      });
+    }
+    if (recipeState.responseType === recipeResponseType.CREATE_DOWNVOTE_SUCCESSFUL) {
+      this.setState({
+        recipe:
+        {
+          ...this.state.recipe,
+          downvotes: recipeState.downvoteCount
+        }
+      });
     }
   }
   /**
@@ -112,6 +141,26 @@ class RecipeDetail extends Component {
   }
 
   /**
+   * Upvote a recipe
+   * @method createFavourites
+   * @return {void}
+   */
+  upvote() {
+    const { recipeId } = this.props.match.params;
+    this.props.upvoteRecipe(recipeId);
+  }
+
+  /**
+   * Downvote a recipe
+   * @method createFavourites
+   * @return {void}
+   */
+  downvote() {
+    const { recipeId } = this.props.match.params;
+    this.props.downvoteRecipe(recipeId);
+  }
+
+  /**
    *Renders RecipeDetail component
    * @returns {XML} XML/JSX
    * @memberof RecipeDetail
@@ -123,7 +172,9 @@ class RecipeDetail extends Component {
         imageUrl,
         ingredient,
         description,
-        views
+        views,
+        upvotes,
+        downvotes
       } = this.state.recipe,
       image = (imageUrl !== '') ? imageUrl : process.env.DEFAULT_IMAGE,
       ingredientList = ingredient.split(',').map((Ingredient, index) => (
@@ -161,29 +212,22 @@ class RecipeDetail extends Component {
                   <span className="badge badge-info">
                     <i className="fa fa-eye fa-2x"/>&nbsp; {views}
                   </span>&nbsp;&nbsp;
-                  <span className="badge badge-success">
+                  <span className="badge badge-success btn btn-success btn-sm"
+                    onClick={this.upvote}>
                     <i className="fa fa-thumbs-o-up fa-2x"/>
-                    &nbsp;  223</span>&nbsp;&nbsp;
-                  <span className="badge badge-danger">
+                    &nbsp;  {upvotes}</span>&nbsp;&nbsp;
+                  <span className="badge badge-danger btn btn-danger btn-sm"
+                    onClick={this.downvote}>
                     <i className="fa fa-thumbs-o-down fa-2x"/>
-                    &nbsp; 23
-                  </span>
-                </div>
-                <p>
-                  <button
-                    className="btn btn-outline-warning btn-sm fav-btn hvr-icon-pop"
+                    &nbsp; {downvotes}
+                  </span> &nbsp;
+                  <span
+                    className="badge badge-warning btn-sm btn btn-warning text-white fav-btn"
                     onClick={this.createFavourite}>
                     Favourite
-                  </button>&nbsp; &nbsp;
-                  <button className="btn btn-outline-success btn-sm">
-                    <i className="fa fa-thumbs-o-up" />
-                    Upvote
-                  </button>&nbsp; &nbsp;
-                  <button className="btn btn-outline-danger btn-sm">
-                    <i className="fa fa-thumbs-o-down" />
-                    Downvote
-                  </button>
-                </p>
+                    <i className="fa fa-star-o fa-2x"/>
+                  </span>
+                </div>
               </div>
             </div>
             <div
@@ -193,11 +237,6 @@ class RecipeDetail extends Component {
               }}>
               <div className="recipe-name light-well p-15">
                 <h3 className="bold text-muted">{name}</h3>
-                <p>
-                  <span className="badge badge-pill badge-secondary">
-                    <i className="fa fa-tags" />
-                    African Dishes</span>
-                </p>
                 <p>
                   <small>
                     <i className="fa fa-clock-o" />
@@ -237,9 +276,9 @@ class RecipeDetail extends Component {
         </div>
 
         <div className="container mt-20 mb-20 mx-auto">
-          <Review
+          <ReviewList
             match={this.props.match}
-            reviews={this.props.reviews}
+            reviews={this.state.reviews}
           />
         </div>
         <FooterComponent />
@@ -253,18 +292,22 @@ RecipeDetail.propTypes = {
   getReview: PropTypes.func.isRequired,
   match: PropTypes.shape().isRequired,
   reviews: PropTypes.array,
-  recipeDetailState: PropTypes.object,
-  recipeDelete: PropTypes.object.isRequired,
+  recipeState: PropTypes.object.isRequired,
   deleteRecipe: PropTypes.func.isRequired,
-  createFavourite: PropTypes.func.isRequired
+  createFavourite: PropTypes.func.isRequired,
+  upvoteRecipe: PropTypes.func.isRequired,
+  downvoteRecipe: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  recipeDetailState: state.recipeReducer.recipe,
-  recipeDelete: state.recipeReducer,
-  reviews: state.recipeReducer.review
+  recipeState: state.recipeReducer
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ getRecipe, deleteRecipe, getReview, createFavourite }, dispatch);
+  bindActionCreators({ getRecipe,
+    deleteRecipe,
+    getReview,
+    createFavourite,
+    upvoteRecipe,
+    downvoteRecipe }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(RecipeDetail);

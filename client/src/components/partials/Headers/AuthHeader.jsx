@@ -37,7 +37,7 @@ export default class AuthHeader extends Component {
                 aria-expanded="false">
                 My Account
               </Link>
-              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+              <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <Link to="/profile" className="dropdown-item">
                   <i className="fa fa-user-circle"/> My Profile
                 </Link>

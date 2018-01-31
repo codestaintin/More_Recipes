@@ -55,13 +55,19 @@ class UserRecipe extends Component {
           </div>
           <div className="container mb-20 recipe-details-container">
             <div className="row">
-              {userRecipes.map((recipe, index) => (
-                <RecipeComponent
-                  key={index}
-                  recipe={recipe}
-                  decodedToken={decodedToken}
-                />
-              ))}
+              {
+                userRecipes.length > 0 ?
+                  userRecipes.map((recipe, index) => (
+                    <RecipeComponent
+                      key={index}
+                      recipe={recipe}
+                      decodedToken={decodedToken}
+                    />
+                  ))
+                  : <div className="col col-md-12 text-center">
+                    <h1 className="text-info">You have no recipes yet!</h1>
+                  </div>
+              }
             </div>
           </div>
           <div className="clearfix" />

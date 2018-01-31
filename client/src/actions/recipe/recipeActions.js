@@ -110,6 +110,27 @@ const getUserFavoritesFailure = error => ({
   type: actionTypes.GET_USER_FAVORITES_FAILURE,
   error
 });
+
+const upvoteRecipeSuccess = data => ({
+  type: actionTypes.CREATE_UPVOTE_SUCCESSFUL,
+  message: data.message,
+  upvoteCount: data.recipe.upvotes
+});
+const upvoteRecipeFailure = error => ({
+  type: actionTypes.CREATE_UPVOTE_FAILURE,
+  error
+});
+
+const downvoteRecipeSuccess = data => ({
+  type: actionTypes.CREATE_DOWNVOTE_SUCCESSFUL,
+  message: data.message,
+  downvoteCount: data.recipe.downvotes
+});
+
+const downvoteRecipeFailure = error => ({
+  type: actionTypes.CREATE_DOWNVOTE_FAILURE,
+  error
+});
 /**
  * Add recipe function
  *
@@ -156,6 +177,7 @@ const getUserRecipes = userId => (
     })
       .then((res) => {
         dispatch(getUserRecipesSuccess(res.data.recipes));
+        console.log('000000', res.data);
       })
       .catch(error => dispatch(getUserRecipesFailure(error)));
   }
@@ -263,7 +285,6 @@ const getReview = recipeId => (dispatch) => {
   })
     .then((res) => {
       dispatch(getReviewSuccess(res.data));
-      dispatch(viewRecipeSuccess(res.data.recipe));
     })
     .catch(error => dispatch(getReviewFailure(error.res.data.error)));
 };
@@ -281,7 +302,8 @@ const createFavourite = recipeId => (dispatch) => {
     .then((res) => {
       dispatch(createUserFavourite(res.data.message));
     })
-    .catch(error => dispatch(createUserFavouriteFailure(error.res.data.error.message)));
+    .catch(error =>
+      dispatch(createUserFavouriteFailure(error.res.data.error.message)));
 };
 /**
  * Get all user favorites function
@@ -300,6 +322,37 @@ const getUserFavorites = userId => (dispatch) => {
       }));
     })
     .catch(error => dispatch(getUserFavoritesFailure(error.res.data.error)));
+};
+/**
+ * Upvote a recipe
+ *
+ * @param {integer} recipeId
+ * @returns {object} recipe
+ */
+const upvoteRecipe = recipeId => (dispatch) => {
+  axios.put(`/api/v1/recipe/${recipeId}/upVote`, {}, {
+    headers: { 'x-access-token': window.localStorage.token }
+  })
+    .then((res) => {
+      dispatch(upvoteRecipeSuccess(res.data));
+    })
+    .catch(error => dispatch(upvoteRecipeFailure(error.res.data.error)));
+};
+
+/**
+ * Downvote a recipe
+ *
+ * @param {integer} recipeId
+ * @returns {object} recipe
+ */
+const downvoteRecipe = recipeId => (dispatch) => {
+  axios.put(`/api/v1/recipe/${recipeId}/downVote`, {}, {
+    headers: { 'x-access-token': window.localStorage.token }
+  })
+    .then((res) => {
+      dispatch(downvoteRecipeSuccess(res.data));
+    })
+    .catch(error => dispatch(downvoteRecipeFailure(error.res.data.error)));
 };
 /**
  * Process image upload
@@ -361,6 +414,8 @@ export {
   getUserRecipes,
   createFavourite,
   getUserFavorites,
+  upvoteRecipe,
+  downvoteRecipe,
   postReview,
   getReview,
   clearToast
