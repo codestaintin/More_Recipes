@@ -37,6 +37,16 @@ module.exports = {
         type: Sequelize.INTEGER,
         defaultValue: 0
       },
+      upvotes: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+      },
+      downvotes: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -23,7 +23,17 @@ const recipeModel = (sequelize, DataTypes) => {
     views: {
       type: DataTypes.INTEGER,
       defaultValue: 0
-    }
+    },
+    upvotes: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
+    downvotes: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
   });
   Recipe.associate = (models) => {
     Recipe.belongsTo(models.User, {

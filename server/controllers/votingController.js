@@ -1,101 +1,188 @@
+
 import db from '../models';
 
 const Voting = db.Voting;
-const User = db.User;
 const Recipe = db.Recipe;
-
-/**
- * Vote Parameters
- *
- * @param { req } req
- * @param { res } res
- * @param { status } status
- * @returns { object } obj
- */
-const vote = (req, res, status) => {
-  const voteData = [];
-  const findUser = User.findOne({
-    where: {
-      id: req.params.userId
-    }
-  });
-
-  const findRecipe = Recipe.findOne({
-    where: {
-      id: req.body.recipeId
-    }
-  });
-
-  const findVote = Voting.findOne({
-    where: {
-      recipeId: req.body.recipeId,
-      userId: req.decoded.id
-    }
-  });
-
-  voteData.push(findUser);
-  voteData.push(findRecipe);
-  voteData.push(findVote);
-
-  Promise.all(voteData)
-    .then((results) => {
-      const user = results[0];
-      if (!user) {
-        return res.status(404).json({
-          message: 'This user does not exist'
-        });
-      }
-
-      const recipe = results[1];
-      if (!recipe) {
-        return res.status(404).json({
-          message: 'This recipe does not exist'
-        });
-      }
-
-      const voting = results[2];
-      if (voting) {
-        return voting.update({
-          vote: status
-        });
-      }
-      return Voting.create({
-        vote: status,
-        recipeId: req.body.recipeId,
-        userId: req.decoded.id
-      });
-    })
-    .then(updated => res.status(201).json({
-      message: 'Vote successful',
-      data: updated
-    }))
-    .catch(error => res.status(500).json({
-      message: 'An error occured during this operation',
-      errors: error.errors
-    }));
-};
 
 const votingController = {
   /**
-   * Upvote a recipe
-   *
-   * @param { req } req
-   * @param { res } res
-   * @returns { object } obj
+   * @description up vote recipe controller
+   * @param {Object} req - Request object
+   * @param {Object} res - Response object
+   * @returns {Object} json - payload
    */
-  upVote(req, res) {
-    vote(req, res, 1);
+  upvote(req, res) {
+    Recipe
+      .findById(req.params.recipeId)
+      .then((recipe) => {
+        if (!recipe) {
+          return res.status(404).json({
+            message: 'Recipe not found'
+          });
+        }
+      });
+    Voting.find({
+      attributes: ['voting'],
+      where: {
+        recipeId: req.params.recipeId,
+        userId: req.decoded.id
+      }
+    })
+      .then((voting) => {
+        if (!voting) {
+          Voting
+            .create({
+              voting: 1,
+              recipeId: req.params.recipeId,
+              userId: req.decoded.id
+            })
+            .then(() => {
+              Recipe.findById(req.params.recipeId).then((recipe) => {
+                recipe.increment('upvotes').then(() => res.status(201).json({
+                  message: 'Upvote successful',
+                  recipe
+                }));
+              });
+            });
+        } else if (voting.voting === 1) {
+          Voting.destroy(
+            {
+              where:
+                {
+                  recipeId: req.params.recipeId,
+                  userId: req.decoded.id
+                }
+            })
+            .then(() => {
+              Recipe.findById(req.params.recipeId).then((recipe) => {
+                recipe.update({ upvotes: recipe.upvotes - 1 },
+                  { fields: ['upvotes'] })
+                  .then(() => res.status(200).json({
+                    message: 'Upvote removed',
+                    recipe
+                  }));
+              });
+            });
+        } else if (voting.voting === 0) {
+          Voting.update(
+            {
+              voting: 1
+            },
+            {
+              where:
+                {
+                  recipeId: req.params.recipeId,
+                  userId: req.decoded.id
+                }
+            })
+            .then(() => {
+              Recipe
+                .findById(req.params.recipeId)
+                .then((recipe) => {
+                  recipe.update({
+                    upvotes: recipe.upvotes + 1,
+                    downvotes: recipe.downvotes - 1
+                  },
+                  { fields: ['upvotes', 'downvotes'] })
+                    .then(updatedRecipe => res.status(200).json({
+                      message: 'Vote status recorded',
+                      recipe: updatedRecipe
+                    }));
+                });
+            });
+        }
+      })
+      .catch(error => res.status(400).json({ message: error.message, error }));
   },
+
   /**
-   * Downvote a recipe
-   *
-   * @param { req } req
-   * @param { res } res
-   * @returns { object } obj
+   * @description down vote recipe controller
+   * @param {Object} req - Request object
+   * @param {Object} res - Response object
+   * @returns {Object} json - payload
    */
-  downVote(req, res) {
-    vote(req, res, 0);
+  downvote(req, res) {
+    Recipe
+      .findById(req.params.recipeId)
+      .then((recipe) => {
+        if (!recipe) {
+          return res.status(404).json({
+            message: 'Recipe not found'
+          });
+        }
+        Voting
+          .find({
+            attributes: ['voting'],
+            where: {
+              recipeId: req.params.recipeId,
+              userId: req.decoded.id
+            }
+          })
+          .then((voting) => {
+            if (!voting) {
+              Voting
+                .create({
+                  voting: 0,
+                  recipeId: req.params.recipeId,
+                  userId: req.decoded.id
+                })
+                .then(() => {
+                  Recipe.findById(req.params.recipeId).then((recipe) => {
+                    recipe.increment('downvotes').then(() => res.status(201).json({
+                      message: 'Downvote Successful',
+                      recipe
+                    }));
+                  });
+                });
+            } else if (voting.voting === 0) {
+              Voting.destroy(
+                {
+                  where:
+                    {
+                      recipeId: req.params.recipeId,
+                      userId: req.decoded.id
+                    }
+                })
+                .then(() => {
+                  Recipe.findById(req.params.recipeId).then((recipe) => {
+                    recipe.update({ downvotes: recipe.downvotes - 1 },
+                      { fields: ['downvotes'] })
+                      .then(() => res.status(200).json({
+                        message: 'Voting removed',
+                        recipe
+                      }));
+                  });
+                });
+            } else if (voting.voting === 1) {
+              Voting
+                .update(
+                  {
+                    voting: 0
+                  },
+                  {
+                    where:
+                      {
+                        recipeId: req.params.recipeId,
+                        userId: req.decoded.id
+                      }
+                  });
+              Recipe
+                .findById(req.params.recipeId)
+                .then((recipe) => {
+                  recipe.update({
+                    upvotes: recipe.upvotes - 1,
+                    downvotes: recipe.downvotes + 1
+                  },
+                  { fields: ['upvotes', 'downvotes'] })
+                    .then(updatedRecipe => res.status(200).json({
+                      message: 'Voting recorded',
+                      recipe: updatedRecipe
+                    }));
+                });
+            }
+          })
+          .catch(error => res.status(400).json({ message: error.message }));
+      });
   }
 };
-
 export default votingController;

@@ -47,7 +47,6 @@ export class AddRecipe extends Component {
   }
   /**
    * @return {object} nextProps
-   * 
    * @param {object} nextProps
    */
   componentWillReceiveProps(nextProps) {
@@ -66,7 +65,6 @@ export class AddRecipe extends Component {
    * Handle submit
    *
    * @return {object} event
-   * 
    * @param {object} event
    */
   handleSubmit(event) {
@@ -88,7 +86,6 @@ export class AddRecipe extends Component {
    * Handle Image Upload
    *
    * @return {object} event
-   * 
    * @param {object} event
    */
   handleImageChange(event) {
@@ -123,7 +120,6 @@ export class AddRecipe extends Component {
    * Handle change
    *
    * @return {object} event
-   * 
    * @param {object} event
    */
   handleChange(event) {
@@ -134,7 +130,6 @@ export class AddRecipe extends Component {
   /**
    * 
    * @returns {XML} XML/JSX
-   * 
    * @memberof AddRecipe
    */
   render() {

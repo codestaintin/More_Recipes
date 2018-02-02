@@ -18,7 +18,7 @@ const routes = (router) => {
   router.route('/users/signin')
   /** POST api/v1/users/signin - Log in a user */
     .post(userController.login);
-  
+
   router.route('/users/:userId')
   /** GET api/v1/:userId/ - Get a user */
     .get(authMiddleware.verifyToken,
@@ -45,9 +45,9 @@ const routes = (router) => {
    * GET api/v1/recipes - Get list of all recipes
    */
     .get(recipeController.list)
-  /**
-   * POST api/v1/recipes - Create a new recipe
-   */
+    /**
+     * POST api/v1/recipes - Create a new recipe
+     */
     .post(authMiddleware.verifyToken, recipeController.create);
 
   router.route('/recipes/:recipeId')
@@ -55,7 +55,7 @@ const routes = (router) => {
    * PUT api/v1/recipes/:recipeId - Update an existing recipe
    */
     .put(authMiddleware.verifyToken, recipeController.update)
-  /**
+    /**
      * GET api/v1/recipes/:recipeId - Get a recipe
      */
     .get(authMiddleware.verifyToken, recipeController.retrieve)
@@ -69,22 +69,22 @@ const routes = (router) => {
    * POST api/v1/:recipeId/reviews - Create a review for a recipe
    */
     .post(authMiddleware.verifyToken, reviewController.create)
-  /**
-    * GET api/v1/:recipeId/reviews - Get all recipe reviews
-   */
+    /**
+     * GET api/v1/:recipeId/reviews - Get all recipe reviews
+     */
     .get(authMiddleware.verifyToken, reviewController.list);
   /**
-  * POST api/vi/votes/:userId/upVotes
-  */
-  router.route('/votes/:recipeId/upVote')
-    .post(authMiddleware.verifyToken, authMiddleware.verifyUser,
-      votingController.upVote);
+   * POST api/v1/votes/:userId/upVotes
+   */
+  router.route('/recipe/:recipeId/upVote')
+    .put(authMiddleware.verifyToken, authMiddleware.verifyUser,
+      votingController.upvote);
   /**
- * POST api/vi/votes/:userId/downvote
- */
-  router.route('/votes/:recipeId/downVote')
-    .post(authMiddleware.verifyToken, authMiddleware.verifyUser,
-      votingController.downVote);
+   * POST api/v1/votes/:userId/downvote
+   */
+  router.route('/recipe/:recipeId/downVote')
+    .put(authMiddleware.verifyToken, authMiddleware.verifyUser,
+      votingController.downvote);
 };
 
 export default routes;

@@ -1,6 +1,6 @@
 const votingModel = (sequelize, DataTypes) => {
   const Voting = sequelize.define('Voting', {
-    vote: {
+    voting: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
@@ -27,4 +27,3 @@ const votingModel = (sequelize, DataTypes) => {
 };
 
 export default votingModel;
-

@@ -225,9 +225,9 @@ const recipeController = {
           include: [{ model: User, attributes: ['username'] }]
         })
           .then((recipes) => {
-            if (!recipes) {
+            if (recipes.length === 0) {
               return res.status(404).json({
-                message: 'This user has no recipe'
+                message: 'You have no recipes yet!'
               });
             }
             return res.status(200).json({ message: 'This are your recipes', recipes });

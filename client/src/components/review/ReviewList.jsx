@@ -19,8 +19,10 @@ const ReviewList = props => (
             <p>
               <small>{props.review.content}</small>
             </p>
-            <footer className="blockquote-footer">Posted on
-              <cite title="Source Title"> {moment().format("MMM Do YYYY")}</cite>
+            <footer className="blockquote-footer">Posted &nbsp;
+              <cite title="Source Title"> 
+                {moment.utc(new Date(props.review.createdAt)).fromNow()}
+              </cite>
             </footer>
           </blockquote>
         </div>

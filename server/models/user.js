@@ -48,8 +48,13 @@ const userModel = (sequelize, DataTypes) => {
   };
   /**
    * Method for comparing passwords
+   * @param { object } user
+   * @param { string } password
+   * 
+   * @returns { object } user
    */
-  User.prototype.comparePassword = (user, password) => bcrypt.compareSync(password, user.password);
+  User.prototype.comparePassword = (user, password) => 
+    bcrypt.compareSync(password, user.password);
   /**
    * Hook for hashing password before creating a new user
    */
@@ -59,14 +64,6 @@ const userModel = (sequelize, DataTypes) => {
     user.password = hash;
   });
 
-  /**
-   * Hook for hashing password before creating a new user
-   */
-  User.hook('beforeUpdate', (user) => {
-    const salt = bcrypt.genSaltSync(10);
-    const hash = bcrypt.hashSync(user.newPassword, salt);
-    user.newPassword = hash;
-  });
   /**
    * auth validation rules for user creation and login
    * @returns { object } object
