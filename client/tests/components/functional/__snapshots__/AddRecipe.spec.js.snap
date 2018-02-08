@@ -1,0 +1,410 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddRecipe> should render the AddRecipe Component 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "blank",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Connect(AddRecipe)
+        history={
+          Object {
+            "push": [Function],
+          }
+        }
+      >
+        <AddRecipe
+          clearToast={[Function]}
+          history={
+            Object {
+              "push": [Function],
+            }
+          }
+          processRecipeActions={[Function]}
+          recipeState={
+            Object {
+              "recipeState": Object {},
+            }
+          }
+        >
+          <div>
+            <Connect(Header)>
+              <Header
+                logoutAction={[Function]}
+              >
+                <div>
+                  <nav
+                    className="navbar navbar-expand-sm navbar-light bg-navbar fixed-top"
+                  >
+                    <Link
+                      className="navbar-brand"
+                      replace={false}
+                      to="/"
+                    >
+                      <a
+                        className="navbar-brand"
+                        href="/"
+                        onClick={[Function]}
+                      >
+                        More Recipes
+                      </a>
+                    </Link>
+                    <button
+                      aria-controls="navbarSupportedContent"
+                      aria-expanded="false"
+                      aria-label="Toggle navigation"
+                      className="navbar-toggler"
+                      data-target="#navbarSupportedContent"
+                      data-toggle="collapse"
+                      type="button"
+                    >
+                      <span
+                        className="navbar-toggler-icon"
+                      />
+                    </button>
+                    <div
+                      className="collapse navbar-collapse"
+                      id="navbarSupportedContent"
+                    >
+                      <ul
+                        className="navbar-nav ml-auto"
+                      >
+                        <li
+                          className="nav-item dropdown"
+                        >
+                          <Link
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            className="nav-link dropdown-toggle"
+                            data-toggle="dropdown"
+                            id="navbarDropdown"
+                            replace={false}
+                            role="button"
+                            to="#"
+                          >
+                            <a
+                              aria-expanded="false"
+                              aria-haspopup="true"
+                              className="nav-link dropdown-toggle"
+                              data-toggle="dropdown"
+                              href="#"
+                              id="navbarDropdown"
+                              onClick={[Function]}
+                              role="button"
+                            >
+                              My Account
+                            </a>
+                          </Link>
+                          <div
+                            aria-labelledby="navbarDropdown"
+                            className="dropdown-menu dropdown-menu-right mr-20"
+                          >
+                            <Link
+                              className="dropdown-item"
+                              replace={false}
+                              to="/profile"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="/profile"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-user-circle"
+                                />
+                                 My Profile
+                              </a>
+                            </Link>
+                            <Link
+                              className="dropdown-item"
+                              replace={false}
+                              to="/user-recipes"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="/user-recipes"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-list"
+                                />
+                                 My Recipes
+                              </a>
+                            </Link>
+                            <Link
+                              className="dropdown-item"
+                              replace={false}
+                              to="/my-favorite"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="/my-favorite"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-star"
+                                />
+                                 My Favorites
+                              </a>
+                            </Link>
+                            <Link
+                              className="dropdown-item"
+                              replace={false}
+                              to="/addRecipe"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="/addRecipe"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-plus"
+                                />
+                                 Add Recipes
+                              </a>
+                            </Link>
+                            <div
+                              className="dropdown-divider"
+                            />
+                            <Link
+                              className="dropdown-item"
+                              onClick={[Function]}
+                              replace={false}
+                              to="#"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="#"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-sign-out"
+                                />
+                                Log out
+                              </a>
+                            </Link>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </nav>
+                </div>
+              </Header>
+            </Connect(Header)>
+            <div
+              className="wrapper"
+            >
+              <ol
+                className="breadcrumb container mt-50 mb-10 col-md-9 mx-auto bg-white shadow-lite"
+              >
+                <li
+                  className="breadcrumb-item"
+                >
+                  <Link
+                    replace={false}
+                    to="/"
+                  >
+                    <a
+                      href="/"
+                      onClick={[Function]}
+                    >
+                      Home
+                    </a>
+                  </Link>
+                </li>
+                <li
+                  className="breadcrumb-item"
+                >
+                  <Link
+                    replace={false}
+                    to="#"
+                  >
+                    <a
+                      href="#"
+                      onClick={[Function]}
+                    >
+                      Recipes
+                    </a>
+                  </Link>
+                </li>
+                <li
+                  className="breadcrumb-item active"
+                >
+                  Add new
+                </li>
+              </ol>
+              <div
+                className="container mb-20 col-md-9 mx-auto recipe-details-container"
+              >
+                <div
+                  className="row"
+                >
+                  <div
+                    className="col-12 col-sm-6 col-md-4 col-lg-4 p-10 shadow-lite bg-white"
+                    style={
+                      Object {
+                        "height": "400px",
+                        "maxHeight": "400px",
+                      }
+                    }
+                  >
+                    <div
+                      className="light-well center-content"
+                      style={
+                        Object {
+                          "height": "100%",
+                        }
+                      }
+                    >
+                      <div
+                        className="text-center file-upload full-height full-width center-content"
+                      >
+                        <input
+                          accept="image/*"
+                          className="recipe-upload text-hide"
+                          onChange={[Function]}
+                          type="file"
+                        />
+                        <img
+                          alt="sample"
+                          height="400"
+                          width="100%"
+                        />
+                      </div>
+                    </div>
+                    <br />
+                    <span
+                      className="text-info"
+                    >
+                      Please click to upload an image  
+                      <i
+                        className="fa fa-upload"
+                      />
+                    </span>
+                  </div>
+                  <div
+                    className="simplebox blade col-12 col-sm-6 col-md-8 col-lg-8 p-10"
+                    style={
+                      Object {
+                        "boxShadow": "none",
+                      }
+                    }
+                  >
+                    <h5>
+                      Recipe Details
+                    </h5>
+                    <form
+                      className="mt-15 recipe-form"
+                      onSubmit={[Function]}
+                    >
+                      <div
+                        className="form-group"
+                      >
+                        <input
+                          aria-describedby="name"
+                          className="form-control"
+                          name="name"
+                          onChange={[Function]}
+                          placeholder="Recipe Name"
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                      <h6>
+                        Procedure
+                      </h6>
+                      <div
+                        className="form-group"
+                      >
+                        <textarea
+                          className="form-control"
+                          name="description"
+                          onChange={[Function]}
+                          placeholder="Recipe description here"
+                          rows="4"
+                          value=""
+                        />
+                      </div>
+                      <h6>
+                        Ingredients
+                      </h6>
+                      <div
+                        className="form-group"
+                      >
+                        <textarea
+                          className="form-control"
+                          name="ingredient"
+                          onChange={[Function]}
+                          placeholder="Ingredient1, ingredient2..."
+                          rows="4"
+                          value=""
+                        />
+                        <span
+                          className="small text-info"
+                        >
+                          Please enter comma separated values
+                        </span>
+                      </div>
+                      <button
+                        className="btn btn-outline-success"
+                        type="submit"
+                      >
+                        Add Recipe
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <FooterComponent>
+              <footer
+                className="p-10 well well-sm m-0 shadow-lite"
+              >
+                <div
+                  className="text-center text-muted"
+                >
+                  <p
+                    className="bold"
+                  >
+                    © 2017 More Recipes
+                  </p>
+                </div>
+              </footer>
+            </FooterComponent>
+          </div>
+        </AddRecipe>
+      </Connect(AddRecipe)>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;

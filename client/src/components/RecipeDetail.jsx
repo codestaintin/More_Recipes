@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'react-proptypes';
 import { connect } from 'react-redux';
 import swal from 'sweetalert2';
+import moment from 'moment';
 import { bindActionCreators } from 'redux';
 import {
   getRecipe,
@@ -72,19 +73,42 @@ class RecipeDetail extends Component {
   componentWillReceiveProps(nextProps) {
     const { recipeState } = nextProps;
     const { recipe, reviews } = recipeState;
+    // const { upvotes, downvotes } = this.state.recipe;
+    // console.log(nextProps);
     if (recipe && recipe.id) {
       this.setState({ recipe });
     }
     if (reviews.length > 0) {
       this.setState({ reviews });
     }
+    //
+    // if (upvotes !== recipeState.upvotes) {
+    //   this.setState({
+    //     recipe:
+    //       {
+    //         ...this.state.recipe,
+    //         upvotes: recipeState.upvotes
+    //       }
+    //   });
+    // }
+    //
+    // if (downvotes !== recipeState.downvotes) {
+    //   this.setState({
+    //     recipe:
+    //       {
+    //         ...this.state.recipe,
+    //         downvotes: recipeState.upvotes
+    //       }
+    //   });
+    // }
     if (recipeState.responseType === recipeResponseType.CREATE_UPVOTE_SUCCESSFUL) {
-      this.setState({ 
-        recipe: 
+      this.setState({
+        recipe:
         {
           ...this.state.recipe,
-          upvotes: recipeState.upvotes
-        } 
+          upvotes: recipeState.upvotes,
+          downvotes: recipeState.downvotes
+        }
       });
     }
     if (recipeState.responseType === recipeResponseType.CREATE_DOWNVOTE_SUCCESSFUL) {
@@ -92,7 +116,8 @@ class RecipeDetail extends Component {
         recipe:
         {
           ...this.state.recipe,
-          downvotes: recipeState.downvotes
+          downvotes: recipeState.downvotes,
+          upvotes: recipeState.upvotes,
         }
       });
     }
@@ -117,7 +142,7 @@ class RecipeDetail extends Component {
       if (result.value) {
         swal(
           'Deleted!',
-          'recipe Deletion successful',
+          'Recipe Deletion successful',
           'success'
         );
         this.props.deleteRecipe(this.props.match.params.recipeId);
@@ -186,7 +211,8 @@ class RecipeDetail extends Component {
         description,
         views,
         upvotes,
-        downvotes
+        downvotes,
+        createdAt
       } = this.state.recipe,
       image = (imageUrl !== '') ? imageUrl : process.env.DEFAULT_IMAGE,
       ingredientList = ingredient.split(',').map((Ingredient, index) => (
@@ -197,21 +223,16 @@ class RecipeDetail extends Component {
     return (
       <div>
         <Header/>
-        <div className="container">
-          <div className="row">
-            <ol
-              className=
-                "breadcrumb mt-50 mb-10 col-md-11 mx-auto bg-white shadow-lite"
-            >
-              <li className="breadcrumb-item">
-                <Link to="/">Home</Link>
-              </li>
-              <li className="breadcrumb-item">
-                <Link to="#">African Dishes</Link>
-              </li>
-              <li className="breadcrumb-item active">{ name }</li>
-            </ol>
-          </div>
+        <div className="container-fluid">
+          <ol
+            className=
+              "breadcrumb mt-50 mb-10 col-md-11 mx-auto bg-white shadow-lite"
+          >
+            <li className="breadcrumb-item">
+              <Link to="/">Recipe</Link>
+            </li>
+            <li className="breadcrumb-item active">{ name }</li>
+          </ol>
         </div>
 
         <div className=
@@ -234,7 +255,8 @@ class RecipeDetail extends Component {
                     &nbsp; {downvotes}
                   </span> &nbsp;
                   <span
-                    className="badge badge-warning btn-sm btn btn-warning text-white fav-btn"
+                    className="badge
+                    badge-warning btn-sm btn btn-warning text-white fav-btn"
                     onClick={this.createFavourite}>
                     Favourite
                     <i className="fa fa-star-o fa-2x"/>
@@ -251,8 +273,8 @@ class RecipeDetail extends Component {
                 <h3 className="bold text-muted">{name}</h3>
                 <p>
                   <small>
-                    <i className="fa fa-clock-o" />
-                    Uploaded 2hours ago
+                    <i className="fa fa-clock-o" /> &nbsp;
+                    Created {moment.utc(new Date(createdAt)).fromNow()}
                   </small>
                 </p>
                 {

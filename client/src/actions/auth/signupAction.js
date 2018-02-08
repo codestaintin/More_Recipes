@@ -1,11 +1,15 @@
 import axios from 'axios';
 import actionTypes from '../actionTypes';
+import { decodeToken } from '../../utils/helpers';
 
-const signupAction = userDetails => (dispatch) => {
-  axios.post('api/v1/users/signup', userDetails)
+
+const signupAction = userDetails => dispatch =>
+  axios.post('/api/v1/users/signup', userDetails)
     .then((res) => {
       const token = res.data.token;
-      window.localStorage.setItem('token', token);
+      if (decodeToken(token)) {
+        window.localStorage.setItem('token', token);
+      }
       dispatch({ type: actionTypes.SIGNUP_SUCCESSFUL });
       dispatch({ type: actionTypes.SIGNIN_SUCCESSFUL });
     })
@@ -20,6 +24,5 @@ const signupAction = userDetails => (dispatch) => {
         payload: 'Registration Failed'
       });
     });
-};
 
 export default signupAction;

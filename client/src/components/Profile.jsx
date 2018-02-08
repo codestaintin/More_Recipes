@@ -31,9 +31,8 @@ class Profile extends Component {
    * @memberof Profile
    */
   componentWillMount() {
-    const { token } = window.localStorage;
-    const user = decodeToken(token);
-    this.props.getUser(user.id);
+    const { id } = decodeToken(window.localStorage.token);
+    this.props.getUser(id);
   }
   /**
    *
@@ -97,7 +96,8 @@ class Profile extends Component {
           <div className="mb-20 col-md-10 mx-auto recipe-details-container">
             <div className="row">
               <div
-                className="simplebox blade col-12 col-sm-12 col-md-12 col-lg-12 p-10"
+                className="simplebox
+                blade col-12 col-sm-12 col-md-12 col-lg-12 p-10"
                 style={{
                   boxShadow: 'none'
                 }}>

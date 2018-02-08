@@ -8,6 +8,12 @@ const logout = () => {
   history.push('/');
 };
 
+const authorization = () => ({
+  headers: {
+    'x-access-token': window.localStorage.token
+  }
+});
+
 const recipeResponseType = {
   FAILURE: 0,
   ADD_RECIPE_SUCCESS: 1,
@@ -21,7 +27,10 @@ const recipeResponseType = {
   CREATE_USER_FAVOURITE: 10,
   GET_USER_FAVORITE_SUCCESS: 11,
   CREATE_UPVOTE_SUCCESSFUL: 12,
-  CREATE_DOWNVOTE_SUCCESSFUL: 13
+  CREATE_DOWNVOTE_SUCCESSFUL: 13,
+  GET_ALL_FAVORITES_SUCCESS: 14,
+  SEARCH_RECIPE_SUCCESS: 15,
+  GET_USER_RECIPES_SUCCESS: 16
 };
 
 const userResponseType = {
@@ -33,5 +42,6 @@ export {
   recipeResponseType,
   userResponseType,
   decodeToken,
-  logout
+  logout,
+  authorization
 };

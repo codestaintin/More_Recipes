@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'react-proptypes';
+import ReactPaginate from 'react-paginate';
 import Header from './partials/Headers/Header.jsx';
 import FooterComponent from './partials/Footer.jsx';
 import RecipeComponent from './recipe/Recipe.jsx';
-import PaginateComponent from './partials/Paginate.jsx';
+import emptyLogo from '../../src/build/assets/images/Empty.png';
 import { getUserRecipes } from '../actions/recipe/recipeActions';
 import { decodeToken } from '../utils/helpers';
 
@@ -19,14 +20,58 @@ import { decodeToken } from '../utils/helpers';
 class UserRecipe extends Component {
   /**
    *
+   * @param {props} props
+   */
+  constructor(props) {
+    super(props);
+    this.state = {
+      pageCount: 0,
+      page: 1
+    };
+    this.handlePageChange = this.handlePageChange.bind(this);
+  }
+  /**
+   *
    * @returns {XML} XML/JSX
    * 
    * @memberof UserRecipe
    */
   componentDidMount() {
-    const { token } = window.localStorage;
-    const { id } = decodeToken(token);
-    this.props.getUserRecipes(id);
+    const { id } = decodeToken(window.localStorage.token);
+    this.props.getUserRecipes(id, this.state.page);
+  }
+  /**
+   * @param  {object} nextProps
+   *
+   * @returns {XML} XML/JSX
+   *
+   * @memberof UserRecipes
+   */
+  componentWillReceiveProps(nextProps) {
+    const {
+      userRecipes: {
+        pagination: {
+          pageCount
+        }
+      }
+    } = nextProps;
+    this.setState({
+      pageCount
+    });
+  }
+  /**
+   * Handles page change
+   *
+   * @method handlePageChange
+   *
+   * @param {event} page
+   *
+   * @return {void}
+   */
+  handlePageChange(page) {
+    const currentPage = page.selected + 1;
+    const { id } = decodeToken(window.localStorage.token);
+    this.props.getUserRecipes(id, currentPage);
   }
 
 
@@ -37,7 +82,8 @@ class UserRecipe extends Component {
    * @memberof UserRecipe
    */
   render() {
-    const userRecipes = this.props.userRecipes;
+    const { getUserRecipesSuccess } = this.props.userRecipes;
+    const userRecipes = getUserRecipesSuccess;
     const decodedToken = decodeToken(window.localStorage.token);
     return (
       <div>
@@ -47,8 +93,10 @@ class UserRecipe extends Component {
             <nav aria-label="breadcrumb" className="mt-40 mb-10" >
               <ol className="breadcrumb bg-white">
                 <li className="breadcrumb-item"><Link to="/">Home</Link></li>
-                <li className="breadcrumb-item"><Link to="/profile">User</Link></li>
-                <li className="breadcrumb-item active" aria-current="page">My Recipes</li>
+                <li className="breadcrumb-item"><Link to="/profile">
+                User</Link></li>
+                <li className="breadcrumb-item active" aria-current="page">
+                My Recipes</li>
               </ol>
             </nav>
           </div>
@@ -65,12 +113,29 @@ class UserRecipe extends Component {
                   ))
                   : <div className="col col-md-12 text-center">
                     <h1 className="text-info">You have no recipes yet!</h1>
+                    <img src={emptyLogo} alt="No Recipe"/>
                   </div>
               }
             </div>
           </div>
           <div className="clearfix" />
-          <PaginateComponent/>
+          {
+            userRecipes.length > 0 ?
+              <ReactPaginate
+                pageCount={this.state.pageCount}
+                pageRangeDisplayed={2}
+                marginPagesDisplayed={2}
+                onPageChange={this.handlePageChange}
+                containerClassName="pagination justify-content-center"
+                subContainerClassName="page-item"
+                pageLinkClassName="page-link"
+                activeClassName="page-item active"
+                nextLinkClassName="page-link"
+                previousLinkClassName="page-link"
+              />
+              : null
+          }
+
         </div>
         <FooterComponent/>
       </div>
@@ -80,11 +145,11 @@ class UserRecipe extends Component {
 
 UserRecipe.propTypes = {
   getUserRecipes: PropTypes.func.isRequired,
-  userRecipes: PropTypes.array
+  userRecipes: PropTypes.object
 };
 
 const mapStateToProps = state => ({
-  userRecipes: state.recipeReducer.getUserRecipesSuccess
+  userRecipes: state.recipeReducer,
 });
 
 const mapDispatchToProps = dispatch =>

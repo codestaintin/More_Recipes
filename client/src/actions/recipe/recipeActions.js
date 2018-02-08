@@ -1,15 +1,18 @@
 import axios from 'axios';
 import FormData from 'form-data';
 import actionTypes from '../actionTypes';
+import { authorization } from '../../utils/helpers';
 
+const baseUrl = `/api/v1`;
 const isRecipeCreating = bool => ({
   type: actionTypes.IS_RECIPE_CREATING,
   bool
 });
 
-const addRecipeSuccess = message => ({
+const addRecipeSuccess = (message, recipeId) => ({
   type: actionTypes.ADD_RECIPE_SUCCESS,
-  message
+  message,
+  recipeId
 });
 
 const addRecipeFailure = error => ({
@@ -24,7 +27,7 @@ const getUserRecipesSuccess = data => ({
 
 const getUserRecipesFailure = error => ({
   type: actionTypes.GET_USER_RECIPES_FAILURE,
-  error
+  error: error.response.data
 });
 
 const viewRecipeSuccess = data => ({
@@ -34,7 +37,7 @@ const viewRecipeSuccess = data => ({
 
 const viewRecipeFailure = error => ({
   type: actionTypes.VIEW_RECIPE_FAILURE,
-  error
+  error: error.response.data
 });
 
 const editRecipeSuccess = message => ({
@@ -44,7 +47,7 @@ const editRecipeSuccess = message => ({
 
 const editRecipeFailure = error => ({
   type: actionTypes.EDIT_RECIPE_FAILURE,
-  error
+  error: error.response.data
 });
 
 const clearMessage = () => ({
@@ -58,7 +61,7 @@ const deleteRecipeSuccess = message => ({
 
 const deleteRecipeFailure = error => ({
   type: actionTypes.DELETE_RECIPE_FAILURE,
-  error
+  error: error.response.data
 });
 
 const postReviewSuccess = message => ({
@@ -68,7 +71,7 @@ const postReviewSuccess = message => ({
 
 const postReviewFailure = error => ({
   type: actionTypes.POST_REVIEW_FAILURE,
-  error
+  error: error.response.data
 });
 
 const getReviewSuccess = review => ({
@@ -78,7 +81,7 @@ const getReviewSuccess = review => ({
 
 const getReviewFailure = error => ({
   type: actionTypes.GET_REVIEW_FAILURE,
-  error
+  error: error.response.data
 });
 
 const getAllRecipesSuccess = data => ({
@@ -88,7 +91,7 @@ const getAllRecipesSuccess = data => ({
 
 const getAllRecipesFailure = errors => ({
   type: actionTypes.GET_ALL_RECIPES_FAILURE,
-  errors
+  error: errors.response.data
 });
 
 const createUserFavourite = message => ({
@@ -98,7 +101,7 @@ const createUserFavourite = message => ({
 
 const createUserFavouriteFailure = error => ({
   type: actionTypes.CREATE_USER_FAVORITE_FAILURE,
-  error
+  error: error.response.data
 });
 
 const getUserFavoritesSuccess = data => ({
@@ -108,7 +111,7 @@ const getUserFavoritesSuccess = data => ({
 
 const getUserFavoritesFailure = error => ({
   type: actionTypes.GET_USER_FAVORITES_FAILURE,
-  error
+  error: error.response.data
 });
 
 const upvoteRecipeSuccess = data => ({
@@ -117,7 +120,7 @@ const upvoteRecipeSuccess = data => ({
 });
 const upvoteRecipeFailure = error => ({
   type: actionTypes.CREATE_UPVOTE_FAILURE,
-  error
+  error: error.response.data
 });
 
 const downvoteRecipeSuccess = data => ({
@@ -127,24 +130,41 @@ const downvoteRecipeSuccess = data => ({
 
 const downvoteRecipeFailure = error => ({
   type: actionTypes.CREATE_DOWNVOTE_FAILURE,
-  error
+  error: error.response.data
+});
+
+const allFavoritesSuccess = favorites => ({
+  type: actionTypes.GET_ALL_FAVORITES_SUCCESS,
+  favorites
+});
+
+const allFavoritesFailure = error => ({
+  type: actionTypes.GET_ALL_FAVORITES_FAILURE,
+  error: error.response.data
+});
+
+const searchRecipeSuccess = recipes => ({
+  type: actionTypes.SEARCH_RECIPE_SUCCESS,
+  recipes
+});
+
+const searchRecipeFailure = error => ({
+  type: actionTypes.SEARCH_RECIPE_FAILURE,
+  error: error.response.data
 });
 /**
  * Add recipe function
  *
  * @param {object} recipeDetails
- * 
  * @param {string} cloudImageUrl - Cloud image URL
  * 
  * @returns {object} recipes
  */
 const addRecipeAction = (recipeDetails, cloudImageUrl = '') => (dispatch) => {
   const recipeDetail = { recipeDetails, imageUrl: cloudImageUrl };
-  axios.post('api/v1/recipes', recipeDetail, {
-    headers: { 'x-access-token': window.localStorage.token }
-  })
-    .then((res) => {
-      dispatch(addRecipeSuccess(res.data.message));
+  return axios.post(`${baseUrl}/recipes`, recipeDetail, authorization())
+    .then(({ data: { message, recipe: { id: recipeId } } }) => {
+      dispatch(addRecipeSuccess(message, recipeId));
       dispatch(isRecipeCreating(false));
     })
     .catch(() => {
@@ -169,19 +189,20 @@ const clearToast = () => (dispatch) => {
  * Get user recipes function
  *
  * @param {integer} userId - Id of the recipe
- * 
+ * @param {integer} page - Page number
+ *
  * @returns {object} recipes
  */
-const getUserRecipes = userId => (
-  (dispatch) => {
-    axios.get(`/api/v1/users/${userId}/my-recipes`, {
-      headers: { 'x-access-token': window.localStorage.token }
-    })
+const getUserRecipes = (userId, page) => (
+  dispatch =>
+    axios.get(`${baseUrl}/users/${userId}/my-recipes?page=${page}`, authorization())
       .then((res) => {
-        dispatch(getUserRecipesSuccess(res.data.recipes));
+        dispatch(getUserRecipesSuccess({
+          userRecipes: res.data.recipes,
+          pagination: res.data.paginationMeta
+        }));
       })
-      .catch(error => dispatch(getUserRecipesFailure(error)));
-  }
+      .catch(error => dispatch(getUserRecipesFailure(error)))
 );
 
 /**
@@ -193,9 +214,7 @@ const getUserRecipes = userId => (
  */
 const getRecipe = recipeId => (
   dispatch => (
-    axios.get(`/api/v1/recipes/${recipeId}`, {
-      headers: { 'x-access-token': window.localStorage.token }
-    })
+    axios.get(`${baseUrl}/recipes/${recipeId}`, authorization())
       .then((res) => {
         dispatch(viewRecipeSuccess(res.data.recipe));
       })
@@ -206,28 +225,27 @@ const getRecipe = recipeId => (
 /**
  * Get all recipes function
  *
+ * @param {integer} page
+ * 
  * @returns {object} recipe
  */
-const getAllRecipes = () => (
+const getAllRecipes = page => (
   dispatch => (
-    axios.get(`/api/v1/recipes`)
+    axios.get(`${baseUrl}/recipes?page=${page}`)
       .then((res) => {
         dispatch(getAllRecipesSuccess({
           allRecipes: res.data.recipes,
           pagination: res.data.paginationMeta
         }));
       })
-      .catch(errors => dispatch(getAllRecipesFailure(errors.error)))
+      .catch(errors => dispatch(getAllRecipesFailure(errors)))
   )
 );
-
 /**
  * Edit a recipe function
  *
  * @param {integer} recipeId - Id of the recipe
- * 
  * @param {object} recipeDetails - Details of the recipe
- * 
  * @param {string} cloudImageUrl - Cloud image URL
  * 
  * @returns {object} recipe
@@ -237,14 +255,12 @@ const editRecipe = (recipeId, recipeDetails, cloudImageUrl = '') =>
     const recipe = (cloudImageUrl !== '') ?
       { ...recipeDetails, imageUrl: cloudImageUrl }
       : recipeDetails;
-    axios.put(`/api/v1/recipes/${recipeId}`, recipe, {
-      headers: { 'x-access-token': window.localStorage.token }
-    })
+    return axios.patch(`${baseUrl}/recipes/${recipeId}`, recipe, authorization())
       .then((res) => {
         dispatch(editRecipeSuccess(res.data.message));
         dispatch(isRecipeCreating(false));
       })
-      .catch(error => dispatch(editRecipeFailure(error.res.data.message)));
+      .catch(error => dispatch(editRecipeFailure(error)));
   };
 /**
  * Delete recipe function
@@ -253,34 +269,27 @@ const editRecipe = (recipeId, recipeDetails, cloudImageUrl = '') =>
  * 
  * @returns {string} message
  */
-const deleteRecipe = recipeId => (dispatch) => {
-  axios.delete(`/api/v1/recipes/${recipeId}`, {
-    headers: { 'x-access-token': window.localStorage.token }
-  })
+const deleteRecipe = recipeId => dispatch =>
+  axios.delete(`${baseUrl}/recipes/${recipeId}`, authorization())
     .then((res) => {
       dispatch(deleteRecipeSuccess(res.data.message));
     })
-    .catch(error => dispatch(deleteRecipeFailure(error.res.data.message)));
-};
+    .catch(error => dispatch(deleteRecipeFailure(error)));
 
 /**
  * Post a review function
  *
  * @param {integer} recipeId
- * 
  * @param {string} content
  * 
  * @returns {object} reviews
  */
-const postReview = (recipeId, content) => (dispatch) => {
-  axios.post(`/api/v1/recipes/${recipeId}/reviews`, { content }, {
-    headers: { 'x-access-token': window.localStorage.token }
-  })
+const postReview = (recipeId, content) => dispatch =>
+  axios.post(`${baseUrl}/recipes/${recipeId}/reviews`, { content }, authorization())
     .then((res) => {
       dispatch(postReviewSuccess(res.data.message));
     })
     .catch(error => dispatch(postReviewFailure(error)));
-};
 /**
  * Get a recipe reviews function
  *
@@ -288,15 +297,12 @@ const postReview = (recipeId, content) => (dispatch) => {
  * 
  * @returns {object} reviews
  */
-const getReview = recipeId => (dispatch) => {
-  axios.get(`/api/v1/recipes/${recipeId}/reviews`, {
-    headers: { 'x-access-token': window.localStorage.token }
-  })
+const getReview = recipeId => dispatch =>
+  axios.get(`${baseUrl}/recipes/${recipeId}/reviews`, authorization())
     .then((res) => {
       dispatch(getReviewSuccess(res.data));
     })
-    .catch(error => dispatch(getReviewFailure(error.res.data.error)));
-};
+    .catch(error => dispatch(getReviewFailure(error)));
 /**
  *
  *
@@ -304,37 +310,69 @@ const getReview = recipeId => (dispatch) => {
  *
  * @returns {object} favourites
  */
-const createFavourite = recipeId => (dispatch) => {
-  axios.post(`/api/v1/recipes/${recipeId}/favorite`, { recipeId }, {
-    headers: { 'x-access-token': window.localStorage.token }
-  })
+const createFavourite = recipeId => dispatch =>
+  axios.post(`${baseUrl}/recipes/${recipeId}/favorite`, { recipeId }, authorization())
     .then((res) => {
       dispatch(createUserFavourite(res.data.message));
     })
     .catch(error =>
-      dispatch(createUserFavouriteFailure(error.res.data.error.message)));
-};
+      dispatch(createUserFavouriteFailure(error)));
 /**
  * Get all user favorites function
  *
  * @param {integer} userId
- * 
+ * @param {integer} page
+ *
  * @returns {object} recipe
  */
-const getUserFavorites = userId => (dispatch) => {
-  axios.get(`/api/v1/users/${userId}/recipes`, {
-    headers: { 'x-access-token': window.localStorage.token }
-  })
+const getUserFavorites = (userId, page) => dispatch =>
+  axios.get(`${baseUrl}/users/${userId}/recipes?page=${page}`, authorization())
     .then((res) => {
       dispatch(getUserFavoritesSuccess({
-        userFavorites: res.data.favorites,
+        userFavorites: res.data.recipes,
         pagination: res.data.paginationMeta
       }));
     })
     .catch((error) => {
-      dispatch(getUserFavoritesFailure(error.response.data.error));
+      dispatch(getUserFavoritesFailure(error));
     });
-};
+/**
+ * Get all most favorites function
+ *
+ * @param {integer} page
+ *
+ * @returns {object} recipes
+ */
+const getAllFavorites = page => (
+  dispatch =>
+    axios.get(`${baseUrl}/favorites?page=${page}`, authorization())
+      .then((res) => {
+        dispatch(allFavoritesSuccess({
+          favorites: res.data.favorites,
+          pagination: res.data.paginationMeta
+        }));
+      })
+      .catch(error => dispatch(allFavoritesFailure(error)))
+);
+/**
+ * Recipe search function
+ *
+ * @param {string} searchParams
+ * 
+ * @returns {object} recipe
+ */
+const searchRecipe = searchParams => (
+  dispatch => (
+    axios.get(`${baseUrl}/search?search=${searchParams}`)
+      .then((res) => {
+        dispatch(searchRecipeSuccess({
+          results: res.data.recipeFound,
+          pagination: res.data.paginationMeta
+        }));
+      })
+      .catch(error => dispatch(searchRecipeFailure(error)))
+  )
+);
 /**
  * Upvote a recipe
  *
@@ -342,18 +380,14 @@ const getUserFavorites = userId => (dispatch) => {
  * 
  * @returns {object} recipe
  */
-const upvoteRecipe = recipeId => (dispatch) => {
-  axios.put(`/api/v1/recipe/${recipeId}/upVote`, {}, {
-    headers: { 'x-access-token': window.localStorage.token }
-  })
-    .then(({ data }) => {
-      console.log(data);
-      dispatch(upvoteRecipeSuccess(data));
+const upvoteRecipe = recipeId => dispatch =>
+  axios.put(`${baseUrl}/recipe/${recipeId}/upVote`, {}, authorization())
+    .then((res) => {
+      dispatch(upvoteRecipeSuccess(res.data));
     })
     .catch((error) => {
-      dispatch(upvoteRecipeFailure(error.res.data.error));
+      dispatch(upvoteRecipeFailure(error));
     });
-};
 
 /**
  * Downvote a recipe
@@ -362,27 +396,20 @@ const upvoteRecipe = recipeId => (dispatch) => {
  * 
  * @returns {object} recipe
  */
-const downvoteRecipe = recipeId => (dispatch) => {
-  axios.put(`/api/v1/recipe/${recipeId}/downVote`, {}, {
-    headers: { 'x-access-token': window.localStorage.token }
-  })
-    .then(({ data }) => {
-      console.log(data);
-      dispatch(downvoteRecipeSuccess(data));
+const downvoteRecipe = recipeId => dispatch =>
+  axios.put(`${baseUrl}/recipe/${recipeId}/downVote`, {}, authorization())
+    .then((res) => {
+      dispatch(downvoteRecipeSuccess(res.data));
     })
     .catch((error) => {
       dispatch(downvoteRecipeFailure(error));
     });
-};
 /**
  * Process image upload
  *
  * @param {object} recipe - recipe
- * 
  * @param {object|string} imageFile - Image file
- * 
- * @param {type} type - Type of action
- * 
+ * @param {string} type - Type of action
  * @param {integer} recipeId - Id of the recipe
  * 
  * @returns {object} recipe
@@ -442,5 +469,8 @@ export {
   downvoteRecipe,
   postReview,
   getReview,
-  clearToast
+  getAllFavorites,
+  searchRecipe,
+  clearToast,
+  addRecipeAction
 };

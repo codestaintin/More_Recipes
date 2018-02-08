@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Review> should render the Review Component 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "blank",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Connect(Review)
+        match={
+          Object {
+            "params": Object {
+              "recipeId": 1,
+            },
+          }
+        }
+        reviewState={Object {}}
+        reviews={Array []}
+      >
+        <Review
+          match={
+            Object {
+              "params": Object {
+                "recipeId": 1,
+              },
+            }
+          }
+          postReview={[Function]}
+          reviewState={
+            Object {
+              "reviewState": Object {},
+            }
+          }
+          reviews={Array []}
+        >
+          <div>
+            <form
+              onSubmit={[Function]}
+            >
+              <div
+                className="form-group"
+              >
+                <h5
+                  className="text-muted"
+                >
+                  <label
+                    className="row justify-content-center"
+                    htmlFor="review"
+                  >
+                    Please post a review
+                  </label>
+                </h5>
+                <textarea
+                  className="form-control"
+                  onChange={[Function]}
+                  placeholder="Kindly enter your review"
+                  rows="3"
+                  value=""
+                />
+              </div>
+              <button
+                className="btn btn-primary mb-2"
+                type="submit"
+              >
+                Submit Review
+              </button>
+            </form>
+            <h5
+              className="p-5 text-center"
+            >
+              Reviews
+            </h5>
+          </div>
+        </Review>
+      </Connect(Review)>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;

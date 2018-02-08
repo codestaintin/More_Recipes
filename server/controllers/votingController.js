@@ -92,7 +92,7 @@ const votingController = {
             });
         }
       })
-      .catch(error => res.status(400).json({ message: error.message, error }));
+      .catch(error => res.status(500).json({ message: error.message, error }));
   },
 
   /**
@@ -181,7 +181,7 @@ const votingController = {
                 });
             }
           })
-          .catch(error => res.status(400).json({ message: error.message }));
+          .catch(error => res.status(500).json({ message: error.message }));
       });
   }
 };

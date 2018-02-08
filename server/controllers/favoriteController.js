@@ -19,7 +19,7 @@ const favoriteController = {
   create(req, res) {
     Favorite.findOne({
       where: {
-        recipeId: req.body.recipeId,
+        recipeId: req.params.recipeId,
         userId: req.decoded.id
       }
     })
@@ -28,7 +28,7 @@ const favoriteController = {
           return Promise.resolve(foundFavorite);
         }
         return Favorite.create({
-          recipeId: req.body.recipeId,
+          recipeId: req.params.recipeId,
           userId: req.decoded.id
         });
       })
@@ -41,9 +41,38 @@ const favoriteController = {
         error: error.errors
       }));
   },
+  /**
+   * Delete user favorite
+   *
+   * @param { object } req
+   * @param { object } res
+   *
+   * @returns { object } object
+   */
+  destroy(req, res) {
+    const { recipeId } = req.params;
+    return Favorite
+      .find({
+        where: {
+          recipeId
+        }
+      })
+      .then((favorite) => {
+        if (!favorite) {
+          return res.status(404).json({ message: 'Favorite not found' });
+        }
+        return favorite
+          .destroy()
+          .then(() => res.status(200).json({
+            message: 'Favorite successfully deleted'
+          }))
+          .catch(error => res.status(500).json({ error }));
+      })
+      .catch(error => res.status(500).json({ error }));
+  },
 
   /**
-   * List all auth Favorite
+   * List all User Favorite
    *
    * @param { object } req
    * @param { object } res
@@ -51,15 +80,59 @@ const favoriteController = {
    * @returns { object } object
    */
   list(req, res) {
-    const limit = req.query.limit || 8;
-    const offset = req.query.offset || 0;
+    const page = (req.query.page <= 0 || req.query.page === undefined) ? 0 : req.query.page - 1;
+    const limit = req.query.limit || 4;
+    const offset = page * limit;
     const order = (req.query.order && req.query.order.toLowerCase() === 'desc')
       ? [['createdAt', 'DESC']] : [['createdAt', 'ASC']];
     Favorite.findAndCountAll({
       limit,
       offset,
       order,
-      where: { userId: req.params.userId },
+      where: { userId: req.decoded.id },
+      include: [
+        {
+          model: Recipe,
+          include: [
+            {
+              model: User, attributes: ['username']
+            }
+          ]
+        }
+      ]
+    })
+      .then((favorites) => {
+        if (favorites.length === 0) {
+          return res.status(200).json({
+            message: 'You have no favorite recipes yet'
+          });
+        }
+        return res.status(200).json({
+          paginationMeta: generatePaginationMeta(favorites, limit, page),
+          recipes: favorites.rows
+        });
+      })
+      .catch(error => res.status(500).json({ error: error.message }));
+  },
+
+  /**
+   * List all Favorites
+   *
+   * @param { object } req
+   * @param { object } res
+   *
+   * @returns { object } object
+   */
+  listAll(req, res) {
+    const page = (req.query.page <= 0 || req.query.page === undefined) ? 0 : req.query.page - 1;
+    const limit = req.query.limit || 4;
+    const offset = limit * page;
+    const order = (req.query.order && req.query.order.toLowerCase() === 'desc')
+      ? [['createdAt', 'DESC']] : [['createdAt', 'ASC']];
+    Favorite.findAndCountAll({
+      limit,
+      offset,
+      order,
       include: [
         {
           model: Recipe,
@@ -72,7 +145,7 @@ const favoriteController = {
       ]
     })
       .then(favorites => res.status(200).json({
-        paginationMeta: generatePaginationMeta(favorites, limit, offset),
+        paginationMeta: generatePaginationMeta(favorites, limit, page),
         favorites: favorites.rows
       }))
       .catch(error => res.status(500).json({ error: error.message }));

@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Sticky> should render the Sticky 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "blank",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <StickyComponent
+        getAll={[Function]}
+      >
+        <div
+          className="container"
+          id="sticky-anchor"
+        >
+          <div
+            className="row"
+          >
+            <div
+              className="col-lg-12"
+            >
+              <ul
+                className="nav justify-content-center light-well shadow-lite sticky"
+                id="sticky"
+              >
+                <li
+                  className="nav-item"
+                >
+                  <button
+                    className="btn btn-outline-warning btn-sm"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "marginTop": "5px",
+                      }
+                    }
+                  >
+                    <i
+                      className="fa fa-list"
+                    />
+                    All Recipes
+                  </button>
+                </li>
+                <li
+                  className="nav-item"
+                >
+                  <Link
+                    className="nav-link text-black"
+                    replace={false}
+                    to="/favorites"
+                  >
+                    <a
+                      className="nav-link text-black"
+                      href="/favorites"
+                      onClick={[Function]}
+                    >
+                      <i
+                        className="fa fa-star text-warning"
+                      />
+                      Most Favourited
+                    </a>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </StickyComponent>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;

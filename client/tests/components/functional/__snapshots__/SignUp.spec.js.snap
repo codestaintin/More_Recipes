@@ -1,0 +1,270 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SignUp> should render SignUp component 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "blank",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Connect(SignUp)
+        history={
+          Object {
+            "push": [Function],
+          }
+        }
+      >
+        <SignUp
+          history={
+            Object {
+              "push": [Function],
+            }
+          }
+          signUpAction={[Function]}
+          signUpState={
+            Object {
+              "signUpState": Object {},
+            }
+          }
+        >
+          <div
+            aria-hidden="true"
+            aria-labelledby="signUpModalLabel"
+            className="modal fade"
+            id="signUpModal"
+            role="dialog"
+            tabIndex="-1"
+          >
+            <div
+              className="modal-dialog"
+              role="document"
+            >
+              <div
+                className="modal-content simplebox blade"
+              >
+                <div
+                  className="modal-header"
+                >
+                  <h5
+                    className="modal-title"
+                    id="signUpModalLabel"
+                  >
+                    Sign Up
+                  </h5>
+                  <button
+                    aria-label="Close"
+                    className="close"
+                    data-dismiss="modal"
+                    type="button"
+                  >
+                    <span
+                      aria-hidden="true"
+                    >
+                      ×
+                    </span>
+                  </button>
+                </div>
+                <form
+                  className="mt-15"
+                  onSubmit={[Function]}
+                >
+                  <div
+                    className="modal-body"
+                  >
+                    <small
+                      className="form-text text-muted"
+                    >
+                      All input fields marked
+                      <span
+                        className="text-danger"
+                      >
+                        *
+                      </span>
+                       are required
+                    </small>
+                    <div
+                      className="form-group"
+                    >
+                      <label
+                        htmlFor="firstName"
+                      >
+                        First Name
+                        <span
+                          className="text-danger"
+                        >
+                          *
+                        </span>
+                      </label>
+                      <input
+                        aria-describedby="firstName"
+                        className="form-control"
+                        name="firstName"
+                        onChange={[Function]}
+                        placeholder="First name"
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                    <div
+                      className="form-group"
+                    >
+                      <label
+                        htmlFor="lastName"
+                      >
+                        Last Name 
+                        <span
+                          className="text-danger"
+                        >
+                          *
+                        </span>
+                      </label>
+                      <input
+                        aria-describedby="lastName"
+                        className="form-control"
+                        name="lastName"
+                        onChange={[Function]}
+                        placeholder="Last name"
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                    <div
+                      className="form-group"
+                    >
+                      <label
+                        htmlFor="userName"
+                      >
+                        Username 
+                        <span
+                          className="text-danger"
+                        >
+                          *
+                        </span>
+                      </label>
+                      <input
+                        aria-describedby="username"
+                        className="form-control"
+                        name="username"
+                        onChange={[Function]}
+                        placeholder="Username"
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                    <div
+                      className="form-group"
+                    >
+                      <label
+                        htmlFor="email"
+                      >
+                        Email address 
+                        <span
+                          className="text-danger"
+                        >
+                          *
+                        </span>
+                      </label>
+                      <input
+                        aria-describedby="email"
+                        className="form-control"
+                        name="email"
+                        onChange={[Function]}
+                        placeholder="Email"
+                        type="email"
+                        value=""
+                      />
+                    </div>
+                    <div
+                      className="form-group"
+                    >
+                      <label
+                        htmlFor="password"
+                      >
+                        Password 
+                        <span
+                          className="text-danger"
+                        >
+                          *
+                        </span>
+                      </label>
+                      <input
+                        className="form-control"
+                        name="password"
+                        onChange={[Function]}
+                        placeholder="Password"
+                        type="password"
+                        value=""
+                      />
+                    </div>
+                    <div
+                      className="form-group"
+                    >
+                      <label
+                        htmlFor="passwordConfirm"
+                      >
+                        Confirm Password 
+                        <span
+                          className="text-danger"
+                        >
+                          *
+                        </span>
+                      </label>
+                      <input
+                        className="form-control"
+                        name="confirmPassword"
+                        onChange={[Function]}
+                        placeholder="Confirm Password"
+                        type="password"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="modal-footer"
+                  >
+                    <button
+                      className="btn btn-warning"
+                      type="submit"
+                    >
+                      Register me
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </SignUp>
+      </Connect(SignUp)>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;

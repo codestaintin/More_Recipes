@@ -10,15 +10,18 @@ import registerValidate from '../../utils/registerValidate';
 
 /**
  *
- *
  * @export
+ * 
  * @class SignUpComponent
+ * 
  * @extends {React.Component}
  */
 export class SignUp extends Component {
 /**
  * Creates an instance of SignUpComponent.
+ * 
  * @param {any} props 
+ * 
  * @memberof SignUpComponent
  */
   constructor(props) {
@@ -41,22 +44,36 @@ export class SignUp extends Component {
 
   /**
   * 
-  * 
   * @memberof SignUpComponent
   * 
   * @returns {void} void
  */
   componentWillMount() {
     if (window.localStorage.token) {
-      history.push('/');
+      this.props.history.push('/');
+    }
+  }
+
+  /**
+   * componentWillReceiveProps
+   * 
+   * @param {object }nextProps
+   * 
+   * @return {object} object
+   */
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.signUpState.success === true) {
+      $('.close').click();
     }
   }
 
   /**
    * Check Validity
    *
-   * @return {event} event
    * @param {event} event
+   * 
+   * @return {event} event
+   * 
    */
   checkValidity() {
     const { errors, isValid } = registerValidate(this.state.regDetails);
@@ -66,20 +83,12 @@ export class SignUp extends Component {
     return isValid;
   }
   /**
-   * componentWillReceiveProps
-   * @param {object }nextProps
-   * @return {object} object
-   */
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.signUpState.success === true) {
-      $('.close').click();
-    }
-  }
-  /**
   * Handle submit
   * 
-  * @return {event} event 
   * @param {event} event
+  * 
+  * @return {event} event
+  * 
   */
   handleSubmit(event) {
     event.preventDefault();
@@ -101,8 +110,10 @@ export class SignUp extends Component {
   /**
   * Handle change
   * 
-  * @return {event} event 
   * @param {event} event
+  * 
+  * @return {event} event
+  * 
   */
   handleChange(event) {
     const regDetails = this.state.regDetails;
@@ -130,26 +141,38 @@ export class SignUp extends Component {
           <div className="modal-content simplebox blade">
             <div className="modal-header">
               <h5 className="modal-title" id="signUpModalLabel">Sign Up</h5>
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" className="close" data-dismiss="modal"
+                aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <form className="mt-15" onSubmit={this.handleSubmit}>
               { signUpState.fails ?
-                <div id="error" className="alert alert-danger alert-dismissible">
-                  <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                <div id="error"
+                  className="alert alert-danger alert-dismissible">
+                  <button type="button" className="close" data-dismiss="alert"
+                    aria-label="Close">
                     <span aria-hidden="true">x</span>
                   </button>
                   { signUpState.fails }
                 </div> : null
               }
               <div className="modal-body">
+                <small className="form-text text-muted">
+                  All input fields marked 
+                  <span className="text-danger">*</span> are required
+                </small>
                 <div className="form-group">
-                  <label htmlFor="firstName">First Name</label>
+                  <label htmlFor="firstName">First Name 
+                    <span className="text-danger">*</span>
+                  </label>
                   <input
                     type="text"
-                    className={classnames('form-control',
-                      { 'is-invalid': errors.firstName ? !!errors.firstName : false })
+                    className={
+                      classnames('form-control',
+                        { 'is-invalid': errors.firstName ? !!errors.firstName
+                          : false }
+                      )
                     }
                     name="firstName"
                     aria-describedby="firstName"
@@ -158,16 +181,22 @@ export class SignUp extends Component {
                     value={regDetails.firstName}
                   />
                   { errors.firstName ?
-                    <span className="invalid-feedback">{ errors.firstName }</span> : null
+                    <span className="invalid-feedback">{ errors.firstName }
+                    </span> : null
                   }
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="lastName">Last Name</label>
+                  <label htmlFor="lastName">
+                    Last Name <span className="text-danger">*</span>
+                  </label>
                   <input
                     type="text"
-                    className={classnames('form-control',
-                      { 'is-invalid': errors.lastName ? !!errors.lastName : false })
+                    className={
+                      classnames('form-control',
+                        { 'is-invalid': errors.lastName ? !!errors.lastName
+                          : false }
+                      )
                     }
                     name="lastName"
                     aria-describedby="lastName"
@@ -176,15 +205,21 @@ export class SignUp extends Component {
                     value={regDetails.lastName}
                   />
                   { errors.lastName ?
-                    <span className="invalid-feedback">{ errors.lastName }</span> : null
+                    <span className="invalid-feedback">{ errors.lastName }
+                    </span> : null
                   }
                 </div>
                 <div className="form-group">
-                  <label htmlFor="userName">Username</label>
+                  <label htmlFor="userName">
+                    Username <span className="text-danger">*</span>
+                  </label>
                   <input
                     type="text"
-                    className={classnames('form-control',
-                      { 'is-invalid': errors.username ? !!errors.username : false })
+                    className={
+                      classnames('form-control',
+                        { 'is-invalid': errors.username ? !!errors.username
+                          : false }
+                      )
                     }
                     name="username"
                     aria-describedby="username"
@@ -193,16 +228,21 @@ export class SignUp extends Component {
                     value={regDetails.username}
                   />
                   { errors.username ?
-                    <span className="invalid-feedback">{ errors.username }</span> : null
+                    <span className="invalid-feedback">{ errors.username }
+                    </span> : null
                   }
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email">Email address</label>
+                  <label htmlFor="email">
+                    Email address <span className="text-danger">*</span>
+                  </label>
                   <input
                     type="email"
-                    className={classnames('form-control',
-                      { 'is-invalid': errors.email ? !!errors.email : false })
+                    className={
+                      classnames('form-control',
+                        { 'is-invalid': errors.email ? !!errors.email : false }
+                      )
                     }
                     name="email"
                     aria-describedby="email"
@@ -211,16 +251,21 @@ export class SignUp extends Component {
                     value={regDetails.email}
                   />
                   { errors.email ?
-                    <span className="invalid-feedback">{ errors.email }</span> : null
+                    <span className="invalid-feedback">{ errors.email }</span>
+                    : null
                   }
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="password">Password</label>
+                  <label htmlFor="password">
+                    Password <span className="text-danger">*</span>
+                  </label>
                   <input
                     type="password"
-                    className={classnames('form-control',
-                      { 'is-invalid': errors.email ? !!errors.email : false })
+                    className={
+                      classnames('form-control',
+                        { 'is-invalid': errors.email ? !!errors.email : false }
+                      )
                     }
                     name="password"
                     placeholder="Password"
@@ -228,15 +273,20 @@ export class SignUp extends Component {
                     value={regDetails.password}
                   />
                   { errors.password ?
-                    <span className="invalid-feedback">{ errors.password }</span> : null
+                    <span className="invalid-feedback">{ errors.password }
+                    </span> : null
                   }
                 </div>
                 <div className="form-group">
-                  <label htmlFor="passwordConfirm">Confirm Password</label>
+                  <label htmlFor="passwordConfirm">
+                    Confirm Password <span className="text-danger">*</span>
+                  </label>
                   <input
                     type="password"
-                    className={classnames('form-control',
-                      { 'is-invalid': errors.email ? !!errors.email : false })
+                    className={
+                      classnames('form-control',
+                        { 'is-invalid': errors.email ? !!errors.email : false }
+                      )
                     }
                     name="confirmPassword"
                     placeholder="Confirm Password"
@@ -244,12 +294,14 @@ export class SignUp extends Component {
                     value={regDetails.confirmPassword}
                   />
                   { errors.confirmPassword ?
-                    <span className="invalid-feedback">{ errors.confirmPassword }</span> : null
+                    <span className="invalid-feedback">
+                      { errors.confirmPassword }</span> : null
                   }
                 </div>
               </div>
               <div className="modal-footer">
-                <button type="submit" className="btn btn-outline-warning">Submit</button>
+                <button type="submit" className="btn btn-warning">Register me
+                </button>
               </div>
             </form>
           </div>

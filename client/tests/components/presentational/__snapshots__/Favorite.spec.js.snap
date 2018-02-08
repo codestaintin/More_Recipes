@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FavoriteRecipe> should render the Recipe Component 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "blank",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <RecipeFavorite
+        recipe={
+          Object {
+            "User": Object {
+              "username": "Human",
+            },
+          }
+        }
+      >
+        <div
+          className="col-12 col-sm-6 col-md-4 col-lg-3 align-self-center hvr-float-shadow"
+        >
+          <div
+            className="col-md-12 recipe"
+          >
+            <div
+              className="recipe-img"
+              style={
+                Object {
+                  "backgroundImage": "url(undefined)",
+                }
+              }
+            />
+            <div
+              className="recipe-meta pt-5"
+            >
+              <Link
+                replace={false}
+                to="/recipes/undefined/"
+              >
+                <a
+                  href="/recipes/undefined/"
+                  onClick={[Function]}
+                >
+                  <h6
+                    className="recipe-name"
+                  />
+                </a>
+              </Link>
+              <h5
+                className="text-muted"
+              >
+                <small>
+                  <i
+                    className="fa fa-user"
+                  />
+                   
+                  Human
+                </small>
+              </h5>
+            </div>
+            <div
+              className="recipe-met2"
+            >
+              <hr
+                className="m-1"
+              />
+              <p
+                className="text-left"
+              >
+                <small>
+                  <span>
+                    <i
+                      className="fa fa-eye text-muted"
+                    />
+                     
+                  </span>
+                    
+                  <span>
+                    <i
+                      className="fa fa-thumbs-o-up text-muted"
+                    />
+                  </span>
+                    
+                  <span>
+                    <i
+                      className="fa fa-thumbs-o-down text-muted"
+                    />
+                  </span>
+                </small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </RecipeFavorite>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;

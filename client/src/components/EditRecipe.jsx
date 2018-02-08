@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'react-proptypes';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
+import swal from 'sweetalert2';
 import { bindActionCreators } from 'redux';
 import Spinner from 'react-md-spinner';
 import { getRecipe,
@@ -13,6 +14,8 @@ import recipeValidate from '../utils/recipeValidate';
 import FooterComponent from './partials/Footer.jsx';
 import Header from './partials/Headers/Header.jsx';
 import { recipeResponseType } from '../utils/helpers';
+import history from '../utils/history';
+
 
 /**
  *
@@ -66,13 +69,25 @@ export class EditRecipe extends Component {
       this.setState({ recipeDetails: recipe });
       this.setState({ imageSrc: recipe.imageUrl });
     }
-    if (responseType === recipeResponseType.EDIT_RECIPE_SUCCESS && message !== '') {
-      toastr.clear();
-      toastr.success(message);
+    if (responseType === recipeResponseType.EDIT_RECIPE_SUCCESS 
+      && message !== '') {
+      swal({
+        position: 'top-end',
+        type: 'success',
+        title: message,
+        showConfirmButton: false,
+        timer: 1500
+      });
       this.props.clearToast();
+      this.props.history.push(`/recipes/${recipe.id}`);
     } else if (message !== '') {
-      toastr.clear();
-      toastr.error(message);
+      swal({
+        position: 'top-end',
+        type: 'error',
+        title: message,
+        showConfirmButton: false,
+        timer: 1500
+      });
       this.props.clearToast();
     }
   }
@@ -158,7 +173,8 @@ export class EditRecipe extends Component {
         <Header/>
         <div className="wrapper">
           <ol
-            className="breadcrumb container mt-50 mb-10 col-md-9 mx-auto bg-white shadow-lite">
+            className="breadcrumb
+            container mt-50 mb-10 col-md-9 mx-auto bg-white shadow-lite">
             <li className="breadcrumb-item">
               <Link to="/">Home</Link>
             </li>
@@ -167,10 +183,12 @@ export class EditRecipe extends Component {
             </li>
             <li className="breadcrumb-item active">Edit Recipe</li>
           </ol>
-          <div className="container mb-20 col-md-9 mx-auto recipe-details-container">
+          <div className="container
+          mb-20 col-md-9 mx-auto recipe-details-container">
             <div className="row">
               <div
-                className="col-12 col-sm-6 col-md-4 col-lg-4 p-10 shadow-lite bg-white"
+                className="col-12
+                col-sm-6 col-md-4 col-lg-4 p-10 shadow-lite bg-white"
                 style={{
                   height: `${400}px`,
                   maxHeight: `${400}px`
@@ -180,7 +198,8 @@ export class EditRecipe extends Component {
                   style={{
                     height: `${100}%`
                   }}>
-                  <div className="text-center file-upload full-height full-width center-content">
+                  <div className="text-center
+                  file-upload full-height full-width center-content">
                     <input
                       type="file"
                       className="recipe-upload text-hide"
@@ -190,12 +209,14 @@ export class EditRecipe extends Component {
                       alt="Image" height="400" width="100%"/>
                   </div>
                 </div><br/>
-                <span className="text-info">Please click to upload an image &nbsp;
+                <span className="text-info">
+                Please click to upload an image &nbsp;
                   <i className="fa fa-upload" />
                 </span>
               </div>
               <div
-                className="simplebox blade col-12 col-sm-6 col-md-8 col-lg-8 p-10"
+                className="simplebox
+                blade col-12 col-sm-6 col-md-8 col-lg-8 p-10"
                 style={{
                   boxShadow: 'none'
                 }}>

@@ -1,0 +1,344 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Profile> should render the Profile Component 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "blank",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Connect(Profile)
+        match={Object {}}
+      >
+        <Profile
+          getUser={[Function]}
+          match={Object {}}
+        >
+          <div>
+            <Connect(Header)>
+              <Header
+                logoutAction={[Function]}
+              >
+                <div>
+                  <nav
+                    className="navbar navbar-expand-sm navbar-light bg-navbar fixed-top"
+                  >
+                    <Link
+                      className="navbar-brand"
+                      replace={false}
+                      to="/"
+                    >
+                      <a
+                        className="navbar-brand"
+                        href="/"
+                        onClick={[Function]}
+                      >
+                        More Recipes
+                      </a>
+                    </Link>
+                    <button
+                      aria-controls="navbarSupportedContent"
+                      aria-expanded="false"
+                      aria-label="Toggle navigation"
+                      className="navbar-toggler"
+                      data-target="#navbarSupportedContent"
+                      data-toggle="collapse"
+                      type="button"
+                    >
+                      <span
+                        className="navbar-toggler-icon"
+                      />
+                    </button>
+                    <div
+                      className="collapse navbar-collapse"
+                      id="navbarSupportedContent"
+                    >
+                      <ul
+                        className="navbar-nav ml-auto"
+                      >
+                        <li
+                          className="nav-item dropdown"
+                        >
+                          <Link
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            className="nav-link dropdown-toggle"
+                            data-toggle="dropdown"
+                            id="navbarDropdown"
+                            replace={false}
+                            role="button"
+                            to="#"
+                          >
+                            <a
+                              aria-expanded="false"
+                              aria-haspopup="true"
+                              className="nav-link dropdown-toggle"
+                              data-toggle="dropdown"
+                              href="#"
+                              id="navbarDropdown"
+                              onClick={[Function]}
+                              role="button"
+                            >
+                              My Account
+                            </a>
+                          </Link>
+                          <div
+                            aria-labelledby="navbarDropdown"
+                            className="dropdown-menu dropdown-menu-right mr-20"
+                          >
+                            <Link
+                              className="dropdown-item"
+                              replace={false}
+                              to="/profile"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="/profile"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-user-circle"
+                                />
+                                 My Profile
+                              </a>
+                            </Link>
+                            <Link
+                              className="dropdown-item"
+                              replace={false}
+                              to="/user-recipes"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="/user-recipes"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-list"
+                                />
+                                 My Recipes
+                              </a>
+                            </Link>
+                            <Link
+                              className="dropdown-item"
+                              replace={false}
+                              to="/my-favorite"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="/my-favorite"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-star"
+                                />
+                                 My Favorites
+                              </a>
+                            </Link>
+                            <Link
+                              className="dropdown-item"
+                              replace={false}
+                              to="/addRecipe"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="/addRecipe"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-plus"
+                                />
+                                 Add Recipes
+                              </a>
+                            </Link>
+                            <div
+                              className="dropdown-divider"
+                            />
+                            <Link
+                              className="dropdown-item"
+                              onClick={[Function]}
+                              replace={false}
+                              to="#"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="#"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-sign-out"
+                                />
+                                Log out
+                              </a>
+                            </Link>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </nav>
+                </div>
+              </Header>
+            </Connect(Header)>
+            <div
+              className="wrapper"
+            >
+              <ol
+                className="breadcrumb container mt-50 col-10 col-md-10 col-lg-10 mx-auto bg-white shadow-lite"
+              >
+                <li
+                  className="breadcrumb-item"
+                >
+                  <Link
+                    replace={false}
+                    to="/"
+                  >
+                    <a
+                      href="/"
+                      onClick={[Function]}
+                    >
+                      Home
+                    </a>
+                  </Link>
+                </li>
+                <li
+                  className="breadcrumb-item"
+                >
+                  <a
+                    href="#"
+                  >
+                    User
+                  </a>
+                </li>
+                <li
+                  className="breadcrumb-item active"
+                >
+                  Profile
+                </li>
+              </ol>
+              <div
+                className="center-content"
+              >
+                <img
+                  alt="avatar"
+                  className="avatar text-center circulate circulate-xlg"
+                  src="/assets/images/no-avatar.png"
+                />
+              </div>
+              <div
+                className="mb-20 col-md-10 mx-auto recipe-details-container"
+              >
+                <div
+                  className="row"
+                >
+                  <div
+                    className="simplebox blade col-12 col-sm-12 col-md-12 col-lg-12 p-10"
+                    style={
+                      Object {
+                        "boxShadow": "none",
+                      }
+                    }
+                  >
+                    <ul
+                      className="list-group list-group-flush"
+                    >
+                      <li
+                        className="list-group-item"
+                      >
+                        <p>
+                          <b>
+                            First Name: 
+                          </b>
+                        </p>
+                      </li>
+                      <li
+                        className="list-group-item"
+                      >
+                        <p>
+                          <b>
+                            Last Name: 
+                          </b>
+                        </p>
+                      </li>
+                      <li
+                        className="list-group-item"
+                      >
+                        <p>
+                          <b>
+                            Username: 
+                          </b>
+                        </p>
+                      </li>
+                      <li
+                        className="list-group-item"
+                      >
+                        <p>
+                          <b>
+                            Email:
+                          </b>
+                           
+                        </p>
+                      </li>
+                    </ul>
+                     
+                    <br />
+                    <h5
+                      className="text-info text-center"
+                    >
+                      You joined this platform 
+                       
+                      Invalid date
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <FooterComponent>
+              <footer
+                className="p-10 well well-sm m-0 shadow-lite"
+              >
+                <div
+                  className="text-center text-muted"
+                >
+                  <p
+                    className="bold"
+                  >
+                    © 2017 More Recipes
+                  </p>
+                </div>
+              </footer>
+            </FooterComponent>
+          </div>
+        </Profile>
+      </Connect(Profile)>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;

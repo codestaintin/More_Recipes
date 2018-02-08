@@ -3,19 +3,23 @@ import PropTypes from 'react-proptypes';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { signInAction } from '../../actions/auth/authAction';
+import { signInAction } from '../../actions/auth/signinAction';
 import loginValidate from '../../utils/loginValidate';
 
 /**
  *
  * @export
+ * 
  * @class SignInComponent
+ * 
  * @extends {React.Component}
  */
 export class SignIn extends Component {
   /**
    * Creates an instance of SignInComponent.
-   * @param {any} props 
+   * 
+   * @param {any} props
+   * 
    * @memberof SignInComponent
    */
   constructor(props) {
@@ -31,11 +35,25 @@ export class SignIn extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  /**
+   * componentWillReceiveProps
+   * @param {object }nextProps
+   * @return {object} object
+   */
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.signInState.success === true) {
+      $('.close').click();
+    }
+  }
+
   /**
   * Handle submit
   * 
-  * @return {event} event 
   * @param {event} event
+  * 
+  * @return {event} event 
+  * 
   */
   handleSubmit(event) {
     event.preventDefault();
@@ -52,9 +70,11 @@ export class SignIn extends Component {
   }
   /**
      * Check Validity
-     *
+     * 
+     * @param {null} event
+     * 
      * @return {event} event
-     * @param {event} event
+
    */
   checkValidity() {
     const { errors, isValid } = loginValidate(this.state.loginDetails);
@@ -65,21 +85,11 @@ export class SignIn extends Component {
   }
 
   /**
-   * componentWillReceiveProps
-   * @param {object }nextProps
-   * @return {object} object
-   */
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.signInState.success === true) {
-      $('.close').click();
-    }
-  }
-
-  /**
   * Handle change
   * 
-  * @return {event} event 
   * @param {event} event
+  * 
+  * @return {event} event 
   */
   handleChange(event) {
     const loginDetails = this.state.loginDetails;
@@ -107,25 +117,39 @@ export class SignIn extends Component {
           <div className="modal-content simplebox blade">
             <div className="modal-header">
               <h5 className="modal-title" id="signInModalLabel">Sign In</h5>
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" className="close" data-dismiss="modal"
+                aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div className="modal-body">
               <form className="mt-15" onSubmit={this.handleSubmit}>
                 { signInState.fails ?
-                  <div id="error" className="alert alert-danger alert-dismissible">
-                    <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                  <div id="error"
+                    className="alert alert-danger alert-dismissible">
+                    <button type="button" className="close" data-dismiss="alert"
+                      aria-label="Close">
                       <span aria-hidden="true">x</span>
                     </button>
                     { signInState.fails }
                   </div> : null
                 }
+                <small className="form-text text-muted">
+                  All input fields marked 
+                  <span className="text-danger">*</span> are required
+                </small>
                 <div className="form-group">
-                  <label htmlFor="email">Email address</label>
+                  <label htmlFor="email">
+                    Email address <span className="text-danger">*</span>
+                  </label>
                   <input
                     type="text"
-                    className={classnames('form-control', { 'is-invalid': errors.email ? !!errors.email : false })}
+                    className={
+                      classnames('form-control',
+                        { 'is-invalid': errors.email ? !!errors.email
+                          : false }
+                      )
+                    }
                     name="email"
                     aria-describedby="email"
                     placeholder="Enter email"
@@ -133,31 +157,41 @@ export class SignIn extends Component {
                     value={loginDetails.email}
                   />
                   { errors.email ?
-                    <span className="invalid-feedback">{ errors.email }</span> : null
+                    <span className="invalid-feedback">{ errors.email }</span>
+                    : null
                   }
                   <small id="email" className="form-text text-muted">
                     We will never share your email with anyone else.
                   </small>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="password">Password</label>
+                  <label htmlFor="password">
+                    Password <span className="text-danger">*</span>
+                  </label>
                   <input
                     type="password"
-                    className={classnames('form-control', { 'is-invalid': errors.password ? !!errors.password : false })}
+                    className={
+                      classnames('form-control',
+                        { 'is-invalid': errors.password ? !!errors.password
+                          : false }
+                      )
+                    }
                     name="password"
                     placeholder="Password"
                     onChange={this.handleChange}
                     value={loginDetails.password}
                   />
                   { errors.password ?
-                    <span className="invalid-feedback">{ errors.password }</span> : null
+                    <span className="invalid-feedback">
+                      { errors.password }</span>
+                    : null
                   }
                 </div>
                 <div className="modal-footer">
                   <button
                     type="submit"
-                    className="btn btn-outline-warning">
-                    Submit
+                    className="btn btn-warning">
+                    Log In
                   </button>
                 </div>
               </form>

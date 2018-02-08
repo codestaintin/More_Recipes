@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AppRouter> should render AppRouter 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "blank",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <div>
+    <Switch>
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/"
+      />
+      <PrivateRoute
+        component={[Function]}
+        exact={true}
+        path="/profile"
+      />
+      <PrivateRoute
+        component={[Function]}
+        exact={true}
+        path="/my-favorite"
+      />
+      <PrivateRoute
+        component={[Function]}
+        exact={true}
+        path="/favorites"
+      />
+      <PrivateRoute
+        component={[Function]}
+        exact={true}
+        path="/user-recipes"
+      />
+      <PrivateRoute
+        component={[Function]}
+        exact={true}
+        path="/addRecipe"
+      />
+      <PrivateRoute
+        component={[Function]}
+        exact={true}
+        path="/recipes/:recipeId"
+      />
+      <PrivateRoute
+        component={[Function]}
+        exact={true}
+        path="/recipes/:recipeId/edit"
+      />
+      <Route
+        component={[Function]}
+        path="*"
+      />
+    </Switch>
+  </div>
+</Router>
+`;

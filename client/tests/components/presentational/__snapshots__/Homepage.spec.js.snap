@@ -1,0 +1,778 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Homepage> should render the UserRecipe Component 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "blank",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Connect(HomePage)
+        history={
+          Object {
+            "push": [Function],
+          }
+        }
+      >
+        <HomePage
+          getAllRecipes={[Function]}
+          history={
+            Object {
+              "push": [Function],
+            }
+          }
+        >
+          <div>
+            <Connect(Header)>
+              <Header
+                logoutAction={[Function]}
+                signInState={Object {}}
+              >
+                <div>
+                  <nav
+                    className="navbar navbar-expand-sm navbar-light bg-navbar fixed-top"
+                  >
+                    <Link
+                      className="navbar-brand"
+                      replace={false}
+                      to="/"
+                    >
+                      <a
+                        className="navbar-brand"
+                        href="/"
+                        onClick={[Function]}
+                      >
+                        More Recipes
+                      </a>
+                    </Link>
+                    <button
+                      aria-controls="navbarSupportedContent"
+                      aria-expanded="false"
+                      aria-label="Toggle navigation"
+                      className="navbar-toggler"
+                      data-target="#navbarSupportedContent"
+                      data-toggle="collapse"
+                      type="button"
+                    >
+                      <span
+                        className="navbar-toggler-icon"
+                      />
+                    </button>
+                    <div
+                      className="collapse navbar-collapse"
+                      id="navbarSupportedContent"
+                    >
+                      <ul
+                        className="navbar-nav ml-auto"
+                      >
+                        <li
+                          className="nav-item dropdown"
+                        >
+                          <Link
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            className="nav-link dropdown-toggle"
+                            data-toggle="dropdown"
+                            id="navbarDropdown"
+                            replace={false}
+                            role="button"
+                            to="#"
+                          >
+                            <a
+                              aria-expanded="false"
+                              aria-haspopup="true"
+                              className="nav-link dropdown-toggle"
+                              data-toggle="dropdown"
+                              href="#"
+                              id="navbarDropdown"
+                              onClick={[Function]}
+                              role="button"
+                            >
+                              My Account
+                            </a>
+                          </Link>
+                          <div
+                            aria-labelledby="navbarDropdown"
+                            className="dropdown-menu dropdown-menu-right mr-20"
+                          >
+                            <Link
+                              className="dropdown-item"
+                              replace={false}
+                              to="/profile"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="/profile"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-user-circle"
+                                />
+                                 My Profile
+                              </a>
+                            </Link>
+                            <Link
+                              className="dropdown-item"
+                              replace={false}
+                              to="/user-recipes"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="/user-recipes"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-list"
+                                />
+                                 My Recipes
+                              </a>
+                            </Link>
+                            <Link
+                              className="dropdown-item"
+                              replace={false}
+                              to="/my-favorite"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="/my-favorite"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-star"
+                                />
+                                 My Favorites
+                              </a>
+                            </Link>
+                            <Link
+                              className="dropdown-item"
+                              replace={false}
+                              to="/addRecipe"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="/addRecipe"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-plus"
+                                />
+                                 Add Recipes
+                              </a>
+                            </Link>
+                            <div
+                              className="dropdown-divider"
+                            />
+                            <Link
+                              className="dropdown-item"
+                              onClick={[Function]}
+                              replace={false}
+                              to="#"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="#"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-sign-out"
+                                />
+                                Log out
+                              </a>
+                            </Link>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </nav>
+                </div>
+              </Header>
+            </Connect(Header)>
+            <Connect(SignIn)>
+              <SignIn
+                signInAction={[Function]}
+                signInState={Object {}}
+              >
+                <div
+                  aria-hidden="true"
+                  aria-labelledby="signInModalLabel"
+                  className="modal fade"
+                  id="signInModal"
+                  role="dialog"
+                  tabIndex="-1"
+                >
+                  <div
+                    className="modal-dialog"
+                    role="document"
+                  >
+                    <div
+                      className="modal-content simplebox blade"
+                    >
+                      <div
+                        className="modal-header"
+                      >
+                        <h5
+                          className="modal-title"
+                          id="signInModalLabel"
+                        >
+                          Sign In
+                        </h5>
+                        <button
+                          aria-label="Close"
+                          className="close"
+                          data-dismiss="modal"
+                          type="button"
+                        >
+                          <span
+                            aria-hidden="true"
+                          >
+                            ×
+                          </span>
+                        </button>
+                      </div>
+                      <div
+                        className="modal-body"
+                      >
+                        <form
+                          className="mt-15"
+                          onSubmit={[Function]}
+                        >
+                          <small
+                            className="form-text text-muted"
+                          >
+                            All input fields marked
+                            <span
+                              className="text-danger"
+                            >
+                              *
+                            </span>
+                             are required
+                          </small>
+                          <div
+                            className="form-group"
+                          >
+                            <label
+                              htmlFor="email"
+                            >
+                              Email address 
+                              <span
+                                className="text-danger"
+                              >
+                                *
+                              </span>
+                            </label>
+                            <input
+                              aria-describedby="email"
+                              className="form-control"
+                              name="email"
+                              onChange={[Function]}
+                              placeholder="Enter email"
+                              type="text"
+                              value=""
+                            />
+                            <small
+                              className="form-text text-muted"
+                              id="email"
+                            >
+                              We will never share your email with anyone else.
+                            </small>
+                          </div>
+                          <div
+                            className="form-group"
+                          >
+                            <label
+                              htmlFor="password"
+                            >
+                              Password 
+                              <span
+                                className="text-danger"
+                              >
+                                *
+                              </span>
+                            </label>
+                            <input
+                              className="form-control"
+                              name="password"
+                              onChange={[Function]}
+                              placeholder="Password"
+                              type="password"
+                              value=""
+                            />
+                          </div>
+                          <div
+                            className="modal-footer"
+                          >
+                            <button
+                              className="btn btn-warning"
+                              type="submit"
+                            >
+                              Log In
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </SignIn>
+            </Connect(SignIn)>
+            <Connect(SignUp)
+              history={
+                Object {
+                  "push": [Function],
+                }
+              }
+            >
+              <SignUp
+                history={
+                  Object {
+                    "push": [Function],
+                  }
+                }
+                signInState={Object {}}
+                signUpAction={[Function]}
+                signUpState={Object {}}
+              >
+                <div
+                  aria-hidden="true"
+                  aria-labelledby="signUpModalLabel"
+                  className="modal fade"
+                  id="signUpModal"
+                  role="dialog"
+                  tabIndex="-1"
+                >
+                  <div
+                    className="modal-dialog"
+                    role="document"
+                  >
+                    <div
+                      className="modal-content simplebox blade"
+                    >
+                      <div
+                        className="modal-header"
+                      >
+                        <h5
+                          className="modal-title"
+                          id="signUpModalLabel"
+                        >
+                          Sign Up
+                        </h5>
+                        <button
+                          aria-label="Close"
+                          className="close"
+                          data-dismiss="modal"
+                          type="button"
+                        >
+                          <span
+                            aria-hidden="true"
+                          >
+                            ×
+                          </span>
+                        </button>
+                      </div>
+                      <form
+                        className="mt-15"
+                        onSubmit={[Function]}
+                      >
+                        <div
+                          className="modal-body"
+                        >
+                          <small
+                            className="form-text text-muted"
+                          >
+                            All input fields marked
+                            <span
+                              className="text-danger"
+                            >
+                              *
+                            </span>
+                             are required
+                          </small>
+                          <div
+                            className="form-group"
+                          >
+                            <label
+                              htmlFor="firstName"
+                            >
+                              First Name
+                              <span
+                                className="text-danger"
+                              >
+                                *
+                              </span>
+                            </label>
+                            <input
+                              aria-describedby="firstName"
+                              className="form-control"
+                              name="firstName"
+                              onChange={[Function]}
+                              placeholder="First name"
+                              type="text"
+                              value=""
+                            />
+                          </div>
+                          <div
+                            className="form-group"
+                          >
+                            <label
+                              htmlFor="lastName"
+                            >
+                              Last Name 
+                              <span
+                                className="text-danger"
+                              >
+                                *
+                              </span>
+                            </label>
+                            <input
+                              aria-describedby="lastName"
+                              className="form-control"
+                              name="lastName"
+                              onChange={[Function]}
+                              placeholder="Last name"
+                              type="text"
+                              value=""
+                            />
+                          </div>
+                          <div
+                            className="form-group"
+                          >
+                            <label
+                              htmlFor="userName"
+                            >
+                              Username 
+                              <span
+                                className="text-danger"
+                              >
+                                *
+                              </span>
+                            </label>
+                            <input
+                              aria-describedby="username"
+                              className="form-control"
+                              name="username"
+                              onChange={[Function]}
+                              placeholder="Username"
+                              type="text"
+                              value=""
+                            />
+                          </div>
+                          <div
+                            className="form-group"
+                          >
+                            <label
+                              htmlFor="email"
+                            >
+                              Email address 
+                              <span
+                                className="text-danger"
+                              >
+                                *
+                              </span>
+                            </label>
+                            <input
+                              aria-describedby="email"
+                              className="form-control"
+                              name="email"
+                              onChange={[Function]}
+                              placeholder="Email"
+                              type="email"
+                              value=""
+                            />
+                          </div>
+                          <div
+                            className="form-group"
+                          >
+                            <label
+                              htmlFor="password"
+                            >
+                              Password 
+                              <span
+                                className="text-danger"
+                              >
+                                *
+                              </span>
+                            </label>
+                            <input
+                              className="form-control"
+                              name="password"
+                              onChange={[Function]}
+                              placeholder="Password"
+                              type="password"
+                              value=""
+                            />
+                          </div>
+                          <div
+                            className="form-group"
+                          >
+                            <label
+                              htmlFor="passwordConfirm"
+                            >
+                              Confirm Password 
+                              <span
+                                className="text-danger"
+                              >
+                                *
+                              </span>
+                            </label>
+                            <input
+                              className="form-control"
+                              name="confirmPassword"
+                              onChange={[Function]}
+                              placeholder="Confirm Password"
+                              type="password"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                        <div
+                          className="modal-footer"
+                        >
+                          <button
+                            className="btn btn-warning"
+                            type="submit"
+                          >
+                            Register me
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </SignUp>
+            </Connect(SignUp)>
+            <Connect(SearchComponent)>
+              <SearchComponent
+                searchRecipe={[Function]}
+              >
+                <div
+                  className="container-fluid banner pt-90"
+                >
+                  <div
+                    className="row"
+                  >
+                    <div
+                      className="col-lg-12 text-white"
+                    >
+                      <h2
+                        className="text-center"
+                      >
+                        More Recipe
+                      </h2>
+                      <p
+                        className="lead text-center"
+                        style={
+                          Object {
+                            "opacity": 0.9,
+                          }
+                        }
+                      >
+                        Amazing food recipes at your beck
+                      </p>
+                      <div
+                        id="custom-search-input center-content"
+                      >
+                        <div
+                          className="input-group col-md-6 mx-auto"
+                        >
+                          <input
+                            className="search-query form-control form-control-lg"
+                            name="searchParams"
+                            onChange={[Function]}
+                            placeholder="Search recipe"
+                            type="text"
+                          />
+                          <span
+                            className="input-group-btn"
+                          >
+                            <button
+                              className="btn btn-outline-warning btn-lg"
+                              disabled={true}
+                              onClick={[Function]}
+                              type="button"
+                            >
+                              <span
+                                className="fa fa-search"
+                              />
+                            </button>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </SearchComponent>
+            </Connect(SearchComponent)>
+            <StickyComponent
+              getAll={[Function]}
+            >
+              <div
+                className="container"
+                id="sticky-anchor"
+              >
+                <div
+                  className="row"
+                >
+                  <div
+                    className="col-lg-12"
+                  >
+                    <ul
+                      className="nav justify-content-center light-well shadow-lite sticky"
+                      id="sticky"
+                    >
+                      <li
+                        className="nav-item"
+                      >
+                        <button
+                          className="btn btn-outline-warning btn-sm"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "marginTop": "5px",
+                            }
+                          }
+                        >
+                          <i
+                            className="fa fa-list"
+                          />
+                          All Recipes
+                        </button>
+                      </li>
+                      <li
+                        className="nav-item"
+                      >
+                        <Link
+                          className="nav-link text-black"
+                          replace={false}
+                          to="/favorites"
+                        >
+                          <a
+                            className="nav-link text-black"
+                            href="/favorites"
+                            onClick={[Function]}
+                          >
+                            <i
+                              className="fa fa-star text-warning"
+                            />
+                            Most Favourited
+                          </a>
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </StickyComponent>
+            <div
+              className="clearfix mb-20"
+            />
+            <div
+              className="container"
+              style={
+                Object {
+                  "paddingTop": "50px",
+                }
+              }
+            >
+              <div
+                className="row"
+              />
+            </div>
+            <PaginationBoxView
+              activeClassName="page-item active"
+              breakLabel="..."
+              containerClassName="pagination justify-content-center"
+              disableInitialCallback={false}
+              disabledClassName="disabled"
+              marginPagesDisplayed={2}
+              nextClassName="next"
+              nextLabel="Next"
+              nextLinkClassName="page-link"
+              onPageChange={[Function]}
+              pageCount={0}
+              pageLinkClassName="page-link"
+              pageRangeDisplayed={2}
+              previousClassName="previous"
+              previousLabel="Previous"
+              previousLinkClassName="page-link"
+              subContainerClassName="page-item"
+            >
+              <ul
+                className="pagination justify-content-center"
+              >
+                <li
+                  className="previous disabled"
+                >
+                  <a
+                    className="page-link"
+                    onClick={[Function]}
+                    onKeyPress={[Function]}
+                    tabIndex="0"
+                  >
+                    Previous
+                  </a>
+                </li>
+                <li
+                  className="next"
+                >
+                  <a
+                    className="page-link"
+                    onClick={[Function]}
+                    onKeyPress={[Function]}
+                    tabIndex="0"
+                  >
+                    Next
+                  </a>
+                </li>
+              </ul>
+            </PaginationBoxView>
+            <FooterComponent>
+              <footer
+                className="p-10 well well-sm m-0 shadow-lite"
+              >
+                <div
+                  className="text-center text-muted"
+                >
+                  <p
+                    className="bold"
+                  >
+                    © 2017 More Recipes
+                  </p>
+                </div>
+              </footer>
+            </FooterComponent>
+          </div>
+        </HomePage>
+      </Connect(HomePage)>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;
