@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import FooterComponent from './partials/Footer.jsx';
 import NotFoundImage from '../build/assets/images/NFound.gif';
 
+
 /**
  *
  *
