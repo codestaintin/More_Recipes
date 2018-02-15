@@ -8,6 +8,7 @@ import getUser from '../actions/auth/getUser';
 import { userResponseType, decodeToken } from './../utils/helpers';
 import FooterComponent from './partials/Footer.jsx';
 import Header from "./partials/Headers/Header.jsx";
+import avatar from '../build/assets/images/no-avatar.png';
 /**
  *
  * @class Profile
@@ -88,7 +89,7 @@ class Profile extends Component {
           </ol>
           
           <div className="center-content">
-            <img src="/assets/images/no-avatar.png"
+            <img src={avatar}
               className="avatar text-center circulate circulate-xlg"
               alt="avatar" />
           </div>

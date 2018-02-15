@@ -9,6 +9,7 @@ import Header from './partials/Headers/Header.jsx';
 import FooterComponent from './partials/Footer.jsx';
 import FavoriteRecipe from './recipe/FavoriteRecipe.jsx';
 import { recipeResponseType } from './../utils/helpers';
+import emptyLogo from '../build/assets/images/bin.png';
 
 
 /**
@@ -91,30 +92,41 @@ class Favorite extends Component {
             </nav>
           </div>
           <div className="container mb-20 recipe-details-container">
-            <div className="row">
-              {
-                favorites.map((favorite, index) => (
-                  <FavoriteRecipe
-                    key={index}
-                    recipe={favorite.Recipe}
-                  />
-                ))
-              }
-            </div>
+            {
+              favorites && favorites.length > 0 ?
+                <div className="row">
+                  {
+                    favorites.map((favorite, index) => (
+                      <FavoriteRecipe
+                        key={index}
+                        recipe={favorite.Recipe}
+                      />
+                    ))
+                  }
+                </div> : <div className="col col-md-12 text-center">
+                  <h1 className="text-info">You have no recipes yet!</h1>
+                  <img src={emptyLogo} alt="No Recipe"/>
+                </div>
+            }
           </div>
           <div className="clearfix" />
-          <ReactPaginate
-            pageCount={this.state.pageCount}
-            pageRangeDisplayed={2}
-            marginPagesDisplayed={2}
-            onPageChange={this.handlePageChange}
-            containerClassName="pagination justify-content-center"
-            subContainerClassName="page-item"
-            pageLinkClassName="page-link"
-            activeClassName="page-item active"
-            nextLinkClassName="page-link"
-            previousLinkClassName="page-link"
-          />
+          {
+            favorites && favorites.length > 0 ?
+              <ReactPaginate
+                pageCount={this.state.pageCount}
+                pageRangeDisplayed={2}
+                marginPagesDisplayed={2}
+                onPageChange={this.handlePageChange}
+                containerClassName="pagination justify-content-center"
+                subContainerClassName="page-item"
+                pageLinkClassName="page-link"
+                activeClassName="page-item active"
+                nextLinkClassName="page-link"
+                previousLinkClassName="page-link"
+              />
+              : null
+          }
+
         </div>
         <FooterComponent/>
       </div>

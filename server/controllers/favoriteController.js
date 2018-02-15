@@ -144,10 +144,17 @@ const favoriteController = {
         }
       ]
     })
-      .then(favorites => res.status(200).json({
-        paginationMeta: generatePaginationMeta(favorites, limit, page),
-        favorites: favorites.rows
-      }))
+      .then((favorites) => {
+        if (favorites.length === 0) {
+          return res.status(200).json({
+            message: 'You have no favorite recipes yet'
+          });
+        }
+        return res.status(200).json({
+          paginationMeta: generatePaginationMeta(favorites, limit, page),
+          recipes: favorites.rows
+        });
+      })
       .catch(error => res.status(500).json({ error: error.message }));
   }
 };
