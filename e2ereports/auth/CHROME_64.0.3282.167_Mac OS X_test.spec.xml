@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="1">
+
+  <testsuite name="auth.test.spec"
+    errors="0" failures="0" hostname="" id="" package="auth" skipped="0"
+    tests="1" time="3.766" timestamp="Fri, 16 Feb 2018 03:28:37 GMT">
+  
+    <testcase name="Display homepage and ensure all element are available" classname="auth.test.spec" time="3.766" assertions="1">
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

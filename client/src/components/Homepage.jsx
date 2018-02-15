@@ -11,6 +11,7 @@ import Header from './partials/Headers/Header.jsx';
 import SearchComponent from './partials/SearchComponent.jsx';
 import StickyComponent from './partials/Sticky.jsx';
 import RecipeComponent from './recipe/Recipe.jsx';
+import emptyLogo from '../build/assets/images/bin.png';
 import { recipeResponseType } from './../utils/helpers';
 
 /**
@@ -92,12 +93,17 @@ export class HomePage extends Component {
         <div className="container" style={{ paddingTop: '50px' }}>
           <div className="row">
             {
-              recipes.map((recipe, index) => (
-                <RecipeComponent
-                  key={index}
-                  recipe={recipe}
-                />
-              ))
+              recipes && recipes.length > 0 ?
+                recipes.map((recipe, index) => (
+                  <RecipeComponent
+                    key={index}
+                    recipe={recipe}
+                  />
+                )) :
+                <div className="col col-md-12 text-center">
+                  <h1 className="text-info">No recipes yet!</h1>
+                  <img src={emptyLogo} alt="No Recipe"/>
+                </div>
             }
           </div>
         </div>

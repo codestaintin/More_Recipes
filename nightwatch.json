@@ -5,7 +5,7 @@
   "output_folder": "e2ereports",
   "selenium": {
     "start_process": true,
-    "server_path": "./node_modules/selenium-standalone/.selenium/selenium-server/3.7.1-server.jar",
+    "server_path": "./node_modules/selenium-standalone/.selenium/selenium-server/",
     "log_path": "",
     "port": 2234,
     "cli_args": {
@@ -14,7 +14,7 @@
   },
   "test_settings": {
     "default": {
-      "launch_url": "http://localhost:8081",
+      "launch_url": "http://localhost",
       "selenium_port": 2234,
       "selenium_host": "localhost",
       "silent": true,

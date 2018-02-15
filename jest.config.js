@@ -11,7 +11,8 @@ module.exports = {
   modulePathIgnorePatterns: [
     "/build/",
     "client/tests/__mocks__",
-    "/sweetalert2/"
+    "/sweetalert2/",
+    "client/tests/e2e/"
   ],
   snapshotSerializers: ['enzyme-to-json/serializer'],
   moduleFileExtensions: [

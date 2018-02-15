@@ -418,73 +418,73 @@ const mockData = {
       pageSize: 4,
       currentPage: 1
     },
-    favorites: [
+    recipes: [
       {
-        id: 5,
-        recipeId: 6,
+        id: 1,
+        recipeId: 2,
         userId: 1,
-        createdAt: "2018-02-03T21:00:29.741Z",
-        updatedAt: "2018-02-03T21:00:29.741Z",
+        createdAt: "2018-02-16T17:09:36.370Z",
+        updatedAt: "2018-02-16T17:09:36.370Z",
         Recipe: {
-          id: 6,
-          name: "Pizza",
-          ingredient: "sdf,asdf,df,asdf,asdf,dfd",
-          description: "dfdfadsf",
+          id: 2,
+          name: "Meat Pie",
+          ingredient: "Meat, water, pepper, flour, seasoning",
+          description: "This is how to meat Pie",
           userId: 1,
           imageUrl: "",
-          views: 1,
-          upvotes: 1,
-          downvotes: 1,
-          createdAt: "2018-02-03T07:16:24.952Z",
-          updatedAt: "2018-02-06T22:32:11.617Z",
+          views: 2,
+          upvotes: 0,
+          downvotes: 0,
+          createdAt: "2018-02-16T17:06:32.521Z",
+          updatedAt: "2018-02-16T17:09:31.161Z",
           User: {
-            username: "joshday"
+            username: "jaytee"
           }
         }
       },
       {
-        id: 7,
-        recipeId: 4,
+        id: 2,
+        recipeId: 3,
         userId: 1,
-        createdAt: "2018-02-10T14:22:53.903Z",
-        updatedAt: "2018-02-10T14:22:53.903Z",
+        createdAt: "2018-02-16T17:09:55.407Z",
+        updatedAt: "2018-02-16T17:09:55.407Z",
         Recipe: {
-          id: 4,
-          name: "Chicken Nuggets",
-          ingredient: "chicken, water, pepper, salt, yam, sugar",
-          description: "This is how to cook chicken nuggets",
+          id: 3,
+          name: "Chicken Pie",
+          ingredient: "Meat, water, pepper, flour, seasoning",
+          description: "This is how to chicken Pie",
           userId: 1,
           imageUrl: "",
-          views: 11,
-          upvotes: 1,
-          downvotes: 1,
-          createdAt: "2018-02-03T07:08:22.123Z",
-          updatedAt: "2018-02-10T20:29:55.381Z",
+          views: 2,
+          upvotes: 0,
+          downvotes: 0,
+          createdAt: "2018-02-16T17:06:39.145Z",
+          updatedAt: "2018-02-16T17:09:54.279Z",
           User: {
-            username: "joshday"
+            username: "jaytee"
           }
         }
       },
       {
-        id: 8,
-        recipeId: 4,
-        userId: 1,
-        createdAt: "2018-02-10T14:26:35.850Z",
-        updatedAt: "2018-02-10T14:26:35.850Z",
+        id: 3,
+        recipeId: 1,
+        userId: 2,
+        createdAt: "2018-02-16T17:25:16.044Z",
+        updatedAt: "2018-02-16T17:25:16.044Z",
         Recipe: {
-          id: 4,
-          name: "Chicken Nuggets",
-          ingredient: "chicken, water, pepper, salt, yam, sugar",
-          description: "This is how to cook chicken nuggets",
+          id: 1,
+          name: "Fish Pie",
+          ingredient: "Yam, water, pepper, seasoning",
+          description: "This is how to cook yam and sauce",
           userId: 1,
           imageUrl: "",
-          views: 11,
-          upvotes: 1,
+          views: 3,
+          upvotes: 0,
           downvotes: 1,
-          createdAt: "2018-02-03T07:08:22.123Z",
-          updatedAt: "2018-02-10T20:29:55.381Z",
+          createdAt: "2018-02-16T17:06:25.915Z",
+          updatedAt: "2018-02-16T17:07:06.352Z",
           User: {
-            username: "joshday"
+            username: "jaytee"
           }
         }
       }

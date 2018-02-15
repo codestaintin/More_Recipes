@@ -135,6 +135,7 @@ export class Review extends Component {
                 })
             }
             rows="3"
+            name="content"
             onChange={this.handleChange}
             value={this.state.content}
             placeholder="Kindly enter your review"
@@ -145,6 +146,7 @@ export class Review extends Component {
             }
           </div>
           <button type="submit"
+            id="submitReview"
             className="btn btn-primary mb-2">
             Submit Review
           </button>

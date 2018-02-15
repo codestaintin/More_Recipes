@@ -245,6 +245,7 @@ export class SignUp extends Component {
                       )
                     }
                     name="email"
+                    id="email"
                     aria-describedby="email"
                     placeholder="Email"
                     onChange={this.handleChange}
@@ -262,9 +263,10 @@ export class SignUp extends Component {
                   </label>
                   <input
                     type="password"
+                    id="password"
                     className={
                       classnames('form-control',
-                        { 'is-invalid': errors.email ? !!errors.email : false }
+                        { 'is-invalid': errors.password ? !!errors.password : false }
                       )
                     }
                     name="password"
@@ -285,7 +287,7 @@ export class SignUp extends Component {
                     type="password"
                     className={
                       classnames('form-control',
-                        { 'is-invalid': errors.email ? !!errors.email : false }
+                        { 'is-invalid': errors.confirmPassword ? !!errors.confirmPassword : false }
                       )
                     }
                     name="confirmPassword"
@@ -300,7 +302,7 @@ export class SignUp extends Component {
                 </div>
               </div>
               <div className="modal-footer">
-                <button type="submit" className="btn btn-warning">Register me
+                <button type="submit" id="submitSignUp" className="btn btn-warning">Register me
                 </button>
               </div>
             </form>

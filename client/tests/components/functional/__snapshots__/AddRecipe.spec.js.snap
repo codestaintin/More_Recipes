@@ -68,12 +68,14 @@ exports[`<AddRecipe> should render the AddRecipe Component 1`] = `
                   >
                     <Link
                       className="navbar-brand"
+                      id="home"
                       replace={false}
                       to="/"
                     >
                       <a
                         className="navbar-brand"
                         href="/"
+                        id="home"
                         onClick={[Function]}
                       >
                         More Recipes

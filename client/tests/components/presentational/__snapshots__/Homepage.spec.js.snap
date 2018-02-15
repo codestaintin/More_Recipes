@@ -63,12 +63,14 @@ exports[`<Homepage> should render the UserRecipe Component 1`] = `
                   >
                     <Link
                       className="navbar-brand"
+                      id="home"
                       replace={false}
                       to="/"
                     >
                       <a
                         className="navbar-brand"
                         href="/"
+                        id="home"
                         onClick={[Function]}
                       >
                         More Recipes
@@ -332,6 +334,7 @@ exports[`<Homepage> should render the UserRecipe Component 1`] = `
                           >
                             <button
                               className="btn btn-warning"
+                              id="submitSignIn"
                               type="submit"
                             >
                               Log In
@@ -501,6 +504,7 @@ exports[`<Homepage> should render the UserRecipe Component 1`] = `
                             <input
                               aria-describedby="email"
                               className="form-control"
+                              id="email"
                               name="email"
                               onChange={[Function]}
                               placeholder="Email"
@@ -523,6 +527,7 @@ exports[`<Homepage> should render the UserRecipe Component 1`] = `
                             </label>
                             <input
                               className="form-control"
+                              id="password"
                               name="password"
                               onChange={[Function]}
                               placeholder="Password"
@@ -558,6 +563,7 @@ exports[`<Homepage> should render the UserRecipe Component 1`] = `
                         >
                           <button
                             className="btn btn-warning"
+                            id="submitSignUp"
                             type="submit"
                           >
                             Register me
@@ -704,7 +710,21 @@ exports[`<Homepage> should render the UserRecipe Component 1`] = `
             >
               <div
                 className="row"
-              />
+              >
+                <div
+                  className="col col-md-12 text-center"
+                >
+                  <h1
+                    className="text-info"
+                  >
+                    No recipes yet!
+                  </h1>
+                  <img
+                    alt="No Recipe"
+                    src="test-file-stub"
+                  />
+                </div>
+              </div>
             </div>
             <PaginationBoxView
               activeClassName="page-item active"

@@ -51,12 +51,14 @@ exports[`<Favorite> should render Favorite component 1`] = `
                   >
                     <Link
                       className="navbar-brand"
+                      id="home"
                       replace={false}
                       to="/"
                     >
                       <a
                         className="navbar-brand"
                         href="/"
+                        id="home"
                         onClick={[Function]}
                       >
                         More Recipes
@@ -245,60 +247,22 @@ exports[`<Favorite> should render Favorite component 1`] = `
                 className="container mb-20 recipe-details-container"
               >
                 <div
-                  className="row"
-                />
+                  className="col col-md-12 text-center"
+                >
+                  <h1
+                    className="text-info"
+                  >
+                    You have no recipes yet!
+                  </h1>
+                  <img
+                    alt="No Recipe"
+                    src="test-file-stub"
+                  />
+                </div>
               </div>
               <div
                 className="clearfix"
               />
-              <PaginationBoxView
-                activeClassName="page-item active"
-                breakLabel="..."
-                containerClassName="pagination justify-content-center"
-                disableInitialCallback={false}
-                disabledClassName="disabled"
-                marginPagesDisplayed={2}
-                nextClassName="next"
-                nextLabel="Next"
-                nextLinkClassName="page-link"
-                onPageChange={[Function]}
-                pageCount={0}
-                pageLinkClassName="page-link"
-                pageRangeDisplayed={2}
-                previousClassName="previous"
-                previousLabel="Previous"
-                previousLinkClassName="page-link"
-                subContainerClassName="page-item"
-              >
-                <ul
-                  className="pagination justify-content-center"
-                >
-                  <li
-                    className="previous disabled"
-                  >
-                    <a
-                      className="page-link"
-                      onClick={[Function]}
-                      onKeyPress={[Function]}
-                      tabIndex="0"
-                    >
-                      Previous
-                    </a>
-                  </li>
-                  <li
-                    className="next"
-                  >
-                    <a
-                      className="page-link"
-                      onClick={[Function]}
-                      onKeyPress={[Function]}
-                      tabIndex="0"
-                    >
-                      Next
-                    </a>
-                  </li>
-                </ul>
-              </PaginationBoxView>
             </div>
             <FooterComponent>
               <footer

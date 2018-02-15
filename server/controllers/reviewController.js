@@ -8,7 +8,7 @@ const User = db.User;
 const reviewController = {
 
   /**
-   * Create a recipe Review
+   * @description - Create a recipe Review
    *
    * @param { object } req
    * @param { object } res
@@ -46,7 +46,7 @@ const reviewController = {
   },
 
   /**
-   * List all Reviews
+   * @description - List all Reviews
    *
    * @param { object } req
    * @param { object } res

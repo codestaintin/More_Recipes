@@ -73,34 +73,13 @@ class RecipeDetail extends Component {
   componentWillReceiveProps(nextProps) {
     const { recipeState } = nextProps;
     const { recipe, reviews } = recipeState;
-    // const { upvotes, downvotes } = this.state.recipe;
-    // console.log(nextProps);
     if (recipe && recipe.id) {
       this.setState({ recipe });
     }
     if (reviews.length > 0) {
       this.setState({ reviews });
     }
-    //
-    // if (upvotes !== recipeState.upvotes) {
-    //   this.setState({
-    //     recipe:
-    //       {
-    //         ...this.state.recipe,
-    //         upvotes: recipeState.upvotes
-    //       }
-    //   });
-    // }
-    //
-    // if (downvotes !== recipeState.downvotes) {
-    //   this.setState({
-    //     recipe:
-    //       {
-    //         ...this.state.recipe,
-    //         downvotes: recipeState.upvotes
-    //       }
-    //   });
-    // }
+
     if (recipeState.responseType === recipeResponseType.CREATE_UPVOTE_SUCCESSFUL) {
       this.setState({
         recipe:
@@ -236,7 +215,7 @@ class RecipeDetail extends Component {
         </div>
 
         <div className=
-          "mb-20 col-md-9 mx-auto bg-white recipe-details-container">
+          "mb-20 col-md-11 mx-auto bg-white recipe-details-container">
           <div className="row">
             <div className="col-sm-6 col-md-6 col-lg-6 p-10">
               <img className="recipe-big-img" src={image} alt="Recipe Image"/>

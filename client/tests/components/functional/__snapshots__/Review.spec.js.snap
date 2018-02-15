@@ -82,6 +82,7 @@ exports[`<Review> should render the Review Component 1`] = `
                 </h5>
                 <textarea
                   className="form-control"
+                  name="content"
                   onChange={[Function]}
                   placeholder="Kindly enter your review"
                   rows="3"
@@ -90,6 +91,7 @@ exports[`<Review> should render the Review Component 1`] = `
               </div>
               <button
                 className="btn btn-primary mb-2"
+                id="submitReview"
                 type="submit"
               >
                 Submit Review

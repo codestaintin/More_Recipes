@@ -76,12 +76,14 @@ exports[`<RecipeDetail> should render the RecipeDetail component 1`] = `
                   >
                     <Link
                       className="navbar-brand"
+                      id="home"
                       replace={false}
                       to="/"
                     >
                       <a
                         className="navbar-brand"
                         href="/"
+                        id="home"
                         onClick={[Function]}
                       >
                         More Recipes
@@ -256,7 +258,7 @@ exports[`<RecipeDetail> should render the RecipeDetail component 1`] = `
               </ol>
             </div>
             <div
-              className="mb-20 col-md-9 mx-auto bg-white recipe-details-container"
+              className="mb-20 col-md-11 mx-auto bg-white recipe-details-container"
             >
               <div
                 className="row"
@@ -411,6 +413,7 @@ exports[`<RecipeDetail> should render the RecipeDetail component 1`] = `
                         </h5>
                         <textarea
                           className="form-control"
+                          name="content"
                           onChange={[Function]}
                           placeholder="Kindly enter your review"
                           rows="3"
@@ -419,6 +422,7 @@ exports[`<RecipeDetail> should render the RecipeDetail component 1`] = `
                       </div>
                       <button
                         className="btn btn-primary mb-2"
+                        id="submitReview"
                         type="submit"
                       >
                         Submit Review
