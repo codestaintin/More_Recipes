@@ -1,0 +1,205 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header> should render the Header component 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "blank",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Connect(Header)>
+        <Header
+          logoutAction={[Function]}
+        >
+          <div>
+            <nav
+              className="navbar navbar-expand-sm navbar-light bg-navbar fixed-top"
+            >
+              <Link
+                className="navbar-brand"
+                replace={false}
+                to="/"
+              >
+                <a
+                  className="navbar-brand"
+                  href="/"
+                  onClick={[Function]}
+                >
+                  More Recipes
+                </a>
+              </Link>
+              <button
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                className="navbar-toggler"
+                data-target="#navbarSupportedContent"
+                data-toggle="collapse"
+                type="button"
+              >
+                <span
+                  className="navbar-toggler-icon"
+                />
+              </button>
+              <div
+                className="collapse navbar-collapse"
+                id="navbarSupportedContent"
+              >
+                <ul
+                  className="navbar-nav ml-auto"
+                >
+                  <li
+                    className="nav-item dropdown"
+                  >
+                    <Link
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      className="nav-link dropdown-toggle"
+                      data-toggle="dropdown"
+                      id="navbarDropdown"
+                      replace={false}
+                      role="button"
+                      to="#"
+                    >
+                      <a
+                        aria-expanded="false"
+                        aria-haspopup="true"
+                        className="nav-link dropdown-toggle"
+                        data-toggle="dropdown"
+                        href="#"
+                        id="navbarDropdown"
+                        onClick={[Function]}
+                        role="button"
+                      >
+                        My Account
+                      </a>
+                    </Link>
+                    <div
+                      aria-labelledby="navbarDropdown"
+                      className="dropdown-menu dropdown-menu-right mr-20"
+                    >
+                      <Link
+                        className="dropdown-item"
+                        replace={false}
+                        to="/profile"
+                      >
+                        <a
+                          className="dropdown-item"
+                          href="/profile"
+                          onClick={[Function]}
+                        >
+                          <i
+                            className="fa fa-user-circle"
+                          />
+                           My Profile
+                        </a>
+                      </Link>
+                      <Link
+                        className="dropdown-item"
+                        replace={false}
+                        to="/user-recipes"
+                      >
+                        <a
+                          className="dropdown-item"
+                          href="/user-recipes"
+                          onClick={[Function]}
+                        >
+                          <i
+                            className="fa fa-list"
+                          />
+                           My Recipes
+                        </a>
+                      </Link>
+                      <Link
+                        className="dropdown-item"
+                        replace={false}
+                        to="/my-favorite"
+                      >
+                        <a
+                          className="dropdown-item"
+                          href="/my-favorite"
+                          onClick={[Function]}
+                        >
+                          <i
+                            className="fa fa-star"
+                          />
+                           My Favorites
+                        </a>
+                      </Link>
+                      <Link
+                        className="dropdown-item"
+                        replace={false}
+                        to="/addRecipe"
+                      >
+                        <a
+                          className="dropdown-item"
+                          href="/addRecipe"
+                          onClick={[Function]}
+                        >
+                          <i
+                            className="fa fa-plus"
+                          />
+                           Add Recipes
+                        </a>
+                      </Link>
+                      <div
+                        className="dropdown-divider"
+                      />
+                      <Link
+                        className="dropdown-item"
+                        onClick={[Function]}
+                        replace={false}
+                        to="#"
+                      >
+                        <a
+                          className="dropdown-item"
+                          href="#"
+                          onClick={[Function]}
+                        >
+                          <i
+                            className="fa fa-sign-out"
+                          />
+                          Log out
+                        </a>
+                      </Link>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </Header>
+      </Connect(Header)>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;

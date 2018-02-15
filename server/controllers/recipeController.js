@@ -1,10 +1,12 @@
 import Validator from 'validatorjs';
 import dotenv from 'dotenv';
+import Sequelize from 'sequelize';
 import db from '../models';
 import { errorHandler, generatePaginationMeta } from '../utils/helper';
 
 dotenv.config();
 
+const Op = Sequelize.Op;
 const Recipe = db.Recipe;
 const User = db.User;
 const Voting = db.Voting;
@@ -26,7 +28,7 @@ const recipeController = {
         .then((user) => {
           if (!user) {
             return res.status(404).json({
-              message: 'This User Does not exit'
+              message: 'Please log in to create a recipe'
             });
           }
           Recipe.findOne({
@@ -49,7 +51,7 @@ const recipeController = {
                   message: 'Recipe creation successful ',
                   recipe
                 }))
-                .catch(error => res.status(404).json(error));
+                .catch(error => res.status(400).json(error));
             })
             .catch(error => res.status(500).json({
               message: 'An error occurred while trying to create this recipe ',
@@ -114,7 +116,7 @@ const recipeController = {
    * @returns { object } object
    */
   update(req, res) {
-    const validator = new Validator(req.body, Recipe.updateRules());
+    const validator = new Validator(req.body, Recipe.createRules());
     if (validator.passes()) {
       return Recipe
         .findById(req.params.recipeId)
@@ -126,7 +128,7 @@ const recipeController = {
           }
           if (req.decoded.id !== recipe.userId) {
             return res.status(404).json({
-              message: 'This User Does not exit'
+              message: 'You have no access to edit this recipe'
             });
           }
           return recipe
@@ -160,7 +162,7 @@ const recipeController = {
         }
         if (req.decoded.id !== recipe.userId) {
           return res.status(404).json({
-            message: 'This User Does not exit'
+            message: 'You have no access to edit this recipe'
           });
         }
         return recipe
@@ -181,8 +183,9 @@ const recipeController = {
    * @returns { object } object
    */
   list(req, res) {
-    const limit = req.query.limit || 8;
-    const offset = req.query.offset || 0;
+    const page = (req.query.page <= 0 || req.query.page === undefined) ? 0 : req.query.page - 1;
+    const limit = req.query.limit || 4;
+    const offset = limit * page;
     const order = (req.query.order && req.query.order.toLowerCase() === 'desc')
       ? [['createdAt', 'DESC']] : [['createdAt', 'ASC']];
     return Recipe
@@ -192,11 +195,17 @@ const recipeController = {
         order,
         include: [{ model: User, attributes: ['username'] }]
       })
-      .then(recipes => res.status(200).json(
-        {
-          paginationMeta: generatePaginationMeta(recipes, limit, offset),
+      .then((recipes) => {
+        if (recipes.length === 0) {
+          return res.status(200).json({
+            message: 'You have no recipes yet'
+          });
+        }
+        return res.status(200).json({
+          paginationMeta: generatePaginationMeta(recipes, limit, page),
           recipes: recipes.rows
-        }))
+        });
+      })
       .catch(error => res.status(500).json({ error }));
   },
   /**
@@ -207,12 +216,12 @@ const recipeController = {
    * @returns { object } object
    */
   getUserRecipe(req, res) {
-    const userId = req.params.userId;
-    if (Number(userId) !== req.decoded.id) {
-      return res.status(400).json({
-        message: 'This User Does not exit'
-      });
-    }
+    const page = (req.query.page <= 0 || req.query.page === undefined) ? 0 : req.query.page - 1;
+    const limit = req.query.limit || 4;
+    const offset = page * limit;
+    const order = (req.query.order && req.query.order.toLowerCase() === 'desc')
+      ? [['createdAt', 'DESC']] : [['createdAt', 'ASC']];
+    const userId = req.decoded.id;
     return User.findById(userId)
       .then((user) => {
         if (!user) {
@@ -220,21 +229,69 @@ const recipeController = {
             message: 'This User Does not exit'
           });
         }
-        Recipe.findAll({
+        Recipe.findAndCountAll({
+          limit,
+          offset,
+          order,
           where: { userId: req.decoded.id },
           include: [{ model: User, attributes: ['username'] }]
         })
           .then((recipes) => {
             if (recipes.length === 0) {
-              return res.status(404).json({
+              return res.status(200).json({
                 message: 'You have no recipes yet!'
               });
             }
-            return res.status(200).json({ message: 'This are your recipes', recipes });
+            return res.status(200).json({
+              message: 'This are your recipes',
+              paginationMeta: generatePaginationMeta(recipes, limit, page),
+              recipes: recipes.rows
+            });
           })
           .catch(error => res.status(500).json({ error }));
       })
       .catch(error => res.status(500).json({ error }));
+  },
+  /**
+   * Search recipe
+   * @param { object }  req
+   * @param { object }  res
+   *
+   * @returns { object } object
+   */
+  searchRecipe(req, res) {
+    const { search: query } = req.query;
+    const page = (req.query.page <= 0 || req.query.page === undefined) ? 0 : req.query.page - 1;
+    const limit = req.query.limit || 4;
+    const offset = page * limit;
+    const order = (req.query.order && req.query.order.toLowerCase() === 'desc')
+      ? [['createdAt', 'DESC']] : [['createdAt', 'ASC']];
+    Recipe
+      .findAndCountAll({
+        limit,
+        offset,
+        order,
+        where: {
+          [Op.or]: [
+            {
+              name: {
+                [Op.iLike]: `%${query}%`
+              }
+            },
+            {
+              ingredient: {
+                [Op.iLike]: `%${query}%`,
+              }
+            }
+          ]
+
+        },
+        include: [{ model: User, attributes: ['username'] }]
+      }).then(recipeFound => res.status(200).json({
+        paginationMeta: generatePaginationMeta(recipeFound, limit, page),
+        recipeFound: recipeFound.rows
+      }))
+      .catch(() => res.status(500).json({ error: 'Internal server error' }));
   }
 };
 

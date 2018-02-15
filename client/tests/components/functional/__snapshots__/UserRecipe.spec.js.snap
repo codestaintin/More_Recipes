@@ -1,0 +1,849 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UserRecipe> should render the UserRecipe Component 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "blank",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Connect(UserRecipe)
+        match={Object {}}
+      >
+        <UserRecipe
+          getUserRecipes={[Function]}
+          match={Object {}}
+          userRecipes={
+            Object {
+              "getUserRecipesSuccess": Array [
+                Object {
+                  "User": Object {
+                    "username": "joshday",
+                  },
+                  "createdAt": "2018-01-31T12:39:02.873Z",
+                  "description": "This is how to cook a sample recipe",
+                  "downvotes": 0,
+                  "id": 1,
+                  "imageUrl": "",
+                  "ingredient": "sample, sample, sample",
+                  "name": "Sample Recipe",
+                  "updatedAt": "2018-02-08T08:57:07.632Z",
+                  "upvotes": 2,
+                  "userId": 1,
+                  "views": 34,
+                },
+                Object {
+                  "User": Object {
+                    "username": "joshday",
+                  },
+                  "createdAt": "2018-02-03T07:08:22.123Z",
+                  "description": "This is how to cook chicken nuggets",
+                  "downvotes": 1,
+                  "id": 4,
+                  "imageUrl": "",
+                  "ingredient": "chicken, water, pepper, salt, yam, sugar",
+                  "name": "Chicken Nuggets",
+                  "updatedAt": "2018-02-08T11:28:02.399Z",
+                  "upvotes": 1,
+                  "userId": 1,
+                  "views": 7,
+                },
+                Object {
+                  "User": Object {
+                    "username": "joshday",
+                  },
+                  "createdAt": "2018-02-03T07:10:03.615Z",
+                  "description": "This is how to cook rice and beans",
+                  "downvotes": 0,
+                  "id": 5,
+                  "imageUrl": "",
+                  "ingredient": "Rice, beans, water",
+                  "name": "Rice and beans",
+                  "updatedAt": "2018-02-06T22:09:00.211Z",
+                  "upvotes": 0,
+                  "userId": 1,
+                  "views": 2,
+                },
+                Object {
+                  "User": Object {
+                    "username": "joshday",
+                  },
+                  "createdAt": "2018-02-03T07:16:24.952Z",
+                  "description": "dfdfadsf",
+                  "downvotes": 1,
+                  "id": 6,
+                  "imageUrl": "",
+                  "ingredient": "sdf,asdf,df,asdf,asdf,dfd",
+                  "name": "Pizza",
+                  "updatedAt": "2018-02-06T22:32:11.617Z",
+                  "upvotes": 1,
+                  "userId": 1,
+                  "views": 1,
+                },
+              ],
+            }
+          }
+        >
+          <div>
+            <Connect(Header)>
+              <Header
+                logoutAction={[Function]}
+              >
+                <div>
+                  <nav
+                    className="navbar navbar-expand-sm navbar-light bg-navbar fixed-top"
+                  >
+                    <Link
+                      className="navbar-brand"
+                      replace={false}
+                      to="/"
+                    >
+                      <a
+                        className="navbar-brand"
+                        href="/"
+                        onClick={[Function]}
+                      >
+                        More Recipes
+                      </a>
+                    </Link>
+                    <button
+                      aria-controls="navbarSupportedContent"
+                      aria-expanded="false"
+                      aria-label="Toggle navigation"
+                      className="navbar-toggler"
+                      data-target="#navbarSupportedContent"
+                      data-toggle="collapse"
+                      type="button"
+                    >
+                      <span
+                        className="navbar-toggler-icon"
+                      />
+                    </button>
+                    <div
+                      className="collapse navbar-collapse"
+                      id="navbarSupportedContent"
+                    >
+                      <ul
+                        className="navbar-nav ml-auto"
+                      >
+                        <li
+                          className="nav-item dropdown"
+                        >
+                          <Link
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            className="nav-link dropdown-toggle"
+                            data-toggle="dropdown"
+                            id="navbarDropdown"
+                            replace={false}
+                            role="button"
+                            to="#"
+                          >
+                            <a
+                              aria-expanded="false"
+                              aria-haspopup="true"
+                              className="nav-link dropdown-toggle"
+                              data-toggle="dropdown"
+                              href="#"
+                              id="navbarDropdown"
+                              onClick={[Function]}
+                              role="button"
+                            >
+                              My Account
+                            </a>
+                          </Link>
+                          <div
+                            aria-labelledby="navbarDropdown"
+                            className="dropdown-menu dropdown-menu-right mr-20"
+                          >
+                            <Link
+                              className="dropdown-item"
+                              replace={false}
+                              to="/profile"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="/profile"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-user-circle"
+                                />
+                                 My Profile
+                              </a>
+                            </Link>
+                            <Link
+                              className="dropdown-item"
+                              replace={false}
+                              to="/user-recipes"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="/user-recipes"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-list"
+                                />
+                                 My Recipes
+                              </a>
+                            </Link>
+                            <Link
+                              className="dropdown-item"
+                              replace={false}
+                              to="/my-favorite"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="/my-favorite"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-star"
+                                />
+                                 My Favorites
+                              </a>
+                            </Link>
+                            <Link
+                              className="dropdown-item"
+                              replace={false}
+                              to="/addRecipe"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="/addRecipe"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-plus"
+                                />
+                                 Add Recipes
+                              </a>
+                            </Link>
+                            <div
+                              className="dropdown-divider"
+                            />
+                            <Link
+                              className="dropdown-item"
+                              onClick={[Function]}
+                              replace={false}
+                              to="#"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="#"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-sign-out"
+                                />
+                                Log out
+                              </a>
+                            </Link>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </nav>
+                </div>
+              </Header>
+            </Connect(Header)>
+            <div
+              className="wrapper"
+            >
+              <div
+                className="container"
+              >
+                <nav
+                  aria-label="breadcrumb"
+                  className="mt-40 mb-10"
+                >
+                  <ol
+                    className="breadcrumb bg-white"
+                  >
+                    <li
+                      className="breadcrumb-item"
+                    >
+                      <Link
+                        replace={false}
+                        to="/"
+                      >
+                        <a
+                          href="/"
+                          onClick={[Function]}
+                        >
+                          Home
+                        </a>
+                      </Link>
+                    </li>
+                    <li
+                      className="breadcrumb-item"
+                    >
+                      <Link
+                        replace={false}
+                        to="/profile"
+                      >
+                        <a
+                          href="/profile"
+                          onClick={[Function]}
+                        >
+                          User
+                        </a>
+                      </Link>
+                    </li>
+                    <li
+                      aria-current="page"
+                      className="breadcrumb-item active"
+                    >
+                      My Recipes
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+              <div
+                className="container mb-20 recipe-details-container"
+              >
+                <div
+                  className="row"
+                >
+                  <Recipe
+                    decodedToken={
+                      Object {
+                        "iat": 1517647664,
+                        "id": 1,
+                        "username": "joshday",
+                      }
+                    }
+                    key="0"
+                    recipe={
+                      Object {
+                        "User": Object {
+                          "username": "joshday",
+                        },
+                        "createdAt": "2018-01-31T12:39:02.873Z",
+                        "description": "This is how to cook a sample recipe",
+                        "downvotes": 0,
+                        "id": 1,
+                        "imageUrl": "",
+                        "ingredient": "sample, sample, sample",
+                        "name": "Sample Recipe",
+                        "updatedAt": "2018-02-08T08:57:07.632Z",
+                        "upvotes": 2,
+                        "userId": 1,
+                        "views": 34,
+                      }
+                    }
+                  >
+                    <div
+                      className="col-12  col-sm-6 col-md-4 col-lg-3 align-self-center hvr-float-shadow"
+                    >
+                      <div
+                        className="col-md-12 recipe"
+                      >
+                        <div
+                          className="recipe-img"
+                          style={
+                            Object {
+                              "backgroundImage": "url(undefined)",
+                            }
+                          }
+                        />
+                        <div
+                          className="recipe-meta pt-5"
+                        >
+                          <Link
+                            replace={false}
+                            to="/recipes/1/"
+                          >
+                            <a
+                              href="/recipes/1/"
+                              onClick={[Function]}
+                            >
+                              <h6
+                                className="recipe-name"
+                              >
+                                Sample Recipe
+                              </h6>
+                            </a>
+                          </Link>
+                          <h5
+                            className="text-muted"
+                          >
+                            <small>
+                              <i
+                                className="fa fa-user"
+                              />
+                               
+                              joshday
+                            </small>
+                          </h5>
+                        </div>
+                        <div
+                          className="recipe-met2"
+                        >
+                          <hr
+                            className="m-1"
+                          />
+                          <p
+                            className="text-left"
+                          >
+                            <small>
+                              <span>
+                                <i
+                                  className="fa fa-eye text-muted"
+                                />
+                                 
+                                34
+                              </span>
+                                
+                              <span>
+                                <i
+                                  className="fa fa-thumbs-o-up text-muted"
+                                />
+                                2
+                              </span>
+                                
+                              <span>
+                                <i
+                                  className="fa fa-thumbs-o-down text-muted"
+                                />
+                                0
+                              </span>
+                            </small>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </Recipe>
+                  <Recipe
+                    decodedToken={
+                      Object {
+                        "iat": 1517647664,
+                        "id": 1,
+                        "username": "joshday",
+                      }
+                    }
+                    key="1"
+                    recipe={
+                      Object {
+                        "User": Object {
+                          "username": "joshday",
+                        },
+                        "createdAt": "2018-02-03T07:08:22.123Z",
+                        "description": "This is how to cook chicken nuggets",
+                        "downvotes": 1,
+                        "id": 4,
+                        "imageUrl": "",
+                        "ingredient": "chicken, water, pepper, salt, yam, sugar",
+                        "name": "Chicken Nuggets",
+                        "updatedAt": "2018-02-08T11:28:02.399Z",
+                        "upvotes": 1,
+                        "userId": 1,
+                        "views": 7,
+                      }
+                    }
+                  >
+                    <div
+                      className="col-12  col-sm-6 col-md-4 col-lg-3 align-self-center hvr-float-shadow"
+                    >
+                      <div
+                        className="col-md-12 recipe"
+                      >
+                        <div
+                          className="recipe-img"
+                          style={
+                            Object {
+                              "backgroundImage": "url(undefined)",
+                            }
+                          }
+                        />
+                        <div
+                          className="recipe-meta pt-5"
+                        >
+                          <Link
+                            replace={false}
+                            to="/recipes/4/"
+                          >
+                            <a
+                              href="/recipes/4/"
+                              onClick={[Function]}
+                            >
+                              <h6
+                                className="recipe-name"
+                              >
+                                Chicken Nuggets
+                              </h6>
+                            </a>
+                          </Link>
+                          <h5
+                            className="text-muted"
+                          >
+                            <small>
+                              <i
+                                className="fa fa-user"
+                              />
+                               
+                              joshday
+                            </small>
+                          </h5>
+                        </div>
+                        <div
+                          className="recipe-met2"
+                        >
+                          <hr
+                            className="m-1"
+                          />
+                          <p
+                            className="text-left"
+                          >
+                            <small>
+                              <span>
+                                <i
+                                  className="fa fa-eye text-muted"
+                                />
+                                 
+                                7
+                              </span>
+                                
+                              <span>
+                                <i
+                                  className="fa fa-thumbs-o-up text-muted"
+                                />
+                                1
+                              </span>
+                                
+                              <span>
+                                <i
+                                  className="fa fa-thumbs-o-down text-muted"
+                                />
+                                1
+                              </span>
+                            </small>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </Recipe>
+                  <Recipe
+                    decodedToken={
+                      Object {
+                        "iat": 1517647664,
+                        "id": 1,
+                        "username": "joshday",
+                      }
+                    }
+                    key="2"
+                    recipe={
+                      Object {
+                        "User": Object {
+                          "username": "joshday",
+                        },
+                        "createdAt": "2018-02-03T07:10:03.615Z",
+                        "description": "This is how to cook rice and beans",
+                        "downvotes": 0,
+                        "id": 5,
+                        "imageUrl": "",
+                        "ingredient": "Rice, beans, water",
+                        "name": "Rice and beans",
+                        "updatedAt": "2018-02-06T22:09:00.211Z",
+                        "upvotes": 0,
+                        "userId": 1,
+                        "views": 2,
+                      }
+                    }
+                  >
+                    <div
+                      className="col-12  col-sm-6 col-md-4 col-lg-3 align-self-center hvr-float-shadow"
+                    >
+                      <div
+                        className="col-md-12 recipe"
+                      >
+                        <div
+                          className="recipe-img"
+                          style={
+                            Object {
+                              "backgroundImage": "url(undefined)",
+                            }
+                          }
+                        />
+                        <div
+                          className="recipe-meta pt-5"
+                        >
+                          <Link
+                            replace={false}
+                            to="/recipes/5/"
+                          >
+                            <a
+                              href="/recipes/5/"
+                              onClick={[Function]}
+                            >
+                              <h6
+                                className="recipe-name"
+                              >
+                                Rice and beans
+                              </h6>
+                            </a>
+                          </Link>
+                          <h5
+                            className="text-muted"
+                          >
+                            <small>
+                              <i
+                                className="fa fa-user"
+                              />
+                               
+                              joshday
+                            </small>
+                          </h5>
+                        </div>
+                        <div
+                          className="recipe-met2"
+                        >
+                          <hr
+                            className="m-1"
+                          />
+                          <p
+                            className="text-left"
+                          >
+                            <small>
+                              <span>
+                                <i
+                                  className="fa fa-eye text-muted"
+                                />
+                                 
+                                2
+                              </span>
+                                
+                              <span>
+                                <i
+                                  className="fa fa-thumbs-o-up text-muted"
+                                />
+                                0
+                              </span>
+                                
+                              <span>
+                                <i
+                                  className="fa fa-thumbs-o-down text-muted"
+                                />
+                                0
+                              </span>
+                            </small>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </Recipe>
+                  <Recipe
+                    decodedToken={
+                      Object {
+                        "iat": 1517647664,
+                        "id": 1,
+                        "username": "joshday",
+                      }
+                    }
+                    key="3"
+                    recipe={
+                      Object {
+                        "User": Object {
+                          "username": "joshday",
+                        },
+                        "createdAt": "2018-02-03T07:16:24.952Z",
+                        "description": "dfdfadsf",
+                        "downvotes": 1,
+                        "id": 6,
+                        "imageUrl": "",
+                        "ingredient": "sdf,asdf,df,asdf,asdf,dfd",
+                        "name": "Pizza",
+                        "updatedAt": "2018-02-06T22:32:11.617Z",
+                        "upvotes": 1,
+                        "userId": 1,
+                        "views": 1,
+                      }
+                    }
+                  >
+                    <div
+                      className="col-12  col-sm-6 col-md-4 col-lg-3 align-self-center hvr-float-shadow"
+                    >
+                      <div
+                        className="col-md-12 recipe"
+                      >
+                        <div
+                          className="recipe-img"
+                          style={
+                            Object {
+                              "backgroundImage": "url(undefined)",
+                            }
+                          }
+                        />
+                        <div
+                          className="recipe-meta pt-5"
+                        >
+                          <Link
+                            replace={false}
+                            to="/recipes/6/"
+                          >
+                            <a
+                              href="/recipes/6/"
+                              onClick={[Function]}
+                            >
+                              <h6
+                                className="recipe-name"
+                              >
+                                Pizza
+                              </h6>
+                            </a>
+                          </Link>
+                          <h5
+                            className="text-muted"
+                          >
+                            <small>
+                              <i
+                                className="fa fa-user"
+                              />
+                               
+                              joshday
+                            </small>
+                          </h5>
+                        </div>
+                        <div
+                          className="recipe-met2"
+                        >
+                          <hr
+                            className="m-1"
+                          />
+                          <p
+                            className="text-left"
+                          >
+                            <small>
+                              <span>
+                                <i
+                                  className="fa fa-eye text-muted"
+                                />
+                                 
+                                1
+                              </span>
+                                
+                              <span>
+                                <i
+                                  className="fa fa-thumbs-o-up text-muted"
+                                />
+                                1
+                              </span>
+                                
+                              <span>
+                                <i
+                                  className="fa fa-thumbs-o-down text-muted"
+                                />
+                                1
+                              </span>
+                            </small>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </Recipe>
+                </div>
+              </div>
+              <div
+                className="clearfix"
+              />
+              <PaginationBoxView
+                activeClassName="page-item active"
+                breakLabel="..."
+                containerClassName="pagination justify-content-center"
+                disableInitialCallback={false}
+                disabledClassName="disabled"
+                marginPagesDisplayed={2}
+                nextClassName="next"
+                nextLabel="Next"
+                nextLinkClassName="page-link"
+                onPageChange={[Function]}
+                pageCount={0}
+                pageLinkClassName="page-link"
+                pageRangeDisplayed={2}
+                previousClassName="previous"
+                previousLabel="Previous"
+                previousLinkClassName="page-link"
+                subContainerClassName="page-item"
+              >
+                <ul
+                  className="pagination justify-content-center"
+                >
+                  <li
+                    className="previous disabled"
+                  >
+                    <a
+                      className="page-link"
+                      onClick={[Function]}
+                      onKeyPress={[Function]}
+                      tabIndex="0"
+                    >
+                      Previous
+                    </a>
+                  </li>
+                  <li
+                    className="next"
+                  >
+                    <a
+                      className="page-link"
+                      onClick={[Function]}
+                      onKeyPress={[Function]}
+                      tabIndex="0"
+                    >
+                      Next
+                    </a>
+                  </li>
+                </ul>
+              </PaginationBoxView>
+            </div>
+            <FooterComponent>
+              <footer
+                className="p-10 well well-sm m-0 shadow-lite"
+              >
+                <div
+                  className="text-center text-muted"
+                >
+                  <p
+                    className="bold"
+                  >
+                    © 2017 More Recipes
+                  </p>
+                </div>
+              </footer>
+            </FooterComponent>
+          </div>
+        </UserRecipe>
+      </Connect(UserRecipe)>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;

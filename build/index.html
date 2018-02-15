@@ -302,7 +302,23 @@ or sign in, a token is generated which gives users access to this privileges.</p
 <li>Body <code>(application/json)</code></li>
 </ul>
 <h3 id='this-end-point-is-used-to-register-create-a-new-user'>This end point is used to register/create a new user</h3><h3 id='http-request'>HTTP Request</h3>
-<p><code>POST https://hosted-url.heroukuapp.com/api/v1/users/signup</code></p>
+<p><code>POST https://mrecipes.heroukuapp.com/api/v1/users/signup</code></p>
+<h3 id='response-codes-when-error-occurs-on-sign-up'>Response codes when error occurs on sign up</h3>
+<table><thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>User credentials required / validation errors</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal server error.</td>
+</tr>
+</tbody></table>
 
 <blockquote>
 <p>Request:</p>
@@ -338,8 +354,24 @@ or sign in, a token is generated which gives users access to this privileges.</p
 <li>Message: Log in successful</li>
 <li>Body <code>(application/json)</code></li>
 </ul>
-<h3 id='this-end-point-is-used-to-sign-in-a-user'>This end point is used to sign in a user</h3><h3 id='http-request-2'>HTTP Request</h3>
-<p><code>POST https://hosted-url.heroukuapp.com/api/v1/users/signin</code></p>
+<h3 id='this-end-point-is-used-to-sign-in-a-user'>This end point is used to sign in a user</h3><h3 id='response-codes-when-error-occurs-on-sign-in'>Response codes when error occurs on sign in</h3>
+<table><thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Login credentials are required / validation errors</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal server error.</td>
+</tr>
+</tbody></table>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST https://mrecipes.heroukuapp.com/api/v1/users/signin</code></p>
 
 <blockquote>
 <p>Request:</p>
@@ -362,7 +394,7 @@ or sign in, a token is generated which gives users access to this privileges.</p
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='user'>User</h2><h3 id='request-3'>Request</h3>
 <ul>
-<li>Sign up end point: <strong>GET</strong> <code>/api/v1/users/signin</code></li>
+<li>Sign up end point: <strong>GET</strong> <code>/api/v1/users/:userId</code></li>
 <li>Body <code>(application/json)</code></li>
 </ul>
 <h3 id='response-3'>Response</h3>
@@ -371,6 +403,24 @@ or sign in, a token is generated which gives users access to this privileges.</p
 <li>Message: User</li>
 <li>Body <code>(application/json)</code></li>
 </ul>
+<h3 id='response-codes-when-error-occurs-when-getting-a-user'>Response codes when error occurs when getting a user</h3>
+<table><thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>User not found</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal server error.</td>
+</tr>
+</tbody></table>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST https://mrecipes.heroukuapp.com/api/v1/users/1</code></p>
 
 <blockquote>
 <p>Request:</p>
@@ -400,8 +450,28 @@ or sign in, a token is generated which gives users access to this privileges.</p
 <li>Body <code>(application/json)</code></li>
 <li>Requires: Authentication</li>
 </ul>
-<h3 id='this-end-point-is-used-to-create-a-new-recipe'>This end point is used to create a new recipe</h3><h3 id='http-request-3'>HTTP Request</h3>
-<p><code>POST https://hosted-url.heroukuapp.com/api/v1/recipes</code></p>
+<h3 id='response-codes-when-error-occurs-when-creating-a-recipe'>Response codes when error occurs when creating a recipe</h3>
+<table><thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>409</td>
+<td>User recipe already exists</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Validation errors</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal server error.</td>
+</tr>
+</tbody></table>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>POST https://mrecipes.heroukuapp.com/api/v1/recipes</code></p>
 
 <blockquote>
 <p>Request:</p>
@@ -421,11 +491,13 @@ or sign in, a token is generated which gives users access to this privileges.</p
   </span><span class="s2">"ingredient"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yam and water"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is how to cook yam"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"imageUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://res.cloudinary.com/ditm0nduo/image/upload/v1514910897/foodie_i9ruos.png"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"upvotes"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"downvotes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='edit-recipe'>Edit Recipe</h2><h3 id='request-5'>Request</h3>
 <ul>
-<li>Edit recipe end point: <strong>POST</strong> <code>/api/v1/recipes/:recipeId</code></li>
+<li>Edit recipe end point: <strong>PATCH</strong> <code>/api/v1/recipes/:recipeId</code></li>
 <li>Body <code>(application/json)</code></li>
 <li>Requires: Authentication</li>
 </ul>
@@ -435,8 +507,28 @@ or sign in, a token is generated which gives users access to this privileges.</p
 <li>Message: Recipe successful updated</li>
 <li>Body <code>(application/json)</code></li>
 </ul>
-<h3 id='this-end-point-is-used-to-edit-a-specific-recipe'>This end point is used to edit a specific recipe</h3><h3 id='http-request-4'>HTTP Request</h3>
-<p><code>POST https://hosted-url.heroukuapp.com/api/v1/recipes/1</code></p>
+<h3 id='response-codes-when-error-occurs-when-editing-a-recipe'>Response codes when error occurs when editing a recipe</h3>
+<table><thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>409</td>
+<td>User recipe already exists</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Validation errors</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal server error.</td>
+</tr>
+</tbody></table>
+<h3 id='this-end-point-is-used-to-edit-a-specific-recipe'>This end point is used to edit a specific recipe</h3><h3 id='http-request-5'>HTTP Request</h3>
+<p><code>PATCH https://mrecipes.heroukuapp.com/api/v1/recipes/1</code></p>
 
 <blockquote>
 <p>Request:</p>
@@ -456,7 +548,9 @@ or sign in, a token is generated which gives users access to this privileges.</p
   </span><span class="s2">"ingredient"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yam, sauce and water"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is how to cook yam and egg"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"imageUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://res.cloudinary.com/ditm0nduo/image/upload/v1514910897/foodie_i9ruos.png"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"upvotes"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"downvotes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='get-all-recipes'>Get All Recipes</h2><h3 id='request-6'>Request</h3>
 <ul>
@@ -470,18 +564,30 @@ or sign in, a token is generated which gives users access to this privileges.</p
 <li>Message: Recipes</li>
 <li>Body <code>(application/json)</code></li>
 </ul>
-<h3 id='this-end-point-is-used-to-get-all-recipes'>This end point is used to get all recipes</h3><h3 id='http-request-5'>HTTP Request</h3>
-<p><code>GET https://hosted-url.heroukuapp.com/api/v1/recipes/</code></p>
+<h3 id='response-codes-when-error-occurs-when-getting-all-recipes'>Response codes when error occurs when getting all recipes</h3>
+<table><thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>500</td>
+<td>Internal server error.</td>
+</tr>
+</tbody></table>
+<h3 id='this-end-point-is-used-to-get-all-recipes'>This end point is used to get all recipes</h3><h3 id='http-request-6'>HTTP Request</h3>
+<p><code>GET https://mrecipes.heroukuapp.com/api/v1/recipes/</code></p>
 
 <blockquote>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"paginationMeta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"pageCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"totalCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"outputCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"pageSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pageCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"outputCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pageSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
         </span><span class="s2">"currentPage"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"recipes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -521,8 +627,20 @@ or sign in, a token is generated which gives users access to this privileges.</p
 <li>Message: Recipes</li>
 <li>Body <code>(application/json)</code></li>
 </ul>
-<h3 id='this-end-point-is-used-to-get-all-recipes-2'>This end point is used to get all recipes</h3><h3 id='http-request-6'>HTTP Request</h3>
-<p><code>GET https://hosted-url.heroukuapp.com/api/v1/recipes/13</code></p>
+<h3 id='response-codes-when-error-occurs-when-getting-a-recipe'>Response codes when error occurs when getting a recipe</h3>
+<table><thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>500</td>
+<td>Internal server error.</td>
+</tr>
+</tbody></table>
+<h3 id='this-end-point-is-used-to-get-a-recipe'>This end point is used to get a recipe</h3><h3 id='http-request-7'>HTTP Request</h3>
+<p><code>GET https://mrecipes.heroukuapp.com/api/v1/recipes/13</code></p>
 
 <blockquote>
 <p>Response:</p>
@@ -554,8 +672,20 @@ or sign in, a token is generated which gives users access to this privileges.</p
 <li>Message: Recipes</li>
 <li>Body <code>(application/json)</code></li>
 </ul>
-<h3 id='this-end-point-is-used-to-get-all-recipes-3'>This end point is used to get all recipes</h3><h3 id='http-request-7'>HTTP Request</h3>
-<p><code>DEL https://hosted-url.heroukuapp.com/api/v1/recipes/13</code></p>
+<h3 id='response-codes-when-error-occurs-when-deleting-a-recipe'>Response codes when error occurs when deleting a recipe</h3>
+<table><thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>500</td>
+<td>Internal server error.</td>
+</tr>
+</tbody></table>
+<h3 id='this-end-point-is-used-to-delete-a-recipe'>This end point is used to delete a recipe</h3><h3 id='http-request-8'>HTTP Request</h3>
+<p><code>DEL https://mrecipes.heroukuapp.com/api/v1/recipes/13</code></p>
 
 <blockquote>
 <p>Response:</p>
@@ -575,6 +705,20 @@ or sign in, a token is generated which gives users access to this privileges.</p
 <li>Message: Reviews</li>
 <li>Body <code>(application/json)</code></li>
 </ul>
+<h3 id='response-codes-when-error-occurs-when-posting-a-recipe-review'>Response codes when error occurs when posting a recipe review</h3>
+<table><thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>500</td>
+<td>Internal server error.</td>
+</tr>
+</tbody></table>
+<h3 id='this-end-point-is-used-to-post-a-recipe-review'>This end point is used to post a recipe review</h3><h3 id='http-request-9'>HTTP Request</h3>
+<p><code>POST https://mrecipes.heroukuapp.com/api/v1/recipes/13/review</code></p>
 
 <blockquote>
 <p>Request:</p>
@@ -591,7 +735,7 @@ or sign in, a token is generated which gives users access to this privileges.</p
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h1 id='voting'>Voting</h1><h2 id='upvote'>Upvote</h2><h3 id='request-10'>Request</h3>
 <ul>
-<li>Post recipe review end point: <strong>POST</strong> <code>/api/v1/votes/:recipeId/upVote</code></li>
+<li>Post recipe review end point: <strong>POST</strong> <code>api/v1/recipe/:recipeId/upVote</code></li>
 <li>Body <code>(application/json)</code></li>
 <li>Requires: Authentication</li>
 </ul>
@@ -601,6 +745,22 @@ or sign in, a token is generated which gives users access to this privileges.</p
 <li>Message: Upvote successful</li>
 <li>Body <code>(application/json)</code></li>
 </ul>
+<h3 id='response-codes-when-error-occurs-when-upvoting-a-recipe'>Response codes when error occurs when upvoting a recipe</h3>
+<table><thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>Recipe not found</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal server error.</td>
+</tr>
+</tbody></table>
 
 <blockquote>
 <p>Request:</p>
@@ -618,7 +778,7 @@ or sign in, a token is generated which gives users access to this privileges.</p
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='downvote'>DownVote</h2><h3 id='request-11'>Request</h3>
 <ul>
-<li>Post recipe review end point: <strong>POST</strong> <code>/api/v1/votes/:recipeId/downVote</code></li>
+<li>Post recipe review end point: <strong>POST</strong> <code>api/v1/recipe/:recipeId/downVote</code></li>
 <li>Body <code>(application/json)</code></li>
 <li>Requires: Authentication</li>
 </ul>
@@ -628,6 +788,22 @@ or sign in, a token is generated which gives users access to this privileges.</p
 <li>Message: Upvote successful</li>
 <li>Body <code>(application/json)</code></li>
 </ul>
+<h3 id='response-codes-when-error-occurs-when-downvoting-a-recipe'>Response codes when error occurs when downvoting a recipe</h3>
+<table><thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>Recipe not found</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal server error.</td>
+</tr>
+</tbody></table>
 
 <blockquote>
 <p>Request:</p>
@@ -654,35 +830,27 @@ or sign in, a token is generated which gives users access to this privileges.</p
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request -- Your request sucks.</td>
+<td>Bad Request</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
+<td>Unauthorized</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden -- The recipe requested requires access.</td>
+<td>Forbidden</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found -- The specified recipe could not be found.</td>
+<td>Not Found</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone -- The recipe requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>409</td>
+<td>Conflict</td>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+<td>Internal Server Error</td>
 </tr>
 </tbody></table>
 

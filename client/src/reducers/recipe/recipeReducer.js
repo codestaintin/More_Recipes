@@ -4,6 +4,7 @@ import { recipeResponseType } from '../../utils/helpers';
 const initialState = {
   responseType: null,
   message: '',
+  recipeId: null,
   isCreating: false,
   getUserRecipesSuccess: [],
   getUserRecipesFailure: '',
@@ -19,7 +20,8 @@ const recipeReducer = (state = initialState, action) => {
       return {
         ...state,
         responseType: recipeResponseType.ADD_RECIPE_SUCCESS,
-        message: action.message
+        message: action.message,
+        recipeId: action.recipeId
       };
     case actionTypes.ADD_RECIPE_FAILURE:
       return {
@@ -35,7 +37,9 @@ const recipeReducer = (state = initialState, action) => {
     case actionTypes.GET_USER_RECIPES_SUCCESS:
       return {
         ...state,
-        getUserRecipesSuccess: action.data
+        responseType: recipeResponseType.GET_USER_RECIPES_SUCCESS,
+        getUserRecipesSuccess: action.data.userRecipes,
+        pagination: action.data.pagination
       };
     case actionTypes.GET_USER_RECIPES_FAILURE:
       return {
@@ -148,7 +152,7 @@ const recipeReducer = (state = initialState, action) => {
     case actionTypes.CREATE_UPVOTE_FAILURE:
       return {
         ...state,
-        responseType: recipeResponseType.CREATE_UPVOTE_FAILURE
+        responseType: recipeResponseType.FAILURE
       };
     case actionTypes.CREATE_DOWNVOTE_SUCCESSFUL:
       return {
@@ -160,7 +164,31 @@ const recipeReducer = (state = initialState, action) => {
     case actionTypes.CREATE_DOWNVOTE_FAILURE:
       return {
         ...state,
-        responseType: recipeResponseType.CREATE_DOWNVOTE_FAILURE
+        responseType: recipeResponseType.FAILURE
+      };
+    case actionTypes.GET_ALL_FAVORITES_SUCCESS:
+      return {
+        ...state,
+        responseType: recipeResponseType.GET_ALL_FAVORITES_SUCCESS,
+        favorites: action.favorites.favorites,
+        pagination: action.favorites.pagination
+      };
+    case actionTypes.GET_ALL_FAVORITES_FAILURE:
+      return {
+        ...state,
+        responseType: recipeResponseType.FAILURE,
+      };
+    case actionTypes.SEARCH_RECIPE_SUCCESS:
+      return {
+        ...state,
+        responseType: recipeResponseType.SEARCH_RECIPE_SUCCESS,
+        recipes: action.recipes.results,
+        pagination: action.recipes.pagination
+      };
+    case actionTypes.SEARCH_RECIPE_FAILURE:
+      return {
+        ...state,
+        responseType: recipeResponseType.FAILURE,
       };
     default:
       return state;

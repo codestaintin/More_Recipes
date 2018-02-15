@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Footer> renders <Footer> component 1`] = `
+<footer
+  className="p-10 well well-sm m-0 shadow-lite"
+>
+  <div
+    className="text-center text-muted"
+  >
+    <p
+      className="bold"
+    >
+      © 2017 More Recipes
+    </p>
+  </div>
+</footer>
+`;

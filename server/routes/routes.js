@@ -26,9 +26,16 @@ const routes = (router) => {
       userController.retrieve);
 
   router.route('/recipes/:recipeId/favorite')
-  /** POST api/v1/:userId/recipes - Make a recipes favourite */
+  /** POST api/v1/recipes/:recipeId - Make a recipes favourite */
     .post(authMiddleware.verifyToken, authMiddleware.verifyUser,
-      favoriteController.create);
+      favoriteController.create)
+    /** DELETE api/v1/recipes/recipeId - Delete favourite */
+    .delete(authMiddleware.verifyToken, authMiddleware.verifyUser,
+      favoriteController.destroy);
+
+  router.route('/favorites')
+  /** GET api/v1/recipes/recipeId - List all favourite */
+    .get(authMiddleware.verifyToken, favoriteController.listAll);
 
   router.route('/users/:userId/recipes')
   /** GET api/v1/:userId/recipes - Get user favourite recipes */
@@ -54,7 +61,7 @@ const routes = (router) => {
   /**
    * PUT api/v1/recipes/:recipeId - Update an existing recipe
    */
-    .put(authMiddleware.verifyToken, recipeController.update)
+    .patch(authMiddleware.verifyToken, recipeController.update)
     /**
      * GET api/v1/recipes/:recipeId - Get a recipe
      */
@@ -85,6 +92,11 @@ const routes = (router) => {
   router.route('/recipe/:recipeId/downVote')
     .put(authMiddleware.verifyToken, authMiddleware.verifyUser,
       votingController.downvote);
+  /**
+   * GET api/v1/search
+   */
+  router.route('/search')
+    .get(recipeController.searchRecipe);
 };
 
 export default routes;

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'react-proptypes';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
+import swal from 'sweetalert2';
 import { bindActionCreators } from 'redux';
 import Spinner from "react-md-spinner";
 import {
@@ -13,6 +14,7 @@ import recipeValidate from '../utils/recipeValidate';
 import FooterComponent from './partials/Footer.jsx';
 import Header from './partials/Headers/Header.jsx';
 import { recipeResponseType } from '../utils/helpers';
+import history from '../utils/history';
 
 
 /**
@@ -50,14 +52,26 @@ export class AddRecipe extends Component {
    * @param {object} nextProps
    */
   componentWillReceiveProps(nextProps) {
-    const { message, responseType } = nextProps.recipeState;
-    if (responseType === recipeResponseType.ADD_RECIPE_SUCCESS && message !== '') {
-      toastr.clear();
-      toastr.success(message);
+    const { message, responseType, recipeId } = nextProps.recipeState;
+    if (responseType === recipeResponseType.ADD_RECIPE_SUCCESS
+      && message !== '') {
+      swal({
+        position: 'top-end',
+        type: 'success',
+        title: message,
+        showConfirmButton: false,
+        timer: 1500
+      });
       this.props.clearToast();
+      this.props.history.push(`/recipes/${recipeId}`);
     } else if (message !== '') {
-      toastr.clear();
-      toastr.error(message);
+      swal({
+        position: 'top-end',
+        type: 'error',
+        title: message,
+        showConfirmButton: false,
+        timer: 1500
+      });
       this.props.clearToast();
     }
   }
@@ -71,7 +85,8 @@ export class AddRecipe extends Component {
     event.preventDefault();
     if (this.checkValidity()) {
       this.setState({ errors: {} });
-      this.props.processRecipeActions(this.state.recipeDetails, this.state.imageFile);
+      this.props.processRecipeActions(this.state.recipeDetails,
+        this.state.imageFile);
       this.setState({
         recipeDetails: {
           name: '',
@@ -140,7 +155,8 @@ export class AddRecipe extends Component {
         <Header/>
         <div className="wrapper">
           <ol
-            className="breadcrumb container mt-50 mb-10 col-md-9 mx-auto bg-white shadow-lite">
+            className="breadcrumb
+            container mt-50 mb-10 col-md-9 mx-auto bg-white shadow-lite">
             <li className="breadcrumb-item">
               <Link to="/">Home</Link>
             </li>
@@ -149,10 +165,12 @@ export class AddRecipe extends Component {
             </li>
             <li className="breadcrumb-item active">Add new</li>
           </ol>
-          <div className="container mb-20 col-md-9 mx-auto recipe-details-container">
+          <div className="container
+          mb-20 col-md-9 mx-auto recipe-details-container">
             <div className="row">
               <div
-                className="col-12 col-sm-6 col-md-4 col-lg-4 p-10 shadow-lite bg-white"
+                className="col-12
+                col-sm-6 col-md-4 col-lg-4 p-10 shadow-lite bg-white"
                 style={{
                   height: `${400}px`,
                   maxHeight: `${400}px`
@@ -162,7 +180,8 @@ export class AddRecipe extends Component {
                   style={{
                     height: `${100}%`
                   }}>
-                  <div className="text-center file-upload full-height full-width center-content">
+                  <div className="text-center
+                  file-upload full-height full-width center-content">
                     <input
                       type="file"
                       className="recipe-upload text-hide"
@@ -171,19 +190,23 @@ export class AddRecipe extends Component {
                     <img src={imageSrc} alt="sample" height="400" width="100%"/>
                   </div>
                 </div><br/>
-                <span className="text-info">Please click to upload an image &nbsp;
+                <span className="text-info">
+                Please click to upload an image &nbsp;
                   <i className="fa fa-upload" />
                 </span>
               </div>
               <div
-                className="simplebox blade col-12 col-sm-6 col-md-8 col-lg-8 p-10"
+                className="simplebox
+                blade col-12 col-sm-6 col-md-8 col-lg-8 p-10"
                 style={{
                   boxShadow: 'none'
                 }}>
                 <h5>Recipe Details</h5>
-                <form className="mt-15 recipe-form" onSubmit={this.handleSubmit}>
+                <form className="mt-15 recipe-form"
+                  onSubmit={this.handleSubmit}>
                   { recipeState.fails ?
-                    <div id="error" className="alert alert-danger alert-dismissible">
+                    <div id="error" className="alert
+                    alert-danger alert-dismissible">
                       <button type="button"
                         className="close"
                         data-dismiss="alert"

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import SignInComponent from './auth/SignIn.jsx';
-import SignUpComponent from './auth/SignUp.jsx';
+import { Link } from 'react-router-dom';
 import FooterComponent from './partials/Footer.jsx';
-import Header from './partials/Headers/Header.jsx';
+import NotFoundImage from '../build/assets/images/NFound.gif';
 
 /**
  *
@@ -20,28 +19,33 @@ export default class NotFound extends Component {
   render() {
     return (
       <div>
-        <Header/>
-        <SignInComponent/>
-        <SignUpComponent/>
-        <div className="container-fluid banner pt-90">
-          <div className="row">
-            <div className="col-lg-12 text-white">
-              <h2 className="text-center">More Recipe</h2>
-              <h3
-                className="lead text-center"
-                style={{
-                  opacity: 0.9
-                }}>
-              Amazing food recipes at your beck</h3>
-            </div>
+        <nav
+          className="navbar
+            navbar-expand-lg navbar-light bg-navbar fixed-top">
+          <Link to="/" className="navbar-brand" >MoreRecipe</Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon" />
+          </button>
+          <div
+            className="collapse navbar-collapse justify-content-end"
+            id="navbarSupportedContent">
           </div>
-        </div>
-        
+        </nav>
         <div className="clearfix mb-20" />
-        <div className="container" style={{ paddingTop: '50px' }}>
+        <div className="container">
           <div className="row">
-            <div className="jumbotron col-12 col-md-12 col-lg-12">
-              <h1 className="text-center">Page Not Found!!!!</h1>
+            <div className="col-12">
+              <Link to="/">
+                <h2 className="text-center">Go Home</h2>
+                <img src={NotFoundImage} style={{ display: 'block', margin: '50px auto' }} alt="Check"/>
+              </Link>
             </div>
           </div>
         </div>

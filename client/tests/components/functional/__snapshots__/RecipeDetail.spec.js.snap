@@ -1,0 +1,457 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RecipeDetail> should render the RecipeDetail component 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <BrowserRouter>
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "blank",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Connect(RecipeDetail)
+        match={
+          Object {
+            "params": Object {
+              "recipeId": 1,
+            },
+          }
+        }
+      >
+        <RecipeDetail
+          createFavourite={[Function]}
+          deleteRecipe={[Function]}
+          downvoteRecipe={[Function]}
+          getRecipe={[Function]}
+          getReview={[Function]}
+          match={
+            Object {
+              "params": Object {
+                "recipeId": 1,
+              },
+            }
+          }
+          recipeState={
+            Object {
+              "recipeState": Object {},
+            }
+          }
+          upvoteRecipe={[Function]}
+        >
+          <div>
+            <Connect(Header)>
+              <Header
+                logoutAction={[Function]}
+              >
+                <div>
+                  <nav
+                    className="navbar navbar-expand-sm navbar-light bg-navbar fixed-top"
+                  >
+                    <Link
+                      className="navbar-brand"
+                      replace={false}
+                      to="/"
+                    >
+                      <a
+                        className="navbar-brand"
+                        href="/"
+                        onClick={[Function]}
+                      >
+                        More Recipes
+                      </a>
+                    </Link>
+                    <button
+                      aria-controls="navbarSupportedContent"
+                      aria-expanded="false"
+                      aria-label="Toggle navigation"
+                      className="navbar-toggler"
+                      data-target="#navbarSupportedContent"
+                      data-toggle="collapse"
+                      type="button"
+                    >
+                      <span
+                        className="navbar-toggler-icon"
+                      />
+                    </button>
+                    <div
+                      className="collapse navbar-collapse"
+                      id="navbarSupportedContent"
+                    >
+                      <ul
+                        className="navbar-nav ml-auto"
+                      >
+                        <li
+                          className="nav-item dropdown"
+                        >
+                          <Link
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            className="nav-link dropdown-toggle"
+                            data-toggle="dropdown"
+                            id="navbarDropdown"
+                            replace={false}
+                            role="button"
+                            to="#"
+                          >
+                            <a
+                              aria-expanded="false"
+                              aria-haspopup="true"
+                              className="nav-link dropdown-toggle"
+                              data-toggle="dropdown"
+                              href="#"
+                              id="navbarDropdown"
+                              onClick={[Function]}
+                              role="button"
+                            >
+                              My Account
+                            </a>
+                          </Link>
+                          <div
+                            aria-labelledby="navbarDropdown"
+                            className="dropdown-menu dropdown-menu-right mr-20"
+                          >
+                            <Link
+                              className="dropdown-item"
+                              replace={false}
+                              to="/profile"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="/profile"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-user-circle"
+                                />
+                                 My Profile
+                              </a>
+                            </Link>
+                            <Link
+                              className="dropdown-item"
+                              replace={false}
+                              to="/user-recipes"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="/user-recipes"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-list"
+                                />
+                                 My Recipes
+                              </a>
+                            </Link>
+                            <Link
+                              className="dropdown-item"
+                              replace={false}
+                              to="/my-favorite"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="/my-favorite"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-star"
+                                />
+                                 My Favorites
+                              </a>
+                            </Link>
+                            <Link
+                              className="dropdown-item"
+                              replace={false}
+                              to="/addRecipe"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="/addRecipe"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-plus"
+                                />
+                                 Add Recipes
+                              </a>
+                            </Link>
+                            <div
+                              className="dropdown-divider"
+                            />
+                            <Link
+                              className="dropdown-item"
+                              onClick={[Function]}
+                              replace={false}
+                              to="#"
+                            >
+                              <a
+                                className="dropdown-item"
+                                href="#"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  className="fa fa-sign-out"
+                                />
+                                Log out
+                              </a>
+                            </Link>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </nav>
+                </div>
+              </Header>
+            </Connect(Header)>
+            <div
+              className="container-fluid"
+            >
+              <ol
+                className="breadcrumb mt-50 mb-10 col-md-11 mx-auto bg-white shadow-lite"
+              >
+                <li
+                  className="breadcrumb-item"
+                >
+                  <Link
+                    replace={false}
+                    to="/"
+                  >
+                    <a
+                      href="/"
+                      onClick={[Function]}
+                    >
+                      Recipe
+                    </a>
+                  </Link>
+                </li>
+                <li
+                  className="breadcrumb-item active"
+                />
+              </ol>
+            </div>
+            <div
+              className="mb-20 col-md-9 mx-auto bg-white recipe-details-container"
+            >
+              <div
+                className="row"
+              >
+                <div
+                  className="col-sm-6 col-md-6 col-lg-6 p-10"
+                >
+                  <img
+                    alt="Recipe Image"
+                    className="recipe-big-img"
+                  />
+                  <div
+                    className="mt-20"
+                  >
+                    <div
+                      className="text-left mb-10"
+                    >
+                      <span
+                        className="badge badge-info"
+                      >
+                        <i
+                          className="fa fa-eye fa-2x"
+                        />
+                          
+                      </span>
+                        
+                      <span
+                        className="badge badge-success btn btn-success btn-sm"
+                        onClick={[Function]}
+                      >
+                        <i
+                          className="fa fa-thumbs-o-up fa-2x"
+                        />
+                           
+                      </span>
+                        
+                      <span
+                        className="badge badge-danger btn btn-danger btn-sm"
+                        onClick={[Function]}
+                      >
+                        <i
+                          className="fa fa-thumbs-o-down fa-2x"
+                        />
+                          
+                      </span>
+                        
+                      <span
+                        className="badge badge-warning btn-sm btn btn-warning text-white fav-btn"
+                        onClick={[Function]}
+                      >
+                        Favourite
+                        <i
+                          className="fa fa-star-o fa-2x"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="simplebox blade col-sm-6 col-md-6 col-lg-6 p-10"
+                  style={
+                    Object {
+                      "boxShadow": "none",
+                    }
+                  }
+                >
+                  <div
+                    className="recipe-name light-well p-15"
+                  >
+                    <h3
+                      className="bold text-muted"
+                    />
+                    <p>
+                      <small>
+                        <i
+                          className="fa fa-clock-o"
+                        />
+                           Created 
+                        Invalid date
+                      </small>
+                    </p>
+                  </div>
+                  <div
+                    className="mt-10"
+                  >
+                    <h5>
+                      Ingredients
+                    </h5>
+                    <ul
+                      className="text-muted"
+                    >
+                      <li
+                        key="0"
+                      />
+                    </ul>
+                    <div>
+                      <hr />
+                    </div>
+                    <h5>
+                      Procedure
+                    </h5>
+                    <div />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="container mt-20 mb-20 mx-auto"
+            >
+              <Connect(Review)
+                match={
+                  Object {
+                    "params": Object {
+                      "recipeId": 1,
+                    },
+                  }
+                }
+                reviews={Array []}
+              >
+                <Review
+                  match={
+                    Object {
+                      "params": Object {
+                        "recipeId": 1,
+                      },
+                    }
+                  }
+                  postReview={[Function]}
+                  reviewState={
+                    Object {
+                      "recipeState": Object {},
+                    }
+                  }
+                  reviews={Array []}
+                >
+                  <div>
+                    <form
+                      onSubmit={[Function]}
+                    >
+                      <div
+                        className="form-group"
+                      >
+                        <h5
+                          className="text-muted"
+                        >
+                          <label
+                            className="row justify-content-center"
+                            htmlFor="review"
+                          >
+                            Please post a review
+                          </label>
+                        </h5>
+                        <textarea
+                          className="form-control"
+                          onChange={[Function]}
+                          placeholder="Kindly enter your review"
+                          rows="3"
+                          value=""
+                        />
+                      </div>
+                      <button
+                        className="btn btn-primary mb-2"
+                        type="submit"
+                      >
+                        Submit Review
+                      </button>
+                    </form>
+                    <h5
+                      className="p-5 text-center"
+                    >
+                      Reviews
+                    </h5>
+                  </div>
+                </Review>
+              </Connect(Review)>
+            </div>
+            <FooterComponent>
+              <footer
+                className="p-10 well well-sm m-0 shadow-lite"
+              >
+                <div
+                  className="text-center text-muted"
+                >
+                  <p
+                    className="bold"
+                  >
+                    © 2017 More Recipes
+                  </p>
+                </div>
+              </footer>
+            </FooterComponent>
+          </div>
+        </RecipeDetail>
+      </Connect(RecipeDetail)>
+    </Router>
+  </BrowserRouter>
+</Provider>
+`;

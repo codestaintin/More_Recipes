@@ -12,13 +12,17 @@ import { recipeResponseType, decodeToken } from '../../utils/helpers';
 /**
  *
  * @export
+ * 
  * @class Review
+ * 
  * @extends {React.Component}
  */
 export class Review extends Component {
   /**
    * Creates an instance of ReviewComponent.
+   * 
    * @param {any} props
+   * 
    * @memberof AddReview
    */
   constructor(props) {
@@ -34,8 +38,11 @@ export class Review extends Component {
   /**
    *
    * @param  {object} nextProps
-   * @returns {XML} XML/JSX
+   * 
    * @memberof RecipeDetail
+   * 
+   * @returns {XML} XML/JSX
+   * 
    */
   componentWillReceiveProps(nextProps) {
     const { responseType } = nextProps.reviewState;
@@ -63,8 +70,10 @@ export class Review extends Component {
   /**
    * Handle change
    *
-   * @return {event} event
    * @param {event} event
+   * 
+   * @return {event} event
+   * 
    */
   handleChange(event) {
     this.setState({ content: event.target.value });
@@ -72,8 +81,11 @@ export class Review extends Component {
 
   /**
    * Handles review creation
+   * 
    * @param { object } event
+   * 
    * @method handleSubmit
+   * 
    * @return {void}
    */
   handleSubmit(event) {
@@ -86,7 +98,9 @@ export class Review extends Component {
   }
 
   /** Check validity
+   * 
    * @method checkValidity
+   * 
    * @return {object} isValid
    */
   checkValidity() {
@@ -98,9 +112,10 @@ export class Review extends Component {
   }
   /**
    *
-   *
-   * @returns {XML} XML/JSX
    * @memberof AddReview
+   * 
+   * @returns {XML} XML/JSX
+   * 
    */
   render() {
     const { errors } = this.state;

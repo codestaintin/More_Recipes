@@ -8,13 +8,13 @@ const errorHandler = (error, res) => {
 };
 
 
-const generatePaginationMeta = (dbResult, limit, offset) => {
+const generatePaginationMeta = (dbResult, limit, page) => {
   const paginationMeta = {
     pageCount: Math.ceil(dbResult.count / limit),
     totalCount: dbResult.count,
     outputCount: dbResult.rows.length,
     pageSize: limit,
-    currentPage: Math.floor(offset / limit) + 1
+    currentPage: page + 1
   };
   return paginationMeta;
 };

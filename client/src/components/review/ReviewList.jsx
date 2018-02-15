@@ -3,8 +3,10 @@ import PropTypes from 'react-proptypes';
 import moment from 'moment';
 
 /**
- * Review
+ * Review Card
+ * 
  * @param { object } props
+ * 
  * @returns { object } object
  */
 const ReviewList = props => (

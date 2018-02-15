@@ -3,17 +3,21 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'react-proptypes';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { logoutAction } from '../../../actions/auth/authAction';
+import { logoutAction } from '../../../actions/auth/signinAction';
 
 /**
  * @export
+ * 
  * @class HeaderComponent
+ * 
  * @extends {React.Component}
  */
 class Header extends Component {
   /**
  * Creates an instance of Header.
+ * 
  * @param {any} props 
+ * 
  * @memberof Header
  */
   constructor(props) {
@@ -23,6 +27,7 @@ class Header extends Component {
   /**
      *
      * @returns {XML} XML/JSX
+     * 
      * @memberof HeaderComponent
      */
   logoutUser() {
@@ -32,13 +37,17 @@ class Header extends Component {
    *
    *
    * @returns {XML} XML/JSX
+   * 
    * @memberof HeaderComponent
    */
   render() {
     return (
       <div>
         { (window.localStorage.token) ?
-          <nav className="navbar navbar-expand-sm navbar-light bg-navbar fixed-top">
+          <nav 
+            className="navbar navbar-expand-sm
+          navbar-light bg-navbar
+          fixed-top">
             <Link to="/" className="navbar-brand">More Recipes</Link>
             <button className="navbar-toggler"
               type="button" data-toggle="collapse"
@@ -49,7 +58,8 @@ class Header extends Component {
               <span className="navbar-toggler-icon" />
             </button>
 
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <div className="collapse navbar-collapse"
+              id="navbarSupportedContent">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item dropdown">
                   <Link className="nav-link dropdown-toggle"
@@ -60,14 +70,15 @@ class Header extends Component {
                     aria-expanded="false">
                   My Account
                   </Link>
-                  <div className="dropdown-menu mr-20" aria-labelledby="navbarDropdown">
+                  <div className="dropdown-menu dropdown-menu-right mr-20"
+                    aria-labelledby="navbarDropdown">
                     <Link to="/profile" className="dropdown-item">
                       <i className="fa fa-user-circle"/> My Profile
                     </Link>
                     <Link to="/user-recipes" className="dropdown-item">
                       <i className="fa fa-list"/> My Recipes
                     </Link>
-                    <Link to="/favorite" className="dropdown-item">
+                    <Link to="/my-favorite" className="dropdown-item">
                       <i className="fa fa-star" /> My Favorites
                     </Link>
                     <Link to="/addRecipe" className="dropdown-item">
@@ -86,7 +97,9 @@ class Header extends Component {
             </div>
           </nav>
           :
-          <nav className="navbar navbar-expand-lg navbar-light bg-navbar fixed-top">
+          <nav 
+            className="navbar
+            navbar-expand-lg navbar-light bg-navbar fixed-top">
             <Link to="/" className="navbar-brand" >MoreRecipe</Link>
             <button
               className="navbar-toggler"

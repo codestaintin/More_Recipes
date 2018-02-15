@@ -32,7 +32,7 @@ const userController = {
         .then((foundUser) => {
           if (foundUser) {
             return res.status(409).json({
-              message: 'A user with those credentials already exist'
+              message: 'A user with that email already exists'
             });
           }
           User.create(body)
@@ -77,12 +77,12 @@ const userController = {
       .then((foundUser) => {
         if (!foundUser) {
           return Promise.reject({
-            message: 'User not found, please register'
+            message: 'Invalid login credentials'
           });
         }
         if (!foundUser.comparePassword(foundUser, body.password)) {
           return res.status(400).json({
-            message: 'Invalid email/password'
+            message: 'Invalid credentials'
           });
         }
         const user = lodash.pick(foundUser, ['id', 'username']);
@@ -104,13 +104,15 @@ const userController = {
    * @returns { object } object
    */
   retrieve(req, res) {
-    const userId = req.params.userId;
-    if (Number(userId) !== req.decoded.id) {
-      return res.status(404).json({
-        message: 'This User Does not exit'
-      });
-    }
-    return User.findById(userId)
+    const userId = req.decoded.id;
+    return User.findOne({
+      where: {
+        id: userId
+      },
+      attributes: {
+        exclude: ['password']
+      }
+    })
       .then((user) => {
         if (!user) {
           return res.status(404).json({ message: 'User not found!' });
