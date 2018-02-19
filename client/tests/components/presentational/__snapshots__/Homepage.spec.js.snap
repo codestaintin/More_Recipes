@@ -267,17 +267,6 @@ exports[`<Homepage> should render the UserRecipe Component 1`] = `
                           className="mt-15"
                           onSubmit={[Function]}
                         >
-                          <small
-                            className="form-text text-muted"
-                          >
-                            All input fields marked
-                            <span
-                              className="text-danger"
-                            >
-                              *
-                            </span>
-                             are required
-                          </small>
                           <div
                             className="form-group"
                           >
@@ -329,11 +318,20 @@ exports[`<Homepage> should render the UserRecipe Component 1`] = `
                               value=""
                             />
                           </div>
-                          <div
-                            className="modal-footer"
-                          >
+                          <div>
+                            <small
+                              className="form-text text-muted"
+                            >
+                              All input fields marked
+                              <span
+                                className="text-danger"
+                              >
+                                *
+                              </span>
+                               are required
+                            </small>
                             <button
-                              className="btn btn-warning"
+                              className="btn btn-warning float-right"
                               id="submitSignIn"
                               type="submit"
                             >
@@ -408,17 +406,6 @@ exports[`<Homepage> should render the UserRecipe Component 1`] = `
                         <div
                           className="modal-body"
                         >
-                          <small
-                            className="form-text text-muted"
-                          >
-                            All input fields marked
-                            <span
-                              className="text-danger"
-                            >
-                              *
-                            </span>
-                             are required
-                          </small>
                           <div
                             className="form-group"
                           >
@@ -559,10 +546,21 @@ exports[`<Homepage> should render the UserRecipe Component 1`] = `
                           </div>
                         </div>
                         <div
-                          className="modal-footer"
+                          className="p-10 clearfix"
                         >
+                          <small
+                            className="form-text text-muted float-left"
+                          >
+                            All input fields marked
+                            <span
+                              className="text-danger"
+                            >
+                              *
+                            </span>
+                             are required
+                          </small>
                           <button
-                            className="btn btn-warning"
+                            className="btn btn-warning float-right"
                             id="submitSignUp"
                             type="submit"
                           >

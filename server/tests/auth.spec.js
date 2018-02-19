@@ -267,7 +267,7 @@ describe('POST Test suites for Auth sign in', () => {
       .expect(400)
       .end((err, res) => {
         if (err) return done(err);
-        assert.equal(res.body.message, 'Invalid credentials');
+        assert.equal(res.body.message, 'Invalid login credentials');
         done();
       });
   });

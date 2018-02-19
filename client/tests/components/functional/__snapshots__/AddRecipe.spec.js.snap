@@ -378,7 +378,7 @@ exports[`<AddRecipe> should render the AddRecipe Component 1`] = `
                         </span>
                       </div>
                       <button
-                        className="btn btn-outline-success"
+                        className="btn btn btn-success float-right"
                         type="submit"
                       >
                         Add Recipe

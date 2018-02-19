@@ -294,7 +294,8 @@ export class AddRecipe extends Component {
 AddRecipe.propTypes = {
   recipeState: PropTypes.object.isRequired,
   processRecipeActions: PropTypes.func.isRequired,
-  clearToast: PropTypes.func.isRequired
+  clearToast: PropTypes.func.isRequired,
+  history: PropTypes.func
 };
 
 const mapStateToProps = state => ({

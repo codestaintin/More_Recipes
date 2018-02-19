@@ -1,9 +1,8 @@
 import axios from 'axios';
 import FormData from 'form-data';
 import actionTypes from '../actionTypes';
-import { authorization } from '../../utils/helpers';
+import { authorization, baseUrl } from '../../utils/helpers';
 
-const baseUrl = `/api/v1`;
 const isRecipeCreating = bool => ({
   type: actionTypes.IS_RECIPE_CREATING,
   bool
@@ -153,7 +152,7 @@ const searchRecipeFailure = error => ({
   error: error.response.data
 });
 /**
- * Add recipe function
+ * @description - Add recipe function
  *
  * @param {object} recipeDetails
  * @param {string} cloudImageUrl - Cloud image URL
@@ -177,7 +176,7 @@ const addRecipeAction = (recipeDetails, cloudImageUrl = '') => (dispatch) => {
 };
 
 /**
- * Clear toaster message function
+ * @description - Clear toaster message function
  * 
  * @returns {string} message
  */
@@ -206,7 +205,7 @@ const getUserRecipes = (userId, page) => (
 );
 
 /**
- * Get a recipes function
+ * @description - Get a recipes function
  *
  * @param {integer} recipeId - Id of the recipe
  * 
@@ -223,7 +222,7 @@ const getRecipe = recipeId => (
 );
 
 /**
- * Get all recipes function
+ * @description - Get all recipes function
  *
  * @param {integer} page
  * 
@@ -242,7 +241,7 @@ const getAllRecipes = page => (
   )
 );
 /**
- * Edit a recipe function
+ * @description - Edit a recipe function
  *
  * @param {integer} recipeId - Id of the recipe
  * @param {object} recipeDetails - Details of the recipe
@@ -263,7 +262,7 @@ const editRecipe = (recipeId, recipeDetails, cloudImageUrl = '') =>
       .catch(error => dispatch(editRecipeFailure(error)));
   };
 /**
- * Delete recipe function
+ * @description - Delete recipe function
  *
  * @param {integer} recipeId
  * 
@@ -277,7 +276,7 @@ const deleteRecipe = recipeId => dispatch =>
     .catch(error => dispatch(deleteRecipeFailure(error)));
 
 /**
- * Post a review function
+ * @description - Post a review function
  *
  * @param {integer} recipeId
  * @param {string} content
@@ -291,7 +290,7 @@ const postReview = (recipeId, content) => dispatch =>
     })
     .catch(error => dispatch(postReviewFailure(error)));
 /**
- * Get a recipe reviews function
+ * @description - Get a recipe reviews function
  *
  * @param {integer} recipeId
  * 
@@ -304,7 +303,7 @@ const getReview = recipeId => dispatch =>
     })
     .catch(error => dispatch(getReviewFailure(error)));
 /**
- *
+ *@description - create favorites
  *
  * @param {integer} recipeId
  *
@@ -318,7 +317,7 @@ const createFavourite = recipeId => dispatch =>
     .catch(error =>
       dispatch(createUserFavouriteFailure(error)));
 /**
- * Get all user favorites function
+ * @description - Get all user favorites function
  *
  * @param {integer} userId
  * @param {integer} page
@@ -337,7 +336,7 @@ const getUserFavorites = (userId, page) => dispatch =>
       dispatch(getUserFavoritesFailure(error));
     });
 /**
- * Get all most favorites function
+ * @description - Get all most favorites function
  *
  * @param {integer} page
  *
@@ -355,7 +354,7 @@ const getAllFavorites = page => (
       .catch(error => dispatch(allFavoritesFailure(error)))
 );
 /**
- * Recipe search function
+ * @description - Recipe search function
  *
  * @param {string} searchParams
  * 
@@ -374,7 +373,7 @@ const searchRecipe = searchParams => (
   )
 );
 /**
- * Upvote a recipe
+ * @description - Upvote a recipe
  *
  * @param {integer} recipeId
  * 
@@ -390,7 +389,7 @@ const upvoteRecipe = recipeId => dispatch =>
     });
 
 /**
- * Downvote a recipe
+ * @description - Downvote a recipe
  *
  * @param {integer} recipeId
  * 
@@ -405,7 +404,7 @@ const downvoteRecipe = recipeId => dispatch =>
       dispatch(downvoteRecipeFailure(error));
     });
 /**
- * Process image upload
+ * @description - Process image upload
  *
  * @param {object} recipe - recipe
  * @param {object|string} imageFile - Image file

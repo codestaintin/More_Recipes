@@ -1,5 +1,6 @@
 import axios from 'axios';
 import actionTypes from '../actionTypes';
+import { baseUrl } from '../../utils/helpers';
 
 const getUserProfileSuccess = data => ({
   type: actionTypes.GET_USER_PROFILE_SUCCESS,
@@ -12,14 +13,14 @@ const getUserProfileFailure = errors => ({
 });
 
 /**
- * Get user details
+ * @description - Get user details
  * 
  * @param {userId} userId - Id of the recipe
  * 
  * @returns {object} user
  */
 export default userId => (
-  dispatch => axios.get(`/api/v1/users/${userId}`, {
+  dispatch => axios.get(`${baseUrl}/users/${userId}`, {
     headers: { 'x-access-token': window.localStorage.token }
   })
     .then((res) => {

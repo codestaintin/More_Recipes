@@ -14,6 +14,8 @@ const authorization = () => ({
   }
 });
 
+const baseUrl = `/api/v1`;
+
 const recipeResponseType = {
   FAILURE: 0,
   ADD_RECIPE_SUCCESS: 1,
@@ -43,5 +45,6 @@ export {
   userResponseType,
   decodeToken,
   logout,
-  authorization
+  authorization,
+  baseUrl
 };

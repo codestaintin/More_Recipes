@@ -306,7 +306,8 @@ EditRecipe.propTypes = {
   getRecipe: PropTypes.func.isRequired,
   processRecipeActions: PropTypes.func.isRequired,
   clearToast: PropTypes.func.isRequired,
-  match: PropTypes.object.isRequired
+  match: PropTypes.object.isRequired,
+  history: PropTypes.func
 };
 
 const mapStateToProps = state => ({
