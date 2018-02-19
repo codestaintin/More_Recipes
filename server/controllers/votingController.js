@@ -7,8 +7,10 @@ const Recipe = db.Recipe;
 const votingController = {
   /**
    * @description up vote recipe controller
+   * 
    * @param {Object} req - Request object
    * @param {Object} res - Response object
+   * 
    * @returns {Object} json - payload
    */
   upvote(req, res) {
@@ -97,8 +99,10 @@ const votingController = {
 
   /**
    * @description down vote recipe controller
+   * 
    * @param {Object} req - Request object
    * @param {Object} res - Response object
+   * 
    * @returns {Object} json - payload
    */
   downvote(req, res) {
@@ -128,10 +132,11 @@ const votingController = {
                 })
                 .then(() => {
                   Recipe.findById(req.params.recipeId).then((recipe) => {
-                    recipe.increment('downvotes').then(() => res.status(201).json({
-                      message: 'Downvote Successful',
-                      recipe
-                    }));
+                    recipe.increment('downvotes')
+                      .then(() => res.status(201).json({
+                        message: 'Downvote Successful',
+                        recipe
+                      }));
                   });
                 });
             } else if (voting.voting === 0) {

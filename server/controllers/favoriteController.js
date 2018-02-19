@@ -42,7 +42,7 @@ const favoriteController = {
       }));
   },
   /**
-   * Delete user favorite
+   * @description - Delete user favorite
    *
    * @param { object } req
    * @param { object } res
@@ -72,7 +72,7 @@ const favoriteController = {
   },
 
   /**
-   * List all User Favorite
+   * @description - List all User Favorite
    *
    * @param { object } req
    * @param { object } res
@@ -116,7 +116,7 @@ const favoriteController = {
   },
 
   /**
-   * List all Favorites
+   * @description - List all Favorites
    *
    * @param { object } req
    * @param { object } res
@@ -144,10 +144,17 @@ const favoriteController = {
         }
       ]
     })
-      .then(favorites => res.status(200).json({
-        paginationMeta: generatePaginationMeta(favorites, limit, page),
-        favorites: favorites.rows
-      }))
+      .then((favorites) => {
+        if (favorites.length === 0) {
+          return res.status(200).json({
+            message: 'You have no favorite recipes yet'
+          });
+        }
+        return res.status(200).json({
+          paginationMeta: generatePaginationMeta(favorites, limit, page),
+          recipes: favorites.rows
+        });
+      })
       .catch(error => res.status(500).json({ error: error.message }));
   }
 };

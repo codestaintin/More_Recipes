@@ -46,12 +46,14 @@ exports[`<Header> should render the Header component 1`] = `
             >
               <Link
                 className="navbar-brand"
+                id="home"
                 replace={false}
                 to="/"
               >
                 <a
                   className="navbar-brand"
                   href="/"
+                  id="home"
                   onClick={[Function]}
                 >
                   More Recipes

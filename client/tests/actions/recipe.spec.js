@@ -473,7 +473,7 @@ describe('Recipe actions', () => {
     const expectedActions = [{
       type: GET_ALL_FAVORITES_SUCCESS,
       favorites: {
-        favorites: allFavoritesResponse.favorites,
+        favorites: allFavoritesResponse.recipes,
         pagination: allFavoritesResponse.paginationMeta
       }
     }];
@@ -545,7 +545,7 @@ describe('Recipe actions', () => {
         done();
       });
   });
-  it('should dispatch ', (done) => {
+  it('should dispatch ADD_RECIPE_SUCCESS', (done) => {
     const response = {
       message: 'Recipe added successfully',
       recipe: { id: 23 },
@@ -573,7 +573,7 @@ describe('Recipe actions', () => {
       done();
     });
   });
-  it('should dispatch ', (done) => {
+  it('should dispatch ADD_RECIPE_FAILURE', (done) => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
@@ -596,7 +596,7 @@ describe('Recipe actions', () => {
       done();
     });
   });
-  it('should dispatch ', (done) => {
+  it('should dispatch CLEAR_RECIPE_MESSAGE', (done) => {
     const expectedActions = [
       { type: 'CLEAR_RECIPE_MESSAGE' },
     ];
@@ -605,7 +605,7 @@ describe('Recipe actions', () => {
     expect(store.getActions()).toEqual(expectedActions);
     done();
   });
-  it('should dispatch ', (done) => {
+  it('should dispatch EDIT_RECIPE_SUCCESS', (done) => {
     const { updateRecipeResponse } = mockData;
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();

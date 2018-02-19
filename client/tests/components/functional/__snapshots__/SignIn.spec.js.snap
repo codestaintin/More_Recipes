@@ -156,6 +156,7 @@ exports[`<SignIn> should render SignIn component 1`] = `
                     >
                       <button
                         className="btn btn-warning"
+                        id="submitSignIn"
                         type="submit"
                       >
                         Log In

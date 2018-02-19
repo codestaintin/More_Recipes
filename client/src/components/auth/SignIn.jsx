@@ -190,6 +190,7 @@ export class SignIn extends Component {
                 <div className="modal-footer">
                   <button
                     type="submit"
+                    id="submitSignIn"
                     className="btn btn-warning">
                     Log In
                   </button>

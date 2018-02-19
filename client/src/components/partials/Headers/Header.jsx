@@ -48,7 +48,9 @@ class Header extends Component {
             className="navbar navbar-expand-sm
           navbar-light bg-navbar
           fixed-top">
-            <Link to="/" className="navbar-brand">More Recipes</Link>
+            <Link to="/" className="navbar-brand" id="home">
+              More Recipes
+            </Link>
             <button className="navbar-toggler"
               type="button" data-toggle="collapse"
               data-target="#navbarSupportedContent"
@@ -119,7 +121,8 @@ class Header extends Component {
                   type="button"
                   className="btn btn-outline-secondary"
                   data-toggle="modal"
-                  data-target="#signInModal">
+                  data-target="#signInModal"
+                  id="signin">
                 Sign In
                   <i className="fa fa-sign-in" />
                 </button>&nbsp;&nbsp;
@@ -127,7 +130,8 @@ class Header extends Component {
                   type="button"
                   className="btn btn-outline-secondary"
                   data-toggle="modal"
-                  data-target="#signUpModal">
+                  data-target="#signUpModal"
+                  id="signup">
                 Sign Up
                   <i className="fa fa-user-plus" />
                 </button>

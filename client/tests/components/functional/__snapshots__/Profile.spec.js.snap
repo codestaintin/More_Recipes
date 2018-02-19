@@ -54,12 +54,14 @@ exports[`<Profile> should render the Profile Component 1`] = `
                   >
                     <Link
                       className="navbar-brand"
+                      id="home"
                       replace={false}
                       to="/"
                     >
                       <a
                         className="navbar-brand"
                         href="/"
+                        id="home"
                         onClick={[Function]}
                       >
                         More Recipes
@@ -249,7 +251,7 @@ exports[`<Profile> should render the Profile Component 1`] = `
                 <img
                   alt="avatar"
                   className="avatar text-center circulate circulate-xlg"
-                  src="/assets/images/no-avatar.png"
+                  src="test-file-stub"
                 />
               </div>
               <div

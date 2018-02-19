@@ -7,7 +7,7 @@ import ReactPaginate from 'react-paginate';
 import { getUserFavorites } from '../actions/recipe/recipeActions';
 import { decodeToken, recipeResponseType } from '../utils/helpers';
 import Header from './partials/Headers/Header.jsx';
-import emptyLogo from '../../src/build/assets/images/Empty.png';
+import emptyLogo from '../build/assets/images/bin.png';
 import FooterComponent from './partials/Footer.jsx';
 import FavoriteRecipe from './recipe/FavoriteRecipe.jsx';
 

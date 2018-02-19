@@ -25,7 +25,7 @@ const registerValidate = (data) => {
   } else { errors.lastName = 'Your last name is required'; }
 
   if (!Validator.isEmpty(username)) {
-    if (!Validator.isLength(username, { min: 6, max: 10 })) {
+    if (!Validator.isLength(username, { min: 6, max: undefined })) {
       errors.username = 'Username must be at least 6 characters';
     }
   } else { errors.username = 'Username is required'; }

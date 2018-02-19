@@ -196,6 +196,7 @@ exports[`<SignUp> should render SignUp component 1`] = `
                       <input
                         aria-describedby="email"
                         className="form-control"
+                        id="email"
                         name="email"
                         onChange={[Function]}
                         placeholder="Email"
@@ -218,6 +219,7 @@ exports[`<SignUp> should render SignUp component 1`] = `
                       </label>
                       <input
                         className="form-control"
+                        id="password"
                         name="password"
                         onChange={[Function]}
                         placeholder="Password"
@@ -253,6 +255,7 @@ exports[`<SignUp> should render SignUp component 1`] = `
                   >
                     <button
                       className="btn btn-warning"
+                      id="submitSignUp"
                       type="submit"
                     >
                       Register me

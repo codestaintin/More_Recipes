@@ -77,7 +77,7 @@ describe('Test cases for all favorite actions', () => {
             assert.isObject(res.body);
             assert.isNotEmpty(res.body);
             assert.isObject(res.body.paginationMeta);
-            assert.isArray(res.body.favorites);
+            assert.isArray(res.body.recipes);
             done();
           });
       });

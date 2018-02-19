@@ -14,7 +14,8 @@ const Favorite = db.Favorite;
 
 const recipeController = {
   /**
-   * Create new Recipes
+   * @description - Create new Recipes
+   * 
    * @param { object }  req
    * @param { object }  res
    *
@@ -68,7 +69,8 @@ const recipeController = {
   },
 
   /**
-   * Retrieve a recipe
+   * @description - Retrieve a recipe
+   * 
    * @param { object }  req
    * @param { object }  res
    *
@@ -109,7 +111,8 @@ const recipeController = {
   },
 
   /**
-   * Update recipe
+   * @description - Update recipe
+   * 
    * @param { object }  req
    * @param { object }  res
    *
@@ -147,7 +150,8 @@ const recipeController = {
   },
 
   /**
-   * Delete recipe
+   * @description - Delete recipe
+   * 
    * @param { object }  req
    * @param { object }  res
    *
@@ -176,7 +180,8 @@ const recipeController = {
   },
 
   /**
-   * List all recipes
+   * @description - List all recipes
+   * 
    * @param { object }  req
    * @param { object }  res
    *
@@ -209,7 +214,8 @@ const recipeController = {
       .catch(error => res.status(500).json({ error }));
   },
   /**
-   * Get user recipe
+   * @description - Get user recipe
+   * 
    * @param { object }  req
    * @param { object }  res
    *
@@ -253,7 +259,8 @@ const recipeController = {
       .catch(error => res.status(500).json({ error }));
   },
   /**
-   * Search recipe
+   * @description - Search recipe
+   * 
    * @param { object }  req
    * @param { object }  res
    *

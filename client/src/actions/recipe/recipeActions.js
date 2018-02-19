@@ -348,7 +348,7 @@ const getAllFavorites = page => (
     axios.get(`${baseUrl}/favorites?page=${page}`, authorization())
       .then((res) => {
         dispatch(allFavoritesSuccess({
-          favorites: res.data.favorites,
+          favorites: res.data.recipes,
           pagination: res.data.paginationMeta
         }));
       })
