@@ -273,7 +273,7 @@ export class AddRecipe extends Component {
                     }
                   </div>
                   <button type="submit"
-                    className="btn btn-outline-success"
+                    className="btn btn btn-success float-right"
                     disabled={recipeState.isCreating}
                   >
                     {recipeState.isCreating ? 

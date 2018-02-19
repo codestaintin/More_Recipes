@@ -84,7 +84,7 @@ const userController = {
         }
         if (!foundUser.comparePassword(foundUser, body.password)) {
           return res.status(400).json({
-            message: 'Invalid credentials'
+            message: 'Invalid login credentials'
           });
         }
         const user = lodash.pick(foundUser, ['id', 'username']);

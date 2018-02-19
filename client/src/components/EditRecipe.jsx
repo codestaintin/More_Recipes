@@ -284,7 +284,7 @@ export class EditRecipe extends Component {
                     }
                   </div>
                   <button type="submit"
-                    className="btn btn-outline-success"
+                    className="btn btn btn-success float-right"
                     disabled={this.props.recipeState.isCreating}>
                     {this.props.recipeState.isCreating ?
                       <span>Updating Recipe... <Spinner size={20} />
