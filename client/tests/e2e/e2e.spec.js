@@ -80,9 +80,9 @@ export default {
       .click('.fa.fa-plus')
       .pause(2000)
       .assert.urlEquals(`${config.baseUrl}/addRecipe`)
-      .assert.containsText('.btn.btn-outline-success', 'Add Recipe')
+      .assert.containsText('.btn.btn-success', 'Add Recipe')
       .pause(2000)
-      .click('.btn.btn-outline-success')
+      .click('.btn.btn-success')
       .pause(2000);
   },
   'ADD RECIPE: Valid inputs when user tries to create a recipe': (browser) => {
@@ -91,7 +91,7 @@ export default {
       .setValue('input[name=name]', 'Yam and Beef sauce')
       .setValue('textarea[name=description]', 'This is how to cook yam and sauce')
       .setValue('textarea[name=ingredient]', 'Yam, water, pepper, seasoning')
-      .click('.btn.btn-outline-success')
+      .click('.btn.btn-success')
       .pause(2000)
       .click('#navbarDropdown')
       .pause(2000)
@@ -100,7 +100,7 @@ export default {
       .setValue('input[name=name]', 'Meat Pie')
       .setValue('textarea[name=description]', 'This is how to meat Pie')
       .setValue('textarea[name=ingredient]', 'Meat, water, pepper, flour, seasoning')
-      .click('.btn.btn-outline-success')
+      .click('.btn.btn-success')
       .pause(2000)
       .click('#navbarDropdown')
       .pause(2000)
@@ -109,7 +109,7 @@ export default {
       .setValue('input[name=name]', 'Chicken Pie')
       .setValue('textarea[name=description]', 'This is how to chicken Pie')
       .setValue('textarea[name=ingredient]', 'Meat, water, pepper, flour, seasoning')
-      .click('.btn.btn-outline-success')
+      .click('.btn.btn-success')
       .pause(2000);
   },
   'VIEW RECIPE:': (browser) => {
@@ -134,7 +134,7 @@ export default {
       .clearValue('input[name=name]')
       .setValue('input[name=name]', 'Fish Pie')
       .pause(2000)
-      .click('.btn.btn-outline-success')
+      .click('.btn.btn-success')
       .pause(2000);
   },
   'POST RECIPE REVIEW': (browser) => {

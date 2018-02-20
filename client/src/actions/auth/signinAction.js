@@ -1,9 +1,9 @@
 import axios from 'axios';
 import actionTypes from '../actionTypes';
-import { decodeToken, logout } from '../../utils/helpers';
+import { decodeToken, logout, baseUrl } from '../../utils/helpers';
 
 const signInAction = userCredentials => dispatch =>
-  axios.post('/api/v1/users/signin', userCredentials)
+  axios.post(`${baseUrl}/users/signin`, userCredentials)
     .then((res) => {
       const token = res.data.token;
       if (decodeToken(token)) {

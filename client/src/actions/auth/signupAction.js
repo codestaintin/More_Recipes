@@ -1,10 +1,10 @@
 import axios from 'axios';
 import actionTypes from '../actionTypes';
-import { decodeToken } from '../../utils/helpers';
+import { decodeToken, baseUrl } from '../../utils/helpers';
 
 
 const signupAction = userDetails => dispatch =>
-  axios.post('/api/v1/users/signup', userDetails)
+  axios.post(`${baseUrl}/users/signup`, userDetails)
     .then((res) => {
       const token = res.data.token;
       if (decodeToken(token)) {

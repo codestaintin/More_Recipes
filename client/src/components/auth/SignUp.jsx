@@ -158,10 +158,6 @@ export class SignUp extends Component {
                 </div> : null
               }
               <div className="modal-body">
-                <small className="form-text text-muted">
-                  All input fields marked 
-                  <span className="text-danger">*</span> are required
-                </small>
                 <div className="form-group">
                   <label htmlFor="firstName">First Name 
                     <span className="text-danger">*</span>
@@ -301,8 +297,13 @@ export class SignUp extends Component {
                   }
                 </div>
               </div>
-              <div className="modal-footer">
-                <button type="submit" id="submitSignUp" className="btn btn-warning">Register me
+              <div className="p-10 clearfix">
+                <small className="form-text text-muted float-left">
+                  All input fields marked 
+                  <span className="text-danger">*</span> are required
+                </small>
+                <button type="submit" id="submitSignUp"
+                  className="btn btn-warning float-right">Register me
                 </button>
               </div>
             </form>

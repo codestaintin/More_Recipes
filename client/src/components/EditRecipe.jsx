@@ -284,7 +284,7 @@ export class EditRecipe extends Component {
                     }
                   </div>
                   <button type="submit"
-                    className="btn btn-outline-success"
+                    className="btn btn btn-success float-right"
                     disabled={this.props.recipeState.isCreating}>
                     {this.props.recipeState.isCreating ?
                       <span>Updating Recipe... <Spinner size={20} />
@@ -306,7 +306,8 @@ EditRecipe.propTypes = {
   getRecipe: PropTypes.func.isRequired,
   processRecipeActions: PropTypes.func.isRequired,
   clearToast: PropTypes.func.isRequired,
-  match: PropTypes.object.isRequired
+  match: PropTypes.object.isRequired,
+  history: PropTypes.func
 };
 
 const mapStateToProps = state => ({

@@ -5,9 +5,9 @@
 
   <testsuite name="e2e.spec"
     errors="0" failures="0" hostname="" id="" package="e2e.spec" skipped="0"
-    tests="15" time="92.12" timestamp="Sat, 17 Feb 2018 12:05:14 GMT">
+    tests="15" time="91.98" timestamp="Mon, 19 Feb 2018 10:51:16 GMT">
   
-    <testcase name="SIGNUP: Invalid sign up when user tries to submit an empty form" classname="e2e.spec" time="8.087" assertions="6">
+    <testcase name="SIGNUP: Invalid sign up when user tries to submit an empty form" classname="e2e.spec" time="7.944" assertions="6">
 
     
 
@@ -22,51 +22,12 @@
     
     </testcase>
   
-    <testcase name="SIGNUP: Valid inputs when user enters valid inputs" classname="e2e.spec" time="6.845" assertions="0">
+    <testcase name="SIGNUP: Valid inputs when user enters valid inputs" classname="e2e.spec" time="6.900" assertions="0">
     </testcase>
   
-    <testcase name="SIGNIN: Invalid sign up when user tries to submit an empty form" classname="e2e.spec" time="2.770" assertions="4">
+    <testcase name="SIGNIN: Invalid sign up when user tries to submit an empty form" classname="e2e.spec" time="2.768" assertions="4">
 
     
-
-    
-
-    
-
-    
-    </testcase>
-  
-    <testcase name="SIGNIN: Valid inputs when user enters valid inputs" classname="e2e.spec" time="2.333" assertions="0">
-    </testcase>
-  
-    <testcase name="PROFILE: User can see his/her profile" classname="e2e.spec" time="4.199" assertions="1">
-
-    
-    </testcase>
-  
-    <testcase name="MY Recipes: User can see his/her recipe(s) if any exists" classname="e2e.spec" time="4.132" assertions="1">
-
-    
-    </testcase>
-  
-    <testcase name="MY FAVORITES: User can see his/her favorite(s) if any exists" classname="e2e.spec" time="4.146" assertions="1">
-
-    
-    </testcase>
-  
-    <testcase name="ADD RECIPE: Invalid inputs when user tries to create recipe" classname="e2e.spec" time="8.224" assertions="2">
-
-    
-
-    
-    </testcase>
-  
-    <testcase name="ADD RECIPE: Valid inputs when user tries to create a recipe" classname="e2e.spec" time="15.83" assertions="1">
-
-    
-    </testcase>
-  
-    <testcase name="VIEW RECIPE:" classname="e2e.spec" time="7.367" assertions="3">
 
     
 
@@ -75,24 +36,63 @@
     
     </testcase>
   
-    <testcase name="EDIT RECIPE:" classname="e2e.spec" time="8.276" assertions="1">
+    <testcase name="SIGNIN: Valid inputs when user enters valid inputs" classname="e2e.spec" time="2.299" assertions="0">
+    </testcase>
+  
+    <testcase name="PROFILE: User can see his/her profile" classname="e2e.spec" time="4.197" assertions="1">
 
     
     </testcase>
   
-    <testcase name="POST RECIPE REVIEW" classname="e2e.spec" time="8.390" assertions="2">
+    <testcase name="MY Recipes: User can see his/her recipe(s) if any exists" classname="e2e.spec" time="4.141" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="MY FAVORITES: User can see his/her favorite(s) if any exists" classname="e2e.spec" time="4.131" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="ADD RECIPE: Invalid inputs when user tries to create recipe" classname="e2e.spec" time="8.218" assertions="2">
 
     
 
     
     </testcase>
   
-    <testcase name="UPVOTE/DOWNVOTE A RECIPE" classname="e2e.spec" time="2.112" assertions="1">
+    <testcase name="ADD RECIPE: Valid inputs when user tries to create a recipe" classname="e2e.spec" time="15.81" assertions="1">
 
     
     </testcase>
   
-    <testcase name="FAVORITE A RECIPE" classname="e2e.spec" time="2.062" assertions="1">
+    <testcase name="VIEW RECIPE:" classname="e2e.spec" time="7.361" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="EDIT RECIPE:" classname="e2e.spec" time="8.286" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="POST RECIPE REVIEW" classname="e2e.spec" time="8.400" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="UPVOTE/DOWNVOTE A RECIPE" classname="e2e.spec" time="2.111" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="FAVORITE A RECIPE" classname="e2e.spec" time="2.067" assertions="1">
 
     
     </testcase>

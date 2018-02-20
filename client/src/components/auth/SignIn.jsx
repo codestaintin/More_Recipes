@@ -134,10 +134,6 @@ export class SignIn extends Component {
                     { signInState.fails }
                   </div> : null
                 }
-                <small className="form-text text-muted">
-                  All input fields marked 
-                  <span className="text-danger">*</span> are required
-                </small>
                 <div className="form-group">
                   <label htmlFor="email">
                     Email address <span className="text-danger">*</span>
@@ -187,11 +183,15 @@ export class SignIn extends Component {
                     : null
                   }
                 </div>
-                <div className="modal-footer">
+                <div>
+                  <small className="form-text text-muted">
+                    All input fields marked 
+                    <span className="text-danger">*</span> are required
+                  </small>
                   <button
                     type="submit"
                     id="submitSignIn"
-                    className="btn btn-warning">
+                    className="btn btn-warning float-right">
                     Log In
                   </button>
                 </div>
